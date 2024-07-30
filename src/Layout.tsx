@@ -5,8 +5,10 @@ export default function Layout() {
   return (
     <div>
       <header className="fixed w-full border border-black">헤더</header>
-      <Outlet />
-      <img src={vector} className="fixed left-0 top-[-20px] -z-50" />
+      <div className="flex min-w-[1280px] flex-1 flex-col items-center border border-black pt-6">
+        <Outlet />
+        <img src={vector} className="fixed left-0 top-[-20px] -z-50" />
+      </div>
       <footer className="w-full border border-black">풋터</footer>
     </div>
   );
