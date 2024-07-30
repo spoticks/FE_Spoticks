@@ -7,6 +7,7 @@ export default function Layout() {
       <header className="fixed w-full border border-black">헤더</header>
       <Outlet />
       <img src={vector} className="fixed left-0 top-[-20px] -z-50" />
+      <footer className="w-full border border-black">풋터</footer>
     </div>
   );
 }
