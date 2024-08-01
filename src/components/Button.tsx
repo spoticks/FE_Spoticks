@@ -9,14 +9,14 @@ const Button = ({w, h, content}:ButtonProps) => {
     switch (content) {
       case "로그인":
         return {
-          base: "bg-foreground text-text-primary border-text-primary",
+          base: "w-100 h-40 bg-foreground text-text-primary border-text-primary",
           hover:
             "hover:bg-Accent hover:text-foreground hover:border-Accent",
         };
 
       case "회원가입":
         return {
-          base: "bg-Accent text-foreground border-Accent",
+          base: "w-100 h-40 bg-Accent text-foreground border-Accent",
           hover:
             "hover:bg-[#a50115] hover:text-foreground hover:border-[#a50115]",
         };
@@ -37,7 +37,7 @@ const Button = ({w, h, content}:ButtonProps) => {
   
   return (
     <div
-      className={`w-${w} h-${h} ${styles.base} border ${styles.hover} rounded-[10px] transition-all duration-300 flex justify-center items-center`}
+      className={`${styles.base} border ${styles.hover} rounded-[10px] transition-all duration-300 flex justify-center items-center`}
     >
       {content}
     </div>
