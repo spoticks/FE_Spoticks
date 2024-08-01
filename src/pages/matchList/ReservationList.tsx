@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 interface Match {
   home: string;
   away: string;
@@ -37,7 +37,9 @@ const ReservationList: React.FC<ReservationListProps> = ({matchData}) => {
                     <td className="border px-4 py-2">{match.place}</td>
                     <td className="border px-4 py-2">{match.date}</td>
                     <td className="border px-4 py-2">
-                      <a href={match.reserveLink} className="cursor-pointer hover:underline">예매하기</a>
+                      <Link to={match.reserveLink} className="cursor-pointer hover:underline">
+                        예매하기
+                      </Link>
                     </td>
                   </tr>
                 ))}
