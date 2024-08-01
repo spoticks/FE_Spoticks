@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LeftTapIcon from '../../assets/matchListTap.svg';
 import TapOpen from '../../assets/TapOpen.svg';
 import TapClose from '../../assets/TapClose.svg';
@@ -9,6 +9,7 @@ import Heart from '../../assets/Heart.svg';
 import ReservationList from './ReservationList';
 import ReserveInfo from './ReserveInfo';
 import HomeInfo from './HomeInfo';
+import MatchListMain from './MatchListMain';
 
 export default function MatchList() {
   //Tap
@@ -36,17 +37,37 @@ export default function MatchList() {
 
   //예매일정 리스트 길이
   const [sceduleLen, setScheduleLen] = useState(0);
-  
+    const matchData = [
+    { home: '울산 HD FC', away: '포항 스틸러스', place: '울산 문수 경기장', date: '07/21(일)', reserveLink: '/reservation' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/22(월)', reserveLink: '/reservation/2' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/23(화)', reserveLink: '/reservation/3' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/24(수)', reserveLink: '/reservation/4' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/25(목)', reserveLink: '/reservation/5' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/26(금)', reserveLink: '/reservation/6' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/27(토)', reserveLink: '/reservation/7' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/28(일)', reserveLink: '/reservation/8' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/29(월)', reserveLink: '/reservation/9' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/30(화)', reserveLink: '/reservation/10' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/31(수)', reserveLink: '/reservation/11' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '08/01(목)', reserveLink: '/reservation/12' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '08/02(금)', reserveLink: '/reservation/13' },
+    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '08/03(토)', reserveLink: '/reservation/14' },
+    // 추가적인 경기 데이터...
+  ];
+  useEffect(()=>{
+    setScheduleLen(matchData.length);
+  },[])
+  console.log(sceduleLen);
   const MenuList = () => {
     switch(selectMenu) {
       case '예매 일정':
-        return <ReservationList setScheduleLen={setScheduleLen} />;
+        return <ReservationList matchData={matchData} />;
       case '홈구장 안내':
         return <HomeInfo />;
       case '예매정보':
         return <ReserveInfo />;
       default:
-        return <ReservationList setScheduleLen={setScheduleLen} />;
+        return <MatchListMain sceduleLen={sceduleLen} />;
     }
   }
   
@@ -74,9 +95,9 @@ export default function MatchList() {
               })}
             </div> : <></>
           }
-          {TapList.map((name)=>{
+          {TapList.map((name, idx)=>{
             return(
-              <div className='flex flex-row'>
+              <div key={idx} className='flex flex-row'>
                 <div>
                   <img src={LeftTapIcon} alt="Left Tap Icon" className="w-3 h-3" />
                 </div>

@@ -1,33 +1,21 @@
-import {useState, Dispatch, SetStateAction } from 'react';
+import { useState } from 'react';
 
-interface ReservationListProps {
-  setScheduleLen: Dispatch<SetStateAction<number>>;
+interface Match {
+  home: string;
+  away: string;
+  place: string;
+  date: string;
+  reserveLink: string;
 }
-const ReservationList: React.FC<ReservationListProps> = ({setScheduleLen}) => {
+interface ReservationListProps {
+  matchData: Match[]
+}
+const ReservationList: React.FC<ReservationListProps> = ({matchData}) => {
   const [viewMatches, setViewMatches] = useState(5);
 
   const addViewClick = () => {
     setViewMatches((prev)=> prev + 5)
   }
-
-  // 샘플 데이터
-  const matchData = [
-    { home: '울산 HD FC', away: '포항 스틸러스', place: '울산 문수 경기장', date: '07/21(일)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/22(월)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/23(화)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/24(수)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/25(목)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/26(금)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/27(토)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/28(일)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/29(월)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/30(화)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '07/31(수)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '08/01(목)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '08/02(금)', reserveLink: '#' },
-    { home: '광주 FC', away: '전북 현대모터스', place: '광주 월드컵 경기장', date: '08/03(토)', reserveLink: '#' },
-    // 추가적인 경기 데이터...
-  ];
 
   return(
     <div>
