@@ -9,16 +9,16 @@ const Button = ({w, h, content}:ButtonProps) => {
     switch (content) {
       case "로그인":
         return {
-          base: "bg-[#ffffff] text-[#000000] border-[#000000]",
+          base: "bg-foreground text-text-primary border-text-primary",
           hover:
-            "hover:bg-[#dd4255] hover:text-[#ffffff] hover:border-[#dd4255]",
+            "hover:bg-Accent hover:text-foreground hover:border-Accent",
         };
 
       case "회원가입":
         return {
-          base: "bg-[#dd4255] text-[#ffffff] border-[#dd4255]",
+          base: "bg-Accent text-foreground border-Accent",
           hover:
-            "hover:bg-[#a50115] hover:text-[#ffffff] hover:border-[#a50115]",
+            "hover:bg-[#a50115] hover:text-foreground hover:border-[#a50115]",
         };
       case 'block':
           return {
