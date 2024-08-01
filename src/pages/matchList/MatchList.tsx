@@ -14,7 +14,7 @@ import MatchListMain from './MatchListMain';
 export default function MatchList() {
   //Tap
   const TapList = ['전체 일정', '예매 가이드'];
-  const Leage = {
+  const Leagues = {
     soccer: ['울산 HD FC', '포항 스틸러스', '광주 FC', '전북 현대모터스']
   }
 
@@ -88,7 +88,7 @@ export default function MatchList() {
           </div>
           {
             isOpen ? <div>
-              {Leage.soccer.map((name)=> {
+              {Leagues.soccer.map((name)=> {
                 return(<div key={name} onClick={() => handleTeamClick(name)} className="cursor-pointer">
                   {name}
                 </div>)
