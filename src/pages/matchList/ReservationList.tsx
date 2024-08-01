@@ -10,7 +10,7 @@ interface Match {
 interface ReservationListProps {
   matchData: Match[]
 }
-const ReservationList: React.FC<ReservationListProps> = ({matchData}) => {
+const ReservationList = ({matchData}:ReservationListProps) => {
   const [viewMatches, setViewMatches] = useState(5);
 
   const addViewClick = () => {

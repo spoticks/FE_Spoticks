@@ -4,7 +4,7 @@ interface ButtonProps {
   content: string;
 }
 
-const Button = ({w, h, content}:ButtonProps) => {
+const Button = ({ content }:ButtonProps) => {
   const getStyles = (content:string) => {
     switch (content) {
       case "로그인":
