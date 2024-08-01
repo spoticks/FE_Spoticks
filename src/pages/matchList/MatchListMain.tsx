@@ -8,7 +8,7 @@ interface ReservationListProps {
   sceduleLen: number;
 }
 
-const MatchListMain: React.FC<ReservationListProps> = ({sceduleLen}) => {
+const MatchListMain = ({sceduleLen}:ReservationListProps) => {
 
   return(
     <div>
