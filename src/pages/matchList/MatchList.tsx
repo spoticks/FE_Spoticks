@@ -30,9 +30,9 @@ export default function MatchList() {
   };
 
   //예매내역, 홈구장안내, 예매설명
-  const [selectMenu, setSelectMenu] = useState('');
+  const [selectedMenu, setSelectedMenu] = useState('');
   const handleMenuClick = ((menu:string)=>{
-    setSelectMenu(menu);
+    setSelectedMenu(menu);
   })
 
   //예매일정 리스트 길이
@@ -59,7 +59,7 @@ export default function MatchList() {
   },[])
   console.log(sceduleLen);
   const MenuList = () => {
-    switch(selectMenu) {
+    switch(selectedMenu) {
       case '예매 일정':
         return <ReservationList matchData={matchData} />;
       case '홈구장 안내':
