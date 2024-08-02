@@ -67,7 +67,7 @@ export default function MatchList() {
       case '예매정보':
         return <ReserveInfo />;
       default:
-        return <MatchListMain sceduleLen={sceduleLen} />;
+        return <ReservationList matchData={matchData} />;
     }
   }
   
@@ -141,7 +141,7 @@ export default function MatchList() {
             </div>
           </div>
         ) : (
-          <div>팀을 선택해주세요</div>
+          <MatchListMain sceduleLen={sceduleLen} />
         )}
       </div>
     </div>
