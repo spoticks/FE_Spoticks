@@ -18,7 +18,7 @@ const Button = ({ content }: ButtonProps) => {
         };
       case "block":
         return {
-          base: "bg-[#dbdbdb] text-[#222222] border-[#dbdbdb]",
+          base: "bg-borders text-text-primary border-borders",
         };
 
       default:
