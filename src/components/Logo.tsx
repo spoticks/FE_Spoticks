@@ -1,5 +1,10 @@
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 
 export default function Logo() {
-  return <img src={logo} className="size-7" />;
+  return (
+    <Link to={"/"}>
+      <img src={logo} className="size-7" />
+    </Link>
+  );
 }
