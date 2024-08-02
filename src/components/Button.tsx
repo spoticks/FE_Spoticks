@@ -13,8 +13,8 @@ const Button = ({ content }: ButtonProps) => {
 
       case "회원가입":
         return {
-          base: "w-100 h-40 bg-Accent text-foreground border-Accent",
-          hover: "hover:bg-[#a50115] hover:text-foreground hover:border-[#a50115]",
+          base: "border-0",
+          hover: "hover:text-Accent",
         };
       case "block":
         return {
