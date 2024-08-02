@@ -32,11 +32,12 @@ const Button = ({ content }: ButtonProps) => {
   const styles = getStyles(content);
 
   return (
-    <div
+    <button
+      type="button"
       className={`${styles.base} border ${styles.hover} flex items-center justify-center rounded-[10px] transition-all duration-300`}
     >
       {content}
-    </div>
+    </button>
   );
 };
 
