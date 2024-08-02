@@ -7,7 +7,7 @@ const Button = ({ content }: ButtonProps) => {
     switch (content) {
       case "로그인":
         return {
-          base: "w-100 h-40 bg-foreground text-text-primary border-text-primary",
+          base: "w-[88px] h-[42px] bg-foreground text-text-primary border-text-primary",
           hover: "hover:bg-Accent hover:text-foreground hover:border-Accent",
         };
 
