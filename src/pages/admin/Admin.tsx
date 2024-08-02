@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface Match {
   date: string;
@@ -18,6 +18,7 @@ const matches: Match[] = [
 ];
 
 export default function Admin() {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
   const [selectedSport, setSelectedSport] = useState<string>('All');
@@ -36,7 +37,7 @@ export default function Admin() {
     <div className="m-10 w-[100%] flex flex-col justify-start">
       <div className="flex justify-between p-4">
         <h1 className="flex font-bold px-5 text-2xl">등록된 경기 목록</h1>
-          <button className='bg-Accent text-white px-3 py-2 cursor-pointer rounded-[10px]'>등록하기</button>
+          <button onClick={() => navigate('/admin/registration')} className='bg-Accent text-white px-3 py-2 cursor-pointer rounded-[10px]'>등록하기</button>
       </div>
       <div className="p-4">
         <table className="min-w-full bg-white rounded-[10px]">

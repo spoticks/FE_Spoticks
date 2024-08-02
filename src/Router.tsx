@@ -8,6 +8,7 @@ import Reservation from "./pages/Reservation";
 import MatchList from "./pages/matchList/MatchList";
 import Admin from "./pages/admin/Admin";
 import NotFound from "./pages/NotFound";
+import Registration from './pages/admin/Registration';
 
 export default function Router() {
   return (
@@ -21,6 +22,7 @@ export default function Router() {
           <Route path="/my-page" element={<MyPage />} />
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/registration" element={<Registration />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
