@@ -6,7 +6,7 @@ import HeaderNav from "./HeaderNav";
 export default function Header() {
   return (
     <header className="fixed flex h-[80px] w-full justify-center border">
-      <div className="flex w-[1280px] items-center justify-between">
+      <div className="flex w-[1280px] items-center">
         <Logo />
         <HeaderNav />
         <div className="flex w-32 items-center justify-between text-[18px]">
