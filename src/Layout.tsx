@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import vector from "./assets/Vector.svg";
 import Header from "./components/Header.tsx/Header";
+import Footer from "./components/Footer";
 
 export default function Layout() {
   return (
@@ -10,7 +11,7 @@ export default function Layout() {
         <Outlet />
         <img src={vector} className="fixed left-0 top-[-20px] -z-50" />
       </div>
-      <footer className="w-full border border-black">풋터</footer>
+      <Footer />
     </div>
   );
 }
