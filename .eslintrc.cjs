@@ -12,6 +12,6 @@ module.exports = {
   plugins: ["react-refresh", "@tanstack/query"],
   rules: {
     "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-    "@typescript-eslint/no-unused-vars": "no",
+    "@typescript-eslint/no-unused-vars": 1,
   },
 };
