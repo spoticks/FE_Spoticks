@@ -11,7 +11,11 @@ import ReserveInfo from './ReserveInfo';
 import HomeInfo from './HomeInfo';
 import MatchListMain from './MatchListMain';
 
-export default function MatchList() {
+interface MatchListProps{
+  sport:string;
+}
+
+export default function MatchList({sport}:MatchListProps) {
   //Tap
   const TapList = ['전체 일정', '예매 가이드'];
   const Leagues = {
@@ -67,7 +71,7 @@ export default function MatchList() {
       case '예매정보':
         return <ReserveInfo />;
       default:
-        return <MatchListMain sceduleLen={sceduleLen} />;
+        return <ReservationList matchData={matchData} />;
     }
   }
   
@@ -141,7 +145,7 @@ export default function MatchList() {
             </div>
           </div>
         ) : (
-          <div>팀을 선택해주세요</div>
+          <MatchListMain sceduleLen={sceduleLen} />
         )}
       </div>
     </div>
