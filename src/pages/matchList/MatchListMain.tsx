@@ -11,7 +11,7 @@ interface ReservationListProps {
 const MatchListMain = ({sceduleLen}:ReservationListProps) => {
 
   return(
-    <div className='flex w-[100%] justify-center'>
+    <div className='flex w-full justify-center'>
       {sceduleLen === 0 ? <div className='flex flex-col justify-center items-center'>
         {/*  이미지는 헤더 탭에 따라 변경 될 예정 */}
         <img src={Tennis} alt="Left Tap Icon" className="w-30 h-30" />

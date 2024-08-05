@@ -11,7 +11,11 @@ import ReserveInfo from './ReserveInfo';
 import HomeInfo from './HomeInfo';
 import MatchListMain from './MatchListMain';
 
-export default function MatchList() {
+interface MatchListProps{
+  sport:string;
+}
+
+export default function MatchList({sport}:MatchListProps) {
   //Tap
   const TapList = ['전체 일정', '예매 가이드'];
   const Leagues = {
