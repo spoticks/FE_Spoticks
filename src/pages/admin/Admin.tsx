@@ -1,27 +1,13 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
-interface Match {
-  date: string;
-  gameStartTime: string;
-  homeTeamName: string;
-  awayTeamName: string;
-  sportName: string;
-  reserveLink: string;
-}
-
-const matches: Match[] = [
-  { date: '2024/08/01', gameStartTime: '18:00', homeTeamName: '삼성라이온즈', awayTeamName: '엔씨다이노스', sportName: '축구', reserveLink: '#' },
-  { date: '2024/08/02', gameStartTime: '19:00', homeTeamName: '삼성라이온즈', awayTeamName: '엔씨다이노스', sportName: '야구', reserveLink: '#' },
-  { date: '2024/08/03', gameStartTime: '20:00', homeTeamName: '삼성라이온즈', awayTeamName: '엔씨다이노스', sportName: '테니스', reserveLink: '#' },
-  { date: '2024/08/04', gameStartTime: '21:00', homeTeamName: '삼성라이온즈', awayTeamName: '엔씨다이노스', sportName: '배구', reserveLink: '#' }
-];
+import useStore from '../../stores/useStore';
 
 export default function Admin() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
   const [selectedSport, setSelectedSport] = useState<string>('All');
+  const matches = useStore(state => state.matches);
 
   // 페이지네이션 및 필터링
   const filteredMatches = selectedSport === 'All' ? matches : matches.filter(match => match.sportName === selectedSport);
@@ -32,6 +18,8 @@ export default function Admin() {
 
   // 페이지네이션
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  const sports = ['축구', '야구', '배구', '농구'];
 
   return (
     <div className="m-10 w-[100%] flex flex-col justify-start">
@@ -55,10 +43,9 @@ export default function Admin() {
                 className="p-2 border rounded cursor-pointer"
               >
                 <option value="All">종목선택</option>
-                <option value="축구">축구</option>
-                <option value="야구">야구</option>
-                <option value="테니스">테니스</option>
-                <option value="배구">배구</option>
+                {sports.map((sport:string)=>{
+                    return(<option value={sport}>{sport}</option>)
+                  })}
               </select>
               <th className="p-4"></th>
             </tr>

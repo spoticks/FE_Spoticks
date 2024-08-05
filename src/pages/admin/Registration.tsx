@@ -1,5 +1,8 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Tickets from '../../assets/Tickets.svg';
+import useStore from '../../stores/useStore';
+import { useNavigate } from 'react-router-dom';
 
 type FormValues = {
   sport: string;
@@ -10,7 +13,7 @@ type FormValues = {
 };
 
 export default function Registration() {
-  const { register, handleSubmit, watch } = useForm<FormValues>({
+  const { register, handleSubmit, watch, setValue } = useForm<FormValues>({
     defaultValues: {
       sport: '',
       date: '',
@@ -20,8 +23,21 @@ export default function Registration() {
     }
   });
 
+  const navigate = useNavigate();
+  const addMatch = useStore(state => state.addMatch);
+
   const onSubmit = (data: FormValues) => {
     console.log(data);
+    const newMatch = {
+      date: data.date.replace(/-/g, '/'),
+      gameStartTime: data.startTime,
+      homeTeamName: data.homeTeam,
+      awayTeamName: data.awayTeam,
+      sportName: data.sport,
+      reserveLink: '#'
+    };
+    addMatch(newMatch);
+    navigate('/admin');
   };
 
   const dateValue = watch('date');
@@ -29,6 +45,22 @@ export default function Registration() {
     const [year, month, day] = dateString.split('-');
     return `${year}/${month}/${day}`;
   };
+  const sports = ['축구', '야구', '배구', '농구'];
+  // 샘플데이터
+  const teams: Record<string, string[]> = {
+    '축구': ['울산', '포항', '전북'],
+    '야구': ['엔씨다이노스', '기아타이거즈', '두산베어스', '한화이글스', '키움히어로즈'],
+    '배구': ['대한항공점보스', '현대캐피탈', 'ok금융그룹', '우리카드', 'kb손해보험 스타즈'],
+    '농구': ['서울 Sk 나이츠', '고양 캐롯 점퍼스', '원주 DB 프로미']
+    }
+  const sportValue = watch('sport');
+  const homeTeamValue = watch('homeTeam');
+  const teamsInSport = sportValue ? teams[sportValue] || [] : [];
+
+  useEffect(() => {
+    setValue('homeTeam', '');
+    setValue('awayTeam', '');
+  }, [sportValue, setValue]);
 
   return (
     <div className='flex flex-row w-full my-5'>
@@ -43,13 +75,12 @@ export default function Registration() {
                 <select
                   id="sport"
                   {...register('sport')}
-                  className="border rounded px-3 py-[10px] w-full bg-foreground border-borders"
+                  className="border rounded px-3 py-[10px] w-full bg-foreground border-borders cursor-pointer"
                 >
                   <option value="">경기종목</option>
-                  <option value="축구">축구</option>
-                  <option value="야구">야구</option>
-                  <option value="테니스">테니스</option>
-                  <option value="배구">배구</option>
+                  {sports.map((sport:string, idx:number)=>{
+                    return(<option key={idx} value={sport}>{sport}</option>)
+                  })}
                 </select>
               </div>
 
@@ -60,9 +91,9 @@ export default function Registration() {
                   type="date"
                   id="date"
                   {...register('date')}
-                  className="border rounded px-3 py-1 w-full"
+                  className="border rounded px-3 py-1 w-full cursor-pointer"
                 />
-                <p className="text-gray-600">{dateValue ? formatDate(dateValue) : ''}</p>
+                {/* <p className="text-gray-600">{dateValue ? formatDate(dateValue) : ''}</p> */}
               </div>
             </div>
 
@@ -73,7 +104,7 @@ export default function Registration() {
                 type="time"
                 id="startTime"
                 {...register('startTime')}
-                className="border rounded px-3 py-2 w-full"
+                className="border rounded px-3 py-2 w-full cursor-pointer"
               />
             </div>
 
@@ -85,12 +116,12 @@ export default function Registration() {
                 id="homeTeam"
                 {...register('homeTeam')}
                 className="border rounded px-3 py-2 w-full"
+                disabled={!sportValue}
               >
                 <option value="">홈팀을 선택해주세요.</option>
-                <option value="엔씨 다이노스">엔씨 다이노스</option>
-                <option value="두산 베어스">두산 베어스</option>
-                <option value="기아 타이거즈">기아 타이거즈</option>
-                <option value="한화 이글스">한화 이글스</option>
+                {teamsInSport.map((team: string) => (
+                  <option key={team} value={team}>{team}</option>
+                ))}
               </select>
             </div>
 
@@ -101,12 +132,14 @@ export default function Registration() {
                 id="awayTeam"
                 {...register('awayTeam')}
                 className="border rounded px-3 py-2 w-full"
+                disabled={!sportValue}
               >
                 <option value="">어웨이팀을 선택해주세요</option>
-                <option value="엔씨 다이노스">엔씨 다이노스</option>
-                <option value="두산 베어스">두산 베어스</option>
-                <option value="기아 타이거즈">기아 타이거즈</option>
-                <option value="한화 이글스">한화 이글스</option>
+                {teamsInSport
+                  .filter((team: string) => team !== homeTeamValue)
+                  .map((team: string) => (
+                    <option key={team} value={team}>{team}</option>
+                  ))}
               </select>
             </div>
             <button
