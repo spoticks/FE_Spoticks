@@ -37,7 +37,9 @@ const ReservationList = ({matchData}:ReservationListProps) => {
                     <td className="border px-4 py-2">{match.place}</td>
                     <td className="border px-4 py-2">{match.date}</td>
                     <td className="border px-4 py-2">
-                      <Link to={match.reserveLink} className="cursor-pointer hover:underline">
+                      <Link to={match.reserveLink}
+                       state={{ match: match }}
+                       className="cursor-pointer hover:underline">
                         예매하기
                       </Link>
                     </td>

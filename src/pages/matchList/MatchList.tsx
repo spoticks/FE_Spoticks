@@ -79,7 +79,7 @@ export default function MatchList({sport}:MatchListProps) {
   return (
     <div className="flex flex-row w-[1280px] pt-10">
       <div className="w-[220px]">
-        <div className="text-xs">홈 &gt; 축구 &gt; 2024 K 리그</div>
+        <div className="text-xs">홈 &gt; {sport} &gt; 2024 K 리그</div>
         <div className="flex flex-col">
           <div className='flex flex-row'>
             <div>
