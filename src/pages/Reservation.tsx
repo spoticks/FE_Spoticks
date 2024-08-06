@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useForm, Controller } from "react-hook-form";
 interface sectionOfSeats {
   section: string;
   price: number;
@@ -10,57 +12,69 @@ interface Seat {
   id: number;
   isReserved: boolean;
   isSelected: boolean;
+  price:number;
+}
+
+interface FormData {
+  section: string;
 }
 
 export default function Reservation() {
-
-  //샘플 seats
-  const initSeats: Seat[] = [
-    { id:1, isReserved: false, isSelected: true},
-    { id:2, isReserved: true, isSelected: false},
-    { id:3, isReserved: false, isSelected: false},
-    { id:4, isReserved: false, isSelected: false},
-    { id:5, isReserved: false, isSelected: false},
-    { id:6, isReserved: false, isSelected: false},
-    { id:7, isReserved: false, isSelected: false},
-    { id:8, isReserved: false, isSelected: false},
-    { id:9, isReserved: false, isSelected: false},
-    { id:10, isReserved: false, isSelected: false},
-    { id:11, isReserved: false, isSelected: false},
-    { id:12, isReserved: false, isSelected: true},
-    { id:13, isReserved: true, isSelected: false},
-    { id:14, isReserved: false, isSelected: false},
-    { id:15, isReserved: false, isSelected: false},
-    { id:16, isReserved: false, isSelected: false},
-    { id:17, isReserved: false, isSelected: false},
-    { id:18, isReserved: false, isSelected: false},
-    { id:19, isReserved: false, isSelected: false},
-    { id:20, isReserved: false, isSelected: false},
-    { id:21, isReserved: false, isSelected: false},
-    // 10*5 50개 좌석들
-  ]
-
-  
+  const location = useLocation();
+  const matchData = location.state?.match;
+  // console.log(matchData);
 
   // 샘플 데이터
-  const SeatData: sectionOfSeats[] = [
+  const SectionData: sectionOfSeats[] = [
     { section: '1루', price: 12000, availableSeat: 39, allSeat: 50},
     { section: '2루', price: 12000, availableSeat: 23, allSeat: 50},
     { section: '외야', price: 12000, availableSeat: 12, allSeat: 50},
     { section: '프리미엄', price: 24000, availableSeat: 0, allSeat: 50}
   ]
 
-  const [seats, setSeats] = useState<Seat[]>(initSeats);
+  // 샘플 좌석 데이터 생성
+  const createSeats = (allSeat: number, availableSeat: number, price: number): Seat[] => {
+    const seats: Seat[] = Array.from({ length: allSeat }, (_, idx) => ({
+      id: idx + 1,
+      isReserved: idx < availableSeat, // 예약된 좌석은 availableSeat만큼 설정
+      isSelected: false,
+      price,
+    }));
+
+    return seats;
+  };
+
+  // 초기 좌석 데이터 생성
+  const initSeats = SectionData.reduce((acc, section) => {
+    acc[section.section] = createSeats(section.allSeat, section.availableSeat, section.price);
+    return acc;
+  }, {} as Record<string, Seat[]>);
+
+  const { control, watch } = useForm<FormData>({
+    defaultValues: {
+      section: '1루',
+    }
+  });
+
+  const selectedSection = watch('section');
+  const selectedSectionData = SectionData.find(section => section.section === selectedSection);
+
+  const [seats, setSeats] = useState<Seat[]>(initSeats[selectedSection]);
   const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
 
-  const handleSeatClick = (seat:Seat) => {
-    //이미 예약되었거나 이미 선택한 좌석이 4자리 이상일경우
-    if(seat.isReserved || selectedSeats.length >=4) return;
+   useEffect(() => {
+    setSeats(initSeats[selectedSection]);
+    setSelectedSeats([]); // 섹션이 바뀔 때 선택된 좌석 초기화
+  }, [selectedSection]);
 
-    const updatedSeats = seats.map((el)=> el.id === seat.id ? {...el, isSelected: !el.isSelected} : el);
+  const handleSeatClick = (seat: Seat) => {
+    // 이미 예약되었거나 이미 선택한 좌석이 4자리 이상일 경우
+    if (seat.isReserved || (seat.isSelected === false && selectedSeats.length >= 4)) return;
+
+    const updatedSeats = seats.map((el) => el.id === seat.id ? { ...el, isSelected: !el.isSelected } : el);
 
     const updatedSelectedSeats = seat.isSelected ?
-    selectedSeats.filter(el => el.id !== seat.id) : [...selectedSeats, seat];
+      selectedSeats.filter(el => el.id !== seat.id) : [...selectedSeats, { ...seat, section: selectedSection, price: selectedSectionData!.price }];
 
     setSeats(updatedSeats);
     setSelectedSeats(updatedSelectedSeats);
@@ -76,12 +90,12 @@ export default function Reservation() {
         </span>
       </div>
     </div>
-    <h1 className='text-[40px] font-extrabold'>한화 이글스 vs 삼성라이온즈</h1>
-    <div className='text-[18px] font-bold'>대구 삼성라이온즈 파크 <span>2024.07.22 18:30</span></div>
+    <h1 className='text-[40px] font-extrabold'>{matchData.home} vs {matchData.away}</h1>
+    <div className='text-[18px] font-bold'>{matchData.place} <span>2024.07.22 18:30</span></div>
     <hr className='border-[#222222] opacity-25 border-2 ' />
     <div className='flex flex-row my-5'>
       <div className='flex flex-col'>
-        <h1 className='flex justify-center text-[32px] font-bold'>1루</h1>
+        <h1 className='flex justify-center text-[32px] font-bold'>{selectedSection}</h1>
         <div className="grid grid-cols-10 gap-2">
           {seats.map(seat => (
             <div key={seat.id} onClick={()=> handleSeatClick(seat)} className={`cursor-pointer w-6 h-6 flex items-center justify-center rounded-[10px] text-white ${
@@ -99,35 +113,43 @@ export default function Reservation() {
       <div className='flex flex-col'>
         <h1 className='flex justify-center text-[32px] font-bold'>구역 선택</h1>
         <div className='grid grid-cols-2 gap-4 p-4'>
-        {SeatData.map((section, idx)=>(
-          <div key={idx} className='flex flex-col border px-7 py-2 items-center font-bold rounded-[10px] border-borders'>
-            <div className='text-[24px]'>{section.section}</div>
-            <div className='text-[16px]'>{section.price}원</div>
-            <div className='text-[16px]'>{section.availableSeat}/{section.allSeat}</div>
-          </div>
-        ))}
+        {SectionData.map((section, idx) => (
+              <Controller
+                key={idx}
+                name="section"
+                control={control}
+                render={({ field }) => (
+                  <div
+                    onClick={() => {
+                      field.onChange(section.section);
+                      setSeats(initSeats[section.section]);
+                    }}
+                    className='flex flex-col border px-7 py-2 items-center font-bold rounded-[10px] border-borders cursor-pointer'>
+                    <div className='text-[24px]'>{section.section}</div>
+                    <div className='text-[16px]'>{section.price}원</div>
+                    <div className='text-[16px]'>{section.availableSeat}/{section.allSeat}</div>
+                  </div>
+                )}
+              />
+            ))}
         </div>
       </div>
     </div>
     <hr className='border-[#222222] opacity-25 border-2' />
-    <div className='flex flex-row'>
-      <div className='flex flex-col'>
-        <div>1루 2열 12번</div>
-        <div>프리미엄 2열 12번</div>
+    <div className='flex flex-row justify-between items-center'>
+      <div className="flex items-center">
+      {selectedSeats.map(seat => (
+          <div key={seat.id} className='flex flex-col items-center'>
+            <div>{selectedSection} {Math.ceil(seat.id / 10)}열 {seat.id}번</div>
+            <div>{seat.price}원</div>
+          </div>
+        ))}
       </div>
       <div className='flex flex-col'>
-        <div>1루 2열 12번</div>
-        <div>프리미엄 2열 12번</div>
-      </div>
-      <div className='flex flex-col'>
-        <div>1루 2열 12번</div>
-        <div>프리미엄 2열 12번</div>
-      </div>
-      <div className='flex flex-col'>
-        <div>총 6 매</div>
-        <div>100,000원</div>
+        <div className="text-[20px] font-bold">총 {selectedSeats.length} 매</div>
+        <div className="text-[28px] font-bold">{selectedSeats.reduce((total, seat) => total + seat.price, 0)}원</div>
       </div>  
-      <button className='px-2 py-8 bg-Accent text-white'>다음 단계</button>
+      <button className='px-8 py-2 rounded-[10px] bg-Accent text-white cursor-pointer'>다음 단계</button>
     </div>
   </div>
   );
