@@ -96,7 +96,7 @@ export default function Reservation() {
   return(
   <div>
     <div className='flex flex-row justify-between items-center'>
-      <h1 className="text-[18px] font-bold rounded-[10px] border-borders border-[2px] flex items-center px-2">경기 목록</h1>
+      <h3 className="text-[18px] font-bold rounded-[10px] border-borders border-[2px] flex items-center px-2">경기 목록</h3>
       <div className='flex-1 text-center'>
         <span className='inline-block font-bold bg-[#d9d9d9] px-1 rounded-[10px] text-[18px]'>
           좌석 선택
@@ -116,7 +116,7 @@ export default function Reservation() {
                 ? 'bg-borders cursor-not-allowed'
                 : seat.isSelected
                 ? 'bg-Accent'
-                : 'bg-[#222222] opacity-50'
+                : 'bg-text-primary opacity-50'
             }`}>
               {seat.id}
             </div>
