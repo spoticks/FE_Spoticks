@@ -12,3 +12,6 @@
     border: 1px solid black;
   }
 }
+.button-hover:hover {
+  @apply bg-Accent text-foreground;
+}
