@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useInput from "../hooks/useInput";
 
 interface InputComponentProps {
   label: string;
@@ -6,7 +7,7 @@ interface InputComponentProps {
 }
 
 export default function Input({ label, type = "text" }: InputComponentProps) {
-  const [inputValue, setInputValue] = useState("");
+  const inputProps = useInput();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleToggleShowPassword = () => {
@@ -18,8 +19,7 @@ export default function Input({ label, type = "text" }: InputComponentProps) {
       <div className="relative">
         <input
           type={type === "password" && showPassword ? "password" : "text"}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          {...inputProps}
           className="focus:bg-focused-input-background w-48 appearance-none rounded-[15px] px-3 py-2 text-[16px] transition-colors duration-300 focus:outline-none"
           placeholder={label}
         />
