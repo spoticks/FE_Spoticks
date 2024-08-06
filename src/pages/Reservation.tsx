@@ -25,18 +25,18 @@ export default function Reservation() {
   // console.log(matchData);
 
   // 샘플 데이터
-  const SectionData: sectionOfSeats[] = [
+  const initSectionData: sectionOfSeats[] = [
     { section: '1루', price: 12000, availableSeat: 39, allSeat: 50},
     { section: '2루', price: 12000, availableSeat: 23, allSeat: 50},
     { section: '외야', price: 12000, availableSeat: 12, allSeat: 50},
-    { section: '프리미엄', price: 24000, availableSeat: 0, allSeat: 50}
+    { section: '프리미엄', price: 24000, availableSeat: 34, allSeat: 50}
   ]
 
   // 샘플 좌석 데이터 생성
   const createSeats = (allSeat: number, availableSeat: number, price: number): Seat[] => {
     const seats: Seat[] = Array.from({ length: allSeat }, (_, idx) => ({
       id: idx + 1,
-      isReserved: idx < availableSeat, // 예약된 좌석은 availableSeat만큼 설정
+      isReserved: idx >= availableSeat, // 예약된 좌석은 availableSeat만큼 설정
       isSelected: false,
       price,
     }));
@@ -45,7 +45,7 @@ export default function Reservation() {
   };
 
   // 초기 좌석 데이터 생성
-  const initSeats = SectionData.reduce((acc, section) => {
+  const initSeats = initSectionData.reduce((acc, section) => {
     acc[section.section] = createSeats(section.allSeat, section.availableSeat, section.price);
     return acc;
   }, {} as Record<string, Seat[]>);
@@ -57,12 +57,13 @@ export default function Reservation() {
   });
 
   const selectedSection = watch('section');
-  const selectedSectionData = SectionData.find(section => section.section === selectedSection);
+  const selectedSectionData = initSectionData.find(section => section.section === selectedSection);
 
   const [seats, setSeats] = useState<Seat[]>(initSeats[selectedSection]);
   const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
+  const [sectionData, setSectionData] = useState<sectionOfSeats[]>(initSectionData);
 
-   useEffect(() => {
+  useEffect(() => {
     setSeats(initSeats[selectedSection]);
     setSelectedSeats([]); // 섹션이 바뀔 때 선택된 좌석 초기화
   }, [selectedSection]);
@@ -73,11 +74,23 @@ export default function Reservation() {
 
     const updatedSeats = seats.map((el) => el.id === seat.id ? { ...el, isSelected: !el.isSelected } : el);
 
-    const updatedSelectedSeats = seat.isSelected ?
-      selectedSeats.filter(el => el.id !== seat.id) : [...selectedSeats, { ...seat, section: selectedSection, price: selectedSectionData!.price }];
+    const updatedSelectedSeats = seat.isSelected
+      ? selectedSeats.filter(el => el.id !== seat.id)
+      : [...selectedSeats, seat];
 
     setSeats(updatedSeats);
     setSelectedSeats(updatedSelectedSeats);
+
+    const newSectionData = sectionData.map(section => {
+      if (section.section === selectedSection) {
+        return {
+          ...section,
+          availableSeat: seat.isSelected ? section.availableSeat + 1 : section.availableSeat - 1
+        };
+      }
+      return section;
+    });
+    setSectionData(newSectionData);
   }
 
   return(
@@ -113,7 +126,7 @@ export default function Reservation() {
       <div className='flex flex-col'>
         <h1 className='flex justify-center text-[32px] font-bold'>구역 선택</h1>
         <div className='grid grid-cols-2 gap-4 p-4'>
-        {SectionData.map((section, idx) => (
+        {sectionData.map((section, idx) => (
               <Controller
                 key={idx}
                 name="section"
