@@ -5,7 +5,7 @@ import HeaderNav from "./HeaderNav";
 
 export default function Header() {
   return (
-    <header className="fixed flex h-[80px] w-full justify-center border">
+    <header className="fixed flex h-[80px] w-full justify-center border bg-foreground">
       <div className="flex w-[1280px] items-center">
         <Logo />
         <HeaderNav />
