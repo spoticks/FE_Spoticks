@@ -5,6 +5,7 @@ import useStore from '../../stores/useStore';
 import { useNavigate } from 'react-router-dom';
 
 type FormValues = {
+  id: number;
   sport: string;
   date: string;
   startTime: string;
@@ -29,6 +30,7 @@ export default function Registration() {
   const onSubmit = (data: FormValues) => {
     console.log(data);
     const newMatch = {
+      id: data.id,
       date: data.date.replace(/-/g, '/'),
       gameStartTime: data.startTime,
       homeTeamName: data.homeTeam,
@@ -40,11 +42,11 @@ export default function Registration() {
     navigate('/admin');
   };
 
-  const dateValue = watch('date');
-  const formatDate = (dateString: string): string => {
-    const [year, month, day] = dateString.split('-');
-    return `${year}/${month}/${day}`;
-  };
+  // const dateValue = watch('date');
+  // const formatDate = (dateString: string): string => {
+  //   const [year, month, day] = dateString.split('-');
+  //   return `${year}/${month}/${day}`;
+  // };
   const sports = ['축구', '야구', '배구', '농구'];
   // 샘플데이터
   const teams: Record<string, string[]> = {
@@ -83,7 +85,6 @@ export default function Registration() {
                   })}
                 </select>
               </div>
-
               {/* 경기일 선택 */}
               <div>
                 <label htmlFor="date" className="block mb-2 font-medium">&nbsp;</label>

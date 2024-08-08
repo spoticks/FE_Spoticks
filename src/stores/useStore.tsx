@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 // Match 타입 정의
-interface Match {
+export interface Match {
   id: number;
   date: string;
   gameStartTime: string;
