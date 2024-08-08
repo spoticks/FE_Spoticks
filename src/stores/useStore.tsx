@@ -1,19 +1,10 @@
 import { create } from "zustand";
-
-// Match 타입 정의
-export interface Match {
-  id: number;
-  date: string;
-  gameStartTime: string;
-  homeTeamName: string;
-  awayTeamName: string;
-  sportName: string;
-  reserveLink: string;
-}
+import { Match } from "../type";
 
 interface storeState {
   matches: Match[];
   addMatch: (match:Match) => void;
+  updateMatch: (match:Match) => void;
 }
 
 const useStore = create<storeState>((set) => ({
@@ -26,7 +17,10 @@ const useStore = create<storeState>((set) => ({
     { id:6, date: '2024/08/06', gameStartTime: '21:00', homeTeamName: '포항 스틸러스', awayTeamName: '전북 현대 모터스', sportName: '축구', reserveLink: '/reservation' },
     { id:7, date: '2024/08/06', gameStartTime: '21:00', homeTeamName: '광주 FC', awayTeamName: '울산 HD FC', sportName: '축구', reserveLink: '/reservation' },
   ],
-  addMatch: (match:Match) => set((state)=> ({matches: [...state.matches, match]}))
+  addMatch: (match:Match) => set((state)=> ({matches: [...state.matches, match]})),
+  updateMatch: (updatedMatch) => set((state)=>({
+    matches: state.matches.map((match)=> match.id === updatedMatch.id ? updatedMatch : match)
+  }))
 }));
 
 export default useStore;

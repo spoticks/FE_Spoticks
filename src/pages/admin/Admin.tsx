@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useStore from '../../stores/useStore';
 import DetailModal from './DetailModal';
-import { Match } from '../../stores/useStore';
+import { Match } from '../../type';
 
 export default function Admin() {
   const navigate = useNavigate();
@@ -104,6 +104,7 @@ export default function Admin() {
           timeOnSale="2024-08-01 10:00"
           timeOffSale="2024-08-15 17:00"
           onClose={handleModalClose}
+          match={selectedMatch}
         />
       )}
     </div>

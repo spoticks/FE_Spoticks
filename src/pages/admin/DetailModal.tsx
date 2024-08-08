@@ -1,5 +1,6 @@
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
+import { Match } from '../../type';
 interface DetailModalProps {
   isOpen: boolean;
   sportName: string;
@@ -9,6 +10,7 @@ interface DetailModalProps {
   timeOnSale: string;
   timeOffSale: string;
   onClose: () => void;
+  match: Match;
 }
 
 export default function DetailModal ({
@@ -19,7 +21,8 @@ export default function DetailModal ({
   awayTeamName,
   timeOnSale,
   timeOffSale,
-  onClose
+  onClose,
+  match
 }: DetailModalProps) {
   const Detail = [
     { '종목': sportName, '홈팀': homeTeamName, '티켓오픈': timeOnSale },
@@ -64,8 +67,8 @@ export default function DetailModal ({
           </div>
         </main>
         <div className="flex justify-end mt-4 space-x-11">
-          <Link to={"/admin/registration"} className="bg-borders text-background px-8 py-2 rounded-lg">경기 등록</Link>
-          <button className="bg-Accent text-background px-8 py-2 rounded-lg">경기 수정</button>
+          <Link to={"/admin/registration"} state={{mode: 'create'}}  className="bg-borders text-background px-8 py-2 rounded-lg">경기 등록</Link>
+          <Link to={"/admin/registration"} state={{mode: 'edit', existMatch: match}} className="bg-Accent text-background px-8 py-2 rounded-lg">경기 수정</Link>
         </div>
       </div>
     </Modal>
