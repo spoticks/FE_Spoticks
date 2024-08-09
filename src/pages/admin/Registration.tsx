@@ -3,27 +3,35 @@ import { useForm } from 'react-hook-form';
 import Tickets from '../../assets/Tickets.svg';
 import useStore from '../../stores/useStore';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { Match } from '../../type';
+import axios from 'axios';
 
 type FormValues = {
   id?: number; //수정시
   sportName: string;
   date: string;
   gameStartTime: string;
+  stadiumName: string;
   homeTeamName: string;
   awayTeamName: string;
 };
 
 interface ModeProps {
   mode: 'create' | 'edit';
-  existMatch?: FormValues;
+  existMatch?: Match;
 }
 
-export default function Registration({ mode, existMatch }: ModeProps) {
+export default function Registration() {
+  const location = useLocation();
+  const {mode, existMatch}:ModeProps = location.state;
+  console.log(mode, existMatch)
   const { register, handleSubmit, watch, setValue } = useForm<FormValues>({
     defaultValues: existMatch || {
       sportName: '',
       date: '',
       gameStartTime: '',
+      stadiumName: '',
       homeTeamName: '',
       awayTeamName: '',
     }
@@ -35,55 +43,57 @@ export default function Registration({ mode, existMatch }: ModeProps) {
     updateMatch: state.updateMatch
   }));
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-    if(mode === 'create'){
-      const newMatch = {
-        ...data,
-        id: Math.random(), // 추후 서버에서 받음
-        date: data.date.replace(/-/g, '/'),
-        reserveLink: '/' // 추후 수정
-      };
-      addMatch(newMatch);
-      navigate('/admin');
-    } else if(mode === 'edit' && existMatch){
-      if (existMatch.id !== undefined) { 
-        const updatedMatch = {
-          ...existMatch,
-          ...data,
-          id: existMatch.id,
-        };
-        updateMatch(updatedMatch);
+  const onSubmit = async(data: FormValues) => {
+    try{
+      console.log(data);
+      const addDateTime = `${data.date}T${data.gameStartTime}`;
+      const matchData = {
+        sportName: data.sportName,
+        gameStartTime: addDateTime,
+        stadiumName: data.stadiumName,
+        homeTeamName: data.homeTeamName,
+        awayTeamName: data.awayTeamName,
       }
+      if(mode === 'create'){
+        const res = await axios.post('http://localhost:3000/matches', matchData);
+        addMatch(res.data);
+      } else if(mode === 'edit' && existMatch){
+        console.log(existMatch.id)
+        if (existMatch.id !== undefined) { 
+          const updatedMatch = {
+            ...existMatch,
+            ...matchData,
+            id: existMatch.id,
+          };
+          const res = await axios.patch(`http://localhost:3000/matches/${existMatch.id}`, updatedMatch)
+          updateMatch(res.data);
+        }
+        }
       navigate('/admin');
     }
-    // const newMatch = {
-    //   id: data.id,
-    //   date: data.date.replace(/-/g, '/'),
-    //   gameStartTime: data.startTime,
-    //   homeTeamName: data.homeTeam,
-    //   awayTeamName: data.awayTeam,
-    //   sportName: data.sport,
-    //   reserveLink: '#'
-    // };
+    catch(err) {
+      console.error('Error: ', err);
+    }
   };
 
-  // const dateValue = watch('date');
-  // const formatDate = (dateString: string): string => {
-  //   const [year, month, day] = dateString.split('-');
-  //   return `${year}/${month}/${day}`;
-  // };
   const sports = ['축구', '야구', '배구', '농구'];
   // 샘플데이터
   const teams: Record<string, string[]> = {
-    '축구': ['울산', '포항', '전북'],
-    '야구': ['엔씨다이노스', '기아타이거즈', '두산베어스', '한화이글스', '키움히어로즈'],
+    '축구': ['울산 현대', '포항 스틸러스', '전북 현대 모터스', 'FC 서울', '수원 삼성 블루윙즈', '인천 유나이티드', '대구 FC', '강원 FC', '제주 유나이티드'],
+    '야구': ['NC 다이노스', '기아 타이거즈', '두산 베어스', '한화 이글스', '키움 히어로즈', 'LG 트윈스', '삼성 라이온즈', '롯데 자이언츠', 'SSG 랜더스', 'KT 위즈'],
     '배구': ['대한항공점보스', '현대캐피탈', 'ok금융그룹', '우리카드', 'kb손해보험 스타즈'],
     '농구': ['서울 Sk 나이츠', '고양 캐롯 점퍼스', '원주 DB 프로미']
     }
+  const stadiums: Record<string, string[]> = {
+    '축구': ['울산', '포항', '전북'],
+    '야구': ['대구', '잠실(서울)', '고척(서울)', '사직(부산)', '문학(인천)', 'NC파크(창원)'],
+    '배구': ['인천', '천안', '안산', '장충(서울)', '의정부', '대전', '수원'],
+    '농구': ['서울', '고양', '원주']
+  }
   const sportValue = watch('sportName');
   const homeTeamValue = watch('homeTeamName');
   const teamsInSport = sportValue ? teams[sportValue] || [] : [];
+  const stadumsInSport = sportValue ? stadiums[sportValue] || [] : [];
 
   useEffect(() => {
     if(mode === 'create'){
@@ -91,8 +101,8 @@ export default function Registration({ mode, existMatch }: ModeProps) {
       setValue('awayTeamName', '');
     }else if( mode === 'edit' && existMatch){
       setValue('sportName', existMatch.sportName);
-      setValue('date', existMatch.date);
-      setValue('gameStartTime', existMatch.gameStartTime);
+      setValue('date', existMatch.gameStartTime.split('T')[0]);
+      setValue('gameStartTime', existMatch.gameStartTime.split('T')[1]);
       setValue('homeTeamName', existMatch.homeTeamName);
       setValue('awayTeamName', existMatch.awayTeamName);
     }
@@ -128,7 +138,6 @@ export default function Registration({ mode, existMatch }: ModeProps) {
                   {...register('date')}
                   className="border rounded px-3 py-1 w-full cursor-pointer"
                 />
-                {/* <p className="text-gray-600">{dateValue ? formatDate(dateValue) : ''}</p> */}
               </div>
             </div>
 
@@ -143,8 +152,23 @@ export default function Registration({ mode, existMatch }: ModeProps) {
               />
             </div>
 
+            {/* 장소 선택 */}
+            <div>
+              <label htmlFor="homeTeam" className="block mb-2 font-medium">장소</label>
+              <select
+                id="stadiumName"
+                {...register('stadiumName')}
+                className="border rounded px-3 py-2 w-full"
+                disabled={!sportValue}
+              >
+                <option value="">장소를 선택해주세요.</option>
+                {stadumsInSport.map((stadium: string) => (
+                  <option key={stadium} value={stadium}>{stadium}</option>
+                ))}
+              </select>
+            </div>
+
             {/* 홈팀 선택 */}
-            {/* option 은 추후 gameId 를 받아서 종목별로 변경할지 다른식으로 할지 생각중입니다. */}
             <div>
               <label htmlFor="homeTeam" className="block mb-2 font-medium">홈팀</label>
               <select
