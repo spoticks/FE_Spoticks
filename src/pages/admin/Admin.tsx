@@ -39,29 +39,31 @@ export default function Admin() {
   return (
     <div className="m-10 w-[100%] flex flex-col justify-start">
       <div className="flex justify-between p-4">
-        <h1 className="flex font-bold px-5 text-2xl">등록된 경기 목록</h1>
-          <button onClick={() => navigate('/admin/registration')} className='bg-Accent text-white px-3 py-2 cursor-pointer rounded-[10px]'>등록하기</button>
+        <h1 className="flex font-bold  text-2xl">등록된 경기 목록</h1>
+          <button onClick={() => navigate('/admin/registration')} className='bg-Accent text-white px-3 py-2 cursor-pointer rounded-[10px] hover:opacity-75'>등록하기</button>
       </div>
       <div className="p-4">
         <table className="min-w-full bg-white rounded-[10px]">
           <thead>
-            <tr className="w-full text-left text-borders border-b border-borders">
+            <tr className="w-full text-left text-[#B5B7C0] border-b border-borders">
               <th className="p-4">경기일</th>
               <th className="p-4">경기시작</th>
               <th className="p-4">홈팀</th>
               <th className="p-4">어웨이팀</th>
-              <label htmlFor="sportFilter" className="mr-2" />
-              <select
-                id="sportFilter"
-                value={selectedSport}
-                onChange={(e) => setSelectedSport(e.target.value)}
-                className="p-2 border rounded cursor-pointer"
-              >
-                <option value="All">종목선택</option>
-                {sports.map((sport:string)=>{
-                    return(<option value={sport}>{sport}</option>)
-                  })}
-              </select>
+              <th className='p-4'>
+                <label htmlFor="sportFilter" className="mr-2" />
+                <select
+                  id="sportFilter"
+                  value={selectedSport}
+                  onChange={(e) => setSelectedSport(e.target.value)}
+                  className="p-2 border rounded cursor-pointer hover:text-Accent"
+                >
+                  <option value="All">종목선택</option>
+                  {sports.map((sport:string)=>{
+                      return(<option value={sport}>{sport}</option>)
+                    })}
+                </select>
+              </th>
               <th className="p-4"></th>
             </tr>
           </thead>
@@ -72,11 +74,11 @@ export default function Admin() {
                 <td className="p-4">{match.gameStartTime}</td>
                 <td className="p-4">{match.homeTeamName}</td>
                 <td className="p-4">{match.awayTeamName}</td>
-                <td className="p-4">{match.sportName}</td>
+                <td className="p-4 pl-8">{match.sportName}</td>
                 <td className="p-4">
-                  <div onClick={() => handleModalOpen(match)} className="bg-Accent text-white px-3 py-2 rounded cursor-pointer">
+                  <button onClick={() => handleModalOpen(match)} className="bg-Accent text-white px-6 py-2 rounded cursor-pointer flex items-center justify-center hover:opacity-75">
                     경기상세
-                  </div>
+                  </button>
                 </td>
               </tr>
             ))}
@@ -87,7 +89,7 @@ export default function Admin() {
             <button
               key={i}
               onClick={() => paginate(i + 1)}
-              className={`px-4 py-2 mx-1 ${currentPage === i + 1 ? 'bg-Accent text-white rounded-[10px]' : 'bg-gray-200'}`}
+              className={`px-4 py-2 mx-1 ${currentPage === i + 1 ? 'bg-Accent text-white rounded-[10px]' : 'bg-gray-200 rounded-[10px]'}`}
             >
               {i + 1}
             </button>
