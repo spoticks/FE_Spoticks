@@ -1,14 +1,8 @@
 import sun from "../../../assets/icons8-sun.svg";
+import { MatchData } from "../../../type";
 import Button from "../../Button";
 import TeamLogo from "../../TeamLogo";
 
-interface MatchData {
-  gameId: number;
-  homeTeamName: string;
-  awayTeamName: string;
-  sportName: string;
-  gameStartTime: string;
-}
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
   const month = date.getMonth() + 1;

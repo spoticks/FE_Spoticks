@@ -1,13 +1,6 @@
+import { MatchData } from "../../../type";
 import Button from "../../Button";
 import MainMatchTeam from "./MainMatchTeam";
-
-interface MatchData {
-  gameId: number;
-  homeTeamName: string;
-  awayTeamName: string;
-  sportName: string;
-  gameStartTime: string;
-}
 
 export default function MainMatchInfo({ matchData }: { matchData: MatchData }) {
   return (
