@@ -17,9 +17,9 @@ const mainMatch = {
 export default function MainMatch() {
   return (
     <div className="flex flex-col gap-9">
-      <h2 className="text-3xl font-bold">
+      <h1 className="text-2xl font-bold">
         What is the most popular <span className="text-red-500">match</span>?
-      </h2>
+      </h1>
       <Timer mainMatchStartTime={mainMatch.content[0].gameStartTime} />
       <MainMatchInfo matchData={mainMatch.content[0]} />
     </div>

@@ -73,7 +73,7 @@ export default function WeeklyMatches() {
 
   return (
     <>
-      <h2 className="mb-4 text-2xl font-bold">이번주 경기</h2>
+      <h1 className="mb-4 text-2xl font-bold">이번주 경기</h1>
       <div
         className="hide-scrollbar flex w-full snap-x gap-4 overflow-scroll"
         ref={containerRef}
