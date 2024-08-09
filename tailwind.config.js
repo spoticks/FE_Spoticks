@@ -7,6 +7,7 @@ export default {
         background: "#F9F9F9",
         foreground: "#ffffff",
         Accent: "#DD4255",
+        "button-hovered": "#A50115",
         "text-primary": "#222222",
         "text-secondary": "rgba(34, 34, 34, 0.5)",
         borders: "#DBDBDB",
