@@ -1,0 +1,59 @@
+{
+	"content": [
+		{
+			"gameId":123,
+			"homeTeamName": "두산 베어스",
+			"awayTeamName": "SSG 랜더스",
+			"stadiumName":"두산",
+			"sportName":"야구",
+			"gameStartTime":"2024-08-09T15:00:00",
+			"timeOnSale": "2024-08-04T15:40:20",
+			"timeOffSale": "2024-08-06T15:40:20"
+		},		{
+			"gameId":124,
+			"homeTeamName": "LG 트윈스",
+			"awayTeamName": "KT 위즈",
+			"stadiumName":"LG",
+			"sportName":"야구",
+			"gameStartTime":"2024-09-09T15:00:00",
+			"timeOnSale": "2024-09-04T15:40:20",
+			"timeOffSale": "2024-09-06T15:40:20"
+		},		{
+			"gameId":125,
+			"homeTeamName": "NC 다이노스",
+			"awayTeamName": "KIA 타이거즈",
+			"stadiumName":"NC",
+			"sportName":"야구",
+			"gameStartTime":"2024-10-09T15:00:00",
+			"timeOnSale": "2024-10-04T15:40:20",
+			"timeOffSale": "2024-10-06T15:40:20"
+		},		{
+			"gameId":126,
+			"homeTeamName": "롯데 자이언츠",
+			"awayTeamName": "키움 히어로즈",
+			"stadiumName":"롯데",
+			"sportName":"야구",
+			"gameStartTime":"2024-11-09T15:00:00",
+			"timeOnSale": "2024-11-04T15:40:20",
+			"timeOffSale": "2024-11-06T15:40:20"
+		},		{
+			"gameId":127,
+			"homeTeamName": "울산 HD FC",
+			"awayTeamName": "광주 FC",
+			"stadiumName":"울산",
+			"sportName":"축구",
+			"gameStartTime":"2024-09-23T15:00:00",
+			"timeOnSale": "2024-09-11T15:40:20",
+			"timeOffSale": "2024-09-20T15:40:20"
+		},		{
+			"gameId":128,
+			"homeTeamName": "광주 FC",
+			"awayTeamName": "포항 스틸러스",
+			"stadiumName":"포항",
+			"sportName":"축구",
+			"gameStartTime":"2024-08-11T15:00:00",
+			"timeOnSale": "2024-08-05T15:40:20",
+			"timeOffSale": "2024-08-09T15:40:20"
+		}
+	]
+}

@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useStore from '../../stores/useStore';
+import DetailModal from './DetailModal';
+import { Match } from '../../type';
 
 export default function Admin() {
   const navigate = useNavigate();
@@ -20,6 +22,19 @@ export default function Admin() {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const sports = ['축구', '야구', '배구', '농구'];
+
+  //modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
+
+  const handleModalOpen = (match:Match) => {
+     setSelectedMatch(match);
+    setIsModalOpen(true);
+  }
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+     setSelectedMatch(null);
+  }
 
   return (
     <div className="m-10 w-[100%] flex flex-col justify-start">
@@ -59,9 +74,9 @@ export default function Admin() {
                 <td className="p-4">{match.awayTeamName}</td>
                 <td className="p-4">{match.sportName}</td>
                 <td className="p-4">
-                  <Link to={match.reserveLink} className="bg-Accent text-white px-3 py-2 rounded">
+                  <div onClick={() => handleModalOpen(match)} className="bg-Accent text-white px-3 py-2 rounded cursor-pointer">
                     경기상세
-                  </Link>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -79,6 +94,19 @@ export default function Admin() {
           ))}
         </div>
       </div>
+      {isModalOpen && selectedMatch && (
+        <DetailModal
+          isOpen={isModalOpen}
+          sportName={selectedMatch.sportName}
+          gameStartTime={selectedMatch.gameStartTime}
+          homeTeamName={selectedMatch.homeTeamName}
+          awayTeamName={selectedMatch.awayTeamName}
+          timeOnSale="2024-08-01 10:00"
+          timeOffSale="2024-08-15 17:00"
+          onClose={handleModalClose}
+          match={selectedMatch}
+        />
+      )}
     </div>
   );
 }
