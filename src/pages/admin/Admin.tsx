@@ -1,15 +1,23 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useStore from '../../stores/useStore';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import DetailModal from './DetailModal';
 import { Match } from '../../type';
+import axios from 'axios';
 
 export default function Admin() {
-  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
   const [selectedSport, setSelectedSport] = useState<string>('All');
-  const matches = useStore(state => state.matches);
+  const [matches, setMatches] = useState<Match[]>([]);
+
+  // data 로드
+  useEffect(() => {
+      axios.get('http://localhost:3000/matches')
+        .then(res => {
+          setMatches(res.data);
+        })
+        .catch(error => console.error('Error:', error));
+    }, []);
 
   // 페이지네이션 및 필터링
   const filteredMatches = selectedSport === 'All' ? matches : matches.filter(match => match.sportName === selectedSport);
@@ -28,19 +36,19 @@ export default function Admin() {
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
 
   const handleModalOpen = (match:Match) => {
-     setSelectedMatch(match);
+    setSelectedMatch(match);
     setIsModalOpen(true);
   }
   const handleModalClose = () => {
     setIsModalOpen(false);
-     setSelectedMatch(null);
+    setSelectedMatch(null);
   }
 
   return (
-    <div className="m-10 w-[100%] flex flex-col justify-start">
+    <div className="m-10 w-full flex flex-col justify-start">
       <div className="flex justify-between p-4">
         <h1 className="flex font-bold  text-2xl">등록된 경기 목록</h1>
-          <button onClick={() => navigate('/admin/registration')} className='bg-Accent text-white px-3 py-2 cursor-pointer rounded-[10px] hover:opacity-75'>등록하기</button>
+          <Link to ={'/admin/registration'} state={{mode: 'create'}} className='bg-Accent text-white px-3 py-2 cursor-pointer rounded-[10px] hover:opacity-75'>등록하기</Link>
       </div>
       <div className="p-4">
         <table className="min-w-full bg-white rounded-[10px]">
@@ -59,8 +67,8 @@ export default function Admin() {
                   className="p-2 border rounded cursor-pointer hover:text-Accent"
                 >
                   <option value="All">종목선택</option>
-                  {sports.map((sport:string)=>{
-                      return(<option value={sport}>{sport}</option>)
+                  {sports.map((sport:string, idx:number)=>{
+                      return(<option key={idx} value={sport}>{sport}</option>)
                     })}
                 </select>
               </th>
@@ -69,7 +77,7 @@ export default function Admin() {
           </thead>
           <tbody>
             {currentItems.map((match, index) => (
-              <tr key={index} className="border-b border-gray-200">
+              <tr key={index} className="border-b border-borders">
                 <td className="p-4">{match.date}</td>
                 <td className="p-4">{match.gameStartTime}</td>
                 <td className="p-4">{match.homeTeamName}</td>
@@ -89,7 +97,7 @@ export default function Admin() {
             <button
               key={i}
               onClick={() => paginate(i + 1)}
-              className={`px-4 py-2 mx-1 ${currentPage === i + 1 ? 'bg-Accent text-white rounded-[10px]' : 'bg-gray-200 rounded-[10px]'}`}
+              className={`px-4 py-2 mx-1 ${currentPage === i + 1 ? 'bg-Accent text-white rounded-[10px]' : 'bg-borders rounded-[10px]'}`}
             >
               {i + 1}
             </button>
@@ -99,10 +107,6 @@ export default function Admin() {
       {isModalOpen && selectedMatch && (
         <DetailModal
           isOpen={isModalOpen}
-          sportName={selectedMatch.sportName}
-          gameStartTime={selectedMatch.gameStartTime}
-          homeTeamName={selectedMatch.homeTeamName}
-          awayTeamName={selectedMatch.awayTeamName}
           timeOnSale="2024-08-01 10:00"
           timeOffSale="2024-08-15 17:00"
           onClose={handleModalClose}
