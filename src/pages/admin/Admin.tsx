@@ -78,8 +78,8 @@ export default function Admin() {
           <tbody>
             {currentItems.map((match, index) => (
               <tr key={index} className="border-b border-borders">
-                <td className="p-4">{match.date}</td>
-                <td className="p-4">{match.gameStartTime}</td>
+                <td className="p-4">{match.gameStartTime.split('T')[0]}</td>
+                <td className="p-4">{match.gameStartTime.split('T')[1].slice(0,5)}</td>
                 <td className="p-4">{match.homeTeamName}</td>
                 <td className="p-4">{match.awayTeamName}</td>
                 <td className="p-4 pl-8">{match.sportName}</td>
@@ -107,8 +107,6 @@ export default function Admin() {
       {isModalOpen && selectedMatch && (
         <DetailModal
           isOpen={isModalOpen}
-          timeOnSale="2024-08-01 10:00"
-          timeOffSale="2024-08-15 17:00"
           onClose={handleModalClose}
           match={selectedMatch}
         />
