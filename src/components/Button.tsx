@@ -16,6 +16,11 @@ const Button = ({ content }: ButtonProps) => {
           base: "border-0",
           hover: "hover:text-Accent",
         };
+      case "회원가입 하기":
+        return {
+          base: "bg-Accent text-foreground text-[16px] w-full px-3 py-2 mt-4",
+          hover: "hover:bg-button-hovered hover:text-foreground hover:border-Accent",
+        };
       case "block":
         return {
           base: "bg-borders text-text-primary border-borders",
@@ -37,7 +42,7 @@ const Button = ({ content }: ButtonProps) => {
 
   return (
     <button
-      type="button"
+      type={content === "회원가입 하기" ? "submit" : "button"}
       className={`${styles.base} border ${styles.hover} flex items-center justify-center rounded-[10px] transition-all duration-300`}
     >
       {content}
