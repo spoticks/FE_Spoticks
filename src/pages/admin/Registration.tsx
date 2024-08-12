@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { Match } from '../../type';
 import axios from 'axios';
 
-type FormValues = {
+interface FormValues {
   id?: number; //수정시
   sportName: string;
   date: string;
@@ -15,7 +15,7 @@ type FormValues = {
   stadiumName: string;
   homeTeamName: string;
   awayTeamName: string;
-};
+}
 
 interface ModeProps {
   mode: 'create' | 'edit';
@@ -93,7 +93,7 @@ export default function Registration() {
   const sportValue = watch('sportName');
   const homeTeamValue = watch('homeTeamName');
   const teamsInSport = sportValue ? teams[sportValue] || [] : [];
-  const stadumsInSport = sportValue ? stadiums[sportValue] || [] : [];
+  const stadiumsInSport = sportValue ? stadiums[sportValue] || [] : [];
 
   useEffect(() => {
     if(mode === 'create'){
@@ -162,7 +162,7 @@ export default function Registration() {
                 disabled={!sportValue}
               >
                 <option value="">장소를 선택해주세요.</option>
-                {stadumsInSport.map((stadium: string) => (
+                {stadiumsInSport.map((stadium: string) => (
                   <option key={stadium} value={stadium}>{stadium}</option>
                 ))}
               </select>
