@@ -3,12 +3,15 @@ import useInput from "../hooks/useInput";
 
 type InputType = "text" | "email" | "password";
 
+import { UseFormRegisterReturn } from "react-hook-form";
+
 interface InputComponentProps {
   label: string;
   type?: InputType;
+  register?: UseFormRegisterReturn;
 }
 
-export default function Input({ label, type = "text" }: InputComponentProps) {
+export default function Input({ label, type = "text", register }: InputComponentProps) {
   const inputProps = useInput();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -22,6 +25,7 @@ export default function Input({ label, type = "text" }: InputComponentProps) {
         <input
           type={type === "password" && showPassword ? "text" : type}
           {...inputProps}
+          {...register}
           className="w-full appearance-none rounded-[15px] px-3 py-2 text-[16px] transition-colors duration-300 focus:bg-focused-input-background focus:outline-none"
           placeholder={label}
         />
