@@ -76,7 +76,7 @@ export default function Registration() {
     }
   };
 
-  const sports = ['축구', '야구', '배구', '농구'];
+  const sports = ['야구', '축구', '배구', '농구'];
   // 샘플데이터
   const teams: Record<string, string[]> = {
     '축구': ['울산 현대', '포항 스틸러스', '전북 현대 모터스', 'FC 서울', '수원 삼성 블루윙즈', '인천 유나이티드', '대구 FC', '강원 FC', '제주 유나이티드'],

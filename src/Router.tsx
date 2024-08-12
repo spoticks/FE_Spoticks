@@ -9,6 +9,7 @@ import MatchList from "./pages/matchList/MatchList";
 import Admin from "./pages/admin/Admin";
 import NotFound from "./pages/NotFound";
 import Registration from './pages/admin/Registration';
+import { menu } from "./components/constants";
 
 export default function Router() {
   return (
@@ -22,6 +23,15 @@ export default function Router() {
           <Route path="/soccer" element={<MatchList sport="축구" />} />
           <Route path="/volleyball" element={<MatchList sport="배구" />} />
           <Route path="/basketball" element={<MatchList sport="농구" />} />
+          {menu
+            .filter((sport) => sport !== "HOME")
+            .map((sport) => (
+              <Route
+                key={sport}
+                path={`/match-list/${sport}`}
+                element={<MatchList sport={sport} />}
+              />
+            ))}
           <Route path="/my-page" element={<MyPage />} />
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/admin" element={<Admin />} />
