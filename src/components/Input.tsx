@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useInput from "../hooks/useInput";
 
 type InputType = "text" | "email" | "password";
 
@@ -12,7 +11,6 @@ interface InputComponentProps {
 }
 
 export default function Input({ label, type = "text", register }: InputComponentProps) {
-  const inputProps = useInput();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleToggleShowPassword = () => {
@@ -24,7 +22,6 @@ export default function Input({ label, type = "text", register }: InputComponent
       <div className="relative">
         <input
           type={type === "password" && showPassword ? "text" : type}
-          {...inputProps}
           {...register}
           className="w-full appearance-none rounded-[15px] px-3 py-2 text-[16px] transition-colors duration-300 focus:bg-focused-input-background focus:outline-none"
           placeholder={label}
