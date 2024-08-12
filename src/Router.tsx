@@ -26,6 +26,7 @@ export default function Router() {
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/registration" element={<Registration />} />
+          <Route path="/admin/registration/:id" element={<Registration />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
