@@ -3,30 +3,41 @@ import { Link } from 'react-router-dom';
 import { Match } from '../../type';
 interface DetailModalProps {
   isOpen: boolean;
-  sportName: string;
-  gameStartTime: string;
-  homeTeamName: string;
-  awayTeamName: string;
-  timeOnSale: string;
-  timeOffSale: string;
   onClose: () => void;
   match: Match;
 }
 
 export default function DetailModal ({
   isOpen,
-  sportName,
-  gameStartTime,
-  homeTeamName,
-  awayTeamName,
-  timeOnSale,
-  timeOffSale,
   onClose,
   match
 }: DetailModalProps) {
+  // 경기날짜
+  const matchDate = new Date(match.gameStartTime);
+  // 티켓 오픈 시간
+  const timeOnSale = new Date(matchDate);
+  timeOnSale.setDate(matchDate.getDate()-7); // 7일전 오픈
+  timeOnSale.setHours(11,0,0,0); //오전 11시로 세팅
+  // console.log(timeOnSale)
+  
+  // 예매 마감 시간
+  const timeOffSale = new Date(matchDate);
+  timeOffSale.setHours(timeOffSale.getHours()-7); //7시간 전 마감
+
+  //날짜 변경 함수
+  function formateDate(date:Date){
+    const year = date.getFullYear();
+    const month = String(date.getMonth()+1).padStart(2,'0');
+    const day = String(date.getDate()).padStart(2,'0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+  } 
+
   const Detail = [
-    { '종목': sportName, '홈팀': homeTeamName, '티켓오픈': timeOnSale },
-    { '경기시작': gameStartTime, '어웨이팀': awayTeamName, '예매마감': timeOffSale },
+    { '종목': match.sportName, '홈팀': match.homeTeamName, '티켓오픈': formateDate(timeOnSale) },
+    { '경기시작': formateDate(matchDate), '어웨이팀': match.awayTeamName, '예매마감': formateDate(timeOffSale) },
   ];
 
   return (
@@ -67,8 +78,7 @@ export default function DetailModal ({
           </div>
         </main>
         <div className="flex justify-end mt-4 space-x-11">
-          <Link to={"/admin/registration"} state={{mode: 'create'}}  className="bg-borders text-background px-8 py-2 rounded-lg">경기 등록</Link>
-          <Link to={"/admin/registration"} state={{mode: 'edit', existMatch: match}} className="bg-Accent text-background px-8 py-2 rounded-lg">경기 수정</Link>
+          <Link to={`/admin/registration/${match.id}`} state={{mode: 'edit', existMatch: match}} className="bg-Accent text-background px-8 py-2 rounded-lg">경기 수정</Link>
         </div>
       </div>
     </Modal>
