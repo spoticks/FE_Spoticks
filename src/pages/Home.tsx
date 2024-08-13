@@ -4,7 +4,7 @@ import WeeklyMatches from "../components/WeeklyMatches/WeeklyMatches";
 
 export default function Home() {
   return (
-    <main className="w-full">
+    <div className="mb-24">
       <section className="my-8 flex items-center justify-between text-center">
         <MainMatch />
         <div>
@@ -14,6 +14,6 @@ export default function Home() {
       <section>
         <WeeklyMatches />
       </section>
-    </main>
+    </div>
   );
 }
