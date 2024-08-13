@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
+import SignUpErrorMessage from "../components/SignUpErrorMessage";
 
 interface SignUpForm {
   email: string;
@@ -22,21 +23,21 @@ const validationRules = {
     required: "이름을 입력해주세요.",
     pattern: {
       value: /^[a-zA-Z가-힣]{2,}$/,
-      message: "이름은 최소 두 글자 이상의 한글 또는 영문만 입력 가능합니다.",
+      message: "이름은 두 글자 이상의 한글, 영문만 입력 가능합니다.",
     },
   },
   phoneNumber: {
     required: "전화번호를 입력해주세요.",
     pattern: {
       value: /^010-\d{4}-\d{4}$/,
-      message: "유효한 전화번호 형식을 입력해주세요. (예: 010-1234-5678)",
+      message: "유효한 번호를 입력해주세요. (예: 010-0000-0000)",
     },
   },
   password: {
     required: "비밀번호를 입력해주세요.",
     pattern: {
       value: /(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}/,
-      message: "비밀번호는 영문, 숫자, 특수문자를 포함한 최소 8자 이상이어야 합니다.",
+      message: "영문, 숫자, 특수문자 포함 최소 8자 이상이어야 합니다.",
     },
   },
   passwordConfirmation: {
@@ -53,8 +54,10 @@ export default function SignUp() {
     handleSubmit,
     getValues,
   } = useForm<SignUpForm>({ mode: "onBlur" });
+
   const onSubmit: SubmitHandler<SignUpForm> = (data) => {
     const { passwordConfirmation, ...formData } = data;
+    // 회원가입 양식 제출 로직
     console.log(passwordConfirmation, formData);
   };
 
@@ -70,13 +73,17 @@ export default function SignUp() {
       </span>
       <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <Input label="이메일" type="email" register={register("email", validationRules.email)} />
+        <SignUpErrorMessage error={errors.email} />
         <Input label="이름" register={register("name", validationRules.name)} />
-        <Input label="전화번호" register={register("phoneNumber", validationRules.phoneNumber)} />
+        <SignUpErrorMessage error={errors.name} />
+        <Input label="휴대전화" register={register("phoneNumber", validationRules.phoneNumber)} />
+        <SignUpErrorMessage error={errors.phoneNumber} />
         <Input
           label="비밀번호"
           type="password"
           register={register("password", validationRules.password)}
         />
+        <SignUpErrorMessage error={errors.password} />
         <Input
           label="비밀번호 재확인"
           type="password"
@@ -85,6 +92,7 @@ export default function SignUp() {
             validate: (value) => validationRules.passwordConfirmation.validate(value, getValues),
           })}
         />
+        <SignUpErrorMessage error={errors.passwordConfirmation} />
         <Button content="회원가입 하기" />
       </form>
     </section>
