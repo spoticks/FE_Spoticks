@@ -59,7 +59,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex w-full flex-col justify-center pt-12">
+    <section className="flex w-full flex-col justify-center pt-12">
       <h1 className="text-2xl font-bold">회원가입</h1>
       <span>
         이미 회원이신가요?{" "}
@@ -68,27 +68,25 @@ export default function SignUp() {
         </Link>{" "}
         하세요.
       </span>
-      <section className="my-4">
-        <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-          <Input label="이메일" type="email" register={register("email", validationRules.email)} />
-          <Input label="이름" register={register("name", validationRules.name)} />
-          <Input label="전화번호" register={register("phoneNumber", validationRules.phoneNumber)} />
-          <Input
-            label="비밀번호"
-            type="password"
-            register={register("password", validationRules.password)}
-          />
-          <Input
-            label="비밀번호 재확인"
-            type="password"
-            register={register("passwordConfirmation", {
-              ...validationRules.passwordConfirmation,
-              validate: (value) => validationRules.passwordConfirmation.validate(value, getValues),
-            })}
-          />
-          <Button content="회원가입 하기" />
-        </form>
-      </section>
-    </div>
+      <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+        <Input label="이메일" type="email" register={register("email", validationRules.email)} />
+        <Input label="이름" register={register("name", validationRules.name)} />
+        <Input label="전화번호" register={register("phoneNumber", validationRules.phoneNumber)} />
+        <Input
+          label="비밀번호"
+          type="password"
+          register={register("password", validationRules.password)}
+        />
+        <Input
+          label="비밀번호 재확인"
+          type="password"
+          register={register("passwordConfirmation", {
+            ...validationRules.passwordConfirmation,
+            validate: (value) => validationRules.passwordConfirmation.validate(value, getValues),
+          })}
+        />
+        <Button content="회원가입 하기" />
+      </form>
+    </section>
   );
 }
