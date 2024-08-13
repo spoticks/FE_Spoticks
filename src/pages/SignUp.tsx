@@ -53,7 +53,7 @@ export default function SignUp() {
     formState: { errors },
     handleSubmit,
     getValues,
-  } = useForm<SignUpForm>({ mode: "onBlur" });
+  } = useForm<SignUpForm>({ mode: "onTouched" });
 
   const onSubmit: SubmitHandler<SignUpForm> = (data) => {
     const { passwordConfirmation, ...formData } = data;
