@@ -1,8 +1,9 @@
 interface ButtonProps {
   content: string;
+  isValid?: boolean;
 }
 
-const Button = ({ content }: ButtonProps) => {
+const Button = ({ content, isValid }: ButtonProps) => {
   const getStyles = (content: string) => {
     switch (content) {
       case "로그인":
@@ -18,8 +19,9 @@ const Button = ({ content }: ButtonProps) => {
         };
       case "회원가입 하기":
         return {
-          base: "bg-Accent text-foreground text-[16px] w-full px-3 py-2 mt-4",
-          hover: "hover:bg-button-hovered hover:text-foreground hover:border-Accent",
+          base: "bg-Accent text-foreground text-[16px] w-full px-3 py-2 mt-4 ",
+          hover: "hover:bg-button-hovered ",
+          disabled: "disabled:bg-disabled-button disabled:cursor-not-allowed",
         };
       case "block":
         return {
@@ -43,7 +45,8 @@ const Button = ({ content }: ButtonProps) => {
   return (
     <button
       type={content === "회원가입 하기" ? "submit" : "button"}
-      className={`${styles.base} border ${styles.hover} flex items-center justify-center rounded-[10px] transition-all duration-300`}
+      disabled={isValid === false}
+      className={`${styles.base} border ${styles.hover} ${styles.disabled} flex items-center justify-center rounded-[10px] transition-all duration-300`}
     >
       {content}
     </button>

@@ -93,7 +93,7 @@ export default function SignUp() {
           })}
         />
         <InputErrorMessage error={errors.passwordConfirmation} />
-        <Button content="회원가입 하기" />
+        <Button content="회원가입 하기" isValid={isValid} />
       </form>
     </section>
   );
