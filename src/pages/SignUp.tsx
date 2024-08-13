@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
-import SignUpErrorMessage from "../components/SignUpErrorMessage";
+import InputErrorMessage from "../components/InputErrorMessage";
 
 interface SignUpForm {
   email: string;
@@ -50,7 +50,7 @@ const validationRules = {
 export default function SignUp() {
   const {
     register,
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
     getValues,
   } = useForm<SignUpForm>({ mode: "onTouched" });
@@ -73,17 +73,17 @@ export default function SignUp() {
       </span>
       <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <Input label="이메일" type="email" register={register("email", validationRules.email)} />
-        <SignUpErrorMessage error={errors.email} />
+        <InputErrorMessage error={errors.email} />
         <Input label="이름" register={register("name", validationRules.name)} />
-        <SignUpErrorMessage error={errors.name} />
+        <InputErrorMessage error={errors.name} />
         <Input label="휴대전화" register={register("phoneNumber", validationRules.phoneNumber)} />
-        <SignUpErrorMessage error={errors.phoneNumber} />
+        <InputErrorMessage error={errors.phoneNumber} />
         <Input
           label="비밀번호"
           type="password"
           register={register("password", validationRules.password)}
         />
-        <SignUpErrorMessage error={errors.password} />
+        <InputErrorMessage error={errors.password} />
         <Input
           label="비밀번호 재확인"
           type="password"
@@ -92,7 +92,7 @@ export default function SignUp() {
             validate: (value) => validationRules.passwordConfirmation.validate(value, getValues),
           })}
         />
-        <SignUpErrorMessage error={errors.passwordConfirmation} />
+        <InputErrorMessage error={errors.passwordConfirmation} />
         <Button content="회원가입 하기" />
       </form>
     </section>
