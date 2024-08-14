@@ -3,7 +3,9 @@ export default function HeaderNav() {
   return (
     <nav className="m-auto flex w-60 flex-row justify-between">
       {menu.map((el) => (
-        <div className="text-[18px] font-medium">{el}</div>
+        <div key={el} className="text-[18px] font-medium">
+          {el}
+        </div>
       ))}
     </nav>
   );
