@@ -54,15 +54,15 @@ export default function MatchListDetail ({ selectedTeam, filterData }: DetailPro
                   selectedMenu === item.name ? 'bg-Accent text-foreground' : 'bg-foreground text-text-primary'
                 }`}
               >
-                <img src={item.icon} alt={`${item.name} Icon`} className="w-3 h-3" />
+                <img src={item.icon} alt={`${item.name} Icon`} className="size-3" />
                 <div>{item.name}</div>
                 {item.name === '예매 일정' && <div>{filterData.length}</div>}
               </div>
             ))}
           </div>
         </div>
-        <div className='flex flex-col justify-center items-center border-borders border-[1px] w-10 h-10 rounded-[10px] bg-foreground'>
-          <img src={Heart} alt="Left Tap Icon" className="w-5 h-5" />
+        <div className='flex flex-col justify-center items-center border-borders border-[1px] size-10 rounded-[10px] bg-foreground'>
+          <img src={Heart} alt="Left Tap Icon" className="size-5" />
           <div className="text-borders text-[15px]">홈팀</div>
         </div>
       </div>

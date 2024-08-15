@@ -31,11 +31,11 @@ export default function MatchListTab ({sport, setSelectedTeam}:TabProps) {
         <div className="flex flex-col">
           <div className='flex flex-row items-center pl-1 bg-background py-2'>
             <div>
-              <img src={LeftTapIcon} alt="Left Tap Icon" className="w-3 h-3" />
+              <img src={LeftTapIcon} alt="Left Tap Icon" className="size-3" />
             </div>
             <div className='mx-1'>2024 {leagueName[sport]}리그</div>
             <div onClick={TapClick} className="cursor-pointer">
-              {isOpen ? <img src={TapOpen} alt="Left Tap Icon" className="w-3 h-3" /> : <img src={TapClose} alt="Left Tap Icon" className="w-3 h-3" />}
+              {isOpen ? <img src={TapOpen} alt="Left Tap Icon" className="size-3" /> : <img src={TapClose} alt="Left Tap Icon" className="size-3" />}
             </div>
           </div>
           {
@@ -51,7 +51,7 @@ export default function MatchListTab ({sport, setSelectedTeam}:TabProps) {
             return(
               <div key={idx} className='flex flex-row items-center pl-1 py-2 bg-background' onClick={()=> handleTabClick(name)}>
                 <div>
-                  <img src={LeftTapIcon} alt="Left Tap Icon" className="w-3 h-3" />
+                  <img src={LeftTapIcon} alt="Left Tap Icon" className="size-3" />
                 </div>
                 <div className='mx-1 cursor-pointer'>{name}</div>
               </div>

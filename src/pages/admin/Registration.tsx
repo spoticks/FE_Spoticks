@@ -200,7 +200,7 @@ export default function Registration() {
         </div>
       </div>
       <div className='flex-2 flex'>
-        <img src={Tickets} alt="Tickets" className="w-30 h-30" />
+        <img src={Tickets} alt="Tickets" className="size-30" />
       </div>
     </div>
   )
