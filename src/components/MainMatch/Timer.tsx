@@ -63,9 +63,7 @@ export default function Timer({ mainMatchStartTime }: { mainMatchStartTime: stri
   return (
     <div className="flex justify-center">
       {isTimeUp ? (
-        <span className="flex h-20 items-center border border-yellow-700">
-          예매 일정이 지났습니다!
-        </span>
+        <span className="flex h-20 items-center">예매 일정이 지났습니다!</span>
       ) : (
         <>
           {Object.entries(leftTime).map(([unit, value]) => (
