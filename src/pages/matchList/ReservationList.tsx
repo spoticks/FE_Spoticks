@@ -1,63 +1,58 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-interface Match {
-  home: string;
-  away: string;
-  place: string;
-  date: string;
-  reserveLink: string;
-}
+import { Content } from '../../type';
+import Button from '../../components/Button';
 interface ReservationListProps {
-  matchData: Match[]
+  filterData: Content[]
 }
-const ReservationList = ({matchData}:ReservationListProps) => {
+const ReservationList = ({filterData}:ReservationListProps) => {
   const [viewMatches, setViewMatches] = useState(5);
 
   const addViewClick = () => {
     setViewMatches((prev)=> prev + 5)
   }
 
+  const columnName = ['Home', "Away", "장소", "날짜", ""]
+
   return(
     <div>
-            <table className="w-full border-collapse">
-              <thead>
-                <tr>
-                  <th className="border px-4 py-2">Home</th>
-                  <th className="border px-4 py-2">Away</th>
-                  <th className="border px-4 py-2">장소</th>
-                  <th className="border px-4 py-2">날짜</th>
-                  <th className="border px-4 py-2">예매하기</th>
-                </tr>
-              </thead>
-              <tbody>
-                {matchData.slice(0, viewMatches).map((match, index) => (
-                  <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
-                    <td className="border px-4 py-2">{match.home}</td>
-                    <td className="border px-4 py-2">{match.away}</td>
-                    <td className="border px-4 py-2">{match.place}</td>
-                    <td className="border px-4 py-2">{match.date}</td>
-                    <td className="border px-4 py-2">
-                      <Link to={match.reserveLink}
-                       state={{ match: match }}
-                       className="cursor-pointer hover:underline">
-                        예매하기
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            {viewMatches < matchData.length && (
-              <div className="flex justify-center mt-4">
-                <button
-                  onClick={addViewClick}
-                  className="bg-[#DD4255] text-white px-4 py-2 rounded"
-                >
-                  더보기
-                </button>
-              </div>
-            )}
-          </div>
+      <table className="w-full border-separate border-spacing-x-[10px]">
+        <thead>
+          <tr>
+          {columnName.map(column => (
+            <th className={`text-text-primary opacity-50 border px-4 py-2 ${column === "" ? 'bg-none border-none' : 'bg-foreground'}`}>{column}</th>
+          ))}
+          </tr>
+        </thead>
+        <tbody>
+          {filterData.slice(0, viewMatches).map((match, index) => (
+            <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
+              <td className="border px-4 py-2">{match.homeTeamName}</td>
+              <td className="border px-4 py-2">{match.awayTeamName}</td>
+              <td className="border px-4 py-2">{match.stadiumName}</td>
+              <td className="border px-4 py-2">{match.gameStartTime.split('T')[0]}</td>
+              <td className="border px-4 py-2">
+                <Link to={"/reservation"}
+                  state={{ match: match }}
+                  className="cursor-pointer hover:underline">
+                  <Button content="예매하기" />
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {viewMatches < filterData.length && (
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={addViewClick}
+            className="bg-Accent text-white px-4 py-2 rounded"
+          >
+            더보기
+          </button>
+        </div>
+      )}
+    </div>
   )
 }
 
