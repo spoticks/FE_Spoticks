@@ -15,3 +15,17 @@ export interface MatchData {
   sportName: string;
   gameStartTime: string;
 }
+
+export interface Content {
+  id: number;
+  homeTeamName: string;
+  awayTeamName: string;
+  stadiumName: string;
+  gameStartTime: string;
+  timeOnSale: string;
+  timeOffSale: string;
+}
+
+export type SportName = {
+  sport: "야구" | "축구" | "배구" | "농구"
+}

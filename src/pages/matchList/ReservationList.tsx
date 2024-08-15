@@ -1,16 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-interface Match {
-  home: string;
-  away: string;
-  place: string;
-  date: string;
-  reserveLink: string;
-}
+import { Content } from '../../type';
 interface ReservationListProps {
-  matchData: Match[]
+  filterData: Content[]
 }
-const ReservationList = ({matchData}:ReservationListProps) => {
+const ReservationList = ({filterData}:ReservationListProps) => {
   const [viewMatches, setViewMatches] = useState(5);
 
   const addViewClick = () => {
@@ -30,14 +24,14 @@ const ReservationList = ({matchData}:ReservationListProps) => {
                 </tr>
               </thead>
               <tbody>
-                {matchData.slice(0, viewMatches).map((match, index) => (
+                {filterData.slice(0, viewMatches).map((match, index) => (
                   <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
-                    <td className="border px-4 py-2">{match.home}</td>
-                    <td className="border px-4 py-2">{match.away}</td>
-                    <td className="border px-4 py-2">{match.place}</td>
-                    <td className="border px-4 py-2">{match.date}</td>
+                    <td className="border px-4 py-2">{match.homeTeamName}</td>
+                    <td className="border px-4 py-2">{match.awayTeamName}</td>
+                    <td className="border px-4 py-2">{match.stadiumName}</td>
+                    <td className="border px-4 py-2">{match.gameStartTime.split('T')[0]}</td>
                     <td className="border px-4 py-2">
-                      <Link to={match.reserveLink}
+                      <Link to={"/reservation"}
                        state={{ match: match }}
                        className="cursor-pointer hover:underline">
                         예매하기
@@ -47,7 +41,7 @@ const ReservationList = ({matchData}:ReservationListProps) => {
                 ))}
               </tbody>
             </table>
-            {viewMatches < matchData.length && (
+            {viewMatches < filterData.length && (
               <div className="flex justify-center mt-4">
                 <button
                   onClick={addViewClick}
