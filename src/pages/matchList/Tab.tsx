@@ -1,6 +1,6 @@
 import LeftTapIcon from '../../assets/matchListTap.svg';
-import TapOpen from '../../assets/TapOpen.svg';
-import TapClose from '../../assets/TapClose.svg';
+import TabOpen from '../../assets/TabOpen.svg';
+import TabClose from '../../assets/TabClose.svg';
 import { teams } from '../../components/constants';
 import { useState } from "react";
 import { leagueName } from '../../components/constants';
@@ -35,7 +35,7 @@ export default function MatchListTab ({sport, setSelectedTeam}:TabProps) {
             </div>
             <div className='mx-1'>2024 {leagueName[sport]}리그</div>
             <div onClick={TapClick} className="cursor-pointer">
-              {isOpen ? <img src={TapOpen} alt="Left Tap Icon" className="size-3" /> : <img src={TapClose} alt="Left Tap Icon" className="size-3" />}
+              {isOpen ? <img src={TabOpen} alt="Left Tap Icon" className="size-3" /> : <img src={TabClose} alt="Left Tap Icon" className="size-3" />}
             </div>
           </div>
           {
