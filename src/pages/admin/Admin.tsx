@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import DetailModal from './DetailModal';
 import { Match } from '../../type';
 import axios from 'axios';
+import { menu } from '../../components/constants';
 
 export default function Admin() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,7 +30,7 @@ export default function Admin() {
   // 페이지네이션
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  const sports = ['축구', '야구', '배구', '농구'];
+  const sports = menu.filter(el => el !== 'HOME');
 
   //modal
   const [isModalOpen, setIsModalOpen] = useState(false);
