@@ -6,6 +6,7 @@ import { LuUserCircle } from "react-icons/lu";
 import { FiFileText, FiLogOut, FiUser } from "react-icons/fi";
 import usePopover from "../../hooks/usePopover";
 import useAuthStore from "../../stores/authStore";
+import AuthButtonGroup from "./AuthButtonGroup";
 
 export default function Header() {
   const { handleClickProfile, popoverRef, isPopoverOpen, setIsPopoverOpen } = usePopover();
@@ -31,14 +32,7 @@ export default function Header() {
         <Logo />
         <HeaderNav />
         {!isLoggedIn ? (
-          <div className="flex items-center gap-6 text-[18px]">
-            <Link to={"/sign-up"}>
-              <Button content="회원가입" />
-            </Link>
-            <Link to={"/login"}>
-              <Button content="로그인" />
-            </Link>
-          </div>
+          <AuthButtonGroup />
         ) : (
           <div className="relative flex">
             <button onClick={handleClickProfile}>
@@ -56,14 +50,14 @@ export default function Header() {
                 </div>
                 <div className="border-t border-gray-200">
                   <Link
-                    to="/profile"
+                    to="/profile/user-info"
                     className="flex cursor-pointer items-center p-3 text-[14px] hover:bg-gray-100"
                   >
                     <FiUser className="mr-3" />
                     프로필
                   </Link>
                   <Link
-                    to="/tickets"
+                    to="/profile/my-tickets"
                     className="flex cursor-pointer items-center p-3 text-[14px] hover:bg-gray-100"
                   >
                     <FiFileText className="mr-3" />
