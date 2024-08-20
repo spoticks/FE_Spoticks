@@ -22,7 +22,14 @@ interface FormData {
 export default function Reservation() {
   const location = useLocation();
   const matchData = location.state?.match;
-  // console.log(matchData);
+  console.log(matchData);
+
+
+  //날짜
+  let matchDate = matchData.gameStartTime.split('T');
+  const date = matchDate[0];
+  const time = matchDate[1].slice(0,5);
+  matchDate = `${date} ${time}`
 
   // 샘플 데이터
   const initSectionData: sectionOfSeats[] = [
@@ -103,8 +110,8 @@ export default function Reservation() {
         </span>
       </div>
     </div>
-    <h1 className='text-[40px] font-extrabold'>{matchData.home} vs {matchData.away}</h1>
-    <div className='text-[18px] font-bold'>{matchData.place} <span>2024.07.22 18:30</span></div>
+    <h1 className='text-[40px] font-extrabold'>{matchData.homeTeamName} vs {matchData.awayTeamName}</h1>
+    <div className='text-[18px] font-bold'>{matchData.stadiumName} <span>{matchDate}</span></div>
     <hr className='border-[#222222] opacity-25 border-2 ' />
     <div className='flex flex-row my-5'>
       <div className='flex flex-col'>

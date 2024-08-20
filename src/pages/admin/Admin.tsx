@@ -3,22 +3,24 @@ import { Link } from 'react-router-dom';
 import DetailModal from './DetailModal';
 import { Match } from '../../type';
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 import { menu } from '../../components/constants';
+import Loading from '../../components/Loading';
+import Error from '../Error';
 
 export default function Admin() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
   const [selectedSport, setSelectedSport] = useState<string>('All');
-  const [matches, setMatches] = useState<Match[]>([]);
 
-  // data 로드
-  useEffect(() => {
-      axios.get('http://localhost:3000/matches')
-        .then(res => {
-          setMatches(res.data);
-        })
-        .catch(error => console.error('Error:', error));
-    }, []);
+  // api
+  const { data: matches = [], isLoading, isError } = useQuery<Match[]>({
+    queryKey: ['matches'],
+    queryFn: async () => {
+      const res = await axios.get('http://localhost:3000/matches');
+      return res.data;
+    },
+  });
 
   // 페이지네이션 및 필터링
   const filteredMatches = selectedSport === 'All' ? matches : matches.filter(match => match.sportName === selectedSport);
@@ -43,6 +45,12 @@ export default function Admin() {
   const handleModalClose = () => {
     setIsModalOpen(false);
     setSelectedMatch(null);
+  }
+  if(isLoading){
+    return <Loading />
+  }
+  if(isError){
+    return <Error />
   }
 
   return (
