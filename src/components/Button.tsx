@@ -11,12 +11,13 @@ const Button = ({ content, isValid }: ButtonProps) => {
           base: "w-[88px] h-[42px] bg-foreground text-text-primary border-text-primary",
           hover: "hover:bg-Accent hover:text-foreground hover:border-Accent",
         };
-
       case "회원가입":
         return {
           base: "border-0",
           hover: "hover:text-Accent",
         };
+      case "변경사항 저장":
+      case "비밀번호 변경":
       case "로그인 하기":
       case "회원가입 하기":
         return {
