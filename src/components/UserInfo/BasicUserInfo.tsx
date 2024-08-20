@@ -1,7 +1,6 @@
 import { validationRules } from "../../validationRules";
 import Button from "../Button";
-import InputLabel from "./InputLabel";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import useAuthStore from "../../stores/authStore";
 import BasicInfoField from "./BasicInfoField";
 
@@ -25,7 +24,10 @@ export default function BasicUserInfo() {
       userName: userName as string,
     },
   });
-
+  const onSubmit: SubmitHandler<BasicInfo> = (data) => {
+    // 유저 정보 변경 로직
+    console.log(data);
+  };
   return (
     <section>
       <div className="flex w-64 flex-col">
@@ -36,16 +38,7 @@ export default function BasicUserInfo() {
             탈퇴하기
           </button>
         </div>
-        <form>
-          <div className="mb-4">
-            <InputLabel label="아이디" />
-            <input
-              id="id"
-              className="w-full appearance-none rounded-[15px] px-3 py-2 text-[16px] transition-colors duration-300 focus:bg-focused-input-background focus:outline-none disabled:bg-borders"
-              disabled
-              value={"사용자 아이디값"}
-            />
-          </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <BasicInfoField
             label="이름"
             register={register("userName", validationRules.name)}
