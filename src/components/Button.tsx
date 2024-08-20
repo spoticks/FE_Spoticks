@@ -46,7 +46,14 @@ const Button = ({ content, isValid }: ButtonProps) => {
 
   return (
     <button
-      type={content === "회원가입 하기" || content === "로그인 하기" ? "submit" : "button"}
+      type={
+        content === "회원가입 하기" ||
+        content === "로그인 하기" ||
+        content === "변경사항 저장" ||
+        content === "비밀번호 변경"
+          ? "submit"
+          : "button"
+      }
       disabled={isValid === false}
       className={`${styles.base} border ${styles.hover} ${styles.disabled} flex items-center justify-center rounded-[10px] transition-all duration-300`}
     >
