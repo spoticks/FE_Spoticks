@@ -30,7 +30,7 @@ export default function UserButton() {
       {isPopoverOpen && (
         <div
           ref={popoverRef}
-          className="mt- absolute right-0 top-5 w-24 rounded-lg border border-borders bg-white shadow-lg"
+          className="absolute right-0 top-5 w-24 rounded-lg border border-borders bg-white shadow-lg"
         >
           <div className="gap-3 p-2">
             <p className="text-center text-[14px] font-semibold">
