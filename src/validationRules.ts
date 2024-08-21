@@ -6,6 +6,12 @@ export interface SignUpForm {
   passwordConfirmation: string;
 }
 
+export interface PasswordSettingForm {
+  originalPassword: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
 export const validationRules = {
   email: {
     required: "이메일을 입력해주세요.",
@@ -37,7 +43,7 @@ export const validationRules = {
   },
   passwordConfirmation: {
     required: "비밀번호를 재확인해주세요.",
-    validate: (value: string, getValues: () => SignUpForm) =>
+    validate: (value: string, getValues: () => SignUpForm | PasswordSettingForm) =>
       value === getValues().password || "비밀번호가 일치하지 않습니다.",
   },
 };

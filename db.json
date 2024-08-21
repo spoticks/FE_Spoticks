@@ -150,5 +150,14 @@
       "homeTeamName": "롯데 자이언츠",
       "awayTeamName": "SSG 랜더스"
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "johndoe",
+      "password": "password123",
+      "accessToken": "sampleAccessToken123",
+      "refreshToken": "sampleRefreshToken123"
+    }
   ]
 }
