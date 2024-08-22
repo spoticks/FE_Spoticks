@@ -3,6 +3,7 @@ import Button from "../Button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useAuthStore from "../../stores/authStore";
 import BasicInfoField from "./BasicInfoField";
+import { Link } from "react-router-dom";
 
 interface BasicInfo {
   userName: string;
@@ -34,9 +35,12 @@ export default function BasicUserInfo() {
         <div className="mb-4 flex justify-between border-b border-borders text-sm">
           <h2>기본 정보</h2>
           {/** 여기서 아이디, 이메일, 이름, 전화번호 불러오기 */}
-          <button className="text-borders transition-colors duration-300 hover:text-Accent">
+          <Link
+            to="/profile/account-deletion"
+            className="text-borders transition-colors duration-300 hover:text-Accent"
+          >
             탈퇴하기
-          </button>
+          </Link>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <BasicInfoField
