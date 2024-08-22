@@ -58,8 +58,7 @@ export default function AccountDeletionForm() {
           name="reason"
           control={control}
           rules={{
-            required: "이 항목은 필수입니다.",
-            validate: (value) => value !== "" || "이 항목은 필수입니다.",
+            required: true,
           }}
           render={({ field }) => (
             <div className="relative">
