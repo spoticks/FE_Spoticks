@@ -31,7 +31,7 @@ export default function UserButton() {
           ref={popoverRef}
           className="absolute right-0 top-5 w-24 rounded-lg border border-borders bg-white shadow-lg"
         >
-          <div className="gap-3 p-2">
+          <div className="gap-3 p-2" onClick={(e) => e.stopPropagation()}>
             <p className="text-center text-[14px] font-semibold">
               {username} <span className="font-normal">님</span>
             </p>
