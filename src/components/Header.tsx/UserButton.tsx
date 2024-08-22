@@ -1,6 +1,5 @@
 import { FiUser, FiFileText, FiLogOut } from "react-icons/fi";
 import { LuUserCircle } from "react-icons/lu";
-import { Link } from "react-router-dom";
 import useAuthStore from "../../stores/authStore";
 import usePopover from "../../hooks/usePopover";
 import MenuItem from "./MenuItem";
