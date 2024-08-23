@@ -70,7 +70,7 @@ export default function AccountDeletionForm() {
                     field.onChange("");
                   }
                 }}
-                className="flex w-full justify-between rounded-[15px] bg-foreground px-3 py-2 text-[16px] transition-colors duration-300 hover:cursor-pointer hover:text-text-primary focus:bg-focused-input-background"
+                className={`${isOpen ? "rounded-t-[15px]" : "rounded-[15px]"} flex w-full justify-between bg-foreground px-3 py-2 text-[16px] transition-colors duration-300 hover:cursor-pointer hover:text-text-primary focus:bg-focused-input-background`}
               >
                 <span>
                   {(isOpen && "무엇이 불편하셨나요?") || field.value || "무엇이 불편하셨나요?"}
@@ -78,7 +78,7 @@ export default function AccountDeletionForm() {
                 <div>{isOpen ? "▲" : "▼"}</div>
               </div>
               {isOpen && (
-                <ul className="absolute w-full bg-white shadow-lg" ref={optionRef}>
+                <ul className="absolute w-full rounded-b-[15px] bg-white shadow-lg" ref={optionRef}>
                   {options.map((option) => (
                     <li
                       key={option}
