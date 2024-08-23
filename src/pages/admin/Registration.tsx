@@ -26,7 +26,7 @@ interface ModeProps {
 export default function Registration() {
   const location = useLocation();
   const {mode, existMatch}:ModeProps = location.state;
-  console.log(mode, existMatch)
+  // console.log(mode, existMatch)
   const { register, handleSubmit, watch, setValue } = useForm<FormValues>({
     defaultValues: existMatch || {
       sportName: '',

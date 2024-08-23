@@ -31,7 +31,7 @@ export default function MatchList({sport}:MatchListProps) {
         })
         .catch(error => console.error('Error:', error));
   }, [sport]);
-  console.log('matchData :',matchData)
+  // console.log('matchData :',matchData)
 
   useEffect(() => {
     setFilterData(
@@ -41,12 +41,12 @@ export default function MatchList({sport}:MatchListProps) {
     );
   }, [selectedTeam, matchData]);
 
-  console.log('filterData :',filterData);
+  // console.log('filterData :',filterData);
 
   return (
     <div className="flex flex-row w-[1280px] pt-10">
       <MatchListTab sport={sport} setSelectedTeam={setSelectedTeam} />
-      <div className="flex w-full pl-[106px]">
+      <div className="flex w-full pl-[30px]">
         {selectedTeam === '전체 일정' ? (<MatchListDetail selectedTeam={selectedTeam} filterData={matchData}   />) : selectedTeam ? (
           <MatchListDetail selectedTeam={selectedTeam} filterData={filterData}/>
         ) : (

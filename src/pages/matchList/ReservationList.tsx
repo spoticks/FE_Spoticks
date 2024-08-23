@@ -16,11 +16,11 @@ const ReservationList = ({filterData}:ReservationListProps) => {
 
   return(
     <div>
-      <table className="w-full border-separate border-spacing-x-[10px]">
+      <table className="w-full border-separate mx-[-10px] border-spacing-x-[10px]">
         <thead>
           <tr>
           {columnName.map(column => (
-            <th className={`text-text-primary opacity-50 border px-4 py-2 ${column === "" ? 'bg-none border-none' : 'bg-foreground'}`}>{column}</th>
+            <th key={column} className={`text-text-primary opacity-50 border px-4 py-2 ${column === "" ? 'bg-none border-none' : 'bg-foreground'}`}>{column}</th>
           ))}
           </tr>
         </thead>
@@ -32,7 +32,7 @@ const ReservationList = ({filterData}:ReservationListProps) => {
               <td className="border px-4 py-2">{match.stadiumName}</td>
               <td className="border px-4 py-2">{match.gameStartTime.split('T')[0]}</td>
               <td className="border px-4 py-2">
-                <Link to={"/reservation"}
+                <Link to={`/reservation/${match.gameId}`}
                   state={{ match: match }}
                   className="cursor-pointer hover:underline">
                   <Button content="예매하기" />
