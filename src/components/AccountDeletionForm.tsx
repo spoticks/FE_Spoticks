@@ -86,7 +86,7 @@ export default function AccountDeletionForm() {
                         field.onChange(option);
                         setIsOpen(false);
                       }}
-                      className="flex w-full justify-between rounded-[15px] bg-foreground px-3 py-2 text-[16px] text-[#8d8d8d] transition-colors duration-100 hover:cursor-pointer hover:text-text-primary focus:bg-focused-input-background"
+                      className="text-text-tertiary flex w-full justify-between rounded-[15px] bg-foreground px-3 py-2 text-[16px] transition-colors duration-100 hover:cursor-pointer hover:text-text-primary focus:bg-focused-input-background"
                     >
                       <span>{option}</span>
                     </li>

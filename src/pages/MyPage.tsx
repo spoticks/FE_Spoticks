@@ -9,7 +9,7 @@ export default function MyPage() {
     <>
       <div className="mb-10">
         <h1 className="text-2xl font-bold">회원정보</h1>
-        <span className="text-[#8d8d8d]">어서오세요 {userName}(사용자 아이디) 님</span>
+        <span className="text-text-tertiary">어서오세요 {userName}(사용자 아이디) 님</span>
       </div>
       <div className="flex gap-40">
         <BasicUserInfo />
