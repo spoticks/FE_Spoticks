@@ -10,6 +10,7 @@ export default {
         "button-hovered": "#A50115",
         "text-primary": "#222222",
         "text-secondary": "rgba(34, 34, 34, 0.5)",
+        "text-tertiary": "#8d8d8d",
         borders: "#DBDBDB",
         "focused-input-background": "rgba(219, 219, 219, 0.5)",
         "disabled-button": "rgb(238, 161, 169)",

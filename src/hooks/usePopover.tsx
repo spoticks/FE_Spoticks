@@ -7,12 +7,10 @@ export default function usePopover() {
     e.stopPropagation();
     setIsPopoverOpen(!isPopoverOpen);
   }
-  const popoverRef = useRef<HTMLDivElement>(null);
+  const popoverRef = useRef<HTMLDivElement & HTMLUListElement>(null);
 
-  function handleClickOutside(event: MouseEvent) {
-    if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
-      setIsPopoverOpen(false);
-    }
+  function handleClickOutside() {
+    setIsPopoverOpen(false);
   }
   useEffect(() => {
     if (isPopoverOpen) {

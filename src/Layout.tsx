@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import vector from "./assets/Vector.svg";
-import Header from "./components/Header.tsx/Header";
+import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 
 export default function Layout() {

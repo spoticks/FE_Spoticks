@@ -20,6 +20,7 @@ const Button = ({ content, isValid }: ButtonProps) => {
       case "비밀번호 변경":
       case "로그인 하기":
       case "회원가입 하기":
+      case "탈퇴하기":
         return {
           base: "bg-Accent text-foreground text-[16px] w-full px-3 py-2 mt-4 ",
           hover: "hover:bg-button-hovered ",
@@ -50,7 +51,8 @@ const Button = ({ content, isValid }: ButtonProps) => {
         content === "회원가입 하기" ||
         content === "로그인 하기" ||
         content === "변경사항 저장" ||
-        content === "비밀번호 변경"
+        content === "비밀번호 변경" ||
+        content === "탈퇴하기"
           ? "submit"
           : "button"
       }

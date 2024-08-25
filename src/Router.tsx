@@ -12,6 +12,7 @@ import Registration from "./pages/admin/Registration";
 import { menu } from "./components/constants";
 import MyTickets from "./pages/MyTickets";
 import AuthRoute from "./AuthRoute";
+import AccountDeletion from "./pages/AccountDeletion";
 
 export default function Router() {
   return (
@@ -36,6 +37,7 @@ export default function Router() {
             ))}
           <Route path="profile" element={<AuthRoute />}>
             <Route path="user-info" element={<MyPage />} />
+            <Route path="account-deletion" element={<AccountDeletion />} />
             <Route path="my-tickets" element={<MyTickets />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
