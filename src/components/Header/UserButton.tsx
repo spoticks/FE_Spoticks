@@ -1,5 +1,5 @@
 import { FiUser, FiFileText, FiLogOut } from "react-icons/fi";
-import { LuUserCircle } from "react-icons/lu";
+import { LuUserCircle, LuTrophy } from "react-icons/lu";
 import useAuthStore from "../../stores/authStore";
 import usePopover from "../../hooks/usePopover";
 import MenuItem from "./MenuItem";
@@ -39,10 +39,11 @@ export default function UserButton() {
           <div className="border-t border-gray-200">
             <MenuItem to="/profile/user-info" icon={<FiUser className="mr-3" />} label="프로필" />
             <MenuItem
-              to="/profile/my-tickets"
+              to="/profile/my-tickets/my-reservations"
               icon={<FiFileText className="mr-3" />}
               label="예매한 티켓"
             />
+            <MenuItem to="/profile/my-team" icon={<LuTrophy className="mr-3" />} label="나의 팀" />
             <MenuItem
               onClick={handleLogout}
               icon={<FiLogOut className="mr-3" />}
