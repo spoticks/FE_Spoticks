@@ -17,7 +17,7 @@ export interface MatchData {
 }
 
 export interface Content {
-  id: number;
+  gameId: number;
   homeTeamName: string;
   awayTeamName: string;
   stadiumName: string;

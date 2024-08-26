@@ -22,10 +22,6 @@ export default function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/baseball" element={<MatchList sport="야구" />} />
-          <Route path="/soccer" element={<MatchList sport="축구" />} />
-          <Route path="/volleyball" element={<MatchList sport="배구" />} />
-          <Route path="/basketball" element={<MatchList sport="농구" />} />
           {menu
             .filter((sport) => sport !== "HOME")
             .map((sport) => (
@@ -44,6 +40,7 @@ export default function Router() {
           <Route path="/admin/registration" element={<Registration />} />
           <Route path="/admin/registration/:id" element={<Registration />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/reservation/:gameId" element={<Reservation />} />
         </Route>
       </Routes>
     </BrowserRouter>

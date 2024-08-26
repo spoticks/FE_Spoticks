@@ -4,9 +4,9 @@ import ReservationList from "./ReservationList";
 import ReserveInfo from "./ReserveInfo";
 import HomeIcon from '../../assets/homeIcon.svg';
 import InfoIcon from '../../assets/infoIcon.svg';
-import Heart from '../../assets/Heart.svg';
 import ReserveIcon from '../../assets/reserveIcon.svg';
 import { Content } from "../../type";
+import MyTeam from "./MyTeam";
 
 interface DetailProps {
   selectedTeam: string;
@@ -19,7 +19,7 @@ export default function MatchListDetail ({ selectedTeam, filterData }: DetailPro
   const handleMenuClick = ((menu:string)=>{
     setSelectedMenu(menu);
   })
-  
+
   const MenuList = () => {
     switch(selectedMenu) {
       case '예매 일정':
@@ -38,7 +38,7 @@ export default function MatchListDetail ({ selectedTeam, filterData }: DetailPro
     { name: '홈구장 안내', icon: HomeIcon },
     { name: '예매정보', icon: InfoIcon },
   ];
-
+ 
   return(
     <div className='w-full'>
       <div className='header flex flex-row w-full items-center'>
@@ -61,10 +61,8 @@ export default function MatchListDetail ({ selectedTeam, filterData }: DetailPro
             ))}
           </div>
         </div>
-        <div className='flex flex-col justify-center items-center border-borders border-[1px] size-10 rounded-[10px] bg-foreground'>
-          <img src={Heart} alt="Left Tap Icon" className="size-5" />
-          <div className="text-borders text-[15px]">홈팀</div>
-        </div>
+        {/* 좋아요 */}
+        <MyTeam selectedTeam={selectedTeam} /> 
       </div>
       <div />
       <div className='pt-4'>
