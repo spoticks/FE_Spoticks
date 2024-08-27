@@ -27,5 +27,13 @@ export interface Content {
 }
 
 export type SportName = {
-  sport: "야구" | "축구" | "배구" | "농구"
+  sport: "야구" | "축구" | "배구" | "농구";
+};
+export interface InformationCardProp {
+  gameId: number;
+  homeTeamName: string;
+  awayTeamName: string;
+  gameStartTime: string;
+  stadiumName: string;
+  reservationStatus?: boolean;
 }
