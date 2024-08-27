@@ -1,9 +1,10 @@
 interface ButtonProps {
   content: string;
   isValid?: boolean;
+  onClick?: () => void;
 }
 
-const Button = ({ content, isValid }: ButtonProps) => {
+const Button = ({ content, isValid, onClick }: ButtonProps) => {
   const getStyles = (content: string) => {
     switch (content) {
       case "로그인":
@@ -16,6 +17,7 @@ const Button = ({ content, isValid }: ButtonProps) => {
           base: "border-0",
           hover: "hover:text-Accent",
         };
+      case "티켓 취소":
       case "변경사항 저장":
       case "비밀번호 변경":
       case "로그인 하기":
@@ -57,6 +59,7 @@ const Button = ({ content, isValid }: ButtonProps) => {
           : "button"
       }
       disabled={isValid === false}
+      onClick={onClick}
       className={`${styles.base} border ${styles.hover} ${styles.disabled} flex items-center justify-center rounded-[10px] transition-all duration-300`}
     >
       {content}
