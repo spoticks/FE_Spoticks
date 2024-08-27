@@ -1,6 +1,8 @@
 import { BsCalendar2EventFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 import { InformationCardProp } from "../type";
+import { useState } from "react";
+import InformationModal from "./InformationModal";
 
 export default function InformationCard({
   content: { homeTeamName, awayTeamName, gameStartTime, stadiumName, reservationStatus },
@@ -10,6 +12,15 @@ export default function InformationCard({
   const [date, time] = gameStartTime.split("T");
   const [hours, minutes] = time.split(":");
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function handleModalOpen() {
+    setIsModalOpen(true);
+  }
+  function handleModalClose() {
+    // 예약 취소 로직도 만들 것...
+    setIsModalOpen(false);
+  }
   return (
     <div className="w-[400px] rounded-[15px] border border-borders bg-foreground shadow-first">
       <div className="p-[20px]">
@@ -32,9 +43,12 @@ export default function InformationCard({
           </div>
         </div>
         {reservationStatus !== undefined && (
-          <span className="text-xs text-Accent">{reservationStatus ? "예매완료" : "예매취소"}</span>
+          <button className="text-xs text-Accent" onClick={handleModalOpen}>
+            상세정보
+          </button>
         )}
       </div>
+      <InformationModal isOpen={isModalOpen} onClose={handleModalClose} />
     </div>
   );
 }
