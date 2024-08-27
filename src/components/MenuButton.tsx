@@ -1,32 +1,45 @@
 import { CiCircleCheck, CiWarning, CiTrophy, CiCalendar, CiCircleInfo } from "react-icons/ci";
 import { LuHome } from "react-icons/lu";
+import { Link } from "react-router-dom";
 
 export default function MenuButton({ menu, onClick }: { menu: string; onClick: () => void }) {
   const getMenuIcon = (menu: string) => {
     switch (menu) {
       case "예매완료":
-        return <CiCircleCheck />;
-      case "예매취소":
-        return <CiWarning />;
-      case "나의 팀":
-        return <CiTrophy />;
+        return {
+          link: "/profile/my-tickets/my-reservations",
+          icon: <CiCircleCheck />,
+        };
+      case "취소내역":
+        return {
+          link: "/profile/my-tickets/cancellation-history",
+          icon: <CiWarning />,
+        };
       case "예매일정":
-        return <CiCalendar />;
+        return {
+          link: "",
+          icon: <CiCalendar />,
+        };
       case "홈구장 안내":
-        return <LuHome />;
+        return {
+          link: "",
+          icon: <LuHome />,
+        };
       case "예매정보":
-        return <CiCircleInfo />;
+        return {
+          link: "",
+          icon: <CiCircleInfo />,
+        };
     }
   };
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="button-hover flex items-center justify-center rounded-lg border bg-white px-[45px] py-[12px] text-[16px] text-black transition-colors duration-300"
+    <Link
+      to={getMenuIcon(menu)?.link as string}
+      className="button-hover flex w-[300px] items-center justify-center rounded-lg border bg-white px-[56px] py-[14px] text-[16px] text-black transition-colors duration-300"
     >
-      <span className="mr-2">{getMenuIcon(menu)}</span>
+      <span className="mr-2">{getMenuIcon(menu)?.icon}</span>
       {menu}
-    </button>
+    </Link>
   );
 }

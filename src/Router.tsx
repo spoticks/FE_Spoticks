@@ -10,9 +10,12 @@ import Admin from "./pages/admin/Admin";
 import NotFound from "./pages/NotFound";
 import Registration from "./pages/admin/Registration";
 import { menu } from "./components/constants";
-import MyTickets from "./pages/MyTickets";
 import AuthRoute from "./AuthRoute";
 import AccountDeletion from "./pages/AccountDeletion";
+import MyTicketRoute from "./MyTicketRoute";
+import MyReservations from "./pages/MyReservations";
+import CancellationHistory from "./pages/CancellationHistory";
+import MyTeam from "./pages/MyTeam";
 
 export default function Router() {
   return (
@@ -34,7 +37,11 @@ export default function Router() {
           <Route path="profile" element={<AuthRoute />}>
             <Route path="user-info" element={<MyPage />} />
             <Route path="account-deletion" element={<AccountDeletion />} />
-            <Route path="my-tickets" element={<MyTickets />} />
+            <Route path="my-team" element={<MyTeam />} />
+            <Route path="my-tickets" element={<MyTicketRoute />}>
+              <Route path="my-reservations" element={<MyReservations />} />
+              <Route path="cancellation-history" element={<CancellationHistory />} />
+            </Route>
           </Route>
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/registration" element={<Registration />} />
