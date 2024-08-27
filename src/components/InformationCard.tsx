@@ -13,7 +13,7 @@ export default function InformationCard({
   content: InformationCardProp;
 }) {
   return (
-    <div className="shadow-first w-[400px] rounded-[15px] border border-borders bg-foreground">
+    <div className="w-[400px] rounded-[15px] border border-borders bg-foreground shadow-first">
       <div className="p-[20px]">
         <div className="mb-2 border-b border-borders pb-2">
           <span className="font-bold">
@@ -31,7 +31,9 @@ export default function InformationCard({
             <span className="text-xs">{stadiumName}</span>
           </div>
         </div>
-        {reservationStatus !== undefined && <span className="text-xs text-Accent">예매 완료</span>}
+        {reservationStatus !== undefined && (
+          <span className="text-xs text-Accent">{reservationStatus ? "예매완료" : "예매취소"}</span>
+        )}
       </div>
     </div>
   );
