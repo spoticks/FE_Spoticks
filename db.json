@@ -159,5 +159,21 @@
       "accessToken": "sampleAccessToken123",
       "refreshToken": "sampleRefreshToken123"
     }
+  ],
+  "seats": [
+    {
+      "homeTeamName":"두산베어스", "awayTeamName":"KIA 타이거즈", "stadiumName":"고척(서울)", "gameStartTime":"2024-08-01T15:40:00",
+      "content" : [
+        {
+          "seatPosition":"1루", "seatPrice": "12000"},
+        {
+          "seatPosition":"2루", "seatPrice": "12000"},
+        {
+          "seatPosition":"외야", "seatPrice": "12000"},
+        {
+          "seatPosition":"프리미엄", "seatPrice": "24000"}
+        ]
+    },
+    {"seat" : ["seatId"]}
   ]
 }

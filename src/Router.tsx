@@ -4,7 +4,7 @@ import Layout from "./Layout";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import MyPage from "./pages/MyPage";
-import Reservation from "./pages/Reservation";
+import Reservation from "./pages/seats/Reservation";
 import MatchList from "./pages/matchList/MatchList";
 import Admin from "./pages/admin/Admin";
 import NotFound from "./pages/NotFound";
