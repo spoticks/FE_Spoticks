@@ -2,28 +2,29 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import DetailModal from './DetailModal';
 import { Match } from '../../type';
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
 import { menu } from '../../components/constants';
 import Loading from '../../components/Loading';
 import Error from '../Error';
+import useAxios from '../../hooks/useAxios';
 
 export default function Admin() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(3);
+  const [itemsPerPage] = useState(5);
   const [selectedSport, setSelectedSport] = useState<string>('All');
 
-  // api
-  const { data: matches = [], isLoading, isError } = useQuery<Match[]>({
-    queryKey: ['matches'],
-    queryFn: async () => {
-      const res = await axios.get('http://localhost:3000/matches');
-      return res.data;
-    },
-  });
+  //api
+  const { data:matches = [], isError, isLoading } = useAxios<Match[]>(
+    ['matches'],
+    {config: {
+      url: '/matches',
+      method: 'GET',
+      }
+    // accessToken: '나중에 추가',
+  },
+  );
 
   // 페이지네이션 및 필터링
-  const filteredMatches = selectedSport === 'All' ? matches : matches.filter(match => match.sportName === selectedSport);
+  const filteredMatches = selectedSport === 'All' ? matches : matches?.filter(match => match.sportName === selectedSport);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -54,7 +55,7 @@ export default function Admin() {
   }
 
   return (
-    <div className="m-10 w-full flex flex-col justify-start">
+    <div className="my-10 mx-0 w-full flex flex-col justify-start">
       <div className="flex justify-between p-4">
         <h1 className="flex font-bold  text-2xl">등록된 경기 목록</h1>
           <Link to ={'/admin/registration'} state={{mode: 'create'}} className='bg-Accent text-white px-3 py-2 cursor-pointer rounded-[10px] hover:opacity-75'>등록하기</Link>
