@@ -34,7 +34,7 @@ export default function MenuButton({ menu }: { menu: string }) {
     }
   };
   const menuIcon = getMenu(menu);
-  const isActive = location === menuIcon?.link;
+  const isActive = location.includes(menuIcon?.link as string);
   return (
     <Link
       to={menuIcon?.link as string}
