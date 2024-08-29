@@ -51,7 +51,7 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
   function onCloseConfirmModal() {
     setIsConfirmOpen(false);
   }
-
+  const isReservationComplete = data?.reservationStatus === "COMPLETE" ? true : false;
   return (
     <Modal
       isOpen={isOpen}
@@ -70,7 +70,9 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
         {error && <Error />}
         {isSuccess && data && (
           <>
-            <div className="mb-6 flex w-[380px] flex-col items-start rounded-[10px] bg-Accent px-[31px] py-[33px] drop-shadow-first">
+            <div
+              className={`mb-6 flex w-[380px] flex-col items-start rounded-[10px] ${isReservationComplete ? "bg-Accent" : "bg-borders"} px-[31px] py-[33px] drop-shadow-first`}
+            >
               <h2 className="mb-4 w-full border-b-2 border-b-text-secondary pb-2 text-[20px] font-bold">
                 {data.homeTeamName} vs {data.awayTeamName}
               </h2>
@@ -94,7 +96,7 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
               <div className="flex justify-between">
                 <InfoPart
                   heading="티켓상태"
-                  content={data.reservationStatus === "COMPLETE" ? "예매완료" : "예매취소"}
+                  content={isReservationComplete ? "예매완료" : "예매취소"}
                 />
                 <InfoPart heading="결제금액" content={data.totalPrice} isRight />
               </div>
@@ -111,7 +113,10 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
                 />
                 <InfoPart heading="매수" content={`${data.seat.length} 매`} isRight />
               </div>
-              <Button content="티켓 취소" onClick={handleCancelButton} />
+              <Button
+                content={isReservationComplete ? "티켓 취소" : "닫기"}
+                onClick={isReservationComplete ? handleCancelButton : onClose}
+              />
               <CancellationConfirmModal
                 isOpen={isConfirmOpen}
                 onClose={onCloseConfirmModal}
