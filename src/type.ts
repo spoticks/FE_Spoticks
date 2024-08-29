@@ -36,14 +36,15 @@ export interface InformationCardProp {
   gameStartTime: string;
   stadiumName: string;
   reservationStatus?: boolean;
+  id: number;
 }
 
 export interface Seat {
   id: number;
   isReserved: boolean;
   isSelected: boolean;
-  price:number;
-} 
+  price: number;
+}
 export interface seatFormData {
   section: string;
 }
