@@ -28,6 +28,11 @@ const Button = ({ content, isValid, onClick }: ButtonProps) => {
           hover: "hover:bg-button-hovered ",
           disabled: "disabled:bg-disabled-button disabled:cursor-not-allowed",
         };
+      case "닫기":
+        return {
+          base: "bg-borders  text-[16px] w-full px-3 py-2 mt-4 font-semibold",
+          hover: "hover:bg-text-tertiary ",
+        };
       case "block":
         return {
           base: "bg-borders text-text-primary border-borders",
