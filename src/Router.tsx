@@ -40,6 +40,7 @@ export default function Router() {
             <Route path="my-team" element={<MyTeam />} />
             <Route path="my-tickets" element={<MyTicketRoute />}>
               <Route path="my-reservations" element={<MyReservations />} />
+              <Route path="my-reservations/:id" element={<MyReservations />} />
               <Route path="cancellation-history" element={<CancellationHistory />} />
             </Route>
           </Route>
