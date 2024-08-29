@@ -1,26 +1,38 @@
 import { BsCalendar2EventFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 import { InformationCardProp } from "../type";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InformationModal from "./InformationModal";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function InformationCard({
-  content: { homeTeamName, awayTeamName, gameStartTime, stadiumName, reservationStatus },
+  content: { homeTeamName, awayTeamName, gameStartTime, stadiumName, reservationStatus, id },
 }: {
   content: InformationCardProp;
 }) {
   const [date, time] = gameStartTime.split("T");
   const [hours, minutes] = time.split(":");
-
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function handleModalOpen() {
+    navigate(`${id}`);
     setIsModalOpen(true);
   }
   function handleModalClose() {
     // 예약 취소 로직도 만들 것...
+    navigate("/profile/my-tickets/my-reservations");
     setIsModalOpen(false);
   }
+  useEffect(() => {
+    if (location.pathname === "/profile/my-tickets/my-reservations") {
+      setIsModalOpen(false);
+    } else if (!isModalOpen) {
+      setIsModalOpen(true);
+    }
+    ("여기임");
+  }, [location.pathname]);
   return (
     <div className="w-[400px] rounded-[15px] border border-borders bg-foreground shadow-first">
       <div className="p-[20px]">
@@ -48,7 +60,7 @@ export default function InformationCard({
           </button>
         )}
       </div>
-      <InformationModal isOpen={isModalOpen} onClose={handleModalClose} />
+      <InformationModal isOpen={isModalOpen} onClose={handleModalClose} reservationId={id} />
     </div>
   );
 }
