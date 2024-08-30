@@ -37,7 +37,7 @@ export default function MyTeam({ selectedTeam }: MyTeamProps) {
               strokeLinejoin="round"
             />
           </svg>
-          <div className={`text-[15px] ${isMyTeam ? 'text-Accent' : 'text-borders'}`}>홈팀</div>
+          <div className={`text-[15px] ${isMyTeam ? 'text-Accent' : 'text-borders'}`}>마이팀</div>
         </div>
       )}
     </>
