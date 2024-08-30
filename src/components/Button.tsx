@@ -3,53 +3,51 @@ interface ButtonProps {
   isValid?: boolean;
   onClick?: () => void;
 }
-
+const getStyles = (content: string) => {
+  switch (content) {
+    case "로그인":
+      return {
+        base: "w-[88px] h-[42px] bg-foreground text-text-primary border-text-primary",
+        hover: "hover:bg-Accent hover:text-foreground hover:border-Accent",
+      };
+    case "회원가입":
+      return {
+        base: "border-0",
+        hover: "hover:text-Accent",
+      };
+    case "티켓 취소":
+    case "변경사항 저장":
+    case "비밀번호 변경":
+    case "로그인 하기":
+    case "회원가입 하기":
+    case "탈퇴하기":
+      return {
+        base: "bg-Accent text-foreground text-[16px] w-full px-3 py-2 mt-4 ",
+        hover: "hover:bg-button-hovered ",
+        disabled: "disabled:bg-disabled-button disabled:cursor-not-allowed",
+      };
+    case "닫기":
+      return {
+        base: "bg-borders  text-[16px] w-full px-3 py-2 mt-4 font-semibold",
+        hover: "hover:bg-text-tertiary ",
+      };
+    case "block":
+      return {
+        base: "bg-borders text-text-primary border-borders",
+      };
+    case "예매하기":
+      return {
+        base: " bg-Accent text-foreground px-8 py-1 text-xs w-26",
+        hover: "hover:bg-button-hovered",
+      };
+    default:
+      return {
+        base: "bg-defaultBg text-defaultText border-defaultBorder",
+        hover: "hover:bg-defaultHoverBg hover:text-defaultHoverText hover:border-defaultHoverText",
+      };
+  }
+};
 const Button = ({ content, isValid, onClick }: ButtonProps) => {
-  const getStyles = (content: string) => {
-    switch (content) {
-      case "로그인":
-        return {
-          base: "w-[88px] h-[42px] bg-foreground text-text-primary border-text-primary",
-          hover: "hover:bg-Accent hover:text-foreground hover:border-Accent",
-        };
-      case "회원가입":
-        return {
-          base: "border-0",
-          hover: "hover:text-Accent",
-        };
-      case "티켓 취소":
-      case "변경사항 저장":
-      case "비밀번호 변경":
-      case "로그인 하기":
-      case "회원가입 하기":
-      case "탈퇴하기":
-        return {
-          base: "bg-Accent text-foreground text-[16px] w-full px-3 py-2 mt-4 ",
-          hover: "hover:bg-button-hovered ",
-          disabled: "disabled:bg-disabled-button disabled:cursor-not-allowed",
-        };
-      case "닫기":
-        return {
-          base: "bg-borders  text-[16px] w-full px-3 py-2 mt-4 font-semibold",
-          hover: "hover:bg-text-tertiary ",
-        };
-      case "block":
-        return {
-          base: "bg-borders text-text-primary border-borders",
-        };
-      case "예매하기":
-        return {
-          base: " bg-Accent text-foreground px-8 py-1 text-xs w-26",
-          hover: "hover:bg-button-hovered",
-        };
-      default:
-        return {
-          base: "bg-defaultBg text-defaultText border-defaultBorder",
-          hover:
-            "hover:bg-defaultHoverBg hover:text-defaultHoverText hover:border-defaultHoverText",
-        };
-    }
-  };
   const styles = getStyles(content);
 
   return (
