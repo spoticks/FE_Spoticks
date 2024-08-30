@@ -21,12 +21,17 @@ export default function InformationCard({
     setIsModalOpen(true);
   }
   function handleModalClose() {
-    // 예약 취소 로직도 만들 것...
-    navigate("/profile/my-tickets/my-reservations");
+    // /:id 에서 / 로 이동
+    navigate(-1);
     setIsModalOpen(false);
   }
+
   useEffect(() => {
-    if (location.pathname === "/profile/my-tickets/my-reservations") {
+    if (
+      location.pathname === "/profile/my-tickets/my-reservations" ||
+      location.pathname === "/profile/my-tickets/cancellation-history"
+    ) {
+      // 모달을 연 상태에서 뒤로가기를 눌러 /profile/my-tickets/my-reservations 혹은 /profile/my-tickets/cancellation-history 로 이동한 경우
       setIsModalOpen(false);
     } else if (!isModalOpen) {
       setIsModalOpen(true);
