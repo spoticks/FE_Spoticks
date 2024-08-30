@@ -9,7 +9,7 @@ import MatchList from "./pages/matchList/MatchList";
 import Admin from "./pages/admin/Admin";
 import NotFound from "./pages/NotFound";
 import Registration from "./pages/admin/Registration";
-import { menu } from "./components/constants";
+import { menu } from "./constants";
 import AuthRoute from "./AuthRoute";
 import AccountDeletion from "./pages/AccountDeletion";
 import MyTicketRoute from "./MyTicketRoute";
