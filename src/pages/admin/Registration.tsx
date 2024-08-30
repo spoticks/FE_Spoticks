@@ -37,26 +37,39 @@ export default function Registration() {
       awayTeamName: '',
     }
   });
-
+  
   const navigate = useNavigate();
   const {addMatch, updateMatch} = useStore(state => ({
     addMatch: state.addMatch,
     updateMatch: state.updateMatch
   }));
 
+  const getTeamIdx = (sportName:string, teamName:string): number => {
+    const sportTeams = teams[sportName];
+    if(sportTeams) {
+      const idx =sportTeams.indexOf(teamName);
+      return idx !== -1 ? idx+1 : -1;
+    }
+    return -1;
+  }
+
   const onSubmit = async(data: FormValues) => {
     try{
       console.log(data);
       const addDateTime = `${data.date}T${data.gameStartTime}`;
+      const homeTeamIdx = getTeamIdx(data.sportName, data.homeTeamName);
+      const awayTeamIdx = getTeamIdx(data.sportName, data.awayTeamName);
+
       const matchData = {
         sportName: data.sportName,
         gameStartTime: addDateTime,
         stadiumName: data.stadiumName,
-        homeTeamName: data.homeTeamName,
-        awayTeamName: data.awayTeamName,
+        homeTeamName: homeTeamIdx.toString(),
+        awayTeamName: awayTeamIdx.toString(),
       }
       if(mode === 'create'){
         const res = await axios.post('http://localhost:3000/matches', matchData);
+        console.log(matchData)
         addMatch(res.data);
       } else if(mode === 'edit' && existMatch){
         console.log(existMatch.id)
