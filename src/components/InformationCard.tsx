@@ -1,43 +1,30 @@
 import { BsCalendar2EventFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 import { InformationCardProp } from "../type";
-import { useEffect, useState } from "react";
 import InformationModal from "./InformationModal";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import useHistoryModal from "../hooks/useHistoryModal";
 
 export default function InformationCard({
   content: { homeTeamName, awayTeamName, gameStartTime, stadiumName, reservationStatus, id },
 }: {
   content: InformationCardProp;
 }) {
+  const { isModalOpen, handleModalOpen, handleModalClose } = useHistoryModal(true);
   const [date, time] = gameStartTime.split("T");
   const [hours, minutes] = time.split(":");
   const navigate = useNavigate();
-  const location = useLocation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  function handleModalOpen() {
+  function handleInfoModalOpen() {
     navigate(`${id}`);
-    setIsModalOpen(true);
+    handleModalOpen();
   }
-  function handleModalClose() {
+  function handleInfoModalClose() {
     // /:id 에서 / 로 이동
     navigate(-1);
-    setIsModalOpen(false);
+    handleModalClose();
   }
 
-  useEffect(() => {
-    if (
-      location.pathname === "/profile/my-tickets/my-reservations" ||
-      location.pathname === "/profile/my-tickets/cancellation-history"
-    ) {
-      // 모달을 연 상태에서 뒤로가기를 눌러 /profile/my-tickets/my-reservations 혹은 /profile/my-tickets/cancellation-history 로 이동한 경우
-      setIsModalOpen(false);
-    } else if (!isModalOpen) {
-      setIsModalOpen(true);
-    }
-    ("여기임");
-  }, [location.pathname]);
   return (
     <div className="w-[400px] rounded-[15px] border border-borders bg-foreground shadow-first">
       <div className="p-[20px]">
@@ -60,12 +47,12 @@ export default function InformationCard({
           </div>
         </div>
         {reservationStatus !== undefined && (
-          <button className="text-xs text-Accent" onClick={handleModalOpen}>
+          <button className="text-xs text-Accent" onClick={handleInfoModalOpen}>
             상세정보
           </button>
         )}
       </div>
-      <InformationModal isOpen={isModalOpen} onClose={handleModalClose} reservationId={id} />
+      <InformationModal isOpen={isModalOpen} onClose={handleInfoModalClose} reservationId={id} />
     </div>
   );
 }

@@ -6,8 +6,8 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "./Loading";
 import Error from "../pages/Error";
-import { useState } from "react";
 import CancellationConfirmModal from "./CancellationConfirmModal";
+import useHistoryModal from "../hooks/useHistoryModal";
 
 interface InformationModal {
   isOpen: boolean;
@@ -38,19 +38,13 @@ const fetchReservationDetails = async (reservationId: number) => {
 };
 
 export default function InformationModal({ isOpen, onClose, reservationId }: InformationModal) {
+  const { isModalOpen, handleModalOpen, handleModalClose } = useHistoryModal();
   const { data, error, isLoading, isSuccess } = useQuery<GameReservation>({
     queryKey: ["reservationDetail", reservationId],
     queryFn: () => fetchReservationDetails(reservationId),
     enabled: isOpen,
   });
-  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
-  function handleCancelButton() {
-    setIsConfirmOpen(true);
-  }
-  function onCloseConfirmModal() {
-    setIsConfirmOpen(false);
-  }
   const isReservationComplete = data?.reservationStatus === "COMPLETE" ? true : false;
   return (
     <Modal
@@ -115,11 +109,11 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
               </div>
               <Button
                 content={isReservationComplete ? "티켓 취소" : "닫기"}
-                onClick={isReservationComplete ? handleCancelButton : onClose}
+                onClick={isReservationComplete ? handleModalOpen : onClose}
               />
               <CancellationConfirmModal
-                isOpen={isConfirmOpen}
-                onClose={onCloseConfirmModal}
+                isOpen={isModalOpen}
+                onClose={handleModalClose}
                 reservationId={reservationId}
               />
             </div>
