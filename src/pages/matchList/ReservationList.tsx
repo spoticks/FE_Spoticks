@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Content } from "../../type";
-import Button from "../../components/Button";
 import { TimeButton } from "../../components/TimeButton";
 interface ReservationListProps {
   filterData: Content[];
