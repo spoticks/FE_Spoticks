@@ -9,12 +9,11 @@ import MatchList from "./pages/matchList/MatchList";
 import Admin from "./pages/admin/Admin";
 import NotFound from "./pages/NotFound";
 import Registration from "./pages/admin/Registration";
-import { menu } from "./components/constants";
+import { menu } from "./constants";
 import AuthRoute from "./AuthRoute";
 import AccountDeletion from "./pages/AccountDeletion";
 import MyTicketRoute from "./MyTicketRoute";
-import MyReservations from "./pages/MyReservations";
-import CancellationHistory from "./pages/CancellationHistory";
+import MyHistory from "./pages/MyHistory";
 import MyTeam from "./pages/MyTeam";
 
 export default function Router() {
@@ -39,8 +38,10 @@ export default function Router() {
             <Route path="account-deletion" element={<AccountDeletion />} />
             <Route path="my-team" element={<MyTeam />} />
             <Route path="my-tickets" element={<MyTicketRoute />}>
-              <Route path="my-reservations" element={<MyReservations />} />
-              <Route path="cancellation-history" element={<CancellationHistory />} />
+              <Route path="my-reservations" element={<MyHistory />} />
+              <Route path="my-reservations/:id" element={<MyHistory />} />
+              <Route path="cancellation-history" element={<MyHistory />} />
+              <Route path="cancellation-history/:id" element={<MyHistory />} />
             </Route>
           </Route>
           <Route path="/admin" element={<Admin />} />
