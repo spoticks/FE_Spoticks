@@ -13,7 +13,7 @@ interface DetailProps {
   filterData: Content[];
 }
 
-export default function MatchListDetail({ selectedTeam, filterData }: DetailProps) {
+export default function MatchTabList({ selectedTeam, filterData }: DetailProps) {
   //예매내역, 홈구장안내, 예매설명 메뉴 선택
   const [selectedMenu, setSelectedMenu] = useState("예매 일정");
   const handleMenuClick = (menu: string) => {

@@ -41,4 +41,4 @@ export const leagueName: Record<string, string> = {
   농구: "KBL",
 };
 
-export const localUrl = import.meta.env.REACT_APP_LOCAL_URL;
+export const localUrl = import.meta.env.VITE_LOCAL_URL;

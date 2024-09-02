@@ -1,54 +1,66 @@
-import { useEffect, useState } from 'react';
-import MatchListMain from './MatchListMain';
-import MatchListTab from './Tab';
-import axios from 'axios';
-import { Content } from '../../type';
-import MatchListDetail from './MatchListDetail';
-
-interface MatchListProps{
-  sport:string;
+import { useEffect, useState } from "react";
+import MatchListMain from "./MatchListMain";
+import MatchListTab from "./Tab";
+import axios from "axios";
+import { Content } from "../../type";
+import MatchTabList from "./MatchTabList";
+import { localUrl } from "../../components/constants";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../../components/Loading";
+import Error from "../Error";
+interface MatchListProps {
+  sport: string;
 }
 
-export default function MatchList({sport}:MatchListProps) {
-  
-  //Tab에서 선택된 team 
-  const [selectedTeam, setSelectedTeam] = useState('');
+export default function MatchList({ sport }: MatchListProps) {
+  //Tab에서 선택된 team
+  const [selectedTeam, setSelectedTeam] = useState("");
 
   //예매일정
   const [sceduleLen, setScheduleLen] = useState(0);
-  const [matchData, setMatchData] = useState<Content[]>([]);
+  // const [matchData, setMatchData] = useState<Content[]>([]);
   const [filterData, setFilterData] = useState<Content[]>([]);
 
   //홈구장
-  const [stadium, setStadium] = useState<string>('');
+  // const [stadium, setStadium] = useState<string>("");
+
+  const {
+    data: matchData = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["matches", sport],
+    queryFn: async () => {
+      const res = await axios.get(`${localUrl}/content?teamId=${sport}`);
+      console.log(res);
+      return res.data.filter((game: { sportName: string }) => game.sportName === sport);
+    },
+  });
 
   useEffect(() => {
-      axios.get('http://localhost:3000/content')
-        .then(res => {
-          const filterSport = res.data.filter((game: { sportName: string; }) => game.sportName === sport)
-          setMatchData(filterSport);
-          setScheduleLen(filterSport.length);
-        })
-        .catch(error => console.error('Error:', error));
-  }, [sport]);
-  // console.log('matchData :',matchData)
-
-  useEffect(() => {
-    setFilterData(
-      matchData.filter((data) =>
-        data.homeTeamName === selectedTeam || data.awayTeamName === selectedTeam
-      )
-    );
+    if (matchData.length > 0) {
+      setFilterData(
+        matchData.filter(
+          (data: { homeTeamName: string; awayTeamName: string }) =>
+            data.homeTeamName === selectedTeam || data.awayTeamName === selectedTeam,
+        ),
+      );
+      setScheduleLen(matchData.length);
+    }
   }, [selectedTeam, matchData]);
 
   // console.log('filterData :',filterData);
 
+  if (isLoading) return <Loading />;
+  if (error) return <Error />;
   return (
-    <div className="flex flex-row w-[1280px] pt-10">
+    <div className="flex w-[1280px] flex-row pt-10">
       <MatchListTab sport={sport} setSelectedTeam={setSelectedTeam} />
       <div className="flex w-full pl-[30px]">
-        {selectedTeam === '전체 일정' ? (<MatchListDetail selectedTeam={selectedTeam} filterData={matchData}   />) : selectedTeam ? (
-          <MatchListDetail selectedTeam={selectedTeam} filterData={filterData}/>
+        {selectedTeam === "전체 일정" ? (
+          <MatchTabList selectedTeam={selectedTeam} filterData={matchData} />
+        ) : selectedTeam ? (
+          <MatchTabList selectedTeam={selectedTeam} filterData={filterData} />
         ) : (
           <MatchListMain sceduleLen={sceduleLen} sport={sport} />
         )}

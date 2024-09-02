@@ -1,41 +1,50 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Content } from '../../type';
-import Button from '../../components/Button';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Content } from "../../type";
+import Button from "../../components/Button";
 interface ReservationListProps {
-  filterData: Content[]
+  filterData: Content[];
 }
-const ReservationList = ({filterData}:ReservationListProps) => {
+const ReservationList = ({ filterData }: ReservationListProps) => {
   const [viewMatches, setViewMatches] = useState(5);
 
   const addViewClick = () => {
-    setViewMatches((prev)=> prev + 5)
-  }
+    setViewMatches((prev) => prev + 5);
+  };
 
-  const columnName = ['Home', "Away", "장소", "날짜", ""]
+  const columnName = ["Home", "Away", "장소", "날짜", ""];
 
-  return(
+  return (
     <div>
-      <table className="w-full border-separate mx-[-10px] border-spacing-x-[10px]">
+      <table className="mx-[-10px] w-full border-separate border-spacing-x-[10px]">
         <thead>
           <tr>
-          {columnName.map(column => (
-            <th key={column} className={`text-text-primary opacity-50 border px-4 py-2 ${column === "" ? 'bg-none border-none' : 'bg-foreground'}`}>{column}</th>
-          ))}
+            {columnName.map((column) => (
+              <th
+                key={column}
+                className={`border px-4 py-2 text-text-primary opacity-50 ${column === "" ? "border-none bg-none" : "bg-foreground"}`}
+              >
+                {column}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {filterData.slice(0, viewMatches).map((match, index) => (
-            <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
+            <tr key={index} className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}>
               <td className="border px-4 py-2">{match.homeTeamName}</td>
               <td className="border px-4 py-2">{match.awayTeamName}</td>
               <td className="border px-4 py-2">{match.stadiumName}</td>
-              <td className="border px-4 py-2">{match.gameStartTime.split('T')[0]}</td>
+              <td className="border px-4 py-2">{match.gameStartTime.split("T")[0]}</td>
               <td className="border px-4 py-2">
-                <Link to={`/reservation/${match.gameId}`}
+                <Link
+                  to={`/reservation/${match.gameId}`}
                   state={{ match: match }}
-                  className="cursor-pointer hover:underline">
-                  <Button content="예매하기" />
+                  className="cursor-pointer"
+                >
+                  <button className="w-26 flex items-center justify-center rounded-[10px] bg-Accent px-8 py-1 text-xs text-foreground transition-all duration-300 hover:bg-button-hovered">
+                    예매하기
+                  </button>
                 </Link>
               </td>
             </tr>
@@ -43,17 +52,14 @@ const ReservationList = ({filterData}:ReservationListProps) => {
         </tbody>
       </table>
       {viewMatches < filterData.length && (
-        <div className="flex justify-center mt-4">
-          <button
-            onClick={addViewClick}
-            className="bg-Accent text-white px-4 py-2 rounded"
-          >
+        <div className="mt-4 flex justify-center">
+          <button onClick={addViewClick} className="rounded bg-Accent px-4 py-2 text-white">
             더보기
           </button>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default ReservationList;
