@@ -30,11 +30,6 @@ const Button = ({ content, isValid }: ButtonProps) => {
         return {
           base: "bg-borders text-text-primary border-borders",
         };
-      case "예매하기":
-        return {
-          base: " bg-Accent text-foreground px-8 py-1 text-xs w-26",
-          hover: "hover:bg-button-hovered",
-        };
       default:
         return {
           base: "bg-defaultBg text-defaultText border-defaultBorder",

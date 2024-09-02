@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Content } from "../../type";
 import Button from "../../components/Button";
+import { TimeButton } from "../../components/TimeButton";
 interface ReservationListProps {
   filterData: Content[];
 }
@@ -42,9 +43,12 @@ const ReservationList = ({ filterData }: ReservationListProps) => {
                   state={{ match: match }}
                   className="cursor-pointer"
                 >
-                  <button className="w-26 flex items-center justify-center rounded-[10px] bg-Accent px-8 py-1 text-xs text-foreground transition-all duration-300 hover:bg-button-hovered">
-                    예매하기
-                  </button>
+                  <TimeButton
+                    timeOnSale={match.timeOnSale}
+                    timeOffSale={match.timeOffSale}
+                    label="예매하기"
+                    className="w-26 flex items-center justify-center rounded-[10px] px-8 py-1 text-xs text-foreground"
+                  />
                 </Link>
               </td>
             </tr>

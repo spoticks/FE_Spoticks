@@ -44,11 +44,7 @@ const ConfirmAlert = ({ title, confirmButtonText, text, functionDispatch }: Conf
     cancelButtonText: "취소",
   }).then((result: { isConfirmed: boolean }) => {
     if (result.isConfirmed) {
-      Swal.fire({
-        text,
-        icon: "success",
-        showConfirmButton: false,
-      });
+      SuccessToast({ title: text });
       functionDispatch();
     }
   });

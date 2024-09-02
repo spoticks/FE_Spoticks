@@ -32,7 +32,6 @@ export default function MatchList({ sport }: MatchListProps) {
     queryKey: ["matches", sport],
     queryFn: async () => {
       const res = await axios.get(`${localUrl}/content?teamId=${sport}`);
-      console.log(res);
       return res.data.filter((game: { sportName: string }) => game.sportName === sport);
     },
   });
