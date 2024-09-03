@@ -24,13 +24,14 @@ const teamLogos: Record<string, string> = {
 
 interface TeamLogoProps {
   teamName: string;
-  size?: "matchCard" | "mainMatch";
+  size?: "matchCard" | "mainMatch" | "myTeam";
 }
 
 export default function TeamLogo({ teamName, size = "matchCard" }: TeamLogoProps) {
   const sizeClasses = {
     matchCard: "size-10",
     mainMatch: "size-14",
+    myTeam: "size-20",
   };
 
   const logoSrc = teamLogos[teamName];
