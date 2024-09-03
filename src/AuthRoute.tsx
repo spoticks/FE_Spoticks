@@ -13,7 +13,7 @@ export default function AuthRoute() {
 
   // 로그인된 경우 해당 라우트를 렌더링
   return (
-    <div className="flex flex-col pt-16">
+    <div className="mb-24 flex flex-col pt-16">
       <Outlet />
     </div>
   );
