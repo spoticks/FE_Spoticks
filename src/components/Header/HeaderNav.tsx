@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import { menu } from "../constants";
+import { menu } from "../../constants";
 
 export default function HeaderNav() {
-  
   return (
     <nav className="m-auto flex w-60 flex-row justify-between">
       {/* <div className="text-[18px] font-medium">{el}</div> */}

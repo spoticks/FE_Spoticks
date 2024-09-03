@@ -9,7 +9,7 @@
       "gameStartTime": "2024-08-09T15:00:00",
       "timeOnSale": "2024-08-04T15:40:20",
       "timeOffSale": "2024-08-06T15:40:20",
-      "id": "65bf"
+      "id": "1e5d"
     },
     {
       "gameId": 124,
@@ -197,13 +197,178 @@
       "awayTeamName": "2"
     }
   ],
-  "users": [
+  "reservations": [
+    {
+      "gameId": 124,
+      "homeTeamName": "LG 트윈스",
+      "awayTeamName": "KT 위즈",
+      "stadiumName": "서울종합운동장 잠실야구장",
+      "sportName": "야구",
+      "gameStartTime": "2024-09-09T15:00:00",
+      "reservationStatus": true,
+      "id": 7393
+    },
+    {
+      "gameId": 144,
+      "homeTeamName": "LG 트윈스",
+      "awayTeamName": "KT 위즈",
+      "stadiumName": "서울종합운동장 잠실야구장",
+      "sportName": "야구",
+      "gameStartTime": "2024-09-09T15:00:00",
+      "reservationStatus": true,
+      "id": 7394
+    },
+    {
+      "gameId": 114,
+      "homeTeamName": "SSG 랜더스",
+      "awayTeamName": "KIA 타이거즈",
+      "stadiumName": "서울종합운동장 잠실야구장",
+      "sportName": "야구",
+      "gameStartTime": "2024-09-09T15:00:00",
+      "reservationStatus": true,
+      "id": 7395
+    },
+    {
+      "gameId": 164,
+      "homeTeamName": "LG 트윈스",
+      "awayTeamName": "KT 위즈",
+      "stadiumName": "서울종합운동장 잠실야구장",
+      "sportName": "야구",
+      "gameStartTime": "2024-09-09T15:00:00",
+      "reservationStatus": true,
+      "id": 7396
+    }
+  ],
+  "reservation": [
+    {
+      "id": 7393,
+      "homeTeamName": "LG 트윈스",
+      "awayTeamName": "KT 위즈",
+      "gameStartTime": "2024-09-09T15:00:00",
+      "stadiumName": "서울종합운동장 잠실야구장",
+      "reservationStatus": "COMPLETE",
+      "totalPrice": "173,000 원",
+      "createDate": "2024-08-24T16:13:00",
+      "memberName": "홍길동님",
+      "seat": [
+        { "seatPosition": "1루", "seatRow": "3열", "seatNumber": "41번" },
+        { "seatPosition": "프리미엄", "seatRow": "1열", "seatNumber": "1번" },
+        { "seatPosition": "프리미엄", "seatRow": "2열", "seatNumber": "3번" },
+        { "seatPosition": "외야", "seatRow": "2열", "seatNumber": "55번" },
+        { "seatPosition": "3루", "seatRow": "2열", "seatNumber": "3번" },
+        { "seatPosition": "1루", "seatRow": "2열", "seatNumber": "33번" }
+      ]
+    },
+    {
+      "id": 7394,
+      "homeTeamName": "LG 트윈스",
+      "awayTeamName": "KT 위즈",
+      "gameStartTime": "2024-09-09T15:00:00",
+      "stadiumName": "서울종합운동장 잠실야구장",
+      "reservationStatus": "COMPLETE",
+      "totalPrice": "173,000 원",
+      "createDate": "2024-08-24T16:13:00",
+      "memberName": "홍길동님",
+      "seat": [
+        { "seatPosition": "1루", "seatRow": "3열", "seatNumber": "41번" },
+        { "seatPosition": "프리미엄", "seatRow": "1열", "seatNumber": "1번" },
+        { "seatPosition": "프리미엄", "seatRow": "2열", "seatNumber": "3번" },
+        { "seatPosition": "외야", "seatRow": "2열", "seatNumber": "55번" },
+        { "seatPosition": "3루", "seatRow": "2열", "seatNumber": "3번" },
+        { "seatPosition": "1루", "seatRow": "2열", "seatNumber": "33번" }
+      ]
+    },
+    {
+      "id": 7395,
+      "homeTeamName": "SSG 랜더스",
+      "awayTeamName": "KIA 타이거즈",
+      "gameStartTime": "2024-09-09T15:00:00",
+      "stadiumName": "광주 챔피언스 필드",
+      "reservationStatus": "COMPLETE",
+      "totalPrice": "173,000 원",
+      "createDate": "2024-09-09T15:00:00",
+      "memberName": "홍길동님",
+      "seat": [
+        { "seatPosition": "1루", "seatRow": "3열", "seatNumber": "41번" },
+        { "seatPosition": "프리미엄", "seatRow": "1열", "seatNumber": "1번" },
+        { "seatPosition": "프리미엄", "seatRow": "2열", "seatNumber": "3번" },
+        { "seatPosition": "외야", "seatRow": "2열", "seatNumber": "55번" },
+        { "seatPosition": "3루", "seatRow": "2열", "seatNumber": "3번" },
+        { "seatPosition": "1루", "seatRow": "2열", "seatNumber": "33번" }
+      ]
+    },
+    {
+      "id": 7396,
+      "homeTeamName": "LG 트윈스",
+      "awayTeamName": "KT 위즈",
+      "gameStartTime": "2024-09-09T15:00:00",
+      "stadiumName": "서울종합운동장 잠실야구장",
+      "reservationStatus": "COMPLETE",
+      "totalPrice": "173,000 원",
+      "createDate": "2024-09-09T15:00:00",
+      "memberName": "홍길동님",
+      "seat": [
+        { "seatPosition": "1루", "seatRow": "3열", "seatNumber": "41번" },
+        { "seatPosition": "프리미엄", "seatRow": "1열", "seatNumber": "1번" },
+        { "seatPosition": "프리미엄", "seatRow": "2열", "seatNumber": "3번" },
+        { "seatPosition": "외야", "seatRow": "2열", "seatNumber": "55번" },
+        { "seatPosition": "3루", "seatRow": "2열", "seatNumber": "3번" },
+        { "seatPosition": "1루", "seatRow": "2열", "seatNumber": "33번" }
+      ]
+    }
+  ],
+  "login": [
     {
       "id": "1",
       "username": "johndoe",
       "password": "password123",
       "accessToken": "sampleAccessToken123",
       "refreshToken": "sampleRefreshToken123"
+    },
+    {
+      "id": "9997",
+      "email": "ddhhss0603@gmail.com",
+      "password": "dhshappy1995!"
+    },
+    {
+      "id": "8c71",
+      "email": "dhs0603@naver.com",
+      "password": "dhshappy1995!"
+    },
+    {
+      "id": "9be4",
+      "email": "ddhhss0603@gmail.com",
+      "password": "dhshappy1995!"
+    },
+    {
+      "id": "1ded",
+      "email": "ddhhss0603@gmail.com",
+      "password": "dhshappy1995!"
+    },
+    {
+      "id": "45d8",
+      "email": "ddhhss0603@gmail.com",
+      "password": "dhshappy1995!"
+    },
+    {
+      "id": "6550",
+      "email": "ddhhss0603@gmail.com",
+      "password": "dhshappy1995!"
+    },
+    {
+      "id": "cddc",
+      "email": "ddhhss0603@gmail.com",
+      "password": "dhshappy1995!"
+    },
+    {
+      "id": "92e5",
+      "email": "dhs0603@naver.com",
+      "password": "dhshappy1995!"
+    },
+    {
+      "id": "db55",
+      "email": "ddhhss0603@gmail.com",
+      "password": "dhshappy1995!"
     }
   ],
   "seats": [

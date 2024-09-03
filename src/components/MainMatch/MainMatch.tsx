@@ -9,7 +9,7 @@ const mainMatch = {
       homeTeamName: "한화 이글스",
       awayTeamName: "두산 베어스",
       sportName: "야구",
-      gameStartTime: "2024-08-10T15:40:20",
+      gameStartTime: "2024-09-04T15:40:20",
     },
   ],
 };

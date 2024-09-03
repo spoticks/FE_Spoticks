@@ -15,13 +15,7 @@ export default function MyTicketRoute() {
       </div>
       <div className="mb-4 flex gap-4 border-b border-b-borders pb-4">
         {myTicketMenu.map((menu) => (
-          <MenuButton
-            menu={menu}
-            key={menu}
-            onClick={() => {
-              console.log(menu);
-            }}
-          />
+          <MenuButton menu={menu} key={menu} />
         ))}
       </div>
       <div className="flex w-[1280px]">

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Match } from "../../type";
 import axios from "axios";
-import { menu, stadiums, teams } from "../../components/constants";
+import { menu, stadiums, teams } from "../../constants";
 import { SuccessToast } from "../../components/Alert";
 
 interface FormValues {
@@ -70,10 +70,10 @@ export default function Registration() {
       };
       if (mode === "create") {
         const res = await axios.post("http://localhost:3000/matches", matchData);
-        console.log(matchData);
+        // console.log(matchData);
         addMatch(res.data);
       } else if (mode === "edit" && existMatch) {
-        console.log(existMatch.id);
+        // console.log(existMatch.id);
         if (existMatch.id !== undefined) {
           const updatedMatch = {
             ...existMatch,
