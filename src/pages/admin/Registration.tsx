@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { Match } from "../../type";
 import axios from "axios";
 import { menu, stadiums, teams } from "../../constants";
+import { SuccessToast } from "../../components/Alert";
 
 interface FormValues {
   id?: number; //수정시
@@ -44,22 +45,35 @@ export default function Registration() {
     updateMatch: state.updateMatch,
   }));
 
+  const getTeamIdx = (sportName: string, teamName: string): number => {
+    const sportTeams = teams[sportName];
+    if (sportTeams) {
+      const idx = sportTeams.indexOf(teamName);
+      return idx !== -1 ? idx + 1 : -1;
+    }
+    return -1;
+  };
+
   const onSubmit = async (data: FormValues) => {
     try {
       console.log(data);
       const addDateTime = `${data.date}T${data.gameStartTime}`;
+      const homeTeamIdx = getTeamIdx(data.sportName, data.homeTeamName);
+      const awayTeamIdx = getTeamIdx(data.sportName, data.awayTeamName);
+
       const matchData = {
         sportName: data.sportName,
         gameStartTime: addDateTime,
         stadiumName: data.stadiumName,
-        homeTeamName: data.homeTeamName,
-        awayTeamName: data.awayTeamName,
+        homeTeamName: homeTeamIdx.toString(),
+        awayTeamName: awayTeamIdx.toString(),
       };
       if (mode === "create") {
         const res = await axios.post("http://localhost:3000/matches", matchData);
+        // console.log(matchData);
         addMatch(res.data);
       } else if (mode === "edit" && existMatch) {
-        console.log(existMatch.id);
+        // console.log(existMatch.id);
         if (existMatch.id !== undefined) {
           const updatedMatch = {
             ...existMatch,
@@ -98,6 +112,12 @@ export default function Registration() {
       setValue("awayTeamName", existMatch.awayTeamName);
     }
   }, [mode, existMatch, setValue]);
+
+  const handleRegi = () => {
+    mode === "create"
+      ? SuccessToast({ title: "등록 완료!" })
+      : SuccessToast({ title: "수정 완료!" });
+  };
 
   return (
     <div className="my-5 flex w-full flex-row">
@@ -216,7 +236,11 @@ export default function Registration() {
                   ))}
               </select>
             </div>
-            <button type="submit" className="hover:Accent rounded bg-Accent px-4 py-2 text-white">
+            <button
+              type="submit"
+              className="hover:Accent rounded bg-Accent px-4 py-2 text-white"
+              onClick={handleRegi}
+            >
               {mode === "create" ? "신규 경기 등록" : "경기 수정"}
             </button>
           </form>

@@ -87,7 +87,7 @@ export default function Reservation() {
   if(error) return <Error />;
 
   return(
-  <div>
+  <div className="w-full">
     <div className='flex flex-row justify-between items-center mt-4'>
       <h3 className="text-[18px] font-bold rounded-[10px] border-borders border-[2px] flex items-center px-2">경기 목록</h3>
       <div className='flex-1 text-center'>

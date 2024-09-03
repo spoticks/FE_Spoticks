@@ -35,8 +35,10 @@ export const stadiums: Record<string, string[]> = {
 };
 
 export const leagueName: Record<string, string> = {
-  축구: 'K',
-  야구: 'KBO',
-  배구: 'V-',
-  농구: 'KBL'
-}
+  축구: "K",
+  야구: "KBO",
+  배구: "V-",
+  농구: "KBL",
+};
+
+export const localUrl = import.meta.env.VITE_LOCAL_URL;
