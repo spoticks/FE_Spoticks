@@ -30,8 +30,8 @@ export default function SectionSelector({
               onClick={() => {
                 field.onChange(section.seatPosition);
               }}
-              className={`flex flex-col border px-7 py-2 items-center font-bold rounded-[10px] border-borders cursor-pointer 
-                  ${isSelected ? 'border-Accent' : ''}`}>
+              className={`flex flex-col border px-7 py-2 items-center font-bold rounded-[10px] border-borders cursor-pointer bg-background
+                  ${isSelected ? 'border-text-primary text-text-primary' : 'text-text-tertiary'}`}>
               <div className='text-[24px]'>{section.seatPosition}</div>
               <div className='text-[16px]'>{section.seatPrice}원</div>
               <div className='text-[16px]'>{section.availableSeat}/50</div>

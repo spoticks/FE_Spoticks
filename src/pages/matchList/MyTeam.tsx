@@ -1,26 +1,67 @@
+import axios from "axios";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import myTeamStore from "../../stores/myTeamStore";
+import { teams, localUrl } from "../../components/constants";
+import Loading from "../../components/Loading";
+import Error from "../Error";
 
 interface MyTeamProps {
   selectedTeam: string;
 }
 
 export default function MyTeam({ selectedTeam }: MyTeamProps) {
-
+  const queryClient = useQueryClient();
   const { myTeams, addMyTeam, removeMyTeam } = myTeamStore();
 
-  const handleMyTeam = () => {
-    myTeams.includes(selectedTeam) ? removeMyTeam(selectedTeam) : addMyTeam(selectedTeam);
-  }
+  // useQuery로 데이터 가져오기
+  const { isLoading, error } = useQuery({
+    queryKey: ["myTeamData", selectedTeam],
+    queryFn: async () => {
+      const sport = Object.keys(teams).find((sport) => teams[sport].includes(selectedTeam));
+      if (sport) {
+        const teamIndex = teams[sport].indexOf(selectedTeam);
+        const response = await axios.get(`${localUrl}/myTeam/${teamIndex}`);
+        return response.data;
+      }
+      return null;
+    },
+  });
 
-  // myTeams에 selectedTeam이 포함되어 있는지 확인
+  // 마이팀 추가/삭제 처리 함수
+  const handleMyTeam = async () => {
+    const sport = Object.keys(teams).find((sport) => teams[sport].includes(selectedTeam));
+
+    if (sport) {
+      const teamIndex = teams[sport].indexOf(selectedTeam);
+
+      try {
+        await axios.post(`${localUrl}/myTeam/${teamIndex}`);
+
+        if (myTeams.includes(selectedTeam)) {
+          removeMyTeam(selectedTeam);
+        } else {
+          addMyTeam(selectedTeam);
+        }
+
+        // useQuery 데이터 갱신
+        queryClient.invalidateQueries({ queryKey: ["myTeamData", selectedTeam] });
+      } catch (error) {
+        console.error("Error adding/removing team:", error);
+      }
+    }
+  };
+
   const isMyTeam = myTeams.includes(selectedTeam);
+
+  if (isLoading) return <Loading />;
+  if (error) return <Error />;
 
   return (
     <>
-      {selectedTeam !== '전체 일정' && (
+      {selectedTeam !== "전체 일정" && (
         <div
           onClick={handleMyTeam}
-          className='flex flex-col justify-center items-center border-borders border-[1px] size-10 rounded-[10px] bg-foreground cursor-pointer'
+          className="flex size-10 cursor-pointer flex-col items-center justify-center rounded-[10px] border-[1px] border-borders bg-foreground"
         >
           <svg
             width="30"
@@ -37,7 +78,7 @@ export default function MyTeam({ selectedTeam }: MyTeamProps) {
               strokeLinejoin="round"
             />
           </svg>
-          <div className={`text-[15px] ${isMyTeam ? 'text-Accent' : 'text-borders'}`}>홈팀</div>
+          <div className={`text-[15px] ${isMyTeam ? "text-Accent" : "text-borders"}`}>마이팀</div>
         </div>
       )}
     </>

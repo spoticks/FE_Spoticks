@@ -18,9 +18,9 @@
       "stadiumName": "LG",
       "sportName": "야구",
       "gameStartTime": "2024-09-09T15:00:00",
-      "timeOnSale": "2024-09-04T15:40:20",
+      "timeOnSale": "2024-09-01T15:40:20",
       "timeOffSale": "2024-09-06T15:40:20",
-      "id": "7393"
+      "id": "610b"
     },
     {
       "gameId": 125,
@@ -31,7 +31,7 @@
       "gameStartTime": "2024-10-09T15:00:00",
       "timeOnSale": "2024-10-04T15:40:20",
       "timeOffSale": "2024-10-06T15:40:20",
-      "id": "4a08"
+      "id": "4ee6"
     },
     {
       "gameId": 126,
@@ -42,7 +42,7 @@
       "gameStartTime": "2024-11-09T15:00:00",
       "timeOnSale": "2024-11-04T15:40:20",
       "timeOffSale": "2024-11-06T15:40:20",
-      "id": "0dbe"
+      "id": "5faa"
     },
     {
       "gameId": 127,
@@ -53,7 +53,7 @@
       "gameStartTime": "2024-09-23T15:00:00",
       "timeOnSale": "2024-09-11T15:40:20",
       "timeOffSale": "2024-09-20T15:40:20",
-      "id": "5868"
+      "id": "de55"
     },
     {
       "gameId": 128,
@@ -64,7 +64,7 @@
       "gameStartTime": "2024-08-11T15:00:00",
       "timeOnSale": "2024-08-05T15:40:20",
       "timeOffSale": "2024-08-09T15:40:20",
-      "id": "208d"
+      "id": "464e"
     }
   ],
   "matches": [
@@ -155,6 +155,46 @@
       "stadiumName": "사직(부산)",
       "homeTeamName": "롯데 자이언츠",
       "awayTeamName": "SSG 랜더스"
+    },
+    {
+      "sportName": "야구",
+      "gameStartTime": "2024-08-30T15:24",
+      "stadiumName": "대구",
+      "homeTeamName": "한화 이글스",
+      "awayTeamName": "NC 다이노스",
+      "id": "Ovtx9jd"
+    },
+    {
+      "sportName": "축구",
+      "gameStartTime": "2024-09-28T22:30",
+      "stadiumName": "전북",
+      "homeTeamName": "전북 현대 모터스",
+      "awayTeamName": "FC 서울",
+      "id": "_XDuz13"
+    },
+    {
+      "sportName": "야구",
+      "gameStartTime": "2024-09-21T12:28",
+      "stadiumName": "잠실(서울)",
+      "homeTeamName": "2",
+      "awayTeamName": "1",
+      "id": "DZnytLf"
+    },
+    {
+      "sportName": "축구",
+      "gameStartTime": "2024-10-12T16:53",
+      "stadiumName": "전북",
+      "homeTeamName": "2",
+      "awayTeamName": "8",
+      "id": "ME_3x1P"
+    },
+    {
+      "id": "96a8",
+      "sportName": "야구",
+      "gameStartTime": "2024-10-12T16:36",
+      "stadiumName": "대구",
+      "homeTeamName": "4",
+      "awayTeamName": "2"
     }
   ],
   "reservations": [
@@ -354,8 +394,12 @@
           "seatPosition": "프리미엄",
           "seatPrice": "24000"
         }
-      ]
+      ],
+      "id": "da4d"
     },
-    { "seat": ["seatId"] }
+    {
+      "seat": ["seatId"],
+      "id": "048d"
+    }
   ]
 }
