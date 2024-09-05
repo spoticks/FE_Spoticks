@@ -128,7 +128,11 @@ export default function Reservation() {
         </div>
       </div>
       <hr className="border-2 border-[#222222] opacity-25" />
-      <SelectedSeats selectedSeats={selectedSeats} selectedSection={selectedSection} />
+      <SelectedSeats
+        selectedSeats={selectedSeats}
+        selectedSection={selectedSection}
+        gameId={matchData.gameId}
+      />
     </div>
   );
 }

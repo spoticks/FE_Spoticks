@@ -251,12 +251,36 @@
       "createDate": "2024-08-24T16:13:00",
       "memberName": "홍길동님",
       "seat": [
-        { "seatPosition": "1루", "seatRow": "3열", "seatNumber": "41번" },
-        { "seatPosition": "프리미엄", "seatRow": "1열", "seatNumber": "1번" },
-        { "seatPosition": "프리미엄", "seatRow": "2열", "seatNumber": "3번" },
-        { "seatPosition": "외야", "seatRow": "2열", "seatNumber": "55번" },
-        { "seatPosition": "3루", "seatRow": "2열", "seatNumber": "3번" },
-        { "seatPosition": "1루", "seatRow": "2열", "seatNumber": "33번" }
+        {
+          "seatPosition": "1루",
+          "seatRow": "3열",
+          "seatNumber": "41번"
+        },
+        {
+          "seatPosition": "프리미엄",
+          "seatRow": "1열",
+          "seatNumber": "1번"
+        },
+        {
+          "seatPosition": "프리미엄",
+          "seatRow": "2열",
+          "seatNumber": "3번"
+        },
+        {
+          "seatPosition": "외야",
+          "seatRow": "2열",
+          "seatNumber": "55번"
+        },
+        {
+          "seatPosition": "3루",
+          "seatRow": "2열",
+          "seatNumber": "3번"
+        },
+        {
+          "seatPosition": "1루",
+          "seatRow": "2열",
+          "seatNumber": "33번"
+        }
       ]
     },
     {
@@ -270,12 +294,36 @@
       "createDate": "2024-08-24T16:13:00",
       "memberName": "홍길동님",
       "seat": [
-        { "seatPosition": "1루", "seatRow": "3열", "seatNumber": "41번" },
-        { "seatPosition": "프리미엄", "seatRow": "1열", "seatNumber": "1번" },
-        { "seatPosition": "프리미엄", "seatRow": "2열", "seatNumber": "3번" },
-        { "seatPosition": "외야", "seatRow": "2열", "seatNumber": "55번" },
-        { "seatPosition": "3루", "seatRow": "2열", "seatNumber": "3번" },
-        { "seatPosition": "1루", "seatRow": "2열", "seatNumber": "33번" }
+        {
+          "seatPosition": "1루",
+          "seatRow": "3열",
+          "seatNumber": "41번"
+        },
+        {
+          "seatPosition": "프리미엄",
+          "seatRow": "1열",
+          "seatNumber": "1번"
+        },
+        {
+          "seatPosition": "프리미엄",
+          "seatRow": "2열",
+          "seatNumber": "3번"
+        },
+        {
+          "seatPosition": "외야",
+          "seatRow": "2열",
+          "seatNumber": "55번"
+        },
+        {
+          "seatPosition": "3루",
+          "seatRow": "2열",
+          "seatNumber": "3번"
+        },
+        {
+          "seatPosition": "1루",
+          "seatRow": "2열",
+          "seatNumber": "33번"
+        }
       ]
     },
     {
@@ -289,12 +337,36 @@
       "createDate": "2024-09-09T15:00:00",
       "memberName": "홍길동님",
       "seat": [
-        { "seatPosition": "1루", "seatRow": "3열", "seatNumber": "41번" },
-        { "seatPosition": "프리미엄", "seatRow": "1열", "seatNumber": "1번" },
-        { "seatPosition": "프리미엄", "seatRow": "2열", "seatNumber": "3번" },
-        { "seatPosition": "외야", "seatRow": "2열", "seatNumber": "55번" },
-        { "seatPosition": "3루", "seatRow": "2열", "seatNumber": "3번" },
-        { "seatPosition": "1루", "seatRow": "2열", "seatNumber": "33번" }
+        {
+          "seatPosition": "1루",
+          "seatRow": "3열",
+          "seatNumber": "41번"
+        },
+        {
+          "seatPosition": "프리미엄",
+          "seatRow": "1열",
+          "seatNumber": "1번"
+        },
+        {
+          "seatPosition": "프리미엄",
+          "seatRow": "2열",
+          "seatNumber": "3번"
+        },
+        {
+          "seatPosition": "외야",
+          "seatRow": "2열",
+          "seatNumber": "55번"
+        },
+        {
+          "seatPosition": "3루",
+          "seatRow": "2열",
+          "seatNumber": "3번"
+        },
+        {
+          "seatPosition": "1루",
+          "seatRow": "2열",
+          "seatNumber": "33번"
+        }
       ]
     },
     {
@@ -308,12 +380,36 @@
       "createDate": "2024-09-09T15:00:00",
       "memberName": "홍길동님",
       "seat": [
-        { "seatPosition": "1루", "seatRow": "3열", "seatNumber": "41번" },
-        { "seatPosition": "프리미엄", "seatRow": "1열", "seatNumber": "1번" },
-        { "seatPosition": "프리미엄", "seatRow": "2열", "seatNumber": "3번" },
-        { "seatPosition": "외야", "seatRow": "2열", "seatNumber": "55번" },
-        { "seatPosition": "3루", "seatRow": "2열", "seatNumber": "3번" },
-        { "seatPosition": "1루", "seatRow": "2열", "seatNumber": "33번" }
+        {
+          "seatPosition": "1루",
+          "seatRow": "3열",
+          "seatNumber": "41번"
+        },
+        {
+          "seatPosition": "프리미엄",
+          "seatRow": "1열",
+          "seatNumber": "1번"
+        },
+        {
+          "seatPosition": "프리미엄",
+          "seatRow": "2열",
+          "seatNumber": "3번"
+        },
+        {
+          "seatPosition": "외야",
+          "seatRow": "2열",
+          "seatNumber": "55번"
+        },
+        {
+          "seatPosition": "3루",
+          "seatRow": "2열",
+          "seatNumber": "3번"
+        },
+        {
+          "seatPosition": "1루",
+          "seatRow": "2열",
+          "seatNumber": "33번"
+        }
       ]
     }
   ],
@@ -400,6 +496,23 @@
     {
       "seat": ["seatId"],
       "id": "048d"
+    }
+  ],
+  "pay": [
+    {
+      "id": "aebe",
+      "totalPrice": "72,000",
+      "seatIds": ["프리미엄 4열 40번", "프리미엄 4열 39번", "프리미엄 4열 38번"]
+    },
+    {
+      "id": "96c2",
+      "totalPrice": "24,000",
+      "seatIds": ["외야 4열 40번", "외야 4열 39번"]
+    },
+    {
+      "id": "f548",
+      "totalPrice": "36,000",
+      "seatIds": ["외야 4열 38번", "외야 4열 37번", "외야 4열 36번"]
     }
   ]
 }
