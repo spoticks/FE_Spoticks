@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Seat } from "../../type";
-import ModalPortal from "../../components/Modal/Portal";
+import ModalPortal from "../Modal/Portal";
 
 interface SelectedSeatsSummaryProps {
   selectedSeats: Seat[];

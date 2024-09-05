@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import myTeamStore from "../../stores/myTeamStore";
-import { teams, localUrl } from "../../components/constants";
+import { teams, localUrl } from "../../constants";
 import Loading from "../../components/Loading";
-import Error from "../Error";
+import Error from "../../pages/Error";
 
 interface MyTeamProps {
   selectedTeam: string;
