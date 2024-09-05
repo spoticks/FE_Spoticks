@@ -8,7 +8,7 @@ interface MyTeamProps {
   selectedTeam: string;
 }
 
-export default function MyTeam({ selectedTeam }: MyTeamProps) {
+export default function MyTeamButton({ selectedTeam }: MyTeamProps) {
   const queryClient = useQueryClient();
 
   const { data, isLoading, error } = useQuery({
