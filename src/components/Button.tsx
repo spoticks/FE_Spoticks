@@ -15,6 +15,11 @@ const getStyles = (content: string) => {
         base: "border-0",
         hover: "hover:text-Accent",
       };
+    case "결제하기":
+      return {
+        base: "flex w-full bg-Accent text-background py-1",
+        hover: "hover:bg-button-hovered",
+      };
     case "티켓 취소":
     case "변경사항 저장":
     case "비밀번호 변경":
