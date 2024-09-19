@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
-import useAxios from "../../hooks/useAxios";
-import Section from "./Section";
-import { Seat, seatFormData, SeatsResponse } from "../../type";
-import SectionOfSeats from "./SectionOfSeats";
-import SelectedSeats from "./SelectedSeat";
-import Loading from "../../common/components/atoms/Loading";
-import Error from "../Error";
+import useAxios from "../hooks/useAxios";
+import Section from "../components/seats/Section";
+import { Seat, seatFormData, SeatsResponse } from "../type";
+import SectionOfSeats from "../components/seats/SectionOfSeats";
+import SelectedSeats from "../components/seats/SelectedSeat";
+
+import Error from "./Error";
+import Loading from "@/common/components/atoms/Loading";
 
 interface sectionOfSeats {
   seatPosition: string;
@@ -128,7 +129,11 @@ export default function Reservation() {
         </div>
       </div>
       <hr className="border-2 border-[#222222] opacity-25" />
-      <SelectedSeats selectedSeats={selectedSeats} selectedSection={selectedSection} />
+      <SelectedSeats
+        selectedSeats={selectedSeats}
+        selectedSection={selectedSection}
+        gameId={matchData.gameId}
+      />
     </div>
   );
 }

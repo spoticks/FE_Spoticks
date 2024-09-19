@@ -1,11 +1,11 @@
+import Loading from "@/common/components/atoms/Loading";
+import DetailModal from "@/components/Admin/DetailModal";
+import { menu } from "@/constants";
+import useAxios from "@/hooks/useAxios";
+import { Match } from "@/type";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import DetailModal from "./DetailModal";
-import { Match } from "../../type";
-import { menu } from "../../constants";
-import Loading from "../../common/components/atoms/Loading";
-import Error from "../Error";
-import useAxios from "../../hooks/useAxios";
+import Error from "@/pages/Error";
 
 export default function Admin() {
   const [currentPage, setCurrentPage] = useState(1);

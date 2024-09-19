@@ -3,45 +3,45 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import myTeamStore from "../../stores/myTeamStore";
 
 import Loading from "../../common/components/atoms/Loading";
-import Error from "../Error";
+import Error from "@/pages/Error";
 import { teams, localUrl } from "@/constants";
 
 interface MyTeamProps {
   selectedTeam: string;
 }
 
-export default function MyTeam({ selectedTeam }: MyTeamProps) {
+export default function MyTeamButton({ selectedTeam }: MyTeamProps) {
   const queryClient = useQueryClient();
-  const { myTeams, addMyTeam, removeMyTeam } = myTeamStore();
 
-  // useQuery로 데이터 가져오기
-  const { isLoading, error } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["myTeamData", selectedTeam],
     queryFn: async () => {
       const sport = Object.keys(teams).find((sport) => teams[sport].includes(selectedTeam));
       if (sport) {
-        const teamIndex = teams[sport].indexOf(selectedTeam);
-        const response = await axios.get(`${localUrl}/myTeam/${teamIndex}`);
-        return response.data;
+        // const teamIndex = teams[sport].indexOf(selectedTeam);
+        const { data } = await axios.get(`http://localhost:3000/myTeam`);
+        return data;
       }
       return null;
     },
+    enabled: selectedTeam !== "전체 일정",
   });
+  console.log(data);
+
+  const isMyTeam = data && data.includes(selectedTeam);
 
   // 마이팀 추가/삭제 처리 함수
   const handleMyTeam = async () => {
     const sport = Object.keys(teams).find((sport) => teams[sport].includes(selectedTeam));
 
-    if (sport) {
+    if (sport && data) {
       const teamIndex = teams[sport].indexOf(selectedTeam);
 
       try {
-        await axios.post(`${localUrl}/myTeam/${teamIndex}`);
-
-        if (myTeams.includes(selectedTeam)) {
-          removeMyTeam(selectedTeam);
+        if (data.includes(selectedTeam)) {
+          await axios.delete(`http://localhost:3000/myTeam/${teamIndex}`);
         } else {
-          addMyTeam(selectedTeam);
+          await axios.post(`http://localhost:3000/myTeam/${teamIndex}`);
         }
 
         // useQuery 데이터 갱신
@@ -51,8 +51,6 @@ export default function MyTeam({ selectedTeam }: MyTeamProps) {
       }
     }
   };
-
-  const isMyTeam = myTeams.includes(selectedTeam);
 
   if (isLoading) return <Loading />;
   if (error) return <Error />;

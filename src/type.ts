@@ -67,3 +67,15 @@ export interface sectionOfSeats {
   seatPrice: number;
   availableSeat: number;
 }
+
+export interface MatchDataProps {
+  awayTeamName: string;
+  gameId: number;
+  gameStartTime: string;
+  homeTeamName: string;
+  id: string;
+  sportName: string;
+  stadiumName: string;
+  timeOffSale: string;
+  timeOnSale: string;
+}

@@ -6,7 +6,7 @@ import HomeIcon from "../../assets/homeIcon.svg";
 import InfoIcon from "../../assets/infoIcon.svg";
 import ReserveIcon from "../../assets/reserveIcon.svg";
 import { Content } from "../../type";
-import MyTeam from "./MyTeam";
+import MyTeamButton from "./MyTeamButton";
 
 interface DetailProps {
   selectedTeam: string;
@@ -66,7 +66,7 @@ export default function MatchTabList({ selectedTeam, filterData }: DetailProps) 
           </div>
         </div>
         {/* 좋아요 */}
-        <MyTeam selectedTeam={selectedTeam} />
+        <MyTeamButton selectedTeam={selectedTeam} />
       </div>
       <div />
       <div className="pt-4">{MenuList()}</div>
