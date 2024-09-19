@@ -1,7 +1,7 @@
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import InputLabel from "./InputLabel";
-import Input from "../Input";
-import InputErrorMessage from "../InputErrorMessage";
+import Input from "../../common/components/atoms/Input";
+import InputErrorMessage from "../../common/components/atoms/InputErrorMessage";
 
 interface FormInputFieldProps {
   label: string;

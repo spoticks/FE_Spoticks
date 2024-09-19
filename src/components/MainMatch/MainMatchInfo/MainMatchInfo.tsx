@@ -1,5 +1,5 @@
 import { MatchData } from "../../../type";
-import Button from "../../Button";
+import Button from "../../../common/components/atoms/Button";
 import MainMatchTeam from "./MainMatchTeam";
 
 export default function MainMatchInfo({ matchData }: { matchData: MatchData }) {

@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import Loading from "../components/Loading";
+import Loading from "../common/components/atoms/Loading";
 import Error from "../pages/Error";
-import TeamLogo from "./TeamLogo";
+import TeamLogo from "../common/components/atoms/TeamLogo";
 
 async function fetchMyTeam() {
   const { data } = await axios.get("http://localhost:3000/myteam/");

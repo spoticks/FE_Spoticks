@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../components/Button";
-import Input from "../components/Input";
+import Button from "../common/components/atoms/Button";
+import Input from "../common/components/atoms/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { validationRules } from "../validationRules";
-import InputErrorMessage from "../components/InputErrorMessage";
+import InputErrorMessage from "../common/components/atoms/InputErrorMessage";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import useAuthStore from "../stores/authStore";

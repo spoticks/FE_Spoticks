@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "../common/components/atoms/Input";
+import Button from "../common/components/atoms/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
-import InputErrorMessage from "../components/InputErrorMessage";
+import InputErrorMessage from "../common/components/atoms/InputErrorMessage";
 import { SignUpForm, validationRules } from "../validationRules";
 
 export default function SignUp() {

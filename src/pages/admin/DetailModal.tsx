@@ -1,9 +1,10 @@
 import Modal from "react-modal";
 import { Link, useNavigate } from "react-router-dom";
 import { Match } from "../../type";
-import ModalPortal from "../../components/Modal/Portal";
-import { ConfirmAlert } from "../../components/Alert";
+import ModalPortal from "../../common/components/atoms/ModalPortal";
+
 import axios from "axios";
+import ConfirmAlert from "@/common/components/molecules/ConfirmAlert";
 interface DetailModalProps {
   isOpen: boolean;
   onClose: () => void;

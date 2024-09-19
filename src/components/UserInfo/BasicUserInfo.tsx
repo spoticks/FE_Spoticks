@@ -1,5 +1,5 @@
 import { validationRules } from "../../validationRules";
-import Button from "../Button";
+import Button from "../../common/components/atoms/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useAuthStore from "../../stores/authStore";
 import BasicInfoField from "./BasicInfoField";

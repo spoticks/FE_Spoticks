@@ -4,10 +4,11 @@ import MatchListTab from "./Tab";
 import axios from "axios";
 import { Content } from "../../type";
 import MatchTabList from "./MatchTabList";
-import { localUrl } from "../../components/constants";
+
 import { useQuery } from "@tanstack/react-query";
-import Loading from "../../components/Loading";
+import Loading from "../../common/components/atoms/Loading";
 import Error from "../Error";
+import { localUrl } from "@/constants";
 interface MatchListProps {
   sport: string;
 }

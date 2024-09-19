@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import DetailModal from "./DetailModal";
 import { Match } from "../../type";
 import { menu } from "../../constants";
-import Loading from "../../components/Loading";
+import Loading from "../../common/components/atoms/Loading";
 import Error from "../Error";
 import useAxios from "../../hooks/useAxios";
 
