@@ -1,4 +1,4 @@
-import { useActiveTime } from "../hooks/useActiveTime";
+import { useActiveTime } from "../../../hooks/useActiveTime";
 
 interface SaleButtonProps {
   timeOnSale: string;
