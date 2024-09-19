@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import MatchListMain from "../components/matchList/MatchListMain";
 import MatchListTab from "../components/matchList/Tab";
 import axios from "axios";
-import { Content } from "../type";
-import MatchTabList from "../components/matchList/MatchTabList";
-import { localUrl } from "../constants";
-import { useQuery } from "@tanstack/react-query";
-import Loading from "../components/Loading";
-import Error from "./Error";
 
+import Error from "@/pages/Error";
+import { localUrl } from "@/constants";
+import Loading from "@/common/components/atoms/Loading";
+import MatchTabList from "@/components/matchList/MatchTabList";
+import { Content } from "@/type";
+import { useQuery } from "@tanstack/react-query";
 interface MatchListProps {
   sport: string;
 }

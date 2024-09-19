@@ -1,13 +1,15 @@
 import Modal from "react-modal";
 import { IoIosCloseCircle } from "react-icons/io";
-import Button from "./Button";
+
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
-import Loading from "./Loading";
+
 import Error from "../pages/Error";
 import { MatchDataProps } from "../type";
 import { useNavigate } from "react-router-dom";
-import { SuccessToast } from "./Alert";
+import Button from "@/common/components/atoms/Button";
+import Loading from "@/common/components/atoms/Loading";
+import SuccessToast from "@/common/components/atoms/SuccessToast";
 
 interface PayModalProps {
   isOpen: boolean;

@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import usePopover from "../hooks/usePopover";
 import useAuthStore from "../stores/authStore";
 import { validationRules } from "../validationRules";
-import Button from "./Button";
-import Input from "./Input";
-import InputErrorMessage from "./InputErrorMessage";
+import Button from "../common/components/atoms/Button";
+import Input from "../common/components/atoms/Input";
+import InputErrorMessage from "../common/components/atoms/InputErrorMessage";
 import InputLabel from "./UserInfo/InputLabel";
 
 interface AccountDeletionForm {
@@ -86,7 +86,7 @@ export default function AccountDeletionForm() {
                         field.onChange(option);
                         setIsOpen(false);
                       }}
-                      className="text-text-tertiary flex w-full justify-between rounded-[15px] bg-foreground px-3 py-2 text-[16px] transition-colors duration-100 hover:cursor-pointer hover:text-text-primary focus:bg-focused-input-background"
+                      className="flex w-full justify-between rounded-[15px] bg-foreground px-3 py-2 text-[16px] text-text-tertiary transition-colors duration-100 hover:cursor-pointer hover:text-text-primary focus:bg-focused-input-background"
                     >
                       <span>{option}</span>
                     </li>

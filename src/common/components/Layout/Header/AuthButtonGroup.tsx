@@ -1,5 +1,5 @@
+import Button from "@/common/components/atoms/Button";
 import { Link } from "react-router-dom";
-import Button from "../Button";
 
 export default function AuthButtonGroup() {
   return (

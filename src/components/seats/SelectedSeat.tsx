@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Seat } from "../../type";
-import ModalPortal from "../Modal/Portal";
-import PayModal from "../PayModal";
+import ModalPortal from "../../common/components/atoms/ModalPortal";
 import { useLocation } from "react-router-dom";
+import PayModal from "@/components/PayModal";
 
 interface SelectedSeatsSummaryProps {
   selectedSeats: Seat[];

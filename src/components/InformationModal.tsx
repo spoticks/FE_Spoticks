@@ -1,10 +1,10 @@
 import Modal from "react-modal";
 import { IoIosCloseCircle } from "react-icons/io";
 import barcode from "../assets/Barcode.svg";
-import Button from "./Button";
+import Button from "../common/components/atoms/Button";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import Loading from "./Loading";
+import Loading from "../common/components/atoms/Loading";
 import Error from "../pages/Error";
 import CancellationConfirmModal from "./CancellationConfirmModal";
 import useHistoryModal from "../hooks/useHistoryModal";

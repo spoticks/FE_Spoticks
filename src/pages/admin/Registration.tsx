@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import { Match } from "../../type";
 import axios from "axios";
 import { menu, stadiums, teams } from "../../constants";
-import { SuccessToast } from "../../components/Alert";
+import SuccessToast from "@/common/components/atoms/SuccessToast";
 
 interface FormValues {
   id?: number; //수정시

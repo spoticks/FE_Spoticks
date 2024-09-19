@@ -6,8 +6,9 @@ import Section from "../components/seats/Section";
 import { Seat, seatFormData, SeatsResponse } from "../type";
 import SectionOfSeats from "../components/seats/SectionOfSeats";
 import SelectedSeats from "../components/seats/SelectedSeat";
-import Loading from "../components/Loading";
+
 import Error from "./Error";
+import Loading from "@/common/components/atoms/Loading";
 
 interface sectionOfSeats {
   seatPosition: string;

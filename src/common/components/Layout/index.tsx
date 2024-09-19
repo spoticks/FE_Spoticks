@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import vector from "./assets/Vector.svg";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer";
+import Footer from "./Footer";
+import Header from "@/common/components/Layout/Header/index";
 
 export default function Layout() {
   return (

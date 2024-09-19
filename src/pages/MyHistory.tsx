@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import Loading from "../components/Loading";
+import Loading from "../common/components/atoms/Loading";
 import Error from "./Error";
 import InformationCard from "../components/InformationCard";
 import { InformationCardProp } from "../type";

@@ -1,11 +1,8 @@
+import SuccessToast from "@/common/components/atoms/SuccessToast";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
-
-interface ToastProps {
-  title: string;
-}
 
 interface ConfirmProps {
   title?: string | undefined;
@@ -14,24 +11,6 @@ interface ConfirmProps {
   text: string;
   functionDispatch: () => void;
 }
-
-const SuccessToast = ({ title }: ToastProps) => {
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.onmouseenter = Swal.stopTimer;
-      toast.onmouseleave = Swal.resumeTimer;
-    },
-  });
-  Toast.fire({
-    icon: "success",
-    title,
-  });
-};
 
 const ConfirmAlert = ({ title, confirmButtonText, text, functionDispatch }: ConfirmProps) => {
   MySwal.fire({
@@ -50,4 +29,4 @@ const ConfirmAlert = ({ title, confirmButtonText, text, functionDispatch }: Conf
   });
 };
 
-export { SuccessToast, ConfirmAlert };
+export default ConfirmAlert;
