@@ -1,5 +1,5 @@
-import Timer from "./Timer";
-import MainMatchInfo from "./MainMatchInfo/MainMatchInfo";
+import MainMatchInfo from "@/pages/Home/components/MainMatch/MainMatchInfo";
+import Timer from "@/pages/Home/components/MainMatch/Timer";
 
 const mainMatch = {
   // 임시 정보
