@@ -2,16 +2,7 @@ import Button from "@/common/components/atoms/Button";
 import TeamLogo from "@/common/components/atoms/TeamLogo";
 import { MatchData } from "@/type";
 import sun from "../../../assets/icons8-sun.svg";
-
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-  const weekday = daysOfWeek[date.getDay()];
-
-  return `${month}/${day}(${weekday})`;
-}
+import formatDate from "@/pages/Home/utils/formatDate";
 
 export default function MatchCard({ data }: { data: MatchData }) {
   const { homeTeamName, awayTeamName, gameStartTime } = data;
