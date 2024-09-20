@@ -1,7 +1,7 @@
+import Button from "@/common/components/atoms/Button";
+import TeamLogo from "@/common/components/atoms/TeamLogo";
+import { MatchData } from "@/type";
 import sun from "../../../assets/icons8-sun.svg";
-import { MatchData } from "../../../type";
-import Button from "../../../common/components/atoms/Button";
-import TeamLogo from "../../../common/components/atoms/TeamLogo";
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
