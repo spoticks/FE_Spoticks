@@ -1,4 +1,4 @@
-import MatchCard from "./MatchCard/MatchCard";
+import MatchCard from "@/pages/Home/components/WeeklyMatches/MatchCard";
 import useDragScroll from "@/pages/Home/hooks/useDragScroll";
 
 const matchData = {
