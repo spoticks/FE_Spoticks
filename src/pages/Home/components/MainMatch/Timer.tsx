@@ -1,11 +1,5 @@
-import { useState, useEffect } from "react";
-
-interface LeftTime {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
+import useTimer from "@/pages/Home/hooks/useTimer";
+import { LeftTime } from "@/pages/Home/utils/timeUtils";
 
 const timeMap: Record<keyof LeftTime, string> = {
   days: "일",
@@ -15,50 +9,7 @@ const timeMap: Record<keyof LeftTime, string> = {
 };
 
 export default function Timer({ mainMatchStartTime }: { mainMatchStartTime: string }) {
-  function calculateLeftTime(): LeftTime {
-    const targetDate = new Date(mainMatchStartTime).getTime();
-    const now = new Date().getTime();
-    const difference = targetDate - now;
-
-    let timeLeft: LeftTime = { days: 0, hours: 0, minutes: 0, seconds: 0 };
-
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    }
-
-    return timeLeft;
-  }
-
-  const [leftTime, setLeftTime] = useState<LeftTime>(calculateLeftTime());
-  const [isTimeUp, setIsTimeUp] = useState(false);
-
-  useEffect(() => {
-    if (isTimeUp) {
-      return;
-    }
-
-    const timer = setInterval(() => {
-      const newTime = calculateLeftTime();
-      setLeftTime(newTime);
-
-      if (
-        newTime.days === 0 &&
-        newTime.hours === 0 &&
-        newTime.minutes === 0 &&
-        newTime.seconds === 0
-      ) {
-        setIsTimeUp(true);
-        clearInterval(timer);
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [isTimeUp]);
+  const { leftTime, isTimeUp } = useTimer(mainMatchStartTime);
 
   return (
     <div className="flex justify-center">
