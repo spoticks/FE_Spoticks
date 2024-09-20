@@ -1,6 +1,6 @@
 import MainMatch from "@/pages/Home/components/MainMatch";
 import Tickets from "../assets/Tickets.svg";
-import WeeklyMatches from "@/pages/Home/components/WeeklyMatches/WeeklyMatches";
+import WeeklyMatches from "@/pages/Home/components/WeeklyMatches";
 
 export default function Home() {
   return (

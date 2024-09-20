@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
 import MatchCard from "./MatchCard/MatchCard";
+import useDragScroll from "@/pages/Home/hooks/useDragScroll";
 
 const matchData = {
   content: [
@@ -42,34 +42,7 @@ const matchData = {
 };
 
 export default function WeeklyMatches() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-
-  const [totalX, setTotalX] = useState<number>(0);
-
-  const onDragStart = (e: React.MouseEvent<HTMLDivElement>) => {
-    setIsDragging(true);
-    const x = e.clientX;
-    if (containerRef.current && "scrollLeft" in containerRef.current) {
-      setTotalX(x + containerRef.current.scrollLeft);
-    }
-  };
-  const onDragMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-
-    const scrollLeft = totalX - e.clientX;
-
-    if (containerRef.current && "scrollLeft" in containerRef.current) {
-      containerRef.current.scrollLeft = scrollLeft;
-    }
-  };
-  const onDragEnd = () => {
-    if (!isDragging) return;
-    if (!containerRef.current) return;
-
-    setIsDragging(false);
-  };
+  const { containerRef, onDragStart, onDragMove, onDragEnd } = useDragScroll();
 
   return (
     <>
