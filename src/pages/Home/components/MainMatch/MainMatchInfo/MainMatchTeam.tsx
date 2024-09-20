@@ -1,4 +1,4 @@
-import TeamLogo from "../../../common/components/atoms/TeamLogo";
+import TeamLogo from "@/common/components/atoms/TeamLogo";
 
 export default function MainMatchTeam({
   teamName,
