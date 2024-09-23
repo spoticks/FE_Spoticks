@@ -79,3 +79,8 @@ export interface MatchDataProps {
   timeOffSale: string;
   timeOnSale: string;
 }
+
+export interface AccountDeletionFormType {
+  password: string;
+  reason: string;
+}
