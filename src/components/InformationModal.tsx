@@ -1,13 +1,13 @@
 import Modal from "react-modal";
 import { IoIosCloseCircle } from "react-icons/io";
-import barcode from "../assets/Barcode.svg";
-import Button from "../common/components/atoms/Button";
+import Barcode from "@/assets/Barcode.svg?react";
+import Button from "@/common/components/atoms/Button";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import Loading from "../common/components/atoms/Loading";
-import Error from "../pages/Error";
-import CancellationConfirmModal from "./CancellationConfirmModal";
-import useHistoryModal from "../hooks/useHistoryModal";
+import Loading from "@/common/components/atoms/Loading";
+import Error from "@/pages/Error";
+import CancellationConfirmModal from "@/components/CancellationConfirmModal";
+import useHistoryModal from "@/hooks/useHistoryModal";
 
 interface InformationModal {
   isOpen: boolean;
@@ -77,7 +77,7 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
                   {data.gameStartTime.split("T")[1].slice(0, 5)}
                 </div>
               </div>
-              <img src={barcode} className="h-[30px]" />
+              <Barcode className="h-[30px]" />
             </div>
             <div className="flex w-[380px] flex-col gap-4">
               <div className="flex justify-between">

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import vector from "./assets/Vector.svg";
-import Footer from "./Footer";
+import Vector from "@/assets/Vector.svg?react";
+import Footer from "@/common/components/Layout/Footer";
 import Header from "@/common/components/Layout/Header/index";
 
 export default function Layout() {
@@ -11,7 +11,7 @@ export default function Layout() {
         <main className="w-full">
           <Outlet />
         </main>
-        <img src={vector} className="fixed left-0 top-[-20px] -z-50" />
+        <Vector className="fixed left-0 top-[-20px] -z-50" />
       </div>
       <Footer />
     </div>

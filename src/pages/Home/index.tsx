@@ -1,5 +1,5 @@
 import MainMatch from "@/pages/Home/components/MainMatch";
-import Tickets from "../assets/Tickets.svg";
+import Tickets from "@/assets/Tickets.svg?react";
 import WeeklyMatches from "@/pages/Home/components/WeeklyMatches";
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
       <section className="my-8 flex items-center justify-between text-center">
         <MainMatch />
         <div>
-          <img src={Tickets} alt="Tickets Illustration" />
+          <Tickets />
         </div>
       </section>
       <section>
