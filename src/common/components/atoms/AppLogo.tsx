@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.svg";
+import Logo from "@/assets/logo.svg?react";
 
 export default function AppLogo() {
   return (
     <Link to={"/"}>
-      <img src={logo} className="size-7" />
+      <Logo className="size-7" />
     </Link>
   );
 }

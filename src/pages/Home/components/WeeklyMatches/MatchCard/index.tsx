@@ -1,17 +1,8 @@
-import sun from "../../../assets/icons8-sun.svg";
-import { MatchData } from "../../../type";
-import Button from "../../../common/components/atoms/Button";
-import TeamLogo from "../../../common/components/atoms/TeamLogo";
-
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-  const weekday = daysOfWeek[date.getDay()];
-
-  return `${month}/${day}(${weekday})`;
-}
+import Button from "@/common/components/atoms/Button";
+import TeamLogo from "@/common/components/atoms/TeamLogo";
+import { MatchData } from "@/type";
+import Sun from "@/assets/icons8-sun.svg?react";
+import formatDate from "@/pages/Home/utils/formatDate";
 
 export default function MatchCard({ data }: { data: MatchData }) {
   const { homeTeamName, awayTeamName, gameStartTime } = data;
@@ -30,7 +21,7 @@ export default function MatchCard({ data }: { data: MatchData }) {
             {String(hours).padStart(2, "0")}:{String(minutes).padStart(2, "0")}
           </span>
         </span>
-        <img src={sun} alt="sun Illustration" className="mt-[-0.3rem] size-6" />
+        <Sun className="mt-[-0.3rem] size-6" />
       </div>
       <div className="flex items-center justify-center">
         {/* 팀 정보 */}
