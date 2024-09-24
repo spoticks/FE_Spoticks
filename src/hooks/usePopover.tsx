@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 export default function usePopover() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  function handleClickProfile(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function handleClickProfile(e: React.MouseEvent<HTMLElement, MouseEvent>) {
     e.stopPropagation();
     setIsPopoverOpen(!isPopoverOpen);
   }

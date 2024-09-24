@@ -1,5 +1,5 @@
 import CryingIcons from "@/assets/heroicons_ticket-solid.svg?react";
-import AccountDeletionForm from "@/components/AccountDeletionForm";
+import AccountDeletionForm from "@/pages/AccountDeletion/AccountDeletionForm";
 export default function AccountDeletion() {
   return (
     <>

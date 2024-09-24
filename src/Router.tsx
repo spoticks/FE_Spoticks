@@ -11,7 +11,7 @@ import NotFound from "./pages/NotFound";
 import Registration from "./pages/admin/Registration";
 import { menu } from "./constants";
 import AuthRoute from "./AuthRoute";
-import AccountDeletion from "./pages/AccountDeletion";
+import AccountDeletion from "@/pages/AccountDeletion";
 import MyTicketRoute from "./MyTicketRoute";
 import MyHistory from "./pages/MyHistory";
 import MyTeam from "./pages/MyTeam";
