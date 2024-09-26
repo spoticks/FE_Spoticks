@@ -9,7 +9,7 @@ interface LoginFormType {
   password: string;
 }
 
-export default function useLogin() {
+export default function useLoginMutation() {
   const navigate = useNavigate();
   const loginMutation = useMutation({
     // 로그인 로직인데 주소 및 기타 로직은 api 나오면 수정할 것
