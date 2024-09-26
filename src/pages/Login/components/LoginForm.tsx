@@ -1,7 +1,7 @@
 import Button from "@/common/components/atoms/Button";
 import Input from "@/common/components/atoms/Input";
 import InputErrorMessage from "@/common/components/atoms/InputErrorMessage";
-import useLogin from "@/pages/Login/api/useLogin";
+import useLoginMutation from "@/pages/Login/api/useLoginMutation";
 import { validationRules } from "@/validationRules";
 import { useForm } from "react-hook-form";
 
@@ -10,7 +10,7 @@ interface LoginFormType {
   password: string;
 }
 export default function LoginForm() {
-  const { onSubmit } = useLogin();
+  const { onSubmit } = useLoginMutation();
   const {
     register,
     handleSubmit,
