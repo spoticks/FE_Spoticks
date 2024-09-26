@@ -1,7 +1,7 @@
 import InputLabel from "@/components/UserInfo/InputLabel";
 import usePopover from "@/hooks/usePopover";
-import DropdownButton from "@/pages/AccountDeletion/AccountDeletionForm/ReasonSelect/DropdownButton";
-import DropdownOptions from "@/pages/AccountDeletion/AccountDeletionForm/ReasonSelect/DropdownOptions";
+import DropdownButton from "@/pages/AccountDeletion/components/AccountDeletionForm/ReasonSelect/DropdownButton";
+import DropdownOptions from "@/pages/AccountDeletion/components/AccountDeletionForm/ReasonSelect/DropdownOptions";
 import { AccountDeletionFormType } from "@/type";
 import { Control, Controller } from "react-hook-form";
 
