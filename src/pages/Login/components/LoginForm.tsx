@@ -1,14 +1,10 @@
 import Button from "@/common/components/atoms/Button";
-import Input from "@/common/components/atoms/Input";
-import InputErrorMessage from "@/common/components/atoms/InputErrorMessage";
+import FormInputField from "@/common/components/molecules/FormInputField";
 import useLoginMutation from "@/pages/Login/api/useLoginMutation";
+import { LoginFormType } from "@/type";
 import { validationRules } from "@/validationRules";
 import { useForm } from "react-hook-form";
 
-interface LoginFormType {
-  email: string;
-  password: string;
-}
 export default function LoginForm() {
   const { onSubmit } = useLoginMutation();
   const {
@@ -19,14 +15,18 @@ export default function LoginForm() {
 
   return (
     <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-      <Input label="이메일" type="email" register={register("email", validationRules.email)} />
-      <InputErrorMessage error={errors.email} />
-      <Input
-        label="비밀번호"
-        type="password"
-        register={register("password", validationRules.password)}
+      <FormInputField
+        label="이메일"
+        register={register("email", validationRules.email)}
+        error={errors.email}
+        inputType="email"
       />
-      <InputErrorMessage error={errors.password} />
+      <FormInputField
+        label="비밀번호"
+        register={register("password", validationRules.password)}
+        error={errors.password}
+        inputType="password"
+      />
       <Button content="로그인 하기" isValid={isValid} />
     </form>
   );

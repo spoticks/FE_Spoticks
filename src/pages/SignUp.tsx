@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import Input from "../common/components/atoms/Input";
 import Button from "../common/components/atoms/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
-import InputErrorMessage from "../common/components/atoms/InputErrorMessage";
 import { SignUpForm, validationRules } from "../validationRules";
+import FormInputField from "@/common/components/molecules/FormInputField";
 
 export default function SignUp() {
   const {
@@ -30,27 +29,39 @@ export default function SignUp() {
         하세요.
       </span>
       <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-        <Input label="이메일" type="email" register={register("email", validationRules.email)} />
-        <InputErrorMessage error={errors.email} />
-        <Input label="이름" register={register("name", validationRules.name)} />
-        <InputErrorMessage error={errors.name} />
-        <Input label="휴대전화" register={register("phoneNumber", validationRules.phoneNumber)} />
-        <InputErrorMessage error={errors.phoneNumber} />
-        <Input
-          label="비밀번호"
-          type="password"
-          register={register("password", validationRules.password)}
+        <FormInputField
+          label="이메일"
+          register={register("email", validationRules.email)}
+          error={errors.email}
+          inputType="email"
         />
-        <InputErrorMessage error={errors.password} />
-        <Input
+        <FormInputField
+          label="이름"
+          register={register("name", validationRules.name)}
+          error={errors.name}
+          inputType="text"
+        />
+        <FormInputField
+          label="휴대전화"
+          register={register("phoneNumber", validationRules.phoneNumber)}
+          error={errors.phoneNumber}
+          inputType="text"
+        />
+        <FormInputField
+          label="비밀번호"
+          register={register("password", validationRules.password)}
+          error={errors.password}
+          inputType="password"
+        />
+        <FormInputField
           label="비밀번호 재확인"
-          type="password"
           register={register("passwordConfirmation", {
             ...validationRules.passwordConfirmation,
             validate: (value) => validationRules.passwordConfirmation.validate(value, getValues),
           })}
+          error={errors.passwordConfirmation}
+          inputType="password"
         />
-        <InputErrorMessage error={errors.passwordConfirmation} />
         <Button content="회원가입 하기" isValid={isValid} />
       </form>
     </section>
