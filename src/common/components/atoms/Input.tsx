@@ -1,6 +1,5 @@
+import { InputType } from "@/common/types/formTypes";
 import { useState } from "react";
-
-type InputType = "text" | "email" | "password";
 
 import { UseFormRegisterReturn } from "react-hook-form";
 

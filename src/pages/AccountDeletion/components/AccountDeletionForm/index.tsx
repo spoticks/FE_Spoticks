@@ -3,9 +3,10 @@ import ReasonSelect from "@/pages/AccountDeletion/components/AccountDeletionForm
 import useAuthStore from "@/stores/authStore";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { AccountDeletionFormType } from "@/type";
+import { AccountDeletionFormType } from "@/common/types/formTypes";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import { validationRules } from "@/validationRules";
+
 export default function AccountDeletionForm() {
   const navigate = useNavigate();
   const logout = useAuthStore((state) => state.logout);

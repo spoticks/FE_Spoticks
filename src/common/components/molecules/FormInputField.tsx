@@ -1,7 +1,8 @@
 import Input from "@/common/components/atoms/Input";
 import InputErrorMessage from "@/common/components/atoms/InputErrorMessage";
+import { InputType } from "@/common/types/formTypes";
 import InputLabel from "@/components/UserInfo/InputLabel";
-import { InputType } from "@/type";
+
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 
 interface FormInputFieldProps {
