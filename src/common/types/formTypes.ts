@@ -7,7 +7,7 @@ export interface AuthFormType {
 }
 
 export type AccountDeletionFormType = Pick<AuthFormType, "password"> & { reason: string };
-export type LoginFormType = Pick<AuthFormType, "email" | "password"> & { reason: string };
+export type LoginFormType = Pick<AuthFormType, "email" | "password">;
 export type PasswordSettingFormType = Pick<AuthFormType, "password"> & {
   originalPassword: string;
   passwordConfirmation: string;
