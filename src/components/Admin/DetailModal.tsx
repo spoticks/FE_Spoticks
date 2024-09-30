@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import { Link, useNavigate } from "react-router-dom";
-import { Match } from "../../type";
+import { Match } from "../../common/types/type";
 import ModalPortal from "../../common/components/atoms/ModalPortal";
 
 import axios from "axios";

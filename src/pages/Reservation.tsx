@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import useAxios from "../hooks/useAxios";
 import Section from "../components/seats/Section";
-import { Seat, seatFormData, SeatsResponse } from "../type";
+import { Seat, seatFormData, SeatsResponse } from "../common/types/type";
 import SectionOfSeats from "../components/seats/SectionOfSeats";
 import SelectedSeats from "../components/seats/SelectedSeat";
 

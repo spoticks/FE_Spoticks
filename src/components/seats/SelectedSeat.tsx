@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Seat } from "../../type";
+import { Seat } from "../../common/types/type";
 import ModalPortal from "../../common/components/atoms/ModalPortal";
 import { useLocation } from "react-router-dom";
 import PayModal from "@/components/PayModal";
