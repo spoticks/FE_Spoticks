@@ -1,11 +1,12 @@
 import Loading from "@/common/components/atoms/Loading";
+import { Match } from "@/common/types/type";
 import DetailModal from "@/components/Admin/DetailModal";
 import { menu } from "@/constants";
 import useAxios from "@/hooks/useAxios";
-import { Match } from "@/type";
+import ErrorPage from "@/pages/ErrorPage";
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Error from "@/pages/Error";
 
 export default function Admin() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,7 +57,7 @@ export default function Admin() {
     return <Loading />;
   }
   if (isError) {
-    return <Error />;
+    return <ErrorPage />;
   }
 
   return (
