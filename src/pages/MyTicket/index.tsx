@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
-export default function MyHistory() {
+export default function MyTicket() {
   const location = useLocation().pathname;
   const param = location === "/profile/my-tickets/my-reservations" ? "COMPLETE" : "CANCEL";
   const {
