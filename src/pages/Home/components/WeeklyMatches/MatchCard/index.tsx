@@ -1,8 +1,8 @@
 import Button from "@/common/components/atoms/Button";
-import TeamLogo from "@/common/components/atoms/TeamLogo";
 import { MatchData } from "@/type";
 import Sun from "@/assets/icons8-sun.svg?react";
 import formatDate from "@/pages/Home/utils/formatDate";
+import TeamDisplay from "@/pages/Home/components/WeeklyMatches/MatchCard/TeamDisplay";
 
 export default function MatchCard({ data }: { data: MatchData }) {
   const { homeTeamName, awayTeamName, gameStartTime } = data;
@@ -30,15 +30,6 @@ export default function MatchCard({ data }: { data: MatchData }) {
         <TeamDisplay teamName={awayTeamName} />
       </div>
       <Button content="예매하기" />
-    </div>
-  );
-}
-
-function TeamDisplay({ teamName }: { teamName: string }) {
-  return (
-    <div className="flex flex-col items-center gap-2">
-      <TeamLogo teamName={teamName} />
-      <span className="w-16 text-center text-[16px] font-semibold">{teamName}</span>
     </div>
   );
 }

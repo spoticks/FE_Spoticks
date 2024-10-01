@@ -5,7 +5,7 @@ import ReserveInfo from "./ReserveInfo";
 import HomeIcon from "../../assets/homeIcon.svg";
 import InfoIcon from "../../assets/infoIcon.svg";
 import ReserveIcon from "../../assets/reserveIcon.svg";
-import { Content } from "../../type";
+import { Content } from "../../common/types/type";
 import MyTeamButton from "./MyTeamButton";
 
 interface DetailProps {

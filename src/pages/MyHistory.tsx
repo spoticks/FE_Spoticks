@@ -3,7 +3,7 @@ import axios from "axios";
 import Loading from "../common/components/atoms/Loading";
 import Error from "./Error";
 import InformationCard from "../components/InformationCard";
-import { InformationCardProp } from "../type";
+import { InformationCardProp } from "../common/types/type";
 import { useLocation } from "react-router-dom";
 
 export default function MyHistory() {

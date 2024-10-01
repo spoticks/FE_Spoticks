@@ -26,7 +26,7 @@ export default function useTimer(targetTime: string) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [isTimeUp]);
+  }, [isTimeUp, targetTime]);
   return {
     leftTime,
     isTimeUp,

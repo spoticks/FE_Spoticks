@@ -1,6 +1,6 @@
 import { BsCalendar2EventFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
-import { InformationCardProp } from "../type";
+import { InformationCardProp } from "../common/types/type";
 import InformationModal from "./InformationModal";
 import { useNavigate } from "react-router-dom";
 import useHistoryModal from "../hooks/useHistoryModal";

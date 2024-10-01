@@ -4,7 +4,7 @@ import Tickets from "../../assets/Tickets.svg";
 import useStore from "../../stores/useStore";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { Match } from "../../type";
+import { Match } from "../../common/types/type";
 import axios from "axios";
 import { menu, stadiums, teams } from "../../constants";
 import SuccessToast from "@/common/components/atoms/SuccessToast";
