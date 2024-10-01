@@ -1,5 +1,5 @@
 import Loading from "@/common/components/atoms/Loading";
-import InformationCard from "@/components/InformationCard";
+import InformationCard from "@/pages/MyTicket/components/InformationCard";
 import ErrorPage from "@/pages/ErrorPage";
 import useMyTicketHistory from "@/pages/MyTicket/api/useMyTicketHistory";
 

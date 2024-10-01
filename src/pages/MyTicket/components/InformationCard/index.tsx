@@ -1,9 +1,9 @@
 import { BsCalendar2EventFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
-import { InformationCardProp } from "../common/types/type";
-import InformationModal from "./InformationModal";
+import { InformationCardProp } from "../../../../common/types/type";
+import InformationModal from "../../../../components/InformationModal";
 import { useNavigate } from "react-router-dom";
-import useHistoryModal from "../hooks/useHistoryModal";
+import useHistoryModal from "../../../../hooks/useHistoryModal";
 
 export default function InformationCard({
   content: { homeTeamName, awayTeamName, gameStartTime, stadiumName, reservationStatus, id },
