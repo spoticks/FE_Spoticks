@@ -12,7 +12,7 @@ import Registration from "./pages/admin/Registration";
 import { menu } from "./constants";
 import AuthRoute from "./AuthRoute";
 import AccountDeletion from "@/pages/AccountDeletion";
-import MyTicketRoute from "./MyTicketRoute";
+import MyTicketRouteLayout from "./MyTicketRouteLayout";
 import MyHistory from "./pages/MyHistory";
 import MyTeam from "./pages/MyTeam";
 
@@ -37,7 +37,7 @@ export default function Router() {
             <Route path="user-info" element={<MyPage />} />
             <Route path="account-deletion" element={<AccountDeletion />} />
             <Route path="my-team" element={<MyTeam />} />
-            <Route path="my-tickets" element={<MyTicketRoute />}>
+            <Route path="my-tickets" element={<MyTicketRouteLayout />}>
               <Route path="my-reservations" element={<MyHistory />} />
               <Route path="my-reservations/:id" element={<MyHistory />} />
               <Route path="cancellation-history" element={<MyHistory />} />
