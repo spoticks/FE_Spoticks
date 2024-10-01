@@ -1,26 +1,10 @@
 import Loading from "@/common/components/atoms/Loading";
-import { InformationCardProp } from "@/common/types/type";
 import InformationCard from "@/components/InformationCard";
 import ErrorPage from "@/pages/ErrorPage";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { useLocation } from "react-router-dom";
+import useMyTicketHistory from "@/pages/MyTicket/api/useMyTicketHistory";
 
 export default function MyTicket() {
-  const location = useLocation().pathname;
-  const param = location === "/profile/my-tickets/my-reservations" ? "COMPLETE" : "CANCEL";
-  const {
-    data = [],
-    isLoading,
-    isError,
-  } = useQuery<InformationCardProp[]>({
-    queryKey: ["myReservations", param],
-    queryFn: async () => {
-      // 추후에 reservationStatus를 status로 바꿀 것.
-      const res = await axios(`http://localhost:3000/reservations/?reservationStatus=${param}`);
-      return res.data;
-    },
-  });
+  const { data, isLoading, isError } = useMyTicketHistory();
 
   if (isLoading) {
     return (
