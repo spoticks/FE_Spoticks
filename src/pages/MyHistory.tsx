@@ -1,9 +1,9 @@
+import Loading from "@/common/components/atoms/Loading";
+import { InformationCardProp } from "@/common/types/type";
+import InformationCard from "@/components/InformationCard";
+import ErrorPage from "@/pages/ErrorPage";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import Loading from "../common/components/atoms/Loading";
-import Error from "./Error";
-import InformationCard from "../components/InformationCard";
-import { InformationCardProp } from "../common/types/type";
 import { useLocation } from "react-router-dom";
 
 export default function MyHistory() {
@@ -30,7 +30,7 @@ export default function MyHistory() {
     );
   }
   if (isError) {
-    return <Error />;
+    return <ErrorPage />;
   }
 
   return (
