@@ -4,7 +4,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 
-import Error from "../pages/Error";
+import Error from "../pages/ErrorPage";
 import { MatchDataProps } from "../common/types/type";
 import { useNavigate } from "react-router-dom";
 import Button from "@/common/components/atoms/Button";
