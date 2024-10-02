@@ -10,7 +10,7 @@ export default function Header() {
   }));
 
   return (
-    <header className="fixed z-50 flex h-[80px] w-full justify-center border bg-foreground">
+    <header className="sticky top-0 z-50 flex h-[80px] w-full justify-center border bg-foreground">
       <div className="flex w-[1280px] items-center">
         <AppLogo />
         <HeaderNav />
