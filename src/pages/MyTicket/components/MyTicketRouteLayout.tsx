@@ -18,9 +18,7 @@ export default function MyTicketRouteLayout() {
           <MenuButton menu={menu} key={menu} />
         ))}
       </div>
-      <div className="flex w-[1280px]">
-        <Outlet />
-      </div>
+      <Outlet />
     </>
   );
 }
