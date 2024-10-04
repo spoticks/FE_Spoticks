@@ -1,6 +1,6 @@
-import useAuthStore from "../stores/authStore";
-import BasicUserInfo from "../components/UserInfo/BasicUserInfo";
-import PasswordSetting from "../components/UserInfo/PasswordSetting";
+import useAuthStore from "../../stores/authStore";
+import BasicUserInfo from "./components/BasicUserInfo";
+import PasswordSetting from "./components/PasswordSetting";
 
 export default function MyPage() {
   const { userName } = useAuthStore((state) => ({ userName: state.userName }));

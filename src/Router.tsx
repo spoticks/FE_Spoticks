@@ -3,7 +3,6 @@ import Home from "@/pages/Home";
 import Layout from "./common/components/Layout";
 import SignUp from "./pages/SignUp";
 import Login from "@/pages/Login";
-import MyPage from "./pages/MyPage";
 import Reservation from "./pages/Reservation";
 import MatchList from "./pages/MatchList";
 import Admin from "./pages/Admin";
@@ -15,6 +14,7 @@ import AccountDeletion from "@/pages/AccountDeletion";
 import MyTeam from "./pages/MyTeam";
 import MyTicket from "@/pages/MyTicket";
 import MyTicketRouteLayout from "@/pages/MyTicket/components/MyTicketRouteLayout";
+import MyPage from "@/pages/MyPage";
 
 export default function Router() {
   return (
