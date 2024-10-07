@@ -1,6 +1,6 @@
+import BasicUserInfo from "@/pages/MyPage/components/BasicUserInfo";
+import PasswordResetting from "@/pages/MyPage/components/PasswordResetting";
 import useAuthStore from "../../stores/authStore";
-import BasicUserInfo from "./components/BasicUserInfo";
-import PasswordSetting from "./components/PasswordSetting";
 
 export default function MyPage() {
   const { userName } = useAuthStore((state) => ({ userName: state.userName }));
@@ -13,7 +13,7 @@ export default function MyPage() {
       </div>
       <div className="flex gap-40">
         <BasicUserInfo />
-        <PasswordSetting />
+        <PasswordResetting />
       </div>
     </>
   );
