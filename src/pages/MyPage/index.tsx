@@ -11,7 +11,7 @@ export default function MyPage() {
         <h1 className="text-2xl font-bold">회원정보</h1>
         <span className="text-text-tertiary">어서오세요 {userName}(사용자 아이디) 님</span>
       </div>
-      <div className="flex gap-40">
+      <div className="grid grid-cols-2">
         <BasicUserInfo />
         <PasswordResetting />
       </div>
