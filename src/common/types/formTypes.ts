@@ -14,3 +14,6 @@ export type PasswordSettingFormType = Pick<AuthFormType, "password"> & {
 };
 
 export type InputType = "text" | "email" | "password";
+
+export type BasicInformation = Pick<AuthFormType, "name" | "phoneNumber">;
+export type UserInformation = BasicInformation & { id: string; userName: string };
