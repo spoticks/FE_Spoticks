@@ -1,7 +1,7 @@
 import Button from "@/common/components/atoms/Button";
 import FormInputField from "@/common/components/molecules/FormInputField";
+import useAuthStore from "@/common/stores/authStore";
 import { BasicInformation } from "@/common/types/formTypes";
-import useAuthStore from "@/stores/authStore";
 import { validationRules } from "@/validationRules";
 import { useForm, SubmitHandler } from "react-hook-form";
 

@@ -1,5 +1,5 @@
-import useAuthStore from "../stores/authStore";
-import MyTeamList from "../components/MyTeamList";
+import useAuthStore from "@/common/stores/authStore";
+import MyTeamList from "@/components/MyTeamList";
 
 interface MyTeam {
   teamId: number;

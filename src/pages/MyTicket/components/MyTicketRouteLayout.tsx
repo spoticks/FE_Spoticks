@@ -1,5 +1,5 @@
 import MenuButton from "@/common/components/atoms/MenuButton";
-import useAuthStore from "@/stores/authStore";
+import useAuthStore from "@/common/stores/authStore";
 import { Outlet } from "react-router-dom";
 
 const myTicketMenu = ["예매완료", "취소내역"];

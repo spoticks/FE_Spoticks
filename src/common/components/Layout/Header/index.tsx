@@ -2,7 +2,7 @@ import HeaderNav from "./HeaderNav";
 import AuthButtonGroup from "./AuthButtonGroup";
 import UserButton from "./UserButton";
 import AppLogo from "@/common/components/atoms/AppLogo";
-import useAuthStore from "@/stores/authStore";
+import useAuthStore from "@/common/stores/authStore";
 
 export default function Header() {
   const { isLoggedIn } = useAuthStore((state) => ({

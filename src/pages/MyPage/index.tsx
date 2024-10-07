@@ -1,6 +1,6 @@
+import useAuthStore from "@/common/stores/authStore";
 import BasicUserInfo from "@/pages/MyPage/components/BasicUserInfo";
 import PasswordResetting from "@/pages/MyPage/components/PasswordResetting";
-import useAuthStore from "../../stores/authStore";
 
 export default function MyPage() {
   const { userName } = useAuthStore((state) => ({ userName: state.userName }));

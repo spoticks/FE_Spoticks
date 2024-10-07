@@ -1,4 +1,4 @@
-import useAuthStore from "@/stores/authStore";
+import useAuthStore from "@/common/stores/authStore";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { SubmitHandler } from "react-hook-form";

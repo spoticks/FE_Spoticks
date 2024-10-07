@@ -1,5 +1,5 @@
+import useAuthStore from "@/common/stores/authStore";
 import { Navigate, Outlet } from "react-router-dom";
-import useAuthStore from "./stores/authStore";
 
 export default function AuthRoute() {
   const { accessToken } = useAuthStore((state) => ({
