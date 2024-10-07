@@ -1,6 +1,6 @@
-import useAuthStore from "../stores/authStore";
-import BasicUserInfo from "../components/UserInfo/BasicUserInfo";
-import PasswordSetting from "../components/UserInfo/PasswordSetting";
+import useAuthStore from "@/common/stores/authStore";
+import BasicUserInfo from "@/pages/MyPage/components/BasicUserInfo";
+import PasswordResetting from "@/pages/MyPage/components/PasswordResetting";
 
 export default function MyPage() {
   const { userName } = useAuthStore((state) => ({ userName: state.userName }));
@@ -11,9 +11,9 @@ export default function MyPage() {
         <h1 className="text-2xl font-bold">회원정보</h1>
         <span className="text-text-tertiary">어서오세요 {userName}(사용자 아이디) 님</span>
       </div>
-      <div className="flex gap-40">
+      <div className="grid grid-cols-2">
         <BasicUserInfo />
-        <PasswordSetting />
+        <PasswordResetting />
       </div>
     </>
   );

@@ -3,12 +3,13 @@ import MatchListMain from "../components/matchList/MatchListMain";
 import MatchListTab from "../components/matchList/Tab";
 import axios from "axios";
 
-import Error from "@/pages/Error";
 import { localUrl } from "@/constants";
 import Loading from "@/common/components/atoms/Loading";
 import MatchTabList from "@/components/matchList/MatchTabList";
-import { Content } from "@/type";
+
 import { useQuery } from "@tanstack/react-query";
+import { Content } from "@/common/types/type";
+import ErrorPage from "@/pages/ErrorPage";
 interface MatchListProps {
   sport: string;
 }
@@ -56,7 +57,7 @@ export default function MatchList({ sport }: MatchListProps) {
   // console.log('filterData :',filterData);
 
   if (isLoading) return <Loading />;
-  if (error) return <Error />;
+  if (error) return <ErrorPage />;
   return (
     <div className="flex w-[1280px] flex-row pt-10">
       <MatchListTab sport={sport} setSelectedTeam={setSelectedTeam} />

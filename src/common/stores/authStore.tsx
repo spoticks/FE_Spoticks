@@ -1,22 +1,35 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-interface AuthState {
+interface AuthStateStore {
+  id: string | null;
+  userName: string | null;
+  phoneNumber: string | null;
   isLoggedIn: boolean;
   accessToken: string | null;
-  userName: string | null;
+}
+
+interface AuthStateActions {
   login: (token: string, name: string) => void;
   logout: () => void;
 }
-const useAuthStore = create<AuthState>()(
+interface AuthStore extends AuthStateStore, AuthStateActions {}
+
+const initialState = {
+  isLoggedIn: false,
+  accessToken: null,
+  id: null,
+  userName: null,
+  phoneNumber: null,
+};
+
+const useAuthStore = create<AuthStore>()(
   persist(
     (set) => ({
-      isLoggedIn: false,
-      accessToken: null,
-      userName: null,
+      ...initialState,
       login: (token: string, name: string) =>
         set({ isLoggedIn: true, accessToken: token, userName: name }),
-      logout: () => set({ isLoggedIn: false, accessToken: null, userName: null }),
+      logout: () => set(() => initialState),
     }),
     { name: "auth-storage", storage: createJSONStorage(() => localStorage) },
   ),

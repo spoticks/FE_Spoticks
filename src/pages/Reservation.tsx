@@ -7,7 +7,7 @@ import { Seat, seatFormData, SeatsResponse } from "../common/types/type";
 import SectionOfSeats from "../components/seats/SectionOfSeats";
 import SelectedSeats from "../components/seats/SelectedSeat";
 
-import Error from "./Error";
+import Error from "./ErrorPage";
 import Loading from "@/common/components/atoms/Loading";
 
 interface sectionOfSeats {

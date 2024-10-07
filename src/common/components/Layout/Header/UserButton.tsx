@@ -2,7 +2,7 @@ import { FiUser, FiFileText, FiLogOut } from "react-icons/fi";
 import { LuUserCircle, LuTrophy } from "react-icons/lu";
 import MenuItem from "./MenuItem";
 import usePopover from "@/hooks/usePopover";
-import useAuthStore from "@/stores/authStore";
+import useAuthStore from "@/common/stores/authStore";
 
 export default function UserButton() {
   const { handleClickProfile, popoverRef, isPopoverOpen, setIsPopoverOpen } = usePopover();

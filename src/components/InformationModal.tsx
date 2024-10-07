@@ -5,7 +5,7 @@ import Button from "@/common/components/atoms/Button";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "@/common/components/atoms/Loading";
-import Error from "@/pages/Error";
+import ErrorPage from "@/pages/ErrorPage";
 import CancellationConfirmModal from "@/components/CancellationConfirmModal";
 import useHistoryModal from "@/hooks/useHistoryModal";
 
@@ -61,7 +61,7 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
       </div>
       <section>
         {isLoading && <Loading />}
-        {error && <Error />}
+        {error && <ErrorPage />}
         {isSuccess && data && (
           <>
             <div

@@ -1,7 +1,7 @@
 import Input from "@/common/components/atoms/Input";
 import InputErrorMessage from "@/common/components/atoms/InputErrorMessage";
+import InputLabel from "@/common/components/atoms/InputLabel";
 import { InputType } from "@/common/types/formTypes";
-import InputLabel from "@/components/UserInfo/InputLabel";
 
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 
@@ -21,7 +21,7 @@ export default function FormInputField({
   inputType,
 }: FormInputFieldProps) {
   return (
-    <div>
+    <div className={`${isLabelRequired && "mb-4"}}`}>
       {isLabelRequired && <InputLabel label={label} />}
       <Input label={label} register={register} type={inputType} />
       {error && <InputErrorMessage errorMessage={error.message} />}

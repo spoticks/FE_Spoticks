@@ -1,9 +1,10 @@
 import { BsCalendar2EventFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
-import { InformationCardProp } from "../common/types/type";
-import InformationModal from "./InformationModal";
+import { InformationCardProp } from "../../../../common/types/type";
+import InformationModal from "../../../../components/InformationModal";
 import { useNavigate } from "react-router-dom";
-import useHistoryModal from "../hooks/useHistoryModal";
+import useHistoryModal from "../../../../hooks/useHistoryModal";
+import DefaultCard from "@/common/components/atoms/DefaultCard";
 
 export default function InformationCard({
   content: { homeTeamName, awayTeamName, gameStartTime, stadiumName, reservationStatus, id },
@@ -26,7 +27,7 @@ export default function InformationCard({
   }
 
   return (
-    <div className="w-[400px] rounded-[15px] border border-borders bg-foreground shadow-first">
+    <DefaultCard>
       <div className="p-[20px]">
         <div className="mb-2 border-b border-borders pb-2">
           <span className="font-bold">
@@ -53,6 +54,6 @@ export default function InformationCard({
         )}
       </div>
       <InformationModal isOpen={isModalOpen} onClose={handleInfoModalClose} reservationId={id} />
-    </div>
+    </DefaultCard>
   );
 }

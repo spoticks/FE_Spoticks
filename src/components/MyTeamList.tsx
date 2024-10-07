@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Loading from "../common/components/atoms/Loading";
-import Error from "../pages/Error";
+import Error from "../pages/ErrorPage";
 import TeamLogo from "../common/components/atoms/TeamLogo";
 
 async function fetchMyTeam() {

@@ -1,10 +1,10 @@
+import MenuButton from "@/common/components/atoms/MenuButton";
+import useAuthStore from "@/common/stores/authStore";
 import { Outlet } from "react-router-dom";
-import MenuButton from "./common/components/atoms/MenuButton";
-import useAuthStore from "./stores/authStore";
 
 const myTicketMenu = ["예매완료", "취소내역"];
 
-export default function MyTicketRoute() {
+export default function MyTicketRouteLayout() {
   const { userName } = useAuthStore((state) => ({ userName: state.userName }));
 
   return (
@@ -18,9 +18,7 @@ export default function MyTicketRoute() {
           <MenuButton menu={menu} key={menu} />
         ))}
       </div>
-      <div className="flex w-[1280px]">
-        <Outlet />
-      </div>
+      <Outlet />
     </>
   );
 }

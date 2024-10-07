@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import myTeamStore from "../../stores/myTeamStore";
 
 import Loading from "../../common/components/atoms/Loading";
-import Error from "@/pages/Error";
+import ErrorPage from "@/pages/ErrorPage";
 import { teams, localUrl } from "@/constants";
 
 interface MyTeamProps {
@@ -53,7 +53,7 @@ export default function MyTeamButton({ selectedTeam }: MyTeamProps) {
   };
 
   if (isLoading) return <Loading />;
-  if (error) return <Error />;
+  if (error) return <ErrorPage />;
 
   return (
     <>
