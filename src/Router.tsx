@@ -11,10 +11,10 @@ import Registration from "./pages/admin/Registration";
 import { menu } from "./constants";
 import AuthRoute from "./AuthRoute";
 import AccountDeletion from "@/pages/AccountDeletion";
-import MyTeam from "./pages/MyTeam";
 import MyTicket from "@/pages/MyTicket";
 import MyTicketRouteLayout from "@/pages/MyTicket/components/MyTicketRouteLayout";
 import MyPage from "@/pages/MyPage";
+import MyTeam from "@/pages/MyTeam";
 
 export default function Router() {
   return (
