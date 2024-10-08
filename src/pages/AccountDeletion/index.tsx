@@ -1,10 +1,11 @@
 import CryingIcons from "@/assets/heroicons_ticket-solid.svg?react";
+import AuthFirstHeading from "@/common/components/atoms/AuthFirstHeading";
 import AccountDeletionForm from "@/pages/AccountDeletion/components/AccountDeletionForm";
 export default function AccountDeletion() {
   return (
     <>
       <div className="mb-10 border-b border-borders pb-5">
-        <h1 className="text-2xl font-bold">회원탈퇴</h1>
+        <AuthFirstHeading content="회원탈퇴" />
         <span className="text-[20px] text-text-tertiary">
           회원 탈퇴를 신청하기 전에 안내사항을 확인해주세요.
         </span>

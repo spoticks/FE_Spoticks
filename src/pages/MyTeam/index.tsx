@@ -1,3 +1,4 @@
+import AuthFirstHeading from "@/common/components/atoms/AuthFirstHeading";
 import useAuthStore from "@/common/stores/authStore";
 import MyTeamList from "@/pages/MyTeam/components/MyTeamList";
 
@@ -11,7 +12,7 @@ export default function MyTeam() {
   return (
     <>
       <div className="mb-10 flex flex-col items-center border-b border-b-borders pb-2">
-        <h1 className="mb-2 text-2xl font-bold">My Team</h1>
+        <AuthFirstHeading content="My Team" />
         <span className="text-text-tertiary">
           {userName}님이 관심있는 팀들의 일정을 확인해보세요!
         </span>
