@@ -1,6 +1,6 @@
+import useGetMyTeam from "@/common/api/useGetMyTeam";
 import Loading from "@/common/components/atoms/Loading";
 import ErrorPage from "@/pages/ErrorPage";
-import useGetMyTeam from "@/pages/MyTeam/components/api/useGetMyTeam";
 import MyTeamCard from "@/pages/MyTeam/components/MyTeamList/MyTeamCard";
 
 export default function MyTeamList() {

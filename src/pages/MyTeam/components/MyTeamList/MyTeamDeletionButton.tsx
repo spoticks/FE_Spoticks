@@ -1,5 +1,5 @@
-import useMyTeamDeletion from "@/pages/MyTeam/components/api/useMyTeamDeletion";
 import RedHeart from "@/assets/RedHeart.svg?react";
+import useMyTeamDeletion from "@/common/api/useMyTeamDeletion";
 export default function MyTeamDeletionButton({ teamId }: { teamId: string }) {
   const deletion = useMyTeamDeletion();
 
