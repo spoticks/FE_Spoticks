@@ -1,16 +1,4 @@
-export interface SignUpForm {
-  email: string;
-  name: string;
-  phoneNumber: string;
-  password: string;
-  passwordConfirmation: string;
-}
-
-export interface PasswordSettingForm {
-  originalPassword: string;
-  password: string;
-  passwordConfirmation: string;
-}
+import { AuthFormType, PasswordSettingFormType } from "@/common/types/formTypes";
 
 export const validationRules = {
   email: {
@@ -43,7 +31,7 @@ export const validationRules = {
   },
   passwordConfirmation: {
     required: "비밀번호를 재확인해주세요.",
-    validate: (value: string, getValues: () => SignUpForm | PasswordSettingForm) =>
+    validate: (value: string, getValues: () => AuthFormType | PasswordSettingFormType) =>
       value === getValues().password || "비밀번호가 일치하지 않습니다.",
   },
 };
