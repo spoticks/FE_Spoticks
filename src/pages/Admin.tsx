@@ -1,7 +1,7 @@
 import Loading from "@/common/components/atoms/Loading";
+import { menu } from "@/common/constants";
 import { Match } from "@/common/types/type";
 import DetailModal from "@/components/Admin/DetailModal";
-import { menu } from "@/constants";
 import useAxios from "@/hooks/useAxios";
 import ErrorPage from "@/pages/ErrorPage";
 

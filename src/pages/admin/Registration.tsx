@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Match } from "../../common/types/type";
 import axios from "axios";
-import { menu, stadiums, teams } from "../../constants";
 import SuccessToast from "@/common/components/atoms/SuccessToast";
 import useStore from "@/common/stores/useStore";
+import { teams, menu, stadiums } from "@/common/constants";
 
 interface FormValues {
   id?: number; //수정시

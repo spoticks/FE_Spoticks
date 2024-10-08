@@ -1,9 +1,8 @@
 import LeftTapIcon from "../../assets/matchListTap.svg";
 import TabOpen from "../../assets/TabOpen.svg";
 import TabClose from "../../assets/TabClose.svg";
-import { teams } from "../../constants";
 import { useState } from "react";
-import { leagueName } from "../../constants";
+import { leagueName, teams } from "@/common/constants";
 
 interface TabProps {
   sport: string;
