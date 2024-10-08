@@ -1,10 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { MyTeamType } from "@/common/types/type";
 
-interface MyTeam {
-  teamId: string;
-  teamName: string;
-}
 async function fetchMyTeam() {
   const { data } = await axios.get("http://localhost:3000/myteam/");
   return data;
@@ -14,7 +11,7 @@ export default function useGetMyTeam() {
     data = [],
     isLoading,
     isError,
-  } = useQuery<MyTeam[]>({
+  } = useQuery<MyTeamType[]>({
     queryKey: ["myTeam"],
     queryFn: fetchMyTeam,
   });
