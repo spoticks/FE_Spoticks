@@ -1,8 +1,8 @@
 import Button from "@/common/components/atoms/Button";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import { AuthFormType } from "@/common/types/formTypes";
+import { validationRules } from "@/common/validationRules";
 import onSubmitSignUpForm from "@/pages/SignUp/api/onSubmitSignUpForm";
-import { validationRules } from "@/validationRules";
 import { useForm } from "react-hook-form";
 
 export default function SignUpForm() {

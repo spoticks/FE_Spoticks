@@ -1,6 +1,8 @@
 import Button from "@/common/components/atoms/Button";
 import FormInputField from "@/common/components/molecules/FormInputField";
-import { PasswordSettingForm, validationRules } from "@/validationRules";
+import { PasswordSettingFormType } from "@/common/types/formTypes";
+import { validationRules } from "@/common/validationRules";
+
 import { useForm, SubmitHandler } from "react-hook-form";
 
 export default function PasswordResettingForm() {
@@ -9,11 +11,11 @@ export default function PasswordResettingForm() {
     formState: { errors, isValid },
     handleSubmit,
     getValues,
-  } = useForm<PasswordSettingForm>({
+  } = useForm<PasswordSettingFormType>({
     mode: "onTouched",
   });
 
-  const onSubmit: SubmitHandler<PasswordSettingForm> = (data) => {
+  const onSubmit: SubmitHandler<PasswordSettingFormType> = (data) => {
     const { passwordConfirmation, ...formData } = data;
     // 비밀번호 변경 양식 제출 로직
     console.log(passwordConfirmation, formData);
