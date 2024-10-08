@@ -16,7 +16,7 @@ export default function MyTeamList() {
   }
 
   return (
-    <section className="flex w-[1280px] flex-wrap gap-[44px]">
+    <section className="grid grid-cols-8 gap-[44px]">
       {data.length ? (
         data.map((el) => (
           <div className="relative flex flex-col items-center" key={el.teamName}>
