@@ -7,14 +7,14 @@ import MatchList from "./pages/MatchList";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import Registration from "./pages/admin/Registration";
-import { menu } from "./constants";
-import AuthRoute from "./AuthRoute";
 import AccountDeletion from "@/pages/AccountDeletion";
 import MyTicket from "@/pages/MyTicket";
 import MyTicketRouteLayout from "@/pages/MyTicket/components/MyTicketRouteLayout";
 import MyPage from "@/pages/MyPage";
 import MyTeam from "@/pages/MyTeam";
 import SignUp from "@/pages/SignUp";
+import AuthRoute from "@/common/components/AuthRoute";
+import { menu } from "@/common/constants";
 
 export default function Router() {
   return (
