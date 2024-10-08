@@ -1,8 +1,7 @@
-import Loading from "../../../../common/components/atoms/Loading";
-import Error from "../../../ErrorPage";
-import TeamLogo from "../../../../common/components/atoms/TeamLogo";
+import Loading from "@/common/components/atoms/Loading";
+import ErrorPage from "@/pages/ErrorPage";
 import useGetMyTeam from "@/pages/MyTeam/components/api/useGetMyTeam";
-import MyTeamDeletionButton from "@/pages/MyTeam/components/MyTeamList/MyTeamDeletionButton";
+import MyTeamCard from "@/pages/MyTeam/components/MyTeamList/MyTeamCard";
 
 export default function MyTeamList() {
   const { data, isLoading, isError } = useGetMyTeam();
@@ -12,19 +11,13 @@ export default function MyTeamList() {
   }
 
   if (isError) {
-    return <Error />;
+    return <ErrorPage />;
   }
 
   return (
     <section className="grid grid-cols-8 gap-[44px]">
       {data.length ? (
-        data.map((el) => (
-          <div className="relative flex flex-col items-center" key={el.teamName}>
-            <TeamLogo teamName={el.teamName} size="myTeam" />
-            <span className="text-[20px] font-semibold text-text-tertiary">{el.teamName}</span>
-            <MyTeamDeletionButton teamId={el.teamId} />
-          </div>
-        ))
+        data.map((el) => <MyTeamCard key={el.teamId} teamName={el.teamName} teamId={el.teamId} />)
       ) : (
         <div>아직 좋아하는 팀이 없어요...</div>
       )}
