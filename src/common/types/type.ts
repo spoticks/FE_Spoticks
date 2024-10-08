@@ -79,3 +79,8 @@ export interface MatchDataProps {
   timeOffSale: string;
   timeOnSale: string;
 }
+
+export interface MyTeamType {
+  teamId: string;
+  teamName: string;
+}
