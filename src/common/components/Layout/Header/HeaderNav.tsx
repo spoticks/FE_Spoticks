@@ -1,4 +1,4 @@
-import { menu } from "@/constants";
+import { menu } from "@/common/constants";
 import { Link } from "react-router-dom";
 
 export default function HeaderNav() {

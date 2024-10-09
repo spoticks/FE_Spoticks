@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AccountDeletionFormType } from "@/common/types/formTypes";
 import FormInputField from "@/common/components/molecules/FormInputField";
-import { validationRules } from "@/validationRules";
+import { validationRules } from "@/common/validationRules";
 import useAuthStore from "@/common/stores/authStore";
 
 export default function AccountDeletionForm() {

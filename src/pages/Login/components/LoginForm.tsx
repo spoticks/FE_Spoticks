@@ -2,7 +2,7 @@ import Button from "@/common/components/atoms/Button";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import useLoginMutation from "@/pages/Login/api/useLoginMutation";
 import { LoginFormType } from "@/common/types/formTypes";
-import { validationRules } from "@/validationRules";
+import { validationRules } from "@/common/validationRules";
 import { useForm } from "react-hook-form";
 
 export default function LoginForm() {

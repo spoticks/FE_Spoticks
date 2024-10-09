@@ -1,3 +1,4 @@
+import AuthFirstHeading from "@/common/components/atoms/AuthFirstHeading";
 import useAuthStore from "@/common/stores/authStore";
 import BasicUserInfo from "@/pages/MyPage/components/BasicUserInfo";
 import PasswordResetting from "@/pages/MyPage/components/PasswordResetting";
@@ -8,7 +9,7 @@ export default function MyPage() {
   return (
     <>
       <div className="mb-10">
-        <h1 className="text-2xl font-bold">회원정보</h1>
+        <AuthFirstHeading content="회원정보" />
         <span className="text-text-tertiary">어서오세요 {userName}(사용자 아이디) 님</span>
       </div>
       <div className="grid grid-cols-2">

@@ -2,7 +2,7 @@ import Button from "@/common/components/atoms/Button";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import useAuthStore from "@/common/stores/authStore";
 import { BasicInformation } from "@/common/types/formTypes";
-import { validationRules } from "@/validationRules";
+import { validationRules } from "@/common/validationRules";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 export default function BasicUserInfoForm() {

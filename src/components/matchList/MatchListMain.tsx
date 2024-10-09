@@ -2,7 +2,7 @@ import Soccer from "../../assets/soccer.svg";
 import Baseball from "../../assets/baseball.svg";
 import Basketball from "../../assets/basketball.svg";
 import Volleyball from "../../assets/volleyball.svg";
-import { leagueName } from "../../constants";
+import { leagueName } from "@/common/constants";
 interface ReservationListProps {
   sceduleLen: number;
   sport: string;

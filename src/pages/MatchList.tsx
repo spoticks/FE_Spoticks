@@ -3,13 +3,14 @@ import MatchListMain from "../components/matchList/MatchListMain";
 import MatchListTab from "../components/matchList/Tab";
 import axios from "axios";
 
-import { localUrl } from "@/constants";
+import { localUrl } from "@/common/constants";
 import Loading from "@/common/components/atoms/Loading";
 import MatchTabList from "@/components/matchList/MatchTabList";
 
 import { useQuery } from "@tanstack/react-query";
 import { Content } from "@/common/types/type";
 import ErrorPage from "@/pages/ErrorPage";
+
 interface MatchListProps {
   sport: string;
 }
