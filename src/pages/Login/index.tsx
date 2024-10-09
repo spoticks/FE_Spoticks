@@ -7,7 +7,7 @@ export default function Login() {
     <section className="flex w-full flex-col justify-center pt-12">
       <AuthFirstHeading content="어서오세요!" />
       <span>
-        아직 회원이 아니신가요? <AuthLinkButton linkType="회원가입" linkTo="sign-up" /> 하세요.
+        아직 회원이 아니신가요? <AuthLinkButton buttonText="회원가입" linkTo="sign-up" /> 하세요.
       </span>
       <LoginForm />
     </section>
