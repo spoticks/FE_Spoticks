@@ -1,19 +1,19 @@
 import { useState } from "react";
-import HomeInfo from "./HomeInfo";
-import ReservationList from "./ReservationList";
-import ReserveInfo from "./ReserveInfo";
-import HomeIcon from "../../assets/homeIcon.svg";
-import InfoIcon from "../../assets/infoIcon.svg";
-import ReserveIcon from "../../assets/reserveIcon.svg";
-import { Content } from "../../common/types/type";
-import MyTeamButton from "./MyTeamButton";
+import HomeInfo from "@/pages/MatchList/components/HomeInfo";
+import ReservationList from "@/pages/MatchList/components/ReservationList";
+import ReserveInfo from "@/pages/MatchList/components/ReserveInfo";
+import HomeIcon from "@/assets/homeIcon.svg?react";
+import InfoIcon from "@/assets/infoIcon.svg?react";
+import ReserveIcon from "@/assets/reserveIcon.svg?react";
+import { Content } from "@/common/types/type";
+import MyTeamButton from "@/pages/MatchList/components/MyTeamButton";
 
 interface DetailProps {
   selectedTeam: string;
   filterData: Content[];
 }
 
-export default function MatchTabList({ selectedTeam, filterData }: DetailProps) {
+export default function MatchDetailMenu({ selectedTeam, filterData }: DetailProps) {
   //예매내역, 홈구장안내, 예매설명 메뉴 선택
   const [selectedMenu, setSelectedMenu] = useState("예매 일정");
   const handleMenuClick = (menu: string) => {
@@ -58,7 +58,9 @@ export default function MatchTabList({ selectedTeam, filterData }: DetailProps) 
                     : "bg-foreground text-text-primary"
                 }`}
               >
-                <img src={item.icon} alt={`${item.name} Icon`} className="size-3" />
+                <item.icon
+                  className={`size-3 ${selectedMenu === item.name ? "stroke-white" : "stroke-black"}`}
+                />
                 <div>{item.name}</div>
                 {item.name === "예매 일정" && <div>{filterData.length}</div>}
               </div>
