@@ -1,23 +1,17 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import Tickets from "../../assets/Tickets.svg";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { Match } from "../../common/types/type";
+import Tickets from "@/assets/Tickets.svg?react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Match } from "@/common/types/type";
 import axios from "axios";
+import { menu, stadiums, teams } from "@/common/constants";
 import SuccessToast from "@/common/components/atoms/SuccessToast";
 import useStore from "@/common/stores/useStore";
-import { teams, menu, stadiums } from "@/common/constants";
-
-interface FormValues {
-  id?: number; //수정시
-  sportName: string;
-  date: string;
-  gameStartTime: string;
-  stadiumName: string;
-  homeTeamName: string;
-  awayTeamName: string;
-}
+import InputField from "@/pages/admin/components/InputField";
+import SelectFiled from "@/pages/admin/components/SelectField";
+import { FormValues } from "@/pages/admin/type";
+import { regiSchema } from "./RegiSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface ModeProps {
   mode: "create" | "edit";
@@ -28,7 +22,14 @@ export default function Registration() {
   const location = useLocation();
   const { mode, existMatch }: ModeProps = location.state;
   // console.log(mode, existMatch)
-  const { register, handleSubmit, watch, setValue } = useForm<FormValues>({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: zodResolver(regiSchema),
     defaultValues: existMatch || {
       sportName: "",
       date: "",
@@ -57,6 +58,7 @@ export default function Registration() {
   const onSubmit = async (data: FormValues) => {
     try {
       console.log(data);
+      console.log(errors);
       const addDateTime = `${data.date}T${data.gameStartTime}`;
       const homeTeamIdx = getTeamIdx(data.sportName, data.homeTeamName);
       const awayTeamIdx = getTeamIdx(data.sportName, data.awayTeamName);
@@ -87,16 +89,14 @@ export default function Registration() {
           updateMatch(res.data);
         }
       }
+      handleRegi();
       navigate("/admin");
     } catch (err) {
       console.error("Error: ", err);
     }
   };
 
-  const sports = menu.filter((el) => el !== "HOME");
-
   const sportValue = watch("sportName");
-  const homeTeamValue = watch("homeTeamName");
   const teamsInSport = sportValue ? teams[sportValue] || [] : [];
   const stadiumsInSport = sportValue ? stadiums[sportValue] || [] : [];
 
@@ -129,125 +129,72 @@ export default function Registration() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="flex">
               {/* 종목 선택 */}
-              <div>
-                <label htmlFor="sport" className="mb-2 block font-medium">
-                  종목/경기일
-                </label>
-                <select
-                  id="sport"
-                  {...register("sportName")}
-                  className="w-full cursor-pointer rounded border border-borders bg-foreground px-3 py-[10px]"
-                >
-                  <option value="">경기종목</option>
-                  {sports.map((sport: string, idx: number) => {
-                    return (
-                      <option key={idx} value={sport}>
-                        {sport}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
+              <SelectFiled
+                label="종목"
+                id="sportName"
+                register={register}
+                options={menu.filter((el) => el !== "HOME")}
+              />
+
               {/* 경기일 선택 */}
-              <div>
-                <label htmlFor="date" className="mb-2 block font-medium">
-                  &nbsp;
-                </label>
-                <input
-                  type="date"
-                  id="date"
-                  {...register("date")}
-                  className="w-full cursor-pointer rounded border px-3 py-1"
-                />
-              </div>
+              <InputField label="경기일" type="date" id="date" register={register} />
             </div>
+            {errors.sportName && (
+              <span className="text-[20px] text-Accent">{errors.sportName.message}</span>
+            )}
+            {errors.date && <span className="text-[20px] text-Accent">{errors.date.message}</span>}
 
             {/* 경기 시작 시간 선택 */}
-            <div>
-              <label htmlFor="startTime" className="mb-2 block font-medium">
-                경기 시작 시간
-              </label>
-              <input
-                type="time"
-                id="startTime"
-                {...register("gameStartTime")}
-                className="w-full cursor-pointer rounded border px-3 py-2"
-              />
-            </div>
+            <InputField label="경기 시작 시간" type="time" id="gameStartTime" register={register} />
+            {errors.gameStartTime && (
+              <span className="text-[20px] text-Accent">{errors.gameStartTime.message}</span>
+            )}
 
             {/* 장소 선택 */}
-            <div>
-              <label htmlFor="homeTeam" className="mb-2 block font-medium">
-                장소
-              </label>
-              <select
-                id="stadiumName"
-                {...register("stadiumName")}
-                className="w-full rounded border px-3 py-2"
-                disabled={!sportValue}
-              >
-                <option value="">장소를 선택해주세요.</option>
-                {stadiumsInSport.map((stadium: string) => (
-                  <option key={stadium} value={stadium}>
-                    {stadium}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <SelectFiled
+              label="장소"
+              id="stadiumName"
+              register={register}
+              options={stadiumsInSport}
+              disabled={!sportValue}
+            />
+            {errors.stadiumName && (
+              <span className="text-[20px] text-Accent">{errors.stadiumName.message}</span>
+            )}
 
             {/* 홈팀 선택 */}
-            <div>
-              <label htmlFor="homeTeam" className="mb-2 block font-medium">
-                홈팀
-              </label>
-              <select
-                id="homeTeam"
-                {...register("homeTeamName")}
-                className="w-full rounded border px-3 py-2"
-                disabled={!sportValue}
-              >
-                <option value="">홈팀을 선택해주세요.</option>
-                {teamsInSport.map((team: string) => (
-                  <option key={team} value={team}>
-                    {team}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <SelectFiled
+              label="홈팀"
+              id="homeTeamName"
+              register={register}
+              options={teamsInSport}
+              disabled={!sportValue}
+            />
+            {errors.homeTeamName && (
+              <span className="text-[20px] text-Accent">{errors.homeTeamName.message}</span>
+            )}
 
             {/* 어웨이팀 선택 */}
-            <div>
-              <label htmlFor="awayTeam" className="mb-2 block font-medium">
-                어웨이팀
-              </label>
-              <select
-                id="awayTeam"
-                {...register("awayTeamName")}
-                className="w-full rounded border px-3 py-2"
+            <div className="border-none">
+              <SelectFiled
+                label="어웨이팀"
+                id="awayTeamName"
+                register={register}
+                options={teamsInSport.filter((team) => team !== watch("homeTeamName"))}
                 disabled={!sportValue}
-              >
-                <option value="">어웨이팀을 선택해주세요</option>
-                {teamsInSport
-                  .filter((team: string) => team !== homeTeamValue)
-                  .map((team: string) => (
-                    <option key={team} value={team}>
-                      {team}
-                    </option>
-                  ))}
-              </select>
+              />
+              {errors.awayTeamName && (
+                <span className="text-[20px] text-Accent">{errors.awayTeamName.message}</span>
+              )}
             </div>
-            <button
-              type="submit"
-              className="hover:Accent rounded bg-Accent px-4 py-2 text-white"
-              onClick={handleRegi}
-            >
+            <button type="submit" className="hover:Accent rounded bg-Accent px-4 py-2 text-white">
               {mode === "create" ? "신규 경기 등록" : "경기 수정"}
             </button>
           </form>
         </div>
       </div>
       <div className="flex-2 flex">
-        <img src={Tickets} alt="Tickets" className="size-30" />
+        <Tickets className="size-30" />
       </div>
     </div>
   );
