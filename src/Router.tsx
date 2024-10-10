@@ -1,20 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "@/pages/Home";
 import Layout from "./common/components/Layout";
+import SignUp from "./pages/SignUp";
 import Login from "@/pages/Login";
 import Reservation from "./pages/Reservation";
 import MatchList from "./pages/MatchList";
-import Admin from "./pages/Admin";
+import Admin from "@/pages/admin/index";
 import NotFound from "./pages/NotFound";
-import Registration from "./pages/admin/Registration";
+import Registration from "@/pages/admin/components/Registration";
+import { menu } from "./common/constants";
+import AuthRoute from "./common/components/AuthRoute";
 import AccountDeletion from "@/pages/AccountDeletion";
+import MyTeam from "./pages/MyTeam";
 import MyTicket from "@/pages/MyTicket";
 import MyTicketRouteLayout from "@/pages/MyTicket/components/MyTicketRouteLayout";
 import MyPage from "@/pages/MyPage";
-import MyTeam from "@/pages/MyTeam";
-import SignUp from "@/pages/SignUp";
-import AuthRoute from "@/common/components/AuthRoute";
-import { menu } from "@/common/constants";
 
 export default function Router() {
   return (
