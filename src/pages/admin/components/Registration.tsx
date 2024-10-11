@@ -7,11 +7,11 @@ import axios from "axios";
 import { menu, stadiums, teams } from "@/common/constants";
 import SuccessToast from "@/common/components/atoms/SuccessToast";
 import useStore from "@/common/stores/useStore";
-import InputField from "@/pages/admin/components/InputField";
 import SelectFiled from "@/pages/admin/components/SelectField";
 import { FormValues } from "@/pages/admin/type";
 import { regiSchema } from "./RegiSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import FormInputField from "@/common/components/molecules/FormInputField";
 
 interface ModeProps {
   mode: "create" | "edit";
@@ -127,28 +127,33 @@ export default function Registration() {
             {mode === "create" ? "경기 등록" : "경기 수정"}
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div className="flex">
+            <div className="flex gap-2">
               {/* 종목 선택 */}
               <SelectFiled
                 label="종목"
                 id="sportName"
                 register={register}
                 options={menu.filter((el) => el !== "HOME")}
+                error={errors.sportName}
               />
-
               {/* 경기일 선택 */}
-              <InputField label="경기일" type="date" id="date" register={register} />
+              <FormInputField
+                label="경기일"
+                register={register("date")}
+                error={errors.date}
+                inputType="date"
+                isLabelRequired
+              />
             </div>
-            {errors.sportName && (
-              <span className="text-[20px] text-Accent">{errors.sportName.message}</span>
-            )}
-            {errors.date && <span className="text-[20px] text-Accent">{errors.date.message}</span>}
 
             {/* 경기 시작 시간 선택 */}
-            <InputField label="경기 시작 시간" type="time" id="gameStartTime" register={register} />
-            {errors.gameStartTime && (
-              <span className="text-[20px] text-Accent">{errors.gameStartTime.message}</span>
-            )}
+            <FormInputField
+              label="경기 시작 시간"
+              register={register("gameStartTime")}
+              error={errors.gameStartTime}
+              inputType="time"
+              isLabelRequired
+            />
 
             {/* 장소 선택 */}
             <SelectFiled
@@ -157,10 +162,8 @@ export default function Registration() {
               register={register}
               options={stadiumsInSport}
               disabled={!sportValue}
+              error={errors.stadiumName}
             />
-            {errors.stadiumName && (
-              <span className="text-[20px] text-Accent">{errors.stadiumName.message}</span>
-            )}
 
             {/* 홈팀 선택 */}
             <SelectFiled
@@ -169,11 +172,8 @@ export default function Registration() {
               register={register}
               options={teamsInSport}
               disabled={!sportValue}
+              error={errors.homeTeamName}
             />
-            {errors.homeTeamName && (
-              <span className="text-[20px] text-Accent">{errors.homeTeamName.message}</span>
-            )}
-
             {/* 어웨이팀 선택 */}
             <div className="border-none">
               <SelectFiled
@@ -182,10 +182,8 @@ export default function Registration() {
                 register={register}
                 options={teamsInSport.filter((team) => team !== watch("homeTeamName"))}
                 disabled={!sportValue}
+                error={errors.awayTeamName}
               />
-              {errors.awayTeamName && (
-                <span className="text-[20px] text-Accent">{errors.awayTeamName.message}</span>
-              )}
             </div>
             <button type="submit" className="hover:Accent rounded bg-Accent px-4 py-2 text-white">
               {mode === "create" ? "신규 경기 등록" : "경기 수정"}

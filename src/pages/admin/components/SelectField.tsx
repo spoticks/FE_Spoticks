@@ -1,5 +1,6 @@
+import InputErrorMessage from "@/common/components/atoms/InputErrorMessage";
 import { FormValues } from "@/pages/admin/type";
-import { UseFormRegister } from "react-hook-form";
+import { FieldError, UseFormRegister } from "react-hook-form";
 
 interface SelectProps {
   label: string;
@@ -7,18 +8,26 @@ interface SelectProps {
   register: UseFormRegister<FormValues>;
   options: string[];
   disabled?: boolean;
+  error: FieldError | undefined;
 }
 
-export default function SelectFiled({ label, id, register, options, disabled }: SelectProps) {
+export default function SelectFiled({
+  label,
+  id,
+  register,
+  options,
+  disabled,
+  error,
+}: SelectProps) {
   return (
-    <div>
+    <div className="relative">
       <label htmlFor={id} className="mb-2 block font-medium">
         {label}
       </label>
       <select
         id={id}
         {...register(id)}
-        className="w-full rounded border px-3 py-2"
+        className="mb-2 w-full appearance-none rounded-[15px] px-3 py-2 text-[16px] transition-colors duration-300 focus:bg-focused-input-background focus:outline-none"
         disabled={disabled}
       >
         <option value="">{label}을 선택해주세요.</option>
@@ -28,6 +37,7 @@ export default function SelectFiled({ label, id, register, options, disabled }: 
           </option>
         ))}
       </select>
+      {error && <InputErrorMessage errorMessage={error.message} />}
     </div>
   );
 }
