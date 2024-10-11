@@ -1,8 +1,8 @@
-import LeftTapIcon from "../../assets/matchListTap.svg";
-import TabOpen from "../../assets/TabOpen.svg";
-import TabClose from "../../assets/TabClose.svg";
+import LeftTapIcon from "@/assets/matchListTap.svg";
+import TabOpen from "@/assets/TabOpen.svg";
+import TabClose from "@/assets/TabClose.svg";
+import { teams, leagueName } from "@/common/constants";
 import { useState } from "react";
-import { leagueName, teams } from "@/common/constants";
 
 interface TabProps {
   sport: string;

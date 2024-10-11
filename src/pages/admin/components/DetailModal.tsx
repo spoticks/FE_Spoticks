@@ -1,7 +1,7 @@
 import Modal from "react-modal";
 import { Link, useNavigate } from "react-router-dom";
 import { Match } from "@/common/types/type";
-import ModalPortal from "../../common/components/atoms/ModalPortal";
+import ModalPortal from "@/common/components/atoms/ModalPortal";
 
 import axios from "axios";
 import ConfirmAlert from "@/common/components/molecules/ConfirmAlert";
