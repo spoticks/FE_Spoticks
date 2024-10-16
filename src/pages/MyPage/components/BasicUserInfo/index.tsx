@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import BasicUserInfoForm from "@/pages/MyPage/components/BasicUserInfo/BasicUserInfoForm";
+import LinkButton from "@/common/components/atoms/LinkButton";
 
 export default function BasicUserInfo() {
   return (
@@ -8,12 +8,11 @@ export default function BasicUserInfo() {
         <div className="mb-4 flex justify-between border-b border-borders text-sm">
           <h2>기본 정보</h2>
           {/** 여기서 아이디, 이메일, 이름, 전화번호 불러오기 */}
-          <Link
-            to="/profile/account-deletion"
-            className="text-borders transition-colors duration-300 hover:text-Accent"
-          >
-            탈퇴하기
-          </Link>
+          <LinkButton
+            content="탈퇴하기"
+            linkTo="/profile/account-deletion"
+            style="text-borders hover:text-Accent"
+          />
         </div>
         <BasicUserInfoForm />
       </div>
