@@ -1,12 +1,11 @@
-interface ButtonProps {
+interface BasicButtonProps {
   content: string;
-  icon?: React.ReactNode;
   disabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   style?: string;
 }
 
-export default function BasicButton({ content, icon, disabled, onClick, style }: ButtonProps) {
+export default function BasicButton({ content, disabled, onClick, style }: BasicButtonProps) {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (onClick) onClick(e);
   };
@@ -17,7 +16,6 @@ export default function BasicButton({ content, icon, disabled, onClick, style }:
       disabled={disabled}
       onClick={handleClick}
     >
-      {icon}
       {content}
     </button>
   );
