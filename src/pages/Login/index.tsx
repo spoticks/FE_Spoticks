@@ -1,6 +1,6 @@
 import LoginForm from "@/pages/Login/components/LoginForm";
 import AuthFirstHeading from "@/common/components/atoms/AuthFirstHeading";
-import LinkButton from "@/common/components/atoms/LinkButton";
+import LinkButton from "@/common/components/atoms/button/LinkButton";
 import { RED_TEXT_STYLE_AUTH } from "@/common/buttonStyles";
 
 export default function Login() {
