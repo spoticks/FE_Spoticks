@@ -1,4 +1,4 @@
-import LinkButton from "@/common/components/atoms/LinkButton";
+import LinkButton from "@/common/components/atoms/button/LinkButton";
 import { menu } from "@/common/constants";
 
 export default function HeaderNav() {

@@ -1,5 +1,5 @@
 import BasicUserInfoForm from "@/pages/MyPage/components/BasicUserInfo/BasicUserInfoForm";
-import LinkButton from "@/common/components/atoms/LinkButton";
+import LinkButton from "@/common/components/atoms/button/LinkButton";
 
 export default function BasicUserInfo() {
   return (

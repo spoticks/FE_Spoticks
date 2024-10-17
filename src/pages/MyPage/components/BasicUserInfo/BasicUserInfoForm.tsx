@@ -1,5 +1,5 @@
 import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
-import BasicButton from "@/common/components/atoms/BasicButton";
+import BasicButton from "@/common/components/atoms/button/BasicButton";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import useAuthStore from "@/common/stores/authStore";
 import { BasicInformation } from "@/common/types/formTypes";

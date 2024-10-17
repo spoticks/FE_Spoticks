@@ -5,7 +5,7 @@ import { AccountDeletionFormType } from "@/common/types/formTypes";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import { validationRules } from "@/common/validationRules";
 import useAuthStore from "@/common/stores/authStore";
-import BasicButton from "@/common/components/atoms/BasicButton";
+import BasicButton from "@/common/components/atoms/button/BasicButton";
 import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 
 export default function AccountDeletionForm() {

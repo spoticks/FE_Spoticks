@@ -3,7 +3,7 @@ import useLoginMutation from "@/pages/Login/api/useLoginMutation";
 import { LoginFormType } from "@/common/types/formTypes";
 import { validationRules } from "@/common/validationRules";
 import { useForm } from "react-hook-form";
-import BasicButton from "@/common/components/atoms/BasicButton";
+import BasicButton from "@/common/components/atoms/button/BasicButton";
 import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 
 export default function LoginForm() {

@@ -1,4 +1,4 @@
-import LinkButton from "@/common/components/atoms/LinkButton";
+import LinkButton from "@/common/components/atoms/button/LinkButton";
 
 export default function AuthButtonGroup() {
   return (
