@@ -1,6 +1,7 @@
 import SignUpForm from "@/pages/SignUp/components/SignUpForm";
 import AuthFirstHeading from "@/common/components/atoms/AuthFirstHeading";
 import LinkButton from "@/common/components/atoms/LinkButton";
+import { RED_TEXT_STYLE_AUTH } from "@/common/buttonStyles";
 
 export default function SignUp() {
   return (
@@ -8,12 +9,7 @@ export default function SignUp() {
       <AuthFirstHeading content="회원가입" />
       <span>
         이미 회원이신가요?{" "}
-        <LinkButton
-          content="로그인"
-          linkTo="/login"
-          style="text-Accent hover:text-button-hovered"
-        />{" "}
-        하세요.
+        <LinkButton content="로그인" linkTo="/login" style={RED_TEXT_STYLE_AUTH} /> 하세요.
       </span>
       <SignUpForm />
     </section>
