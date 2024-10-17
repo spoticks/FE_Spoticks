@@ -6,7 +6,7 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "@/common/components/atoms/Loading";
 import ErrorPage from "@/pages/ErrorPage";
-import CancellationConfirmModal from "@/components/CancellationConfirmModal";
+import CancellationConfirmModal from "@/pages/MyTicket/components/CancellationConfirmModal";
 import useHistoryModal from "@/hooks/useHistoryModal";
 
 interface InformationModal {
