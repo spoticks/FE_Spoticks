@@ -6,8 +6,9 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "@/common/components/atoms/Loading";
 import ErrorPage from "@/pages/ErrorPage";
-import CancellationConfirmModal from "@/pages/MyTicket/components/CancellationConfirmModal";
+import CancellationConfirmModal from "@/pages/MyTicket/components/modal/CancellationConfirmModal";
 import useHistoryModal from "@/hooks/useHistoryModal";
+import InfoPart from "@/pages/MyTicket/components/modal/InformationModal/InfoPart";
 
 interface InformationModal {
   isOpen: boolean;
@@ -121,24 +122,5 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
         )}
       </section>
     </Modal>
-  );
-}
-
-function InfoPart({
-  heading,
-  content,
-  isRight,
-  isSeat,
-}: {
-  heading: string;
-  content: string;
-  isRight?: true;
-  isSeat?: true;
-}) {
-  return (
-    <div className={`flex flex-col ${isSeat && "w-3/4"} ${isRight && "items-end"}`}>
-      <div className="text-[16px] text-text-secondary">{heading}</div>
-      <div className={`text-[16px] ${isSeat && "break-keep"}`}>{content}</div>
-    </div>
   );
 }
