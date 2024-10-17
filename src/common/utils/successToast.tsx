@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 interface ToastProps {
   title: string;
 }
-const SuccessToast = ({ title }: ToastProps) => {
+const successToast = ({ title }: ToastProps) => {
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -21,4 +21,4 @@ const SuccessToast = ({ title }: ToastProps) => {
   });
 };
 
-export default SuccessToast;
+export default successToast;

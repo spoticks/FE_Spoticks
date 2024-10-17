@@ -9,7 +9,7 @@ import { MatchDataProps } from "../common/types/type";
 import { useNavigate } from "react-router-dom";
 import Button from "@/common/components/atoms/Button";
 import Loading from "@/common/components/atoms/Loading";
-import SuccessToast from "@/common/components/atoms/SuccessToast";
+import successToast from "@/common/utils/successToast";
 
 interface PayModalProps {
   isOpen: boolean;
@@ -49,7 +49,7 @@ export default function PayModal({
     onSuccess: (data) => {
       console.log("Reservation successful:", data);
       onClose();
-      SuccessToast({ title: "결제 완료!" });
+      successToast({ title: "결제 완료!" });
       navigate("/");
     },
     onError: (error) => {

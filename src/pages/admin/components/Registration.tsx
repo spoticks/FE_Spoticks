@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Match } from "@/common/types/type";
 import axios from "axios";
 import { menu, stadiums, teams } from "@/common/constants";
-import SuccessToast from "@/common/components/atoms/SuccessToast";
+import successToast from "@/common/utils/successToast";
 import useStore from "@/common/stores/useStore";
 import SelectFiled from "@/pages/admin/components/SelectField";
 import { FormValues } from "@/pages/admin/type";
@@ -115,8 +115,8 @@ export default function Registration() {
 
   const handleRegi = () => {
     mode === "create"
-      ? SuccessToast({ title: "등록 완료!" })
-      : SuccessToast({ title: "수정 완료!" });
+      ? successToast({ title: "등록 완료!" })
+      : successToast({ title: "수정 완료!" });
   };
 
   return (
