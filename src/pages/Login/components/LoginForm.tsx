@@ -1,9 +1,10 @@
-import Button from "@/common/components/atoms/Button";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import useLoginMutation from "@/pages/Login/api/useLoginMutation";
 import { LoginFormType } from "@/common/types/formTypes";
 import { validationRules } from "@/common/validationRules";
 import { useForm } from "react-hook-form";
+import BasicButton from "@/common/components/atoms/button/BasicButton";
+import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 
 export default function LoginForm() {
   const { onSubmit } = useLoginMutation();
@@ -27,7 +28,7 @@ export default function LoginForm() {
         error={errors.password}
         inputType="password"
       />
-      <Button content="로그인 하기" isValid={isValid} />
+      <BasicButton content="로그인 하기" disabled={!isValid} style={RED_BUTTON_STYLE_AUTH} />
     </form>
   );
 }

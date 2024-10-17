@@ -1,4 +1,5 @@
-import Button from "@/common/components/atoms/Button";
+import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
+import BasicButton from "@/common/components/atoms/button/BasicButton";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import { AuthFormType } from "@/common/types/formTypes";
 import { validationRules } from "@/common/validationRules";
@@ -48,7 +49,7 @@ export default function SignUpForm() {
         error={errors.passwordConfirmation}
         inputType="password"
       />
-      <Button content="회원가입 하기" isValid={isValid} />
+      <BasicButton content="회원가입 하기" disabled={!isValid} style={RED_BUTTON_STYLE_AUTH} />
     </form>
   );
 }

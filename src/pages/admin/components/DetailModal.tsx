@@ -2,9 +2,9 @@ import Modal from "react-modal";
 import { Link, useNavigate } from "react-router-dom";
 import { Match } from "@/common/types/type";
 import ModalPortal from "@/common/components/atoms/ModalPortal";
-
 import axios from "axios";
-import ConfirmAlert from "@/common/components/molecules/ConfirmAlert";
+import confirmAlert from "@/common/utils/confirmAlert";
+
 interface DetailModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -46,7 +46,7 @@ export default function DetailModal({ isOpen, onClose, match }: DetailModalProps
   ];
 
   const handleDelete = () => {
-    ConfirmAlert({
+    confirmAlert({
       title: "경기를 삭제하시겠습니까?",
       confirmButtonText: "삭제",
       text: "경기가 삭제되었습니다.",
