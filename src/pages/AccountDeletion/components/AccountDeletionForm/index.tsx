@@ -6,7 +6,7 @@ import FormInputField from "@/common/components/molecules/FormInputField";
 import { validationRules } from "@/common/validationRules";
 import useAuthStore from "@/common/stores/authStore";
 import BasicButton from "@/common/components/atoms/BasicButton";
-import { REDBUTTON_STYLE_AUTH } from "@/common/buttonStyles";
+import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 
 export default function AccountDeletionForm() {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ export default function AccountDeletionForm() {
           inputType="password"
         />
         <ReasonSelect control={control} />
-        <BasicButton content="탈퇴하기" disabled={!isValid} style={REDBUTTON_STYLE_AUTH} />
+        <BasicButton content="탈퇴하기" disabled={!isValid} style={RED_BUTTON_STYLE_AUTH} />
       </form>
     </section>
   );

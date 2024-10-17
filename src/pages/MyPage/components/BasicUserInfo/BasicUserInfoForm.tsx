@@ -1,4 +1,4 @@
-import { REDBUTTON_STYLE_AUTH } from "@/common/buttonStyles";
+import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/BasicButton";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import useAuthStore from "@/common/stores/authStore";
@@ -35,7 +35,7 @@ export default function BasicUserInfoForm() {
         error={errors.phoneNumber}
         inputType="text"
       />
-      <BasicButton content="변경사항 저장" disabled={!isValid} style={REDBUTTON_STYLE_AUTH} />
+      <BasicButton content="변경사항 저장" disabled={!isValid} style={RED_BUTTON_STYLE_AUTH} />
     </form>
   );
 }
