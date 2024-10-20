@@ -1,5 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import useTicketCancellationMutation from "@/pages/MyTicket/api/useTicketCancellationMutation";
 import Modal from "react-modal";
 
 export default function CancellationConfirmModal({
@@ -11,31 +10,12 @@ export default function CancellationConfirmModal({
   onClose: () => void;
   reservationId: number;
 }) {
-  const queryClient = useQueryClient();
-  const mutation = useMutation({
-    mutationFn: (reservationId: number) => {
-      const request1 = axios.delete(`http://localhost:3000/reservation/${reservationId}`);
-      const request2 = axios.delete(`http://localhost:3000/reservations/${reservationId}`);
-      return Promise.all([request1, request2]);
-    },
-    onSuccess: () => {
-      console.log("성공함!");
-      queryClient.invalidateQueries({ queryKey: ["myReservations"] });
-      onClose();
-    },
-    onError: (error) => {
-      console.log(error, "때문에 실패함");
-    },
-  });
-  function onCancelConfirmClick() {
-    // delete 요청 보내기
-    mutation.mutate(reservationId);
-  }
+  const onCancelConfirmClick = useTicketCancellationMutation(onClose, reservationId);
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
-      className="shadow-second fixed left-1/2 top-1/2 w-[394px] -translate-x-1/2 -translate-y-1/2 rounded-[20px] bg-foreground p-[40px] pb-[48px]"
+      className="fixed left-1/2 top-1/2 w-[394px] -translate-x-1/2 -translate-y-1/2 rounded-[20px] bg-foreground p-[40px] pb-[48px] shadow-second"
     >
       <section className="flex flex-col items-center">
         <div className="mb-4 text-[20px] font-semibold">티켓을 취소하시겠습니까?</div>
