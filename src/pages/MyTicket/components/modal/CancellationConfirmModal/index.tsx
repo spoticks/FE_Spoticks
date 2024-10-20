@@ -1,3 +1,4 @@
+import BasicButton from "@/common/components/atoms/button/BasicButton";
 import useTicketCancellationMutation from "@/pages/MyTicket/api/useTicketCancellationMutation";
 import Modal from "react-modal";
 
@@ -21,16 +22,12 @@ export default function CancellationConfirmModal({
         <div className="mb-4 text-[20px] font-semibold">티켓을 취소하시겠습니까?</div>
         <p className="mb-8 text-[14px] text-text-tertiary">{`티켓은 경기시작 1시간 전까지 취소 가능하며, 취소내역은 마이페이지 > 예매취소 에서 확인 가능합니다.`}</p>
         <div className="flex w-full justify-around">
-          <button className="text-[14px] font-semibold" type="button" onClick={onClose}>
-            취소
-          </button>
-          <button
-            className="text-[14px] font-semibold text-Accent"
-            type="button"
+          <BasicButton content="취소" style="text-[14px] font-semibold" onClick={onClose} />
+          <BasicButton
+            content="확인"
+            style="text-[14px] font-semibold  text-Accent"
             onClick={onCancelConfirmClick}
-          >
-            확인
-          </button>
+          />
         </div>
       </section>
     </Modal>
