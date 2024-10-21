@@ -2,6 +2,7 @@ import DefaultCard from "@/common/components/atoms/DefaultCard";
 import { InformationCardProp } from "@/common/types/type";
 import useHistoryModal from "@/hooks/useHistoryModal";
 import InformationModal from "@/pages/MyTicket/components/modal/InformationModal";
+import extractDateAndTime from "@/pages/MyTicket/utils/extractDateAndTime";
 import { BsCalendar2EventFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -13,8 +14,7 @@ export default function InformationCard({
 }) {
   const { isModalOpen, handleModalOpen, handleModalClose } = useHistoryModal(id, true);
 
-  const [date, time] = gameStartTime.split("T");
-  const [hours, minutes] = time.split(":");
+  const { date, hours, minutes } = extractDateAndTime(gameStartTime);
   const navigate = useNavigate();
 
   function handleInfoModalOpen() {
