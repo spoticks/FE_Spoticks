@@ -24,7 +24,7 @@ export default function useHistoryModal(id?: number, isInfoModal?: true) {
       // 경로가 /profile/my-tickets/my-reservations/:id 로 되었을 경우
       setIsModalOpen(true);
     }
-  }, [location.pathname]);
+  }, [location.pathname, id, isModalOpen, isInfoModal]);
 
   return {
     isModalOpen,
