@@ -2,12 +2,12 @@ export default function InfoPart({
   heading,
   content,
   isRight,
-  isSeat,
+  isSeat = false,
 }: {
   heading: string;
   content: string;
   isRight?: true;
-  isSeat?: true;
+  isSeat?: boolean;
 }) {
   return (
     <div className={`flex flex-col ${isSeat && "w-3/4"} ${isRight && "items-end"}`}>
