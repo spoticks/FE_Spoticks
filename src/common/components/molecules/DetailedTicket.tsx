@@ -1,5 +1,6 @@
 import { MatchDataProps } from "@/common/types/type";
 import Barcode from "@/assets/Barcode.svg?react";
+import extractDateAndTime from "@/common/utils/extractDateAndTime";
 
 interface DetailedTicketProps {
   data: MatchDataProps;
@@ -14,6 +15,7 @@ export default function DetailedTicket({
   mySeats,
   totalPay,
 }: DetailedTicketProps) {
+  const { date, hours, minutes } = extractDateAndTime(data.gameStartTime);
   return (
     <div
       className={`mb-6 flex w-full flex-col items-start rounded-[10px] ${isReservationComplete === true || isReservationComplete === undefined ? "bg-Accent" : "bg-borders"} px-5 py-6 drop-shadow-first`}
@@ -24,8 +26,7 @@ export default function DetailedTicket({
       <div className="mb-2 flex flex-col">
         <div className="text-[14px] text-text-secondary">{data.stadiumName}</div>
         <div className="text-[14px]">
-          {data.gameStartTime.split("T")[0].split("-").join(":")}{" "}
-          {data.gameStartTime.split("T")[1].slice(0, 5)}
+          {date} {hours}:{minutes}
         </div>
       </div>
       {totalPay && mySeats ? (
