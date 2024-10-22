@@ -1,6 +1,5 @@
 import Modal from "react-modal";
 import { IoIosCloseCircle } from "react-icons/io";
-import Barcode from "@/assets/Barcode.svg?react";
 import Button from "@/common/components/atoms/Button";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
@@ -70,9 +69,9 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
         {isLoading && <Loading />}
         {error && <ErrorPage />}
         {isSuccess && data && (
-          <>
+          <div className="mx-4 flex flex-col items-center">
             <DetailedTicket data={data} isReservationComplete={isReservationComplete} />
-            <div className="flex w-[380px] flex-col gap-4">
+            <div className="flex flex-col gap-4">
               <div className="flex justify-between">
                 <InfoPart
                   heading="예매일"
@@ -110,7 +109,7 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
                 reservationId={reservationId}
               />
             </div>
-          </>
+          </div>
         )}
       </section>
     </Modal>
