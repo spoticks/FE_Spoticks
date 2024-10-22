@@ -1,7 +1,5 @@
 import Modal from "react-modal";
 import Button from "@/common/components/atoms/Button";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import Loading from "@/common/components/atoms/Loading";
 import ErrorPage from "@/pages/ErrorPage";
 import CancellationConfirmModal from "@/pages/MyTicket/components/modal/CancellationConfirmModal";
@@ -9,6 +7,7 @@ import useHistoryModal from "@/hooks/useHistoryModal";
 import DetailedTicket from "@/common/components/molecules/DetailedTicket";
 import ModalInfo from "@/common/components/molecules/ModalInfo";
 import ModalHeader from "@/common/components/molecules/ModalHeader";
+import useReservationDetails from "@/pages/MyTicket/api/useReservationDetails";
 
 interface InformationModal {
   isOpen: boolean;
@@ -16,40 +15,9 @@ interface InformationModal {
   reservationId: number;
 }
 
-interface Seat {
-  seatPosition: string;
-  seatRow: string;
-  seatNumber: string;
-}
-
-interface GameReservation {
-  homeTeamName: string;
-  awayTeamName: string;
-  gameStartTime: string;
-  stadiumName: string;
-  reservationStatus: string;
-  totalPrice: string;
-  createDate: string;
-  memberName: string;
-  seat: Seat[];
-  gameId: number;
-  id: string;
-  sportName: string;
-  timeOffSale: string;
-  timeOnSale: string;
-}
-const fetchReservationDetails = async (reservationId: number) => {
-  const { data } = await axios.get(`http://localhost:3000/reservation/${reservationId}`);
-  return data;
-};
-
 export default function InformationModal({ isOpen, onClose, reservationId }: InformationModal) {
   const { isModalOpen, handleModalOpen, handleModalClose } = useHistoryModal();
-  const { data, error, isLoading, isSuccess } = useQuery<GameReservation>({
-    queryKey: ["reservationDetail", reservationId],
-    queryFn: () => fetchReservationDetails(reservationId),
-    enabled: isOpen,
-  });
+  const { data, error, isLoading, isSuccess } = useReservationDetails(reservationId, isOpen);
 
   const isReservationComplete = data?.reservationStatus === "COMPLETE" ? true : false;
   return (
