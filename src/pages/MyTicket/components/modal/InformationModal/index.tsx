@@ -1,5 +1,4 @@
 import Modal from "react-modal";
-import { IoIosCloseCircle } from "react-icons/io";
 import Button from "@/common/components/atoms/Button";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
@@ -9,6 +8,7 @@ import CancellationConfirmModal from "@/pages/MyTicket/components/modal/Cancella
 import useHistoryModal from "@/hooks/useHistoryModal";
 import DetailedTicket from "@/common/components/molecules/DetailedTicket";
 import ModalInfo from "@/common/components/molecules/ModalInfo";
+import ModalHeader from "@/common/components/molecules/ModalHeader";
 
 interface InformationModal {
   isOpen: boolean;
@@ -59,13 +59,8 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
       className="fixed left-1/2 top-1/2 flex min-h-[771px] w-[560px] -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-[30px] border border-borders bg-foreground p-[40px]"
       overlayClassName="fixed inset-0 bg-black bg-opacity-30"
     >
-      <div className="mb-5 flex w-full justify-between border-b border-b-borders pb-1">
-        <h1 className="font-semibold">예매 정보</h1>
-        <button onClick={onClose}>
-          <IoIosCloseCircle className="size-5 text-borders transition-all duration-150 hover:text-black" />
-        </button>
-      </div>
-      <section>
+      <ModalHeader onCloseButtonClick={onClose} content="예매 정보" />
+      <div>
         {isLoading && <Loading />}
         {error && <ErrorPage />}
         {isSuccess && data && (
@@ -111,7 +106,7 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
             </section>
           </div>
         )}
-      </section>
+      </div>
     </Modal>
   );
 }
