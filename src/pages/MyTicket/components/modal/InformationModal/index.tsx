@@ -71,7 +71,7 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
         {isSuccess && data && (
           <div className="mx-4 flex flex-col items-center">
             <DetailedTicket data={data} isReservationComplete={isReservationComplete} />
-            <div className="flex flex-col gap-4">
+            <section className="flex flex-col gap-4">
               <div className="flex justify-between">
                 <InfoPart
                   heading="예매일"
@@ -108,7 +108,7 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
                 onClose={handleModalClose}
                 reservationId={reservationId}
               />
-            </div>
+            </section>
           </div>
         )}
       </section>
