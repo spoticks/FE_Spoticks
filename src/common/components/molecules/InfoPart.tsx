@@ -11,7 +11,7 @@ export default function InfoPart({
 }) {
   return (
     <div className={`flex flex-col ${isSeat && "w-3/4"} ${isRight && "items-end"}`}>
-      <div className="text-[16px] text-text-secondary">{heading}</div>
+      <h2 className="text-[16px] text-text-secondary">{heading}</h2>
       <div className={`text-[16px] ${isSeat && "break-keep"}`}>{content}</div>
     </div>
   );

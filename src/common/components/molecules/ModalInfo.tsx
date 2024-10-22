@@ -1,4 +1,4 @@
-import InfoPart from "@/pages/MyTicket/components/modal/InformationModal/InfoPart";
+import InfoPart from "@/common/components/molecules/InfoPart";
 
 interface InfoContentType {
   heading: string;
