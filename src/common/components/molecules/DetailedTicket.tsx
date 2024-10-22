@@ -16,7 +16,7 @@ export default function DetailedTicket({
 }: DetailedTicketProps) {
   return (
     <div
-      className={`mb-6 flex w-[380px] flex-col items-start rounded-[10px] ${isReservationComplete === true || isReservationComplete === undefined ? "bg-Accent" : "bg-borders"} px-[31px] py-[33px] drop-shadow-first`}
+      className={`mb-6 flex w-full flex-col items-start rounded-[10px] ${isReservationComplete === true || isReservationComplete === undefined ? "bg-Accent" : "bg-borders"} px-5 py-6 drop-shadow-first`}
     >
       <h2 className="mb-4 w-full border-b-2 border-b-text-secondary pb-2 text-[20px] font-bold">
         {data.homeTeamName} vs {data.awayTeamName}
