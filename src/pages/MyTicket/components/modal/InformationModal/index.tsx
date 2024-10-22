@@ -9,6 +9,7 @@ import ErrorPage from "@/pages/ErrorPage";
 import CancellationConfirmModal from "@/pages/MyTicket/components/modal/CancellationConfirmModal";
 import useHistoryModal from "@/hooks/useHistoryModal";
 import InfoPart from "@/pages/MyTicket/components/modal/InformationModal/InfoPart";
+import DetailedTicket from "@/common/components/molecules/DetailedTicket";
 
 interface InformationModal {
   isOpen: boolean;
@@ -32,6 +33,11 @@ interface GameReservation {
   createDate: string;
   memberName: string;
   seat: Seat[];
+  gameId: number;
+  id: string;
+  sportName: string;
+  timeOffSale: string;
+  timeOnSale: string;
 }
 const fetchReservationDetails = async (reservationId: number) => {
   const { data } = await axios.get(`http://localhost:3000/reservation/${reservationId}`);
@@ -65,21 +71,7 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
         {error && <ErrorPage />}
         {isSuccess && data && (
           <>
-            <div
-              className={`mb-6 flex w-[380px] flex-col items-start rounded-[10px] ${isReservationComplete ? "bg-Accent" : "bg-borders"} px-[31px] py-[33px] drop-shadow-first`}
-            >
-              <h2 className="mb-4 w-full border-b-2 border-b-text-secondary pb-2 text-[20px] font-bold">
-                {data.homeTeamName} vs {data.awayTeamName}
-              </h2>
-              <div className="mb-2 flex flex-col">
-                <div className="text-[14px] text-text-secondary">{data.stadiumName}</div>
-                <div className="text-[14px]">
-                  {data.gameStartTime.split("T")[0].split("-").join(":")}{" "}
-                  {data.gameStartTime.split("T")[1].slice(0, 5)}
-                </div>
-              </div>
-              <Barcode className="h-[30px]" />
-            </div>
+            <DetailedTicket data={data} isReservationComplete={isReservationComplete} />
             <div className="flex w-[380px] flex-col gap-4">
               <div className="flex justify-between">
                 <InfoPart

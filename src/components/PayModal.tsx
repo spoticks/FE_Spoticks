@@ -1,15 +1,14 @@
 import Modal from "react-modal";
 import { IoIosCloseCircle } from "react-icons/io";
-
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
-
 import Error from "../pages/ErrorPage";
 import { MatchDataProps } from "../common/types/type";
 import { useNavigate } from "react-router-dom";
 import Button from "@/common/components/atoms/Button";
 import Loading from "@/common/components/atoms/Loading";
 import successToast from "@/common/utils/successToast";
+import DetailedTicket from "@/common/components/molecules/DetailedTicket";
 
 interface PayModalProps {
   isOpen: boolean;
@@ -79,24 +78,7 @@ export default function PayModal({
         {error && <Error />}
         {matchData && (
           <>
-            <div
-              className={`mb-6 flex w-[380px] flex-col items-start rounded-[10px] bg-Accent px-[31px] py-[33px] drop-shadow-first`}
-            >
-              <h2 className="mb-4 w-full border-b-2 border-b-text-secondary pb-2 text-[20px] font-bold">
-                {matchData.homeTeamName} vs {matchData.awayTeamName}
-              </h2>
-              <div className="mb-2 flex flex-col">
-                <div className="text-[14px] text-text-secondary">{matchData.stadiumName}</div>
-                <div className="text-[14px]">
-                  {matchData.gameStartTime.split("T")[0].split("-").join(":")}{" "}
-                  {matchData.gameStartTime.split("T")[1].slice(0, 5)}
-                </div>
-              </div>
-              <div className="flex w-full justify-end font-bold">
-                총 {mySeats.length} 매 {totalPay}원
-              </div>
-              {/* <img src={barcode} className="h-[30px]" /> */}
-            </div>
+            <DetailedTicket data={matchData} mySeats={mySeats} totalPay={totalPay} />
             <div className="flex w-[380px] flex-col gap-4">
               <div className="flex justify-between">
                 <InfoPart heading="연락처" content={"010-1234-5678"} />
