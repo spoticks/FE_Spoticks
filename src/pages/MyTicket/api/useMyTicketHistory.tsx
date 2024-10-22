@@ -14,7 +14,7 @@ export default function useMyTicketHistory() {
     queryKey: ["myReservations", param],
     queryFn: async () => {
       // 추후에 reservationStatus를 status로 바꿀 것.
-      const res = await axios(`http://localhost:3000/reservations/?reservationStatus=${param}`);
+      const res = await axios(`http://localhost:3000/reservations`);
       return res.data;
     },
   });

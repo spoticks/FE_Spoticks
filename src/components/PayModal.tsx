@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@/common/components/atoms/Button";
 import Loading from "@/common/components/atoms/Loading";
 import successToast from "@/common/utils/successToast";
-import DetailedTicket from "@/common/components/molecules/DetailedTicket";
+import DetailedTicket from "@/common/components/organisms/DetailedTicket";
 import InfoPart from "@/common/components/molecules/InfoPart";
 
 interface PayModalProps {

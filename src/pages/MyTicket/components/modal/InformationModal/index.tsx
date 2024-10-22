@@ -4,7 +4,7 @@ import Loading from "@/common/components/atoms/Loading";
 import ErrorPage from "@/pages/ErrorPage";
 import CancellationConfirmModal from "@/pages/MyTicket/components/modal/CancellationConfirmModal";
 import useHistoryModal from "@/hooks/useHistoryModal";
-import DetailedTicket from "@/common/components/molecules/DetailedTicket";
+import DetailedTicket from "@/common/components/organisms/DetailedTicket";
 import ModalInfo from "@/common/components/organisms/ModalInfo";
 import ModalHeader from "@/common/components/molecules/ModalHeader";
 import useReservationDetails from "@/pages/MyTicket/api/useReservationDetails";
