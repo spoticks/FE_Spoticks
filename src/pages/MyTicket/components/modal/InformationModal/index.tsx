@@ -7,8 +7,8 @@ import Loading from "@/common/components/atoms/Loading";
 import ErrorPage from "@/pages/ErrorPage";
 import CancellationConfirmModal from "@/pages/MyTicket/components/modal/CancellationConfirmModal";
 import useHistoryModal from "@/hooks/useHistoryModal";
-import InfoPart from "@/pages/MyTicket/components/modal/InformationModal/InfoPart";
 import DetailedTicket from "@/common/components/molecules/DetailedTicket";
+import ModalInfo from "@/common/components/molecules/ModalInfo";
 
 interface InformationModal {
   isOpen: boolean;
@@ -72,33 +72,33 @@ export default function InformationModal({ isOpen, onClose, reservationId }: Inf
           <div className="mx-4 flex flex-col items-center">
             <DetailedTicket data={data} isReservationComplete={isReservationComplete} />
             <section className="flex flex-col gap-4">
-              <div className="flex justify-between">
-                <InfoPart
-                  heading="예매일"
-                  content={data.createDate.split("T")[0].split("-").join(".")}
-                />
-                <InfoPart heading="예매자" content={data.memberName} isRight />
-              </div>
-              <div className="flex justify-between">
-                <InfoPart
-                  heading="티켓상태"
-                  content={isReservationComplete ? "예매완료" : "예매취소"}
-                />
-                <InfoPart heading="결제금액" content={data.totalPrice} isRight />
-              </div>
-              <div className="flex justify-between">
-                <InfoPart
-                  heading="좌석"
-                  content={data.seat.reduce((acc, seat, index) => {
+              <ModalInfo
+                firstInfoPart={{
+                  heading: "예매일",
+                  content: data.createDate.split("T")[0].split("-").join("."),
+                }}
+                secondInfoPart={{ heading: "예매자", content: data.memberName }}
+              />
+              <ModalInfo
+                firstInfoPart={{
+                  heading: "티켓상태",
+                  content: isReservationComplete ? "예매완료" : "예매취소",
+                }}
+                secondInfoPart={{ heading: "결제금액", content: data.totalPrice }}
+              />
+              <ModalInfo
+                firstInfoPart={{
+                  heading: "좌석",
+                  content: data.seat.reduce((acc, seat, index) => {
                     return (
                       acc +
                       `${seat.seatPosition}석, ${seat.seatRow}, ${seat.seatNumber} ${index < data.seat.length - 1 ? " | " : ""}`
                     );
-                  }, "")}
-                  isSeat
-                />
-                <InfoPart heading="매수" content={`${data.seat.length} 매`} isRight />
-              </div>
+                  }, ""),
+                  isSeat: true,
+                }}
+                secondInfoPart={{ heading: "매수", content: `${data.seat.length} 매` }}
+              />
               <Button
                 content={isReservationComplete ? "티켓 취소" : "닫기"}
                 onClick={isReservationComplete ? handleModalOpen : onClose}
