@@ -176,25 +176,25 @@
       "sportName": "야구",
       "gameStartTime": "2024-09-21T12:28",
       "stadiumName": "잠실(서울)",
-      "homeTeamName": "2",
-      "awayTeamName": "1",
+      "homeTeamName": "한화 이글스",
+      "awayTeamName": "NC 다이노스",
       "id": "DZnytLf"
     },
     {
       "sportName": "축구",
-      "gameStartTime": "2024-10-12T16:53",
+      "gameStartTime": "2024-10-20T16:53",
       "stadiumName": "전북",
-      "homeTeamName": "2",
-      "awayTeamName": "8",
+      "homeTeamName": "한화 이글스",
+      "awayTeamName": "롯데 자이언츠",
       "id": "ME_3x1P"
     },
     {
       "id": "96a8",
       "sportName": "야구",
-      "gameStartTime": "2024-10-12T16:36",
+      "gameStartTime": "2024-10-16T16:36",
       "stadiumName": "대구",
-      "homeTeamName": "4",
-      "awayTeamName": "2"
+      "homeTeamName": "SSG 랜더스",
+      "awayTeamName": "한화 이글스"
     }
   ],
   "reservations": [

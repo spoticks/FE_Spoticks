@@ -1,13 +1,13 @@
 import Modal from "react-modal";
 import { Link, useNavigate } from "react-router-dom";
-import { Match } from "@/common/types/type";
+import { ContentProps } from "@/common/types/type";
 
 import axios from "axios";
 import ConfirmAlert from "@/common/components/molecules/ConfirmAlert";
 interface DetailModalProps {
   isOpen: boolean;
   onClose: () => void;
-  match: Match;
+  match: ContentProps;
 }
 
 export default function DetailModal({ isOpen, onClose, match }: DetailModalProps) {
@@ -36,10 +36,10 @@ export default function DetailModal({ isOpen, onClose, match }: DetailModalProps
   }
 
   const Detail = [
-    { 종목: match.sportName, 홈팀: match.homeTeamName, 티켓오픈: formateDate(timeOnSale) },
+    { 종목: match.sport, 홈팀: match.homeTeam, 티켓오픈: formateDate(timeOnSale) },
     {
       경기시작: formateDate(matchDate),
-      어웨이팀: match.awayTeamName,
+      어웨이팀: match.awayTeam,
       예매마감: formateDate(timeOffSale),
     },
   ];
@@ -51,7 +51,7 @@ export default function DetailModal({ isOpen, onClose, match }: DetailModalProps
       text: "경기가 삭제되었습니다.",
       functionDispatch: async () => {
         try {
-          await axios.delete(`http://localhost:3000/matches/${match.id}`);
+          await axios.delete(`http://localhost:3000/matches/${match.gameId}`);
           navigate("/admin");
           window.location.reload();
         } catch (error) {
@@ -107,7 +107,7 @@ export default function DetailModal({ isOpen, onClose, match }: DetailModalProps
               경기 삭제
             </button>
             <Link
-              to={`/admin/registration/${match.id}`}
+              to={`/admin/registration/${match.gameId}`}
               state={{ mode: "edit", existMatch: match }}
               className="rounded-lg bg-Accent px-8 py-2 text-background"
             >

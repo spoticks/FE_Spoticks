@@ -1,9 +1,9 @@
 export interface FormValues {
-  id?: number; //수정시
-  sportName: string;
-  date: string;
-  gameStartTime: string;
+  gameId?: number; //수정시
   stadiumName: string;
-  homeTeamName: string;
-  awayTeamName: string;
+  date: string;
+  sport: string;
+  homeTeam: string;
+  awayTeam: string;
+  gameStartTime: string;
 }
