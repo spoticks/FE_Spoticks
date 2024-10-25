@@ -1,4 +1,3 @@
-import Button from "@/common/components/atoms/Button";
 import ReasonSelect from "@/pages/AccountDeletion/components/AccountDeletionForm/ReasonSelect";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +5,8 @@ import { AccountDeletionFormType } from "@/common/types/formTypes";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import { validationRules } from "@/common/validationRules";
 import useAuthStore from "@/common/stores/authStore";
+import BasicButton from "@/common/components/atoms/button/BasicButton";
+import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 
 export default function AccountDeletionForm() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ export default function AccountDeletionForm() {
           inputType="password"
         />
         <ReasonSelect control={control} />
-        <Button content="탈퇴하기" isValid={isValid} />
+        <BasicButton content="탈퇴하기" disabled={!isValid} style={RED_BUTTON_STYLE_AUTH} />
       </form>
     </section>
   );

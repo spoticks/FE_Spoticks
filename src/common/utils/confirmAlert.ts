@@ -25,5 +25,4 @@ const ConfirmAlert = ({ title, confirmButtonText, functionDispatch }: ConfirmPro
     }
   });
 };
-
 export default ConfirmAlert;

@@ -1,5 +1,5 @@
 import AuthFirstHeading from "@/common/components/atoms/AuthFirstHeading";
-import MenuButton from "@/common/components/atoms/MenuButton";
+import MenuButton from "@/common/components/atoms/button/MenuButton";
 import useAuthStore from "@/common/stores/authStore";
 import { Outlet } from "react-router-dom";
 

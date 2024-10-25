@@ -2,37 +2,38 @@ import { CiCircleCheck, CiWarning, CiCalendar, CiCircleInfo } from "react-icons/
 import { LuHome } from "react-icons/lu";
 import { Link, useLocation } from "react-router-dom";
 
+const getMenu = (menu: string) => {
+  switch (menu) {
+    case "예매완료":
+      return {
+        link: "/profile/my-tickets/my-reservations",
+        icon: <CiCircleCheck />,
+      };
+    case "취소내역":
+      return {
+        link: "/profile/my-tickets/cancellation-history",
+        icon: <CiWarning />,
+      };
+    case "예매일정":
+      return {
+        link: "",
+        icon: <CiCalendar />,
+      };
+    case "홈구장 안내":
+      return {
+        link: "",
+        icon: <LuHome />,
+      };
+    case "예매정보":
+      return {
+        link: "",
+        icon: <CiCircleInfo />,
+      };
+  }
+};
 export default function MenuButton({ menu }: { menu: string }) {
   const location = useLocation().pathname;
-  const getMenu = (menu: string) => {
-    switch (menu) {
-      case "예매완료":
-        return {
-          link: "/profile/my-tickets/my-reservations",
-          icon: <CiCircleCheck />,
-        };
-      case "취소내역":
-        return {
-          link: "/profile/my-tickets/cancellation-history",
-          icon: <CiWarning />,
-        };
-      case "예매일정":
-        return {
-          link: "",
-          icon: <CiCalendar />,
-        };
-      case "홈구장 안내":
-        return {
-          link: "",
-          icon: <LuHome />,
-        };
-      case "예매정보":
-        return {
-          link: "",
-          icon: <CiCircleInfo />,
-        };
-    }
-  };
+
   const menuIcon = getMenu(menu);
   const isActive = location.includes(menuIcon?.link as string);
   return (
