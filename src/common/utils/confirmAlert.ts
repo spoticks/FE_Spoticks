@@ -10,7 +10,7 @@ interface ConfirmProps {
   functionDispatch: () => void;
 }
 
-const ConfirmAlert = ({ title, confirmButtonText, functionDispatch }: ConfirmProps) => {
+const confirmAlert = ({ title, confirmButtonText, functionDispatch }: ConfirmProps) => {
   MySwal.fire({
     title,
     icon: "warning",
@@ -25,4 +25,4 @@ const ConfirmAlert = ({ title, confirmButtonText, functionDispatch }: ConfirmPro
     }
   });
 };
-export default ConfirmAlert;
+export default confirmAlert;
