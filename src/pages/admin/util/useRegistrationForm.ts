@@ -95,7 +95,6 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
         const updatedMatch = {
           ...existMatch,
           ...matchData,
-          id: existMatch.gameId,
         };
         const res = await axios.patch(
           `http://spoticks.shop:8080/admin/games/${existMatch.gameId}`,

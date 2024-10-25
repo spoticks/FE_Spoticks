@@ -1,5 +1,4 @@
 export interface FormValues {
-  gameId?: number; //수정시
   stadiumName: string;
   date: string;
   sport: string;

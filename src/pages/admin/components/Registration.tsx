@@ -23,17 +23,20 @@ export default function Registration() {
   const sportValue = watch("sport");
   const teamsInSport = sportValue ? teams[sportValue] || [] : [];
   const stadiumsInSport = sportValue ? stadiums[sportValue] || [] : [];
-
+  console.log(existMatch);
   useEffect(() => {
-    if (mode === "create") {
-      setValue("homeTeam", "");
-      setValue("awayTeam", "");
-    } else if (mode === "edit" && existMatch) {
+    // if (mode === "create") {
+    //   setValue("homeTeam", "");
+    //   setValue("awayTeam", "");
+    //   setValue("stadiumName", "");
+    // }
+    if (mode === "edit" && existMatch) {
       setValue("sport", existMatch.sport);
       setValue("date", existMatch.gameStartTime.split("T")[0]); // 날짜 설정
       setValue("gameStartTime", existMatch.gameStartTime.split("T")[1]); // 시간 설정
       setValue("homeTeam", existMatch.homeTeam);
       setValue("awayTeam", existMatch.awayTeam);
+      setValue("stadiumName", existMatch.stadium);
     }
   }, [mode, existMatch, setValue]);
 

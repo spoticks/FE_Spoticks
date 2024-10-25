@@ -12,12 +12,15 @@ const Pagination = ({
       <button
         key={i}
         onClick={() => onPageChange(i + 1)}
-        className={`mx-1 px-4 py-2 ${currentPage === i + 1 ? "rounded-[10px] bg-Accent text-white" : "rounded-[10px] bg-borders"}`}
+        className={`mx-1 px-4 py-2 ${
+          currentPage === i + 1
+            ? "rounded-[10px] bg-Accent text-white"
+            : "rounded-[10px] bg-borders"
+        }`}
       >
         {i + 1}
       </button>
     ))}
   </div>
 );
-
 export default Pagination;

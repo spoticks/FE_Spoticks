@@ -11,7 +11,6 @@ import Pagination from "./components/Pagination";
 
 export default function Admin() {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const itemsPerPage = 5;
   const [selectedSport, setSelectedSport] = useState<string>("All");
   const sports = menu.filter((el) => el !== "HOME");
   const tableHeaders = ["경기일", "경기시작", "홈팀", "어웨이팀", ""];
@@ -25,6 +24,7 @@ export default function Admin() {
       size: 0,
     },
   };
+
   // API 호출
   const {
     data: matches = initialMatches,
@@ -36,24 +36,18 @@ export default function Admin() {
       method: "GET",
     },
     params: { ...(selectedSport !== "All" && { sport: selectedSport }), page: currentPage },
-    // accessToken: '나중에 추가',
   });
 
-  // 페이지네이션 및 필터링
-  const filteredMatches = Array.isArray(matches?.content)
-    ? selectedSport === "All"
+  // 필터링된 경기 목록
+  const filteredMatches =
+    selectedSport === "All"
       ? matches.content
-      : matches.content.filter((match: ContentProps) => match.sport === selectedSport)
-    : [];
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredMatches.slice(indexOfFirstItem, indexOfLastItem);
+      : matches.content.filter((match: ContentProps) => match.sport === selectedSport);
 
   // 페이지네이션 함수
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  // Modal 관련
+  // Modal 관련 상태
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMatch, setSelectedMatch] = useState<ContentProps | null>(null);
 
@@ -61,6 +55,7 @@ export default function Admin() {
     setSelectedMatch(match);
     setIsModalOpen(true);
   };
+
   const handleModalClose = () => {
     setIsModalOpen(false);
     setSelectedMatch(null);
@@ -72,6 +67,10 @@ export default function Admin() {
 
   if (isError) {
     return <ErrorPage />;
+  }
+
+  if (matches.pageInfo.totalElements === 0) {
+    return <h1>경기가 없습니다.</h1>;
   }
 
   return (
@@ -106,29 +105,37 @@ export default function Admin() {
             </tr>
           </thead>
           <tbody>
-            {currentItems.map((match: ContentProps, index) => (
-              <tr key={index} className="border-b border-borders">
-                <td className="p-4">{match.gameStartTime.split("T")[0]}</td>
-                <td className="p-4">{match.gameStartTime.split("T")[1].slice(0, 5)}</td>
-                <td className="p-4">{match.homeTeam}</td>
-                <td className="p-4">{match.awayTeam}</td>
-                <td className="p-4 pl-8">{match.sport}</td>
-                <td className="p-4">
-                  <button
-                    onClick={() => handleModalOpen(match)}
-                    className="flex cursor-pointer items-center justify-center rounded bg-Accent px-6 py-2 text-white hover:opacity-75"
-                  >
-                    경기상세
-                  </button>
+            {filteredMatches.length > 0 ? (
+              filteredMatches.map((match: ContentProps, index) => (
+                <tr key={index} className="border-b border-borders">
+                  <td className="p-4">{match.gameStartTime.split("T")[0]}</td>
+                  <td className="p-4">{match.gameStartTime.split("T")[1].slice(0, 5)}</td>
+                  <td className="p-4">{match.homeTeam}</td>
+                  <td className="p-4">{match.awayTeam}</td>
+                  <td className="p-4 pl-8">{match.sport}</td>
+                  <td className="p-4">
+                    <button
+                      onClick={() => handleModalOpen(match)}
+                      className="flex cursor-pointer items-center justify-center rounded bg-Accent px-6 py-2 text-white hover:opacity-75"
+                    >
+                      경기상세
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={6} className="p-4 text-center">
+                  No matches available
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
 
         {/* 페이지네이션 */}
         <Pagination
-          totalPages={Math.ceil(matches.pageInfo.totalElements / itemsPerPage)}
+          totalPages={matches.pageInfo.totalPages}
           currentPage={currentPage}
           onPageChange={paginate}
         />
