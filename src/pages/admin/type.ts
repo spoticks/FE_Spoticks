@@ -1,4 +1,4 @@
-export interface FormValues {
+export interface FormValueType {
   stadiumName: string;
   date: string;
   sport: string;

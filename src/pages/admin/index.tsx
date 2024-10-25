@@ -1,6 +1,6 @@
 import Loading from "@/common/components/atoms/Loading";
 import { menu } from "@/common/constants";
-import { ContentProps, Match } from "@/common/types/type";
+import { ContentProps, MatchType } from "@/common/types/type";
 import DetailModal from "@/pages/admin/components/DetailModal";
 import useAxios from "@/hooks/useAxios";
 import ErrorPage from "@/pages/ErrorPage";
@@ -15,7 +15,7 @@ export default function Admin() {
   const sports = menu.filter((el) => el !== "HOME");
   const tableHeaders = ["경기일", "경기시작", "홈팀", "어웨이팀", ""];
 
-  const initialMatches: Match = {
+  const initialMatches: MatchType = {
     content: [],
     pageInfo: {
       totalPages: 0,
@@ -30,7 +30,7 @@ export default function Admin() {
     data: matches = initialMatches,
     isError,
     isLoading,
-  } = useAxios<Match>(["matches", selectedSport, String(currentPage)], {
+  } = useAxios<MatchType>(["matches", selectedSport, String(currentPage)], {
     config: {
       url: "/admin/games",
       method: "GET",

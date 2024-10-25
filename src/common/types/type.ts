@@ -1,5 +1,5 @@
 // Match 타입 정의
-export interface Match {
+export interface MatchType {
   content: ContentProps[];
   pageInfo: PageInfoProps;
 }

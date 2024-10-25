@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import useStore from "@/common/stores/useStore";
-import { FormValues } from "@/pages/admin/type";
+import { FormValueType } from "@/pages/admin/type";
 import { regiSchema } from "@/pages/admin/components/RegiSchema";
 import { teams } from "@/common/constants";
-import SuccessToast from "@/common/components/atoms/SuccessToast";
+import successToast from "@/common/utils/successToast";
 import { ContentProps } from "@/common/types/type";
 
 interface Props {
@@ -27,7 +27,7 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
     watch,
     setValue,
     formState: { errors },
-  } = useForm<FormValues>({
+  } = useForm<FormValueType>({
     resolver: zodResolver(regiSchema),
     defaultValues: existMatch || {
       sport: "",
@@ -69,11 +69,11 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
 
   const handleRegi = () => {
     mode === "create"
-      ? SuccessToast({ title: "등록 완료!" })
-      : SuccessToast({ title: "수정 완료!" });
+      ? successToast({ title: "등록 완료!" })
+      : successToast({ title: "수정 완료!" });
   };
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: FormValueType) => {
     try {
       console.log("Form data:", data);
       const fullDateTime = `${data.date}T${data.gameStartTime}`;
