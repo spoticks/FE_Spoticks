@@ -1,10 +1,11 @@
 import FormInputField from "@/common/components/molecules/FormInputField";
 import useLoginMutation from "@/pages/Login/api/useLoginMutation";
 import { LoginFormType } from "@/common/types/formTypes";
-import { validationRules } from "@/common/validationRules";
+import { loginFormSchema } from "@/common/validationSchema";
 import { useForm } from "react-hook-form";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function LoginForm() {
   const { onSubmit } = useLoginMutation();
@@ -12,19 +13,19 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<LoginFormType>({ mode: "onTouched" });
+  } = useForm<LoginFormType>({ resolver: zodResolver(loginFormSchema), mode: "onTouched" });
 
   return (
     <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
       <FormInputField
-        label="이메일"
-        register={register("email", validationRules.email)}
-        error={errors.email}
-        inputType="email"
+        label="아이디"
+        register={register("username")}
+        error={errors.username}
+        inputType="text"
       />
       <FormInputField
         label="비밀번호"
-        register={register("password", validationRules.password)}
+        register={register("password")}
         error={errors.password}
         inputType="password"
       />
