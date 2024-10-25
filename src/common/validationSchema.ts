@@ -54,3 +54,13 @@ const signUpFormSchema = fullSchema.refine((data) => data.password === data.pass
 const phoneNumberSchema = fullSchema.pick({
   phoneNumber: true,
 });
+
+const passwordSettingSchema = fullSchema
+  .pick({
+    password: true,
+    passwordConfirmation: true,
+  })
+  .refine((data) => data.password === data.passwordConfirmation, {
+    message: "비밀번호가 일치하지 않습니다.",
+    path: ["passwordConfirmation"],
+  });
