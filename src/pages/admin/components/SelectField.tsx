@@ -1,11 +1,11 @@
 import InputErrorMessage from "@/common/components/atoms/InputErrorMessage";
-import { FormValues } from "@/pages/admin/type";
+import { FormValueType } from "@/pages/admin/type";
 import { FieldError, UseFormRegister } from "react-hook-form";
 
 interface SelectProps {
   label: string;
-  id: keyof FormValues;
-  register: UseFormRegister<FormValues>;
+  id: keyof FormValueType;
+  register: UseFormRegister<FormValueType>;
   options: string[];
   disabled?: boolean;
   error: FieldError | undefined;

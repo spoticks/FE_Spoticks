@@ -1,11 +1,25 @@
 // Match 타입 정의
-export interface Match {
-  id?: number;
+export interface MatchType {
+  content: ContentProps[];
+  pageInfo: PageInfoProps;
+}
+
+export interface ContentProps {
+  gameId: number;
+  homeTeam: string;
+  awayTeam: string;
+  stadium: string;
   gameStartTime: string;
-  stadiumName: string;
-  homeTeamName: string;
-  awayTeamName: string;
-  sportName: string;
+  sport: string;
+  timeOnSale: string;
+  timeOffSale: string;
+}
+
+export interface PageInfoProps {
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
 }
 
 export interface MatchData {
@@ -14,16 +28,6 @@ export interface MatchData {
   awayTeamName: string;
   sportName: string;
   gameStartTime: string;
-}
-
-export interface Content {
-  gameId: number;
-  homeTeamName: string;
-  awayTeamName: string;
-  stadiumName: string;
-  gameStartTime: string;
-  timeOnSale: string;
-  timeOffSale: string;
 }
 
 export type SportName = {
