@@ -5,18 +5,16 @@ interface AuthStateStore {
   id: string | null;
   userName: string | null;
   phoneNumber: string | null;
-  isLoggedIn: boolean;
   accessToken: string | null;
 }
 
 interface AuthStateActions {
-  login: (token: string, name: string) => void;
+  login: (token: string) => void;
   logout: () => void;
 }
 interface AuthStore extends AuthStateStore, AuthStateActions {}
 
 const initialState = {
-  isLoggedIn: false,
   accessToken: null,
   id: null,
   userName: null,
@@ -27,8 +25,7 @@ const useAuthStore = create<AuthStore>()(
   persist(
     (set) => ({
       ...initialState,
-      login: (token: string, name: string) =>
-        set({ isLoggedIn: true, accessToken: token, userName: name }),
+      login: (token: string) => set({ accessToken: token }),
       logout: () => set(() => initialState),
     }),
     { name: "auth-storage", storage: createJSONStorage(() => localStorage) },
