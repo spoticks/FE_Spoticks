@@ -1,85 +1,90 @@
 import Loading from "@/common/components/atoms/Loading";
 import { menu } from "@/common/constants";
-import { Match } from "@/common/types/type";
+import { ContentProps, MatchType } from "@/common/types/type";
 import DetailModal from "@/pages/admin/components/DetailModal";
 import useAxios from "@/hooks/useAxios";
 import ErrorPage from "@/pages/ErrorPage";
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Header from "./components/Header";
+import Pagination from "./components/Pagination";
 
 export default function Admin() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedSport, setSelectedSport] = useState<string>("All");
+  const sports = menu.filter((el) => el !== "HOME");
+  const tableHeaders = ["경기일", "경기시작", "홈팀", "어웨이팀", ""];
 
-  //api
+  const initialMatches: MatchType = {
+    content: [],
+    pageInfo: {
+      totalPages: 0,
+      totalElements: 0,
+      page: 0,
+      size: 0,
+    },
+  };
+
+  // API 호출
   const {
-    data: matches = [],
+    data: matches = initialMatches,
     isError,
     isLoading,
-  } = useAxios<Match[]>(["matches"], {
+  } = useAxios<MatchType>(["matches", selectedSport, String(currentPage)], {
     config: {
-      url: "/matches",
+      url: "/admin/games",
       method: "GET",
     },
-    // accessToken: '나중에 추가',
+    params: { ...(selectedSport !== "All" && { sport: selectedSport }), page: currentPage },
   });
 
-  // 페이지네이션 및 필터링
+  // 필터링된 경기 목록
   const filteredMatches =
     selectedSport === "All"
-      ? matches
-      : matches?.filter((match) => match.sportName === selectedSport);
+      ? matches.content
+      : matches.content.filter((match: ContentProps) => match.sport === selectedSport);
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredMatches.slice(indexOfFirstItem, indexOfLastItem);
-
-  // 페이지네이션
+  // 페이지네이션 함수
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  const sports = menu.filter((el) => el !== "HOME");
-
-  //modal
+  // Modal 관련 상태
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
+  const [selectedMatch, setSelectedMatch] = useState<ContentProps | null>(null);
 
-  const handleModalOpen = (match: Match) => {
+  const handleModalOpen = (match: ContentProps) => {
     setSelectedMatch(match);
     setIsModalOpen(true);
   };
+
   const handleModalClose = () => {
     setIsModalOpen(false);
     setSelectedMatch(null);
   };
+
   if (isLoading) {
     return <Loading />;
   }
+
   if (isError) {
     return <ErrorPage />;
   }
 
+  if (matches.pageInfo.totalElements === 0) {
+    return <h1>경기가 없습니다.</h1>;
+  }
+
   return (
     <div className="mx-0 my-10 flex w-full flex-col justify-start">
-      <div className="flex justify-between p-4">
-        <h1 className="flex text-2xl font-bold">등록된 경기 목록</h1>
-        <Link
-          to={"/admin/registration"}
-          state={{ mode: "create" }}
-          className="cursor-pointer rounded-[10px] bg-Accent px-3 py-2 text-white hover:opacity-75"
-        >
-          등록하기
-        </Link>
-      </div>
+      <Header />
       <div className="p-4">
         <table className="min-w-full rounded-[10px] bg-white">
           <thead>
             <tr className="w-full border-b border-borders text-left text-[#B5B7C0]">
-              <th className="p-4">경기일</th>
-              <th className="p-4">경기시작</th>
-              <th className="p-4">홈팀</th>
-              <th className="p-4">어웨이팀</th>
+              {tableHeaders.map((header, idx) => (
+                <th key={idx} className="p-4">
+                  {header}
+                </th>
+              ))}
               <th className="p-4">
                 <label htmlFor="sportFilter" className="mr-2" />
                 <select
@@ -89,50 +94,54 @@ export default function Admin() {
                   className="cursor-pointer rounded border p-2 hover:text-Accent"
                 >
                   <option value="All">종목선택</option>
-                  {sports.map((sport: string, idx: number) => {
-                    return (
-                      <option key={idx} value={sport}>
-                        {sport}
-                      </option>
-                    );
-                  })}
+                  {sports.map((sport: string, idx: number) => (
+                    <option key={idx} value={sport}>
+                      {sport}
+                    </option>
+                  ))}
                 </select>
               </th>
               <th className="p-4"></th>
             </tr>
           </thead>
           <tbody>
-            {currentItems.map((match, index) => (
-              <tr key={index} className="border-b border-borders">
-                <td className="p-4">{match.gameStartTime.split("T")[0]}</td>
-                <td className="p-4">{match.gameStartTime.split("T")[1].slice(0, 5)}</td>
-                <td className="p-4">{match.homeTeamName}</td>
-                <td className="p-4">{match.awayTeamName}</td>
-                <td className="p-4 pl-8">{match.sportName}</td>
-                <td className="p-4">
-                  <button
-                    onClick={() => handleModalOpen(match)}
-                    className="flex cursor-pointer items-center justify-center rounded bg-Accent px-6 py-2 text-white hover:opacity-75"
-                  >
-                    경기상세
-                  </button>
+            {filteredMatches.length > 0 ? (
+              filteredMatches.map((match: ContentProps, index) => (
+                <tr key={index} className="border-b border-borders">
+                  <td className="p-4">{match.gameStartTime.split("T")[0]}</td>
+                  <td className="p-4">{match.gameStartTime.split("T")[1].slice(0, 5)}</td>
+                  <td className="p-4">{match.homeTeam}</td>
+                  <td className="p-4">{match.awayTeam}</td>
+                  <td className="p-4 pl-8">{match.sport}</td>
+                  <td className="p-4">
+                    <button
+                      onClick={() => handleModalOpen(match)}
+                      className="flex cursor-pointer items-center justify-center rounded bg-Accent px-6 py-2 text-white hover:opacity-75"
+                    >
+                      경기상세
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={6} className="p-4 text-center">
+                  No matches available
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
-        <div className="mt-4 flex justify-center">
-          {Array.from({ length: Math.ceil(filteredMatches.length / itemsPerPage) }, (_, i) => (
-            <button
-              key={i}
-              onClick={() => paginate(i + 1)}
-              className={`mx-1 px-4 py-2 ${currentPage === i + 1 ? "rounded-[10px] bg-Accent text-white" : "rounded-[10px] bg-borders"}`}
-            >
-              {i + 1}
-            </button>
-          ))}
-        </div>
+
+        {/* 페이지네이션 */}
+        <Pagination
+          totalPages={matches.pageInfo.totalPages}
+          currentPage={currentPage}
+          onPageChange={paginate}
+        />
       </div>
+
+      {/* 상세 모달 */}
       {isModalOpen && selectedMatch && (
         <DetailModal isOpen={isModalOpen} onClose={handleModalClose} match={selectedMatch} />
       )}

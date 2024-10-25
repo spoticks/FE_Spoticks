@@ -1,12 +1,13 @@
-import { useQuery, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
-import axios, { AxiosRequestConfig } from 'axios';
+import { useQuery, UseQueryOptions, UseQueryResult } from "@tanstack/react-query";
+import axios, { AxiosRequestConfig } from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000',
-  timeout: 1000,
+  baseURL: "http://spoticks.shop:8080",
+  timeout: 3000,
 });
 
-interface UseAxiosOptions<TData> extends Omit<UseQueryOptions<TData, Error>, 'queryKey' | 'queryFn'> {
+interface UseAxiosOptions<TData>
+  extends Omit<UseQueryOptions<TData, Error>, "queryKey" | "queryFn"> {
   config?: AxiosRequestConfig;
   accessToken?: string;
   params?: Record<string, string | number>;
@@ -14,8 +15,8 @@ interface UseAxiosOptions<TData> extends Omit<UseQueryOptions<TData, Error>, 'qu
 
 function useAxios<TData>(
   queryKey: string[],
-  options?: UseAxiosOptions<TData>
-): UseQueryResult<TData, Error> { 
+  options?: UseAxiosOptions<TData>,
+): UseQueryResult<TData, Error> {
   const { config, accessToken, params, ...queryOptions } = options || {};
 
   const axiosConfig: AxiosRequestConfig = {
@@ -31,7 +32,7 @@ function useAxios<TData>(
     queryKey: [queryKey, axiosConfig],
     queryFn: async () => {
       const response = await axiosInstance.request<TData>(axiosConfig);
-      return response.data; 
+      return response.data;
     },
     ...queryOptions,
   });

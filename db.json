@@ -85,14 +85,6 @@
       "awayTeamName": "엔씨다이노스"
     },
     {
-      "id": "3",
-      "sportName": "야구",
-      "gameStartTime": "2024-09-01T15:40:00",
-      "stadiumName": "대구",
-      "homeTeamName": "광주 FC",
-      "awayTeamName": "KT 위즈"
-    },
-    {
       "id": "4",
       "sportName": "야구",
       "gameStartTime": "2024-08-29T15:40:00",
@@ -115,14 +107,6 @@
       "stadiumName": "울산",
       "homeTeamName": "울산 현대",
       "awayTeamName": "포항 스틸러스"
-    },
-    {
-      "id": "7",
-      "sportName": "축구",
-      "gameStartTime": "2024-08-19T15:40:00",
-      "stadiumName": "전북",
-      "homeTeamName": "전북 현대 모터스",
-      "awayTeamName": "FC 서울"
     },
     {
       "id": "8",
@@ -176,25 +160,25 @@
       "sportName": "야구",
       "gameStartTime": "2024-09-21T12:28",
       "stadiumName": "잠실(서울)",
-      "homeTeamName": "2",
-      "awayTeamName": "1",
+      "homeTeamName": "한화 이글스",
+      "awayTeamName": "NC 다이노스",
       "id": "DZnytLf"
     },
     {
       "sportName": "축구",
-      "gameStartTime": "2024-10-12T16:53",
+      "gameStartTime": "2024-10-20T16:53",
       "stadiumName": "전북",
-      "homeTeamName": "2",
-      "awayTeamName": "8",
+      "homeTeamName": "한화 이글스",
+      "awayTeamName": "롯데 자이언츠",
       "id": "ME_3x1P"
     },
     {
       "id": "96a8",
       "sportName": "야구",
-      "gameStartTime": "2024-10-12T16:36",
+      "gameStartTime": "2024-10-16T16:36",
       "stadiumName": "대구",
-      "homeTeamName": "4",
-      "awayTeamName": "2"
+      "homeTeamName": "SSG 랜더스",
+      "awayTeamName": "한화 이글스"
     }
   ],
   "reservations": [
@@ -494,7 +478,9 @@
       "id": "da4d"
     },
     {
-      "seat": ["seatId"],
+      "seat": [
+        "seatId"
+      ],
       "id": "048d"
     }
   ],
@@ -502,17 +488,28 @@
     {
       "id": "aebe",
       "totalPrice": "72,000",
-      "seatIds": ["프리미엄 4열 40번", "프리미엄 4열 39번", "프리미엄 4열 38번"]
+      "seatIds": [
+        "프리미엄 4열 40번",
+        "프리미엄 4열 39번",
+        "프리미엄 4열 38번"
+      ]
     },
     {
       "id": "96c2",
       "totalPrice": "24,000",
-      "seatIds": ["외야 4열 40번", "외야 4열 39번"]
+      "seatIds": [
+        "외야 4열 40번",
+        "외야 4열 39번"
+      ]
     },
     {
       "id": "f548",
       "totalPrice": "36,000",
-      "seatIds": ["외야 4열 38번", "외야 4열 37번", "외야 4열 36번"]
+      "seatIds": [
+        "외야 4열 38번",
+        "외야 4열 37번",
+        "외야 4열 36번"
+      ]
     }
   ],
   "myTeam": [
