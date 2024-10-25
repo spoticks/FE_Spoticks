@@ -1,4 +1,3 @@
-import SuccessToast from "@/common/components/atoms/SuccessToast";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -8,11 +7,10 @@ interface ConfirmProps {
   title?: string | undefined;
   content?: string;
   confirmButtonText: string;
-  text: string;
   functionDispatch: () => void;
 }
 
-const ConfirmAlert = ({ title, confirmButtonText, text, functionDispatch }: ConfirmProps) => {
+const ConfirmAlert = ({ title, confirmButtonText, functionDispatch }: ConfirmProps) => {
   MySwal.fire({
     title,
     icon: "warning",
@@ -23,7 +21,6 @@ const ConfirmAlert = ({ title, confirmButtonText, text, functionDispatch }: Conf
     cancelButtonText: "취소",
   }).then((result: { isConfirmed: boolean }) => {
     if (result.isConfirmed) {
-      SuccessToast({ title: text });
       functionDispatch();
     }
   });

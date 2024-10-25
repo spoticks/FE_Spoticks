@@ -1,9 +1,11 @@
 import Modal from "react-modal";
 import { Link, useNavigate } from "react-router-dom";
 import { ContentProps } from "@/common/types/type";
-
 import axios from "axios";
 import ConfirmAlert from "@/common/components/molecules/ConfirmAlert";
+import SuccessToast from "@/common/components/atoms/SuccessToast";
+import ErrorToast from "@/common/components/atoms/ErrorToast";
+
 interface DetailModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -12,35 +14,18 @@ interface DetailModalProps {
 
 export default function DetailModal({ isOpen, onClose, match }: DetailModalProps) {
   const navigate = useNavigate();
-  // 경기날짜
-  const matchDate = new Date(match.gameStartTime);
-  // 티켓 오픈 시간
-  const timeOnSale = new Date(matchDate);
-  timeOnSale.setDate(matchDate.getDate() - 7); // 7일전 오픈
-  timeOnSale.setHours(11, 0, 0, 0); //오전 11시로 세팅
-  // console.log(timeOnSale)
 
-  // 예매 마감 시간
-  const timeOffSale = new Date(matchDate);
-  timeOffSale.setHours(timeOffSale.getHours() - 7); //7시간 전 마감
-
-  //날짜 변경 함수
-  function formateDate(date: Date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-
-    return `${year}-${month}-${day} ${hours}:${minutes}`;
-  }
+  const formatedDate = (date: string) => {
+    const newDate = new Date(date);
+    return newDate.toISOString().replace("T", " ").substring(0, 16);
+  };
 
   const Detail = [
-    { 종목: match.sport, 홈팀: match.homeTeam, 티켓오픈: formateDate(timeOnSale) },
+    { 종목: match.sport, 홈팀: match.homeTeam, 티켓오픈: formatedDate(match.timeOnSale) },
     {
-      경기시작: formateDate(matchDate),
+      경기시작: formatedDate(match.gameStartTime),
       어웨이팀: match.awayTeam,
-      예매마감: formateDate(timeOffSale),
+      예매마감: formatedDate(match.timeOffSale),
     },
   ];
 
@@ -48,13 +33,14 @@ export default function DetailModal({ isOpen, onClose, match }: DetailModalProps
     ConfirmAlert({
       title: "경기를 삭제하시겠습니까?",
       confirmButtonText: "삭제",
-      text: "경기가 삭제되었습니다.",
       functionDispatch: async () => {
         try {
-          await axios.delete(`http://localhost:3000/matches/${match.gameId}`);
+          await axios.delete(`http://spoticks.shop:8080/admin/games/${match.gameId}`);
+          SuccessToast({ title: "경기가 삭제되었습니다." });
           navigate("/admin");
           window.location.reload();
         } catch (error) {
+          ErrorToast({ text: "경기 삭제 중 오류가 발생하였습니다." });
           console.error("경기 삭제 중 오류 발생:", error);
         }
       },
