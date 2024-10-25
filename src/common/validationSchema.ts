@@ -21,3 +21,14 @@ const passwordMatchSchema = z
     message: "비밀번호가 일치하지 않습니다.",
     path: ["passwordConfirmation"],
   });
+
+const phoneNumberSchema = z.object({
+  phoneNumber: z
+    .string({
+      required_error: "전화번호를 입력해주세요.",
+      invalid_type_error: "전화번호는 문자열이어야 합니다.",
+    })
+    .regex(/^010-\d{4}-\d{4}$/, {
+      message: "유효한 번호를 입력해주세요. (예: 010-0000-0000)",
+    }),
+});
