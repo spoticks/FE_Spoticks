@@ -46,10 +46,11 @@ const fullSchema = z.object({
   }),
 });
 
-export const signUpFormSchema = fullSchema.refine(
-  (data) => data.password === data.passwordConfirmation,
-  {
-    message: "비밀번호가 일치하지 않습니다.",
-    path: ["passwordConfirmation"],
-  },
-);
+const signUpFormSchema = fullSchema.refine((data) => data.password === data.passwordConfirmation, {
+  message: "비밀번호가 일치하지 않습니다.",
+  path: ["passwordConfirmation"],
+});
+
+const phoneNumberSchema = fullSchema.pick({
+  phoneNumber: true,
+});
