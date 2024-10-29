@@ -19,8 +19,8 @@ export default function LoginForm() {
     <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
       <FormInputField
         label="아이디"
-        register={register("username")}
-        error={errors.username}
+        register={register("userName")}
+        error={errors.userName}
         inputType="text"
       />
       <FormInputField

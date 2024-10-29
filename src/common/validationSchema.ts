@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const fullSchema = z.object({
-  username: z
+  userName: z
     .string()
     .min(5, { message: "아이디는 최소 5글자 이상이어야 합니다." })
     .max(25, { message: "아이디는 25글자 이하여야 합니다." })
@@ -20,13 +20,12 @@ const fullSchema = z.object({
     message: "유효한 번호를 입력해주세요. (예: 010-0000-0000)",
   }),
 
-  password: z
-    .string()
-    .min(8, { message: "비밀번호는 최소 8글자 이상이어야 합니다." })
-    .max(20, { message: "비밀번호는 20글자 이하여야 합니다." })
-    .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/, {
-      message: "영문, 숫자, 특수문자 포함 최소 8~20글자여야 합니다.",
-    }),
+  password: z.string(),
+  // .min(8, { message: "비밀번호는 최소 8글자 이상이어야 합니다." })
+  // .max(20, { message: "비밀번호는 20글자 이하여야 합니다." })
+  // .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/, {
+  //   message: "영문, 숫자, 특수문자 포함 최소 8~20글자여야 합니다.",
+  // }),
 
   passwordConfirmation: z.string({
     required_error: "비밀번호를 재확인해주세요.",
@@ -50,7 +49,7 @@ const passwordSettingSchema = fullSchema
   });
 
 const loginFormSchema = fullSchema.pick({
-  username: true,
+  userName: true,
   password: true,
 });
 
