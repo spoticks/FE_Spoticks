@@ -1,21 +1,7 @@
-import Swal from "sweetalert2";
+import basicToast from "@/common/utils/basicToast";
 
-interface ToastProps {
-  title: string;
-}
-const successToast = ({ title }: ToastProps) => {
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.onmouseenter = Swal.stopTimer;
-      toast.onmouseleave = Swal.resumeTimer;
-    },
-  });
-  Toast.fire({
+const successToast = (title: string) => {
+  basicToast.fire({
     icon: "success",
     title,
   });
