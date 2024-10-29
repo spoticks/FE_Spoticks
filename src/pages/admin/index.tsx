@@ -4,10 +4,9 @@ import { ContentProps, MatchType } from "@/common/types/type";
 import DetailModal from "@/pages/admin/components/DetailModal";
 import useAxios from "@/hooks/useAxios";
 import ErrorPage from "@/pages/ErrorPage";
-
 import { useState } from "react";
-import Header from "./components/Header";
-import Pagination from "./components/Pagination";
+import Header from "./components/atoms/Header";
+import Pagination from "./components/atoms/Pagination";
 
 export default function Admin() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -52,6 +51,7 @@ export default function Admin() {
   const [selectedMatch, setSelectedMatch] = useState<ContentProps | null>(null);
 
   const handleModalOpen = (match: ContentProps) => {
+    if (isModalOpen) return;
     setSelectedMatch(match);
     setIsModalOpen(true);
   };
@@ -69,14 +69,10 @@ export default function Admin() {
     return <ErrorPage />;
   }
 
-  if (matches.pageInfo.totalElements === 0) {
-    return <h1>경기가 없습니다.</h1>;
-  }
-
   return (
     <div className="mx-0 my-10 flex w-full flex-col justify-start">
       <Header />
-      <div className="p-4">
+      <div className={`main-content p-4 ${isModalOpen ? "inert" : ""}`}>
         <table className="min-w-full rounded-[10px] bg-white">
           <thead>
             <tr className="w-full border-b border-borders text-left text-[#B5B7C0]">
@@ -126,7 +122,7 @@ export default function Admin() {
             ) : (
               <tr>
                 <td colSpan={6} className="p-4 text-center">
-                  No matches available
+                  경기가 없습니다.
                 </td>
               </tr>
             )}
@@ -142,7 +138,7 @@ export default function Admin() {
       </div>
 
       {/* 상세 모달 */}
-      {isModalOpen && selectedMatch && (
+      {selectedMatch && (
         <DetailModal isOpen={isModalOpen} onClose={handleModalClose} match={selectedMatch} />
       )}
     </div>

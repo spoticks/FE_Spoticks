@@ -3,7 +3,7 @@ import Tickets from "@/assets/Tickets.svg?react";
 import { useLocation } from "react-router-dom";
 import { ContentProps } from "@/common/types/type";
 import { menu, stadiums, teams } from "@/common/constants";
-import SelectFiled from "@/pages/admin/components/SelectField";
+import SelectFiled from "@/pages/admin/components/atoms/SelectField";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import { useRegistrationForm } from "../util/useRegistrationForm";
 
@@ -23,13 +23,8 @@ export default function Registration() {
   const sportValue = watch("sport");
   const teamsInSport = sportValue ? teams[sportValue] || [] : [];
   const stadiumsInSport = sportValue ? stadiums[sportValue] || [] : [];
-  console.log(existMatch);
+  // console.log(existMatch);
   useEffect(() => {
-    // if (mode === "create") {
-    //   setValue("homeTeam", "");
-    //   setValue("awayTeam", "");
-    //   setValue("stadiumName", "");
-    // }
     if (mode === "edit" && existMatch) {
       setValue("sport", existMatch.sport);
       setValue("date", existMatch.gameStartTime.split("T")[0]); // 날짜 설정

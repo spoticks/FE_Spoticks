@@ -5,6 +5,7 @@ import axios from "axios";
 import successToast from "@/common/utils/successToast";
 import ErrorToast from "@/common/components/atoms/ErrorToast";
 import confirmAlert from "@/common/utils/confirmAlert";
+import DetailInfo from "./atoms/DetailInfo";
 
 interface DetailModalProps {
   isOpen: boolean;
@@ -68,22 +69,17 @@ export default function DetailModal({ isOpen, onClose, match }: DetailModalProps
           </header>
           <hr className="mb-4 w-[450px] border-t-2 border-borders" />
           <main className="flex space-x-8">
-            <div className="flex flex-col font-bold">
-              {Object.entries(Detail[0]).map(([key, value]) => (
-                <div className="flex flex-col justify-start" key={key}>
-                  <div className="font-semibold text-text-primary opacity-50">{key}:</div>
-                  <div className={key === "티켓오픈" ? "text-Accent" : ""}>{value}</div>
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-col font-bold">
-              {Object.entries(Detail[1]).map(([key, value]) => (
-                <div className="flex flex-col items-end" key={key}>
-                  <div className="font-semibold text-text-primary opacity-50">{key}:</div>
-                  <div>{value}</div>
-                </div>
-              ))}
-            </div>
+            <DetailInfo
+              details={Object.entries(Detail[0]).map(([key, value]) => ({
+                key,
+                value,
+                isAccent: key === "티켓오픈",
+              }))}
+            />
+            <DetailInfo
+              details={Object.entries(Detail[1]).map(([key, value]) => ({ key, value }))}
+              isRight
+            />
           </main>
           <div className="mt-4 flex justify-end space-x-11">
             <button
