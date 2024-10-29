@@ -3,22 +3,20 @@ import { LuUserCircle, LuTrophy } from "react-icons/lu";
 import MenuItem from "./MenuItem";
 import usePopover from "@/hooks/usePopover";
 import useAuthStore from "@/common/stores/authStore";
+import alertToast from "@/common/utils/alertToast";
 
 export default function UserButton() {
   const { handleClickProfile, popoverRef, isPopoverOpen, setIsPopoverOpen } = usePopover();
-  const { username, accessToken, logout } = useAuthStore((state) => ({
-    username: state.userName,
+  const { memberName, accessToken, logout } = useAuthStore((state) => ({
+    memberName: state.memberName,
     accessToken: state.accessToken,
     logout: state.logout,
   }));
 
   function handleLogout() {
     logout();
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("username");
     setIsPopoverOpen(false);
-    // 로그아웃 후 페이지 새로고침 또는 리다이렉트하기... 여기서는 리로드 함.
-    window.location.reload();
+    alertToast("로그아웃 되었습니다!", "info");
   }
 
   return (
@@ -33,7 +31,7 @@ export default function UserButton() {
         >
           <div className="gap-3 p-2" onClick={(e) => e.stopPropagation()}>
             <p className="text-center text-[14px] font-semibold">
-              {username} <span className="font-normal">님</span>
+              {memberName} <span className="font-normal">님</span>
             </p>
           </div>
           <div className="border-t border-gray-200">
