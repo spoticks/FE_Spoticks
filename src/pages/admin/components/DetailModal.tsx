@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ContentProps } from "@/common/types/type";
 import axios from "axios";
 import alertToast from "@/common/utils/alertToast";
-import ErrorToast from "@/common/components/atoms/ErrorToast";
+import ErrorToast from "@/common/utils/errorToast";
 import confirmAlert from "@/common/utils/confirmAlert";
 
 interface DetailModalProps {
