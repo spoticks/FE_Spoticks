@@ -14,7 +14,7 @@ function MenuItem({ to, onClick, icon, label, isButton = false }: MenuItemProps)
 
   if (isButton) {
     return (
-      <button onClick={onClick} className={`${classes} w-full rounded-b-lg`}>
+      <button onClick={onClick} className={`${classes} w-full rounded-b-lg text-Accent`}>
         {icon}
         {label}
       </button>
