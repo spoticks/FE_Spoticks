@@ -12,6 +12,7 @@ const basicToast = MySwal.mixin({
   didOpen: (toast) => {
     toast.onmouseenter = Swal.stopTimer;
     toast.onmouseleave = Swal.resumeTimer;
+    toast.onclick = () => MySwal.close();
   },
   width: "auto",
   customClass: {
