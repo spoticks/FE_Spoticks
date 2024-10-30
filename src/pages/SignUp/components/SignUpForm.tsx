@@ -2,7 +2,7 @@ import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import { AuthFormType } from "@/common/types/formTypes";
-import { validationRules } from "@/common/validationRules";
+import validationRules from "@/common/validationRules";
 import onSubmitSignUpForm from "@/pages/SignUp/api/onSubmitSignUpForm";
 import { useForm } from "react-hook-form";
 
@@ -17,10 +17,10 @@ export default function SignUpForm() {
   return (
     <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmitSignUpForm)}>
       <FormInputField
-        label="이메일"
-        register={register("email", validationRules.email)}
-        error={errors.email}
-        inputType="email"
+        label="아이디"
+        register={register("userName", validationRules.username)}
+        error={errors.userName}
+        inputType="text"
       />
       <FormInputField
         label="이름"
