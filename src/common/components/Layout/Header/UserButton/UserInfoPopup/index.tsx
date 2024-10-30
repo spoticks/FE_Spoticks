@@ -1,4 +1,4 @@
-import MenuItem from "@/common/components/Layout/Header/MenuItem";
+import MenuItem from "@/common/components/Layout/Header/UserButton/UserInfoPopup/MenuItem";
 import useAuthStore from "@/common/stores/authStore";
 import alertToast from "@/common/utils/alertToast";
 import { FiUser, FiFileText, FiLogOut } from "react-icons/fi";
