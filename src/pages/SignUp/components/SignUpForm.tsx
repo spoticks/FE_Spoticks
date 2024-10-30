@@ -15,7 +15,7 @@ export default function SignUpForm() {
   } = useForm<AuthFormType>({ mode: "onTouched" });
 
   return (
-    <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmitSignUpForm)}>
+    <form className="my-4 flex w-64 flex-col" onSubmit={handleSubmit(onSubmitSignUpForm)}>
       <FormInputField
         label="아이디"
         register={register("userName", validationRules.username)}

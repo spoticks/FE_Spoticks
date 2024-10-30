@@ -5,7 +5,7 @@ import { RED_TEXT_STYLE_AUTH } from "@/common/buttonStyles";
 
 export default function Login() {
   return (
-    <section className="flex w-full flex-col justify-center pt-12">
+    <section className="flex w-full flex-col items-center pt-12">
       <AuthFirstHeading content="어서오세요!" />
       <span>
         아직 회원이 아니신가요?{" "}

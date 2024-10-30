@@ -16,7 +16,7 @@ export default function LoginForm() {
   } = useForm<LoginFormType>({ resolver: zodResolver(loginFormSchema), mode: "onTouched" });
 
   return (
-    <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+    <form className="my-4 flex w-64 flex-col" onSubmit={handleSubmit(onSubmit)}>
       <FormInputField
         label="아이디"
         register={register("userName")}
