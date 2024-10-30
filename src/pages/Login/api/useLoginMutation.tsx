@@ -1,7 +1,8 @@
 import useAuthStore from "@/common/stores/authStore";
 import axiosInstance from "@/common/utils/axiosInstance";
-import successToast from "@/common/utils/successToast";
+import alertToast from "@/common/utils/alertToast";
 import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -21,10 +22,19 @@ export default function useLoginMutation() {
       const { token, memberName, memberId } = res.data;
       useAuthStore.getState().login(token, memberName, memberId);
       navigate("/");
-      successToast("로그인에 성공했어요!");
+      alertToast("로그인에 성공했어요!", "success");
     },
-    onError: (err) => {
-      console.error("로그인이 실패했습니다! :", err);
+    onError: (err: AxiosError) => {
+      if (err.response) {
+        const status = err.response?.status;
+        if (status >= 400 && status < 500) {
+          alertToast("아이디 혹은 비밀번호를 확인해주세요!", "error");
+        }
+      } else if (err.request) {
+        alertToast("서버로부터 응답이 없습니다!", "error");
+      } else {
+        alertToast("요청 중 문제가 발생했습니다!", "error");
+      }
     },
   });
   const onSubmit: SubmitHandler<LoginFormType> = (data) => {
