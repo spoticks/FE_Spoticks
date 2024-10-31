@@ -1,8 +1,8 @@
-import MenuItem from "@/common/components/Layout/Header/UserButton/UserInfoPopup/MenuItem";
+import AdminPopupMenu from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/AdminPopupMenu";
+import UserPopupMenu from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/UserPopupMenu";
+import isValidMemberId from "@/common/isValidMemberId";
 import useAuthStore from "@/common/stores/authStore";
 import alertToast from "@/common/utils/alertToast";
-import { FiUser, FiFileText, FiLogOut } from "react-icons/fi";
-import { LuTrophy } from "react-icons/lu";
 
 export default function UserInfoPopup({
   setIsPopoverOpen,
@@ -11,10 +11,8 @@ export default function UserInfoPopup({
   setIsPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>;
   popoverRef: React.RefObject<HTMLDivElement>;
 }) {
-  const { memberName, accessToken, logout } = useAuthStore((state) => ({
-    memberName: state.memberName,
-    accessToken: state.accessToken,
-    logout: state.logout,
+  const { memberName, memberId, logout } = useAuthStore((state) => ({
+    ...state,
   }));
 
   function handleLogout() {
@@ -34,21 +32,11 @@ export default function UserInfoPopup({
         <p className="truncate">{memberName}</p>
         <span className="font-normal"> 님</span>
       </div>
-      <ul className="border-t border-gray-200">
-        <MenuItem to="/profile/user-info" icon={<FiUser className="mr-3" />} label="프로필" />
-        <MenuItem
-          to="/profile/my-tickets/my-reservations"
-          icon={<FiFileText className="mr-3" />}
-          label="예매한 티켓"
-        />
-        <MenuItem to="/profile/my-team" icon={<LuTrophy className="mr-3" />} label="나의 팀" />
-        <MenuItem
-          onClick={handleLogout}
-          icon={<FiLogOut className="mr-3" />}
-          label="로그아웃"
-          isButton
-        />
-      </ul>
+      {isValidMemberId(memberId) ? (
+        <UserPopupMenu handleLogout={handleLogout} />
+      ) : (
+        <AdminPopupMenu handleLogout={handleLogout} />
+      )}
     </div>
   );
 }
