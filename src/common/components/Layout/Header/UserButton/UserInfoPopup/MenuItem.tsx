@@ -22,10 +22,12 @@ function MenuItem({ to, onClick, icon, label, isButton = false }: MenuItemProps)
   }
 
   return (
-    <Link to={to as string} className={classes}>
-      {icon}
-      {label}
-    </Link>
+    <li>
+      <Link to={to as string} className={classes}>
+        {icon}
+        {label}
+      </Link>
+    </li>
   );
 }
 

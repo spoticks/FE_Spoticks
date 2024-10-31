@@ -34,7 +34,7 @@ export default function UserInfoPopup({
         <p className="truncate">{memberName}</p>
         <span className="font-normal"> 님</span>
       </div>
-      <div className="border-t border-gray-200">
+      <ul className="border-t border-gray-200">
         <MenuItem to="/profile/user-info" icon={<FiUser className="mr-3" />} label="프로필" />
         <MenuItem
           to="/profile/my-tickets/my-reservations"
@@ -48,7 +48,7 @@ export default function UserInfoPopup({
           label="로그아웃"
           isButton
         />
-      </div>
+      </ul>
     </div>
   );
 }
