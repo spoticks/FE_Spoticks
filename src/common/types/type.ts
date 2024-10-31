@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 // Match 타입 정의
 export interface MatchType {
   content: ContentProps[];
@@ -87,4 +89,12 @@ export interface MatchDataProps {
 export interface MyTeamType {
   teamId: string;
   teamName: string;
+}
+
+export interface MenuItemProps {
+  to?: string;
+  onClick?: () => void;
+  icon: ReactNode;
+  label: string;
+  isButton?: boolean;
 }
