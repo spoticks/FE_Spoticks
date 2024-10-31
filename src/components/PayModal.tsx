@@ -7,7 +7,7 @@ import { MatchDataProps } from "../common/types/type";
 import { useNavigate } from "react-router-dom";
 import Button from "@/common/components/atoms/Button";
 import Loading from "@/common/components/atoms/Loading";
-import successToast from "@/common/utils/successToast";
+import alertToast from "@/common/utils/alertToast";
 import DetailedTicket from "@/common/components/organisms/DetailedTicket";
 import InfoPart from "@/common/components/molecules/InfoPart";
 
@@ -49,7 +49,7 @@ export default function PayModal({
     onSuccess: (data) => {
       console.log("Reservation successful:", data);
       onClose();
-      successToast({ title: "결제 완료!" });
+      alertToast("결제 완료!", "success");
       navigate("/");
     },
     onError: (error) => {

@@ -4,7 +4,7 @@ interface ErrorToastProps {
   text: string;
 }
 
-const ErrorToast = ({ text }: ErrorToastProps) => {
+const errorToast = ({ text }: ErrorToastProps) => {
   Swal.fire({
     icon: "error",
     width: "500px",
@@ -13,4 +13,4 @@ const ErrorToast = ({ text }: ErrorToastProps) => {
   });
 };
 
-export default ErrorToast;
+export default errorToast;

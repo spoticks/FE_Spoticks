@@ -2,7 +2,7 @@ import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import { PasswordSettingFormType } from "@/common/types/formTypes";
-import { validationRules } from "@/common/validationRules";
+import validationRules from "@/common/validationRules";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 

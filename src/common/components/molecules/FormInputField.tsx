@@ -24,7 +24,7 @@ export default function FormInputField({
     <div className={`${isLabelRequired && "mb-4"}}`}>
       {isLabelRequired && <InputLabel label={label} />}
       <Input label={label} register={register} type={inputType} />
-      {error && <InputErrorMessage errorMessage={error.message} />}
+      <InputErrorMessage errorMessage={error?.message} />
     </div>
   );
 }

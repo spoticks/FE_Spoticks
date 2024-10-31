@@ -3,23 +3,21 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 interface AuthStateStore {
   id: string | null;
-  userName: string | null;
+  memberName: string | null;
   phoneNumber: string | null;
-  isLoggedIn: boolean;
   accessToken: string | null;
 }
 
 interface AuthStateActions {
-  login: (token: string, name: string) => void;
+  login: (token: string, memberName: string, id: string) => void;
   logout: () => void;
 }
 interface AuthStore extends AuthStateStore, AuthStateActions {}
 
 const initialState = {
-  isLoggedIn: false,
   accessToken: null,
   id: null,
-  userName: null,
+  memberName: null,
   phoneNumber: null,
 };
 
@@ -27,8 +25,8 @@ const useAuthStore = create<AuthStore>()(
   persist(
     (set) => ({
       ...initialState,
-      login: (token: string, name: string) =>
-        set({ isLoggedIn: true, accessToken: token, userName: name }),
+      login: (accessToken: string, memberName: string, id: string) =>
+        set({ accessToken, memberName, id }),
       logout: () => set(() => initialState),
     }),
     { name: "auth-storage", storage: createJSONStorage(() => localStorage) },

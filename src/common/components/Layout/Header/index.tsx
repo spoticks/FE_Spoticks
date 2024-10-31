@@ -5,8 +5,8 @@ import AppLogo from "@/common/components/atoms/AppLogo";
 import useAuthStore from "@/common/stores/authStore";
 
 export default function Header() {
-  const { isLoggedIn } = useAuthStore((state) => ({
-    isLoggedIn: state.isLoggedIn,
+  const { accessToken } = useAuthStore((state) => ({
+    accessToken: state.accessToken,
   }));
 
   return (
@@ -14,7 +14,7 @@ export default function Header() {
       <div className="flex w-[1280px] items-center">
         <AppLogo />
         <HeaderNav />
-        {!isLoggedIn ? <AuthButtonGroup /> : <UserButton />}
+        {!accessToken ? <AuthButtonGroup /> : <UserButton />}
       </div>
     </header>
   );

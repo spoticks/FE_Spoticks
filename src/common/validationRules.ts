@@ -1,7 +1,7 @@
 import { AuthFormType, PasswordSettingFormType } from "@/common/types/formTypes";
 
-export const validationRules = {
-  email: {
+const validationRules = {
+  username: {
     required: "이메일을 입력해주세요.",
     pattern: {
       value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
@@ -35,3 +35,5 @@ export const validationRules = {
       value === getValues().password || "비밀번호가 일치하지 않습니다.",
   },
 };
+
+export default validationRules;

@@ -2,8 +2,8 @@ import Modal from "react-modal";
 import { Link, useNavigate } from "react-router-dom";
 import { ContentProps } from "@/common/types/type";
 import axios from "axios";
-import successToast from "@/common/utils/successToast";
-import ErrorToast from "@/common/components/atoms/ErrorToast";
+import alertToast from "@/common/utils/alertToast";
+import ErrorToast from "@/common/utils/errorToast";
 import confirmAlert from "@/common/utils/confirmAlert";
 
 interface DetailModalProps {
@@ -36,7 +36,7 @@ export default function DetailModal({ isOpen, onClose, match }: DetailModalProps
       functionDispatch: async () => {
         try {
           await axios.delete(`http://spoticks.shop:8080/admin/games/${match.gameId}`);
-          successToast({ title: "경기가 삭제되었습니다." });
+          alertToast("경기가 삭제되었습니다.", "success");
           navigate("/admin");
           window.location.reload();
         } catch (error) {

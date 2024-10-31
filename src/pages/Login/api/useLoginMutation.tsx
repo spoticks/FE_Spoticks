@@ -1,11 +1,13 @@
 import useAuthStore from "@/common/stores/authStore";
+import axiosInstance from "@/common/utils/axiosInstance";
+import alertToast from "@/common/utils/alertToast";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+import { AxiosError } from "axios";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 interface LoginFormType {
-  email: string;
+  userName: string;
   password: string;
 }
 
@@ -13,27 +15,31 @@ export default function useLoginMutation() {
   const navigate = useNavigate();
   const loginMutation = useMutation({
     // 로그인 로직인데 주소 및 기타 로직은 api 나오면 수정할 것
-    mutationFn: (loginData: LoginFormType) => axios.post("http://localhost:3000/login", loginData),
-    onSuccess: (res) => {
-      // 본 로직
-      // const user = res.data[0];
-      // console.log(res);
-      // localStorage.setItem("accessToken", user.accessToken);
-      // localStorage.setItem("username", user.username);
-
-      // 임시 로직
-      localStorage.setItem("accessToken", "1234");
-      useAuthStore.getState().login("1234", "홍길동님");
-      navigate("/");
+    mutationFn: async ({ userName, password }: { userName: string; password: string }) => {
+      return await axiosInstance.post("auth/login", { userName, password });
     },
-    onError: (err) => {
-      console.error("로그인이 실패했습니다! :", err);
+    onSuccess: (res) => {
+      const { token, memberName, memberId } = res.data;
+      useAuthStore.getState().login(token, memberName, memberId);
+      navigate("/");
+      alertToast("로그인에 성공했어요!", "success");
+    },
+    onError: (err: AxiosError) => {
+      if (err.response) {
+        const status = err.response?.status;
+        if (status >= 400 && status < 500) {
+          alertToast("아이디 혹은 비밀번호를 확인해주세요!", "error");
+        }
+      } else if (err.request) {
+        alertToast("서버로부터 응답이 없습니다!", "error");
+      } else {
+        alertToast("요청 중 문제가 발생했습니다!", "error");
+      }
     },
   });
   const onSubmit: SubmitHandler<LoginFormType> = (data) => {
     // 로그인 양식 제출 로직
     loginMutation.mutate(data);
-    console.log(data);
   };
 
   return { onSubmit };

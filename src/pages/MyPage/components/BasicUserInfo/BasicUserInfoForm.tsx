@@ -3,11 +3,11 @@ import BasicButton from "@/common/components/atoms/button/BasicButton";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import useAuthStore from "@/common/stores/authStore";
 import { BasicInformation } from "@/common/types/formTypes";
-import { validationRules } from "@/common/validationRules";
+import validationRules from "@/common/validationRules";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 export default function BasicUserInfoForm() {
-  const { userName, phoneNumber } = useAuthStore((state) => state);
+  const { memberName, phoneNumber } = useAuthStore((state) => state);
 
   const {
     register,
@@ -18,7 +18,7 @@ export default function BasicUserInfoForm() {
     defaultValues: {
       // 초기값 설정. 이름, 연락처, 이메일 값임.
       phoneNumber: phoneNumber as string,
-      name: userName as string,
+      name: memberName as string,
     },
   });
 

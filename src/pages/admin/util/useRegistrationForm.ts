@@ -6,7 +6,7 @@ import useStore from "@/common/stores/useStore";
 import { FormValueType } from "@/pages/admin/type";
 import { regiSchema } from "@/pages/admin/components/RegiSchema";
 import { teams } from "@/common/constants";
-import successToast from "@/common/utils/successToast";
+import alertToast from "@/common/utils/alertToast";
 import { ContentProps } from "@/common/types/type";
 
 interface Props {
@@ -68,9 +68,7 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
   };
 
   const handleRegi = () => {
-    mode === "create"
-      ? successToast({ title: "등록 완료!" })
-      : successToast({ title: "수정 완료!" });
+    mode === "create" ? alertToast("등록 완료!", "success") : alertToast("수정 완료!", "success");
   };
 
   const onSubmit = async (data: FormValueType) => {
