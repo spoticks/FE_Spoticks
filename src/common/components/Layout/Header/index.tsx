@@ -3,7 +3,7 @@ import AuthButtonGroup from "./AuthButtonGroup";
 import UserButton from "./UserButton";
 import AppLogo from "@/common/components/atoms/AppLogo";
 import useAuthStore from "@/common/stores/authStore";
-import isValidMemberId from "@/common/isValidMemberId";
+import isValidMemberId from "@/common/utils/isValidMemberId";
 
 export default function Header() {
   const { accessToken, memberId } = useAuthStore((state) => ({

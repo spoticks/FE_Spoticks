@@ -1,6 +1,6 @@
 import AdminPopupMenu from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/AdminPopupMenu";
 import UserPopupMenu from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/UserPopupMenu";
-import isValidMemberId from "@/common/isValidMemberId";
+import isValidMemberId from "@/common/utils/isValidMemberId";
 import useAuthStore from "@/common/stores/authStore";
 import alertToast from "@/common/utils/alertToast";
 
