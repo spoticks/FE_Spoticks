@@ -1,8 +1,8 @@
-import AdminPopupMenu from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/AdminPopupMenu";
-import UserPopupMenu from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/UserPopupMenu";
 import isValidMemberId from "@/common/utils/isValidMemberId";
 import useAuthStore from "@/common/stores/authStore";
 import alertToast from "@/common/utils/alertToast";
+import PopupMenuList from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/PopupMenuList";
+import getPopupMenuItems from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/getPopupMenuItems";
 
 export default function UserInfoPopup({
   setIsPopoverOpen,
@@ -20,6 +20,10 @@ export default function UserInfoPopup({
     setIsPopoverOpen(false);
     alertToast("로그아웃 되었습니다!", "info");
   }
+
+  const menuItems = isValidMemberId(memberId)
+    ? getPopupMenuItems("user")
+    : getPopupMenuItems("admin");
   return (
     <div
       ref={popoverRef}
@@ -32,11 +36,7 @@ export default function UserInfoPopup({
         <p className="truncate">{memberName}</p>
         <span className="font-normal"> 님</span>
       </div>
-      {isValidMemberId(memberId) ? (
-        <UserPopupMenu handleLogout={handleLogout} />
-      ) : (
-        <AdminPopupMenu handleLogout={handleLogout} />
-      )}
+      <PopupMenuList items={menuItems} handleLogout={handleLogout} />
     </div>
   );
 }
