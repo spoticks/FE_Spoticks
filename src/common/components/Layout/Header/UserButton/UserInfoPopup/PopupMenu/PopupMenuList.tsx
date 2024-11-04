@@ -1,6 +1,13 @@
 import MenuItem from "@/common/components/Layout/Header/UserButton/UserInfoPopup/MenuItem";
 import { MenuItemProps } from "@/common/types/type";
-export default function PopupMenuList({ items }: { items: MenuItemProps[] }) {
+import { FiLogOut } from "react-icons/fi";
+export default function PopupMenuList({
+  items,
+  handleLogout,
+}: {
+  items: MenuItemProps[];
+  handleLogout: () => void;
+}) {
   return (
     <ul className="border-t border-gray-200">
       {items.map((item) => (
@@ -13,6 +20,12 @@ export default function PopupMenuList({ items }: { items: MenuItemProps[] }) {
           isButton={item?.isButton}
         />
       ))}
+      <MenuItem
+        icon={<FiLogOut className="mr-3" />}
+        label="로그아웃"
+        onClick={handleLogout}
+        isButton
+      />
     </ul>
   );
 }
