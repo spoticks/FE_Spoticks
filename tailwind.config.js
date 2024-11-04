@@ -25,6 +25,7 @@ export default {
       width: {
         88: "22rem",
         92: "23rem",
+        "content-width": "1280px",
       },
     },
   },

@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 flex h-[80px] w-full justify-center border bg-foreground">
-      <div className="flex w-full items-center justify-between">
+      <div className="w-content-width flex items-center justify-between">
         <AppLogo />
         {isValidMemberId(memberId) && <HeaderNav />}
         {!accessToken ? <AuthButtonGroup /> : <UserButton />}
