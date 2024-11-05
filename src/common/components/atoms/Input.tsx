@@ -7,9 +7,10 @@ interface InputComponentProps {
   label?: string;
   type?: InputType;
   register?: UseFormRegisterReturn;
+  onBlur?: () => void;
 }
 
-export default function Input({ label, type = "text", register }: InputComponentProps) {
+export default function Input({ label, type = "text", register, onBlur }: InputComponentProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleToggleShowPassword = () => {
@@ -24,6 +25,12 @@ export default function Input({ label, type = "text", register }: InputComponent
         className="w-full appearance-none rounded-[15px] px-3 py-2 text-[16px] transition-colors duration-300 focus:bg-focused-input-background focus:outline-none"
         placeholder={label}
         id={label}
+        onBlur={(e) => {
+          register?.onBlur(e);
+          if (onBlur) {
+            onBlur();
+          }
+        }}
       />
       {type === "password" && (
         <div
