@@ -9,8 +9,9 @@ interface FormInputFieldProps {
   label: string;
   register: UseFormRegisterReturn;
   error: FieldError | undefined;
-  isLabelRequired?: true;
   inputType: InputType;
+  isLabelRequired?: true;
+  onBlur?: () => void;
 }
 
 export default function FormInputField({
@@ -19,11 +20,12 @@ export default function FormInputField({
   error,
   isLabelRequired,
   inputType,
+  onBlur,
 }: FormInputFieldProps) {
   return (
     <div className={`${isLabelRequired && "mb-4"}}`}>
       {isLabelRequired && <InputLabel label={label} />}
-      <Input label={label} register={register} type={inputType} />
+      <Input label={label} register={register} type={inputType} onBlur={onBlur} />
       <InputErrorMessage errorMessage={error?.message} />
     </div>
   );
