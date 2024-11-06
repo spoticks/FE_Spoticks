@@ -99,7 +99,7 @@ export default function SignUpForm() {
         </div>
       )}
       <FormInputField
-        label="휴대전화"
+        label="- 제외 휴대전화 번호"
         register={register("phoneNumber")}
         error={errors.phoneNumber}
         inputType="text"
