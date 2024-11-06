@@ -5,13 +5,14 @@ import { AuthFormType } from "@/common/types/formTypes";
 import alertToast from "@/common/utils/alertToast";
 import axiosInstance from "@/common/utils/axiosInstance";
 import { signUpFormSchema } from "@/common/validationSchema";
-import onSubmitSignUpForm from "@/pages/SignUp/api/onSubmitSignUpForm";
+import useSignUpMutation from "@/pages/SignUp/api/useSignUpMutation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function SignUpForm() {
+  const { onSubmit } = useSignUpMutation();
   const {
     register,
     formState: { errors, isValid },
@@ -77,7 +78,7 @@ export default function SignUpForm() {
   }
 
   return (
-    <form className="my-4 flex w-64 flex-col" onSubmit={handleSubmit(onSubmitSignUpForm)}>
+    <form className="my-4 flex w-64 flex-col" onSubmit={handleSubmit(onSubmit)}>
       <FormInputField
         label="아이디"
         register={register("userName")}
@@ -141,9 +142,6 @@ export default function SignUpForm() {
         content="회원가입 하기"
         disabled={!isValid || !isSuitable.phoneNumber || !isSuitable.userName}
         style={RED_BUTTON_STYLE_AUTH}
-        onClick={() => {
-          console.log("클릭됨");
-        }}
       />
     </form>
   );
