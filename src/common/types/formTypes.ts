@@ -1,6 +1,6 @@
 export interface AuthFormType {
   userName: string;
-  name: string;
+  memberName: string;
   phoneNumber: string;
   password: string;
   passwordConfirmation: string;
@@ -15,5 +15,5 @@ export type PasswordSettingFormType = Pick<AuthFormType, "password"> & {
 
 export type InputType = "text" | "email" | "password" | "date" | "time";
 
-export type BasicInformation = Pick<AuthFormType, "name" | "phoneNumber">;
+export type BasicInformation = Pick<AuthFormType, "memberName" | "phoneNumber">;
 export type UserInformation = BasicInformation & { id: string; userName: string };
