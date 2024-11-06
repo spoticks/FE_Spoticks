@@ -17,9 +17,12 @@ const fullSchema = z.object({
       message: "이름은 2~12 글자의 한글, 영문만 입력 가능합니다.",
     }),
 
-  phoneNumber: z.string().regex(/^010-\d{4}-\d{4}$/, {
-    message: "유효한 번호를 입력해주세요. (예: 010-0000-0000)",
-  }),
+  phoneNumber: z
+    .string()
+    .length(11, "11자리 번호를 입력해주세요!")
+    .regex(/^010\d{8}$/, {
+      message: "010 으로 시작하는 번호를 입력해주세요 (예: 01012345678)",
+    }),
 
   password: z
     .string()
