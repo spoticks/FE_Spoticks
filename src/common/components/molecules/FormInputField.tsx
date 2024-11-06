@@ -12,6 +12,8 @@ interface FormInputFieldProps {
   inputType: InputType;
   isLabelRequired?: true;
   onBlur?: () => void;
+  isAlertMessage?: boolean;
+  message?: string;
 }
 
 export default function FormInputField({
@@ -21,12 +23,15 @@ export default function FormInputField({
   isLabelRequired,
   inputType,
   onBlur,
+  isAlertMessage,
+  message,
 }: FormInputFieldProps) {
   return (
     <div className={`${isLabelRequired && "mb-4"}}`}>
       {isLabelRequired && <InputLabel label={label} />}
       <Input label={label} register={register} type={inputType} onBlur={onBlur} />
       <InputErrorMessage errorMessage={error?.message} />
+      <InputErrorMessage isAlertMessage={isAlertMessage} message={message} />
     </div>
   );
 }

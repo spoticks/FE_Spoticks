@@ -87,18 +87,9 @@ export default function SignUpForm() {
         onBlur={() => {
           onCheckDuplication("userName");
         }}
+        isAlertMessage={isSuitable.userName && !errors.userName}
+        message="사용할 수 있는 아이디 입니다!"
       />
-      {isSuitable.userName && !errors.userName && (
-        <div
-          className={`transition-all duration-300 ease-in-out ${
-            isSuitable.userName ? "max-h-10 opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <p className="ml-2 text-[14px] font-semibold text-[#69d12d]">
-            사용할 수 있는 아이디 입니다!
-          </p>
-        </div>
-      )}
       <FormInputField
         label="- 제외 휴대전화 번호"
         register={register("phoneNumber")}
@@ -107,18 +98,9 @@ export default function SignUpForm() {
         onBlur={() => {
           onCheckDuplication("phoneNumber");
         }}
+        isAlertMessage={isSuitable.phoneNumber && !errors.phoneNumber}
+        message="사용할 수 있는 전화번호 입니다!"
       />
-      {isSuitable.phoneNumber && !errors.phoneNumber && (
-        <div
-          className={`transition-all duration-300 ease-in-out ${
-            isSuitable.phoneNumber ? "max-h-10 opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <p className="ml-2 text-[14px] font-semibold text-[#69d12d]">
-            사용할 수 있는 전화번호 입니다!
-          </p>
-        </div>
-      )}
       <FormInputField
         label="이름"
         register={register("memberName")}
