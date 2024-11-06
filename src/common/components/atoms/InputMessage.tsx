@@ -1,4 +1,4 @@
-export default function InputErrorMessage({
+export default function InputMessage({
   errorMessage,
   isAlertMessage,
   message,

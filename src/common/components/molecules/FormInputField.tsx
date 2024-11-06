@@ -1,5 +1,5 @@
 import Input from "@/common/components/atoms/Input";
-import InputErrorMessage from "@/common/components/atoms/InputErrorMessage";
+import InputMessage from "@/common/components/atoms/InputMessage";
 import InputLabel from "@/common/components/atoms/InputLabel";
 import { InputType } from "@/common/types/formTypes";
 
@@ -30,8 +30,8 @@ export default function FormInputField({
     <div className={`${isLabelRequired && "mb-4"}}`}>
       {isLabelRequired && <InputLabel label={label} />}
       <Input label={label} register={register} type={inputType} onBlur={onBlur} />
-      <InputErrorMessage errorMessage={error?.message} />
-      <InputErrorMessage isAlertMessage={isAlertMessage} message={message} />
+      <InputMessage errorMessage={error?.message} />
+      <InputMessage isAlertMessage={isAlertMessage} message={message} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import InputErrorMessage from "@/common/components/atoms/InputErrorMessage";
+import InputErrorMessage from "@/common/components/atoms/InputMessage";
 import { FormValueType } from "@/pages/admin/type";
 import { FieldError, UseFormRegister } from "react-hook-form";
 
