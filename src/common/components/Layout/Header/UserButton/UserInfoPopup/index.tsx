@@ -1,8 +1,8 @@
-import isValidMemberId from "@/common/utils/isValidMemberId";
 import useAuthStore from "@/common/stores/authStore";
 import alertToast from "@/common/utils/alertToast";
 import PopupMenuList from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/PopupMenuList";
 import getPopupMenuItems from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/getPopupMenuItems";
+import useMemberInfo from "@/hooks/useMemberInfo";
 
 export default function UserInfoPopup({
   setIsPopoverOpen,
@@ -11,9 +11,8 @@ export default function UserInfoPopup({
   setIsPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>;
   popoverRef: React.RefObject<HTMLDivElement>;
 }) {
-  const { memberName, memberId, logout } = useAuthStore((state) => ({
-    ...state,
-  }));
+  const memberInfo = useMemberInfo();
+  const { logout } = useAuthStore();
 
   function handleLogout() {
     logout();
@@ -21,9 +20,10 @@ export default function UserInfoPopup({
     alertToast("로그아웃 되었습니다!", "info");
   }
 
-  const menuItems = isValidMemberId(memberId)
-    ? getPopupMenuItems("user")
-    : getPopupMenuItems("admin");
+  const menuItems =
+    memberInfo?.authority === "ROLE_MEMBER"
+      ? getPopupMenuItems("user")
+      : getPopupMenuItems("admin");
   return (
     <div
       ref={popoverRef}
@@ -33,7 +33,7 @@ export default function UserInfoPopup({
         className="flex justify-center gap-1 p-2 text-[14px] font-semibold"
         onClick={(e) => e.stopPropagation()}
       >
-        <p className="truncate">{memberName}</p>
+        <p className="truncate">{memberInfo?.memberName}</p>
         <span className="font-normal"> 님</span>
       </div>
       <PopupMenuList items={menuItems} handleLogout={handleLogout} />
