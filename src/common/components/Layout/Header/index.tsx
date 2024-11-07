@@ -2,20 +2,17 @@ import HeaderNav from "./HeaderNav";
 import AuthButtonGroup from "./AuthButtonGroup";
 import UserButton from "./UserButton";
 import AppLogo from "@/common/components/atoms/AppLogo";
-import useAuthStore from "@/common/stores/authStore";
-import isValidMemberId from "@/common/utils/isValidMemberId";
+import useMemberInfo from "@/hooks/useMemberInfo";
 
 export default function Header() {
-  const { accessToken, memberId } = useAuthStore((state) => ({
-    ...state,
-  }));
+  const memberInfo = useMemberInfo();
 
   return (
     <header className="sticky top-0 flex h-[80px] w-full justify-center border bg-foreground">
-      <div className="w-content-width flex items-center justify-between">
+      <div className="flex w-content-width items-center justify-between">
         <AppLogo />
-        {isValidMemberId(memberId) && <HeaderNav />}
-        {!accessToken ? <AuthButtonGroup /> : <UserButton />}
+        {memberInfo?.authority !== "ROLE_ADMIN" && <HeaderNav />}
+        {!memberInfo ? <AuthButtonGroup /> : <UserButton />}
       </div>
     </header>
   );
