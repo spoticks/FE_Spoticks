@@ -43,14 +43,16 @@ export default function MatchList({ sport }: MatchListProps) {
 
   return (
     <div className="flex w-[1280px] flex-row pt-10">
-      <MatchListTab sport={sport} setSelectedTeam={setSelectedTeam} />
+      {matchData.content.length > 0 && (
+        <MatchListTab sport={sport} setSelectedTeam={setSelectedTeam} />
+      )}
       <div className="flex w-full pl-[17px]">
         {selectedTeam === "전체 일정" ? (
           <MatchDetailMenu selectedTeam={selectedTeam} filterData={filterData} sport={sport} />
         ) : selectedTeam ? (
           <MatchDetailMenu selectedTeam={selectedTeam} filterData={filterData} sport={sport} />
         ) : (
-          <Main sceduleLen={filterData.length} sport={sport} />
+          <Main sceduleLen={matchData.content.length} sport={sport} />
         )}
       </div>
     </div>
