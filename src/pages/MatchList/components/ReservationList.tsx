@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Content } from "@/common/types/type";
+import { ContentProps } from "@/common/types/type";
 import { TimeButton } from "@/common/components/atoms/button/TimeButton";
+import TdComp from "./atoms/TdComp";
+import BasicButton from "@/common/components/atoms/button/BasicButton";
 interface ReservationListProps {
-  filterData: Content[];
+  filterData: ContentProps[];
 }
 const ReservationList = ({ filterData }: ReservationListProps) => {
   const [viewMatches, setViewMatches] = useState(5);
@@ -31,12 +33,15 @@ const ReservationList = ({ filterData }: ReservationListProps) => {
         </thead>
         <tbody>
           {filterData.slice(0, viewMatches).map((match, index) => (
-            <tr key={index} className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}>
-              <td className="border px-4 py-2">{match.homeTeamName}</td>
-              <td className="border px-4 py-2">{match.awayTeamName}</td>
-              <td className="border px-4 py-2">{match.stadiumName}</td>
-              <td className="border px-4 py-2">{match.gameStartTime.split("T")[0]}</td>
-              <td className="border px-4 py-2">
+            <tr
+              key={index}
+              className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"} text-[20px]`}
+            >
+              <TdComp>{match.homeTeam}</TdComp>
+              <TdComp>{match.awayTeam}</TdComp>
+              <TdComp>{match.stadium}</TdComp>
+              <TdComp>{match.gameStartTime.split("T")[0]}</TdComp>
+              <TdComp>
                 <Link
                   to={`/reservation/${match.gameId}`}
                   state={{ match: match }}
@@ -49,16 +54,18 @@ const ReservationList = ({ filterData }: ReservationListProps) => {
                     className="w-26 flex items-center justify-center rounded-[10px] px-8 py-1 text-xs text-foreground"
                   />
                 </Link>
-              </td>
+              </TdComp>
             </tr>
           ))}
         </tbody>
       </table>
       {viewMatches < filterData.length && (
         <div className="mt-4 flex justify-center">
-          <button onClick={addViewClick} className="rounded bg-Accent px-4 py-2 text-white">
-            더보기
-          </button>
+          <BasicButton
+            content="더보기"
+            style="rounded bg-Accent px-4 py-1 text-white"
+            onClick={addViewClick}
+          />
         </div>
       )}
     </div>

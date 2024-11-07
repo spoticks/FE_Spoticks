@@ -8,7 +8,7 @@ interface ReservationListProps {
   sport: string;
 }
 
-const MatchListMain = ({ sceduleLen, sport }: ReservationListProps) => {
+const Main = ({ sceduleLen, sport }: ReservationListProps) => {
   const sportImg: Record<string, React.FunctionComponent<React.SVGAttributes<SVGElement>>> = {
     축구: Soccer,
     야구: Baseball,
@@ -38,4 +38,4 @@ const MatchListMain = ({ sceduleLen, sport }: ReservationListProps) => {
   );
 };
 
-export default MatchListMain;
+export default Main;

@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "@/common/components/atoms/Loading";
 import Error from "@/pages/ErrorPage";
 import Heart from "@/assets/Heart.svg?react";
-import { teams, localUrl } from "@/common/constants";
+import { teams } from "@/common/constants";
 
 interface MyTeamProps {
   selectedTeam: string;
@@ -18,7 +18,7 @@ export default function MyTeamButton({ selectedTeam }: MyTeamProps) {
       const sport = Object.keys(teams).find((sport) => teams[sport].includes(selectedTeam));
       if (sport) {
         // const teamIndex = teams[sport].indexOf(selectedTeam);
-        const { data } = await axios.get(`http://localhost:3000/myTeam`);
+        const { data } = await axios.get(`http://spoticks.shop:8080/myteam?memberId=1`);
         return data;
       }
       return null;
@@ -30,27 +30,30 @@ export default function MyTeamButton({ selectedTeam }: MyTeamProps) {
   const isMyTeam = data && data.includes(selectedTeam);
 
   // 마이팀 추가/삭제 처리 함수
-  const handleMyTeam = async () => {
-    const sport = Object.keys(teams).find((sport) => teams[sport].includes(selectedTeam));
+  // const handleMyTeam = async () => {
+  //   const sport = Object.keys(teams).find((sport) => teams[sport].includes(selectedTeam));
 
-    if (sport && data) {
-      const teamIndex = teams[sport].indexOf(selectedTeam) + 1;
-      console.log(teamIndex);
-      try {
-        if (isMyTeam) {
-          await axios.delete(`http://localhost:3000/myTeam`, {
-            data: { teamIndex },
-          });
-        } else {
-          await axios.post(`http://localhost:3000/myTeam`, { teamIndex });
-        }
+  //   if (sport && data) {
+  //     const teamIndex = teams[sport].indexOf(selectedTeam) + 1;
+  //     const url = `http://spoticks.shop:8080/myteam/${teamIdx}?memberId=${teamIdx}`;
+  //     console.log(teamIndex);
+  //     try {
+  //       if (isMyTeam) {
+  //         await axios.delete(url, {
+  //           data: { teamIndex },
+  //         });
+  //       } else {
+  //         await axios.post(url, {
+  //           teamIndex,
+  //         });
+  //       }
 
-        queryClient.invalidateQueries({ queryKey: ["myTeamData", selectedTeam] });
-      } catch (error) {
-        console.error("Error adding/removing team:", error);
-      }
-    }
-  };
+  //       queryClient.invalidateQueries({ queryKey: ["myTeamData", selectedTeam] });
+  //     } catch (error) {
+  //       console.error("Error adding/removing team:", error);
+  //     }
+  //   }
+  // };
 
   if (isLoading) return <Loading />;
   if (error) return <Error />;
@@ -59,7 +62,7 @@ export default function MyTeamButton({ selectedTeam }: MyTeamProps) {
     <>
       {selectedTeam !== "전체 일정" && (
         <div
-          onClick={handleMyTeam}
+          // onClick={handleMyTeam}
           className="flex size-10 cursor-pointer flex-col items-center justify-center rounded-[10px] border-[1px] border-borders bg-foreground"
         >
           <Heart
