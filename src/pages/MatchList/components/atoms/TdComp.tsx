@@ -1,4 +1,3 @@
-// TableCell.tsx
 interface TdProps {
   children: React.ReactNode;
 }
