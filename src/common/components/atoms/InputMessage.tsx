@@ -14,7 +14,7 @@ export default function InputMessage({
       }`}
     >
       <p className={`ml-2 text-[14px] ${errorMessage ? "text-Accent" : "text-valid"}`}>
-        {errorMessage || message}
+        {errorMessage || (isAlertMessage && message)}
       </p>
     </div>
   );

@@ -27,7 +27,7 @@ export default function FormInputField({
   message,
 }: FormInputFieldProps) {
   return (
-    <div className={`${isLabelRequired && "mb-4"}}`}>
+    <div className={`${isLabelRequired ? "mb-4" : ""}`}>
       {isLabelRequired && <InputLabel label={label} />}
       <Input label={label} register={register} type={inputType} onBlur={onBlur} />
       <InputMessage errorMessage={error?.message} />
