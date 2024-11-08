@@ -34,7 +34,7 @@ const ReservationList = ({ filterData }: ReservationListProps) => {
         <tbody>
           {filterData.slice(0, viewMatches).map((match, index) => (
             <tr
-              key={index}
+              key={match.gameId}
               className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"} text-[20px]`}
             >
               <TdComp>{match.homeTeam}</TdComp>
