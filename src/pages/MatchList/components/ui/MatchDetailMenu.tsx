@@ -3,7 +3,7 @@ import HomeInfo from "@/pages/MatchList/components/HomeInfo";
 import ReservationList from "@/pages/MatchList/components/ReservationList";
 import ReserveInfo from "@/pages/MatchList/components/ReserveInfo";
 import { ContentProps } from "@/common/types/type";
-import MyTeamButton from "@/pages/MatchList/components/atoms/MyTeamButton";
+import MyTeamButton from "@/pages/MatchList/components/ui/MyTeamButton";
 import MenuButton from "@/common/components/atoms/button/MenuButton";
 
 interface DetailProps {

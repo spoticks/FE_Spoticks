@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Main from "@/pages/MatchList/components/Main";
-import MatchListTab from "@/pages/MatchList/components/atoms/Tab";
+import MatchListTab from "@/pages/MatchList/components/ui/Tab";
 import Error from "@/pages/ErrorPage";
 import Loading from "@/common/components/atoms/Loading";
-import MatchDetailMenu from "@/pages/MatchList/components/atoms/MatchDetailMenu";
+import MatchDetailMenu from "@/pages/MatchList/components/ui/MatchDetailMenu";
 import { ContentProps, PageInfoProps } from "@/common/types/type";
 import { useMatchApi } from "./api/api";
 import { getTeamId } from "@/common/utils/getTeamId";
@@ -50,7 +50,7 @@ export default function MatchList({ sport }: MatchListProps) {
   if (error) return <Error />;
 
   return (
-    <div className="flex w-content-width flex-row pt-10">
+    <div className="w-content-width flex flex-row pt-10">
       {matchData.content.length > 0 && (
         <MatchListTab sport={sport} setSelectedTeam={setSelectedTeam} />
       )}

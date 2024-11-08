@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ContentProps } from "@/common/types/type";
 import { TimeButton } from "@/common/components/atoms/button/TimeButton";
-import TdComp from "./atoms/TdComp";
+import TdComp from "./ui/TdComp";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 interface ReservationListProps {
   filterData: ContentProps[];
