@@ -45,8 +45,6 @@ export default function MenuButton({
   const menuIcon = getMenu(menu, sport);
   const isActive = decodeURIComponent(location).includes((menuIcon?.link as string) || "");
 
-  console.log("1", location);
-  console.log("2", menuIcon?.link);
   return (
     <Link
       to={menuIcon?.link as string}
