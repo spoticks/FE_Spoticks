@@ -19,8 +19,8 @@ export default function useLoginMutation() {
       return await axiosInstance.post("auth/login", { userName, password });
     },
     onSuccess: (res) => {
-      const { token, memberName, memberId } = res.data;
-      useAuthStore.getState().login(token, memberName, memberId);
+      const { token } = res.data;
+      useAuthStore.getState().login(token);
       navigate("/");
       alertToast("로그인에 성공했어요!", "success");
     },

@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom";
 import Logo from "@/assets/logo.svg?react";
-import useAuthStore from "@/common/stores/authStore";
-import isValidMemberId from "@/common/utils/isValidMemberId";
+import useMemberInfo from "@/hooks/useMemberInfo";
 
 export default function AppLogo() {
-  const { memberId } = useAuthStore((state) => ({
-    ...state,
-  }));
+  const memberInfo = useMemberInfo();
 
-  const linkTo = isValidMemberId(memberId) ? "/" : "/admin";
+  const linkTo = memberInfo?.authority === "ROLE_ADMIN" ? "/admin" : "/";
 
   return (
     <Link to={linkTo}>
