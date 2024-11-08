@@ -14,6 +14,7 @@ export default {
         borders: "#DBDBDB",
         "focused-input-background": "rgba(219, 219, 219, 0.5)",
         "disabled-button": "rgb(238, 161, 169)",
+        valid: "#69d12d",
       },
       boxShadow: {
         first: "0px 10px 20px rgba(0, 0, 0, 0.05)",
