@@ -48,7 +48,6 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
       const fullDateTime = `${data.date}T${data.gameStartTime}`;
       const homeTeamIdx = getTeamId(data.sport, data.homeTeam);
       const awayTeamIdx = getTeamId(data.sport, data.awayTeam);
-      console.log(homeTeamIdx, awayTeamIdx);
       const matchData = {
         sport: data.sport,
         gameStartTime: fullDateTime, // "YYYY-MM-DDTHH:mm" 형식
