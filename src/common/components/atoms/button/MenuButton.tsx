@@ -56,7 +56,7 @@ export default function MenuButton({
     >
       <span className="mr-2">{menuIcon?.icon}</span>
       {menu}
-      {menu === "예매 일정" && reserveLen !== undefined && <div className="ml-2">{reserveLen}</div>}
+      {menu === "예매 일정" && reserveLen !== undefined && <h5 className="ml-2">{reserveLen}</h5>}
     </Link>
   );
 }

@@ -3,16 +3,21 @@ import TabOpen from "@/assets/TabOpen.svg?react";
 import TabClose from "@/assets/TabClose.svg?react";
 import { teams, leagueName } from "@/common/constants";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface TabProps {
   sport: string;
   setSelectedTeam: React.Dispatch<React.SetStateAction<string>>;
 }
 export default function MatchListTab({ sport, setSelectedTeam }: TabProps) {
+  const navigate = useNavigate();
+
   const TabStyle = "flex flex-row items-center bg-background py-2 pl-1";
   const TeamListIconStyle =
     "size-3 transform transition-all duration-300 ease-in-out absolute transform-origin-center top-[-10px]";
+
   const TapList = ["전체 일정", "예매 가이드"];
+
   const [isOpen, setIsOpen] = useState(false);
 
   const TapClick = () => {
@@ -21,6 +26,7 @@ export default function MatchListTab({ sport, setSelectedTeam }: TabProps) {
   //Tab에서 team 선택했을 때
   const handleTeamClick = (team: string) => {
     setSelectedTeam(team);
+    navigate(`/match-list/${sport}/reserveSche`);
   };
 
   const handleTabClick = (tab: string) => {

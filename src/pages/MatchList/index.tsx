@@ -7,12 +7,14 @@ import MatchDetailMenu from "@/pages/MatchList/components/atoms/MatchDetailMenu"
 import { ContentProps, PageInfoProps } from "@/common/types/type";
 import { useMatchApi } from "./api/api";
 import { getTeamId } from "@/common/utils/getTeamId";
+import { useNavigate } from "react-router-dom";
 
 interface MatchListProps {
   sport: string;
 }
 
 export default function MatchList({ sport }: MatchListProps) {
+  const navigate = useNavigate();
   // Tab에서 선택된 team
   const [selectedTeam, setSelectedTeam] = useState("");
   const [filterData, setFilterData] = useState<ContentProps[]>([]);
@@ -24,8 +26,14 @@ export default function MatchList({ sport }: MatchListProps) {
   } = useMatchApi({ sport, selectedTeam: selectedTeam || "전체 일정" });
 
   useEffect(() => {
+    setSelectedTeam("");
+    navigate(`/match-list/${sport}`);
+  }, [sport]);
+
+  useEffect(() => {
     if (selectedTeam === "전체 일정") {
       setFilterData(matchData.content);
+      navigate(`/match-list/${sport}/allSche`);
     } else {
       const selectedTeamId = getTeamId(sport, selectedTeam);
       if (selectedTeamId) {
