@@ -1,4 +1,3 @@
-// utils/getTeamId.ts
 import { teams } from "../constants";
 
 export const getTeamId = (sport: string, teamName: string): number | null => {
