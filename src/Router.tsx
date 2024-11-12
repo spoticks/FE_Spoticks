@@ -4,7 +4,7 @@ import Layout from "./common/components/Layout";
 import SignUp from "./pages/SignUp";
 import Login from "@/pages/Login";
 import Reservation from "./pages/Reservation";
-import MatchList from "./pages/MatchList";
+import MatchList from "@/pages/MatchList";
 import Admin from "@/pages/admin/index";
 import NotFound from "./pages/NotFound";
 import Registration from "@/pages/admin/components/Registration";
@@ -15,6 +15,8 @@ import MyTeam from "./pages/MyTeam";
 import MyTicket from "@/pages/MyTicket";
 import MyTicketRouteLayout from "@/pages/MyTicket/components/MyTicketRouteLayout";
 import MyPage from "@/pages/MyPage";
+import HomeInfo from "./pages/MatchList/components/HomeInfo";
+import ReserveInfo from "./pages/MatchList/components/ReserveInfo";
 
 export default function Router() {
   return (
@@ -31,7 +33,12 @@ export default function Router() {
                 key={sport}
                 path={`/match-list/${sport}`}
                 element={<MatchList sport={sport} />}
-              />
+              >
+                <Route path="allSche" element={<MatchList sport={sport} />} />
+                <Route path="homeInfo" element={<HomeInfo />} />
+                <Route path="reserveInfo" element={<ReserveInfo />} />
+                <Route path="reserveSche" element={<ReserveInfo />} />
+              </Route>
             ))}
           <Route path="profile" element={<AuthRoute />}>
             <Route path="user-info" element={<MyPage />} />

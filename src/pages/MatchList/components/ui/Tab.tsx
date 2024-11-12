@@ -1,15 +1,23 @@
-import LeftTapIcon from "@/assets/matchListTap.svg";
-import TabOpen from "@/assets/TabOpen.svg";
-import TabClose from "@/assets/TabClose.svg";
+import LeftTapIcon from "@/assets/matchListTap.svg?react";
+import TabOpen from "@/assets/TabOpen.svg?react";
+import TabClose from "@/assets/TabClose.svg?react";
 import { teams, leagueName } from "@/common/constants";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface TabProps {
   sport: string;
   setSelectedTeam: React.Dispatch<React.SetStateAction<string>>;
 }
 export default function MatchListTab({ sport, setSelectedTeam }: TabProps) {
+  const navigate = useNavigate();
+
+  const TabStyle = "flex flex-row items-center bg-background py-2 pl-1";
+  const TeamListIconStyle =
+    "size-3 transform transition-all duration-300 ease-in-out absolute transform-origin-center top-[-10px]";
+
   const TapList = ["전체 일정", "예매 가이드"];
+
   const [isOpen, setIsOpen] = useState(false);
 
   const TapClick = () => {
@@ -18,6 +26,7 @@ export default function MatchListTab({ sport, setSelectedTeam }: TabProps) {
   //Tab에서 team 선택했을 때
   const handleTeamClick = (team: string) => {
     setSelectedTeam(team);
+    navigate(`/match-list/${sport}/reserveSche`);
   };
 
   const handleTabClick = (tab: string) => {
@@ -25,22 +34,17 @@ export default function MatchListTab({ sport, setSelectedTeam }: TabProps) {
   };
 
   return (
-    <div className="w-[270px]">
-      <div className="mb-2 text-xs">
+    <div className="w-[300px]">
+      <h5 className="mb-2 pl-1 text-xs">
         홈 &gt; {sport} &gt; 2024 {leagueName[sport]} 리그
-      </div>
+      </h5>
       <div className="flex flex-col">
-        <div className="flex flex-row items-center bg-background py-2 pl-1">
-          <div>
-            <img src={LeftTapIcon} alt="Left Tap Icon" className="size-3" />
-          </div>
-          <div className="mx-1">2024 {leagueName[sport]}리그</div>
-          <div onClick={TapClick} className="cursor-pointer">
-            {isOpen ? (
-              <img src={TabOpen} alt="Left Tap Icon" className="size-3" />
-            ) : (
-              <img src={TabClose} alt="Left Tap Icon" className="size-3" />
-            )}
+        <div className={TabStyle}>
+          <LeftTapIcon className="size-3" />
+          <h3 className="mx-1">2024 {leagueName[sport]}리그</h3>
+          <div onClick={TapClick} className="relative cursor-pointer border-none">
+            <TabOpen className={`${TeamListIconStyle} ${isOpen ? "opacity-100" : "opacity-0"}`} />
+            <TabClose className={`${TeamListIconStyle} ${isOpen ? "opacity-0" : "opacity-100"}`} />
           </div>
         </div>
         {isOpen ? (
@@ -62,15 +66,9 @@ export default function MatchListTab({ sport, setSelectedTeam }: TabProps) {
         )}
         {TapList.map((name, idx) => {
           return (
-            <div
-              key={idx}
-              className="flex flex-row items-center bg-background py-2 pl-1"
-              onClick={() => handleTabClick(name)}
-            >
-              <div>
-                <img src={LeftTapIcon} alt="Left Tap Icon" className="size-3" />
-              </div>
-              <div className="mx-1 cursor-pointer">{name}</div>
+            <div key={idx} className={TabStyle} onClick={() => handleTabClick(name)}>
+              <LeftTapIcon className="size-3" />
+              <h3 className="mx-1 cursor-pointer">{name}</h3>
             </div>
           );
         })}

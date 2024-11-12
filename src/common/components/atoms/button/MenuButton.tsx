@@ -2,7 +2,7 @@ import { CiCircleCheck, CiWarning, CiCalendar, CiCircleInfo } from "react-icons/
 import { LuHome } from "react-icons/lu";
 import { Link, useLocation } from "react-router-dom";
 
-const getMenu = (menu: string) => {
+const getMenu = (menu: string, sport?: string) => {
   switch (menu) {
     case "예매완료":
       return {
@@ -14,28 +14,37 @@ const getMenu = (menu: string) => {
         link: "/profile/my-tickets/cancellation-history",
         icon: <CiWarning />,
       };
-    case "예매일정":
+    case "예매 일정":
       return {
-        link: "",
+        link: `/match-list/${sport}/reserveSche`,
         icon: <CiCalendar />,
       };
     case "홈구장 안내":
       return {
-        link: "",
+        link: `/match-list/${sport}/homeInfo`,
         icon: <LuHome />,
       };
     case "예매정보":
       return {
-        link: "",
+        link: `/match-list/${sport}/reserveInfo`,
         icon: <CiCircleInfo />,
       };
   }
 };
-export default function MenuButton({ menu }: { menu: string }) {
+export default function MenuButton({
+  menu,
+  reserveLen,
+  sport,
+}: {
+  menu: string;
+  reserveLen?: number;
+  sport?: string;
+}) {
   const location = useLocation().pathname;
 
-  const menuIcon = getMenu(menu);
-  const isActive = location.includes(menuIcon?.link as string);
+  const menuIcon = getMenu(menu, sport);
+  const isActive = decodeURIComponent(location).includes((menuIcon?.link as string) || "");
+
   return (
     <Link
       to={menuIcon?.link as string}
@@ -45,6 +54,7 @@ export default function MenuButton({ menu }: { menu: string }) {
     >
       <span className="mr-2">{menuIcon?.icon}</span>
       {menu}
+      {menu === "예매 일정" && reserveLen !== undefined && <h5 className="ml-2">{reserveLen}</h5>}
     </Link>
   );
 }

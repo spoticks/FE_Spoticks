@@ -14,7 +14,7 @@ interface ModeProps {
 
 export default function Registration() {
   const location = useLocation();
-  const { mode, existMatch }: ModeProps = location.state;
+  const { mode, existMatch }: ModeProps = location.state || { mode: "create" };
   const { register, handleSubmit, watch, setValue, errors, onSubmit } = useRegistrationForm({
     mode,
     existMatch,
