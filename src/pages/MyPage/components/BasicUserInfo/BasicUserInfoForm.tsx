@@ -17,6 +17,7 @@ export default function BasicUserInfoForm({ memberId }: { memberId: number }) {
     formState: { errors, isValid },
     handleSubmit,
     reset,
+    watch,
   } = useForm<BasicInformation>({
     mode: "onTouched",
     defaultValues: {
@@ -38,6 +39,8 @@ export default function BasicUserInfoForm({ memberId }: { memberId: number }) {
   if (isError) {
     return <ErrorPage />;
   }
+  const { phoneNumber } = watch();
+
   const onSubmit: SubmitHandler<BasicInformation> = (data) => {
     // 유저 정보 변경 로직
     console.log(data);
@@ -51,7 +54,11 @@ export default function BasicUserInfoForm({ memberId }: { memberId: number }) {
         error={errors.phoneNumber}
         inputType="text"
       />
-      <BasicButton content="변경사항 저장" disabled={!isValid} style={RED_BUTTON_STYLE_AUTH} />
+      <BasicButton
+        content="변경사항 저장"
+        disabled={!isValid || phoneNumber === formatPhoneNumber(data.phoneNumber)}
+        style={RED_BUTTON_STYLE_AUTH}
+      />
     </form>
   );
 }
