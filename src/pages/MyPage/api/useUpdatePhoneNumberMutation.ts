@@ -25,12 +25,13 @@ export default function useUpdatePhoneNumberMutation() {
           alertToast(
             "요청하신 정보를 변경할 수 없습니다! 번호를 확인하신 후 다시 시도해주세요!",
             "error",
+            "top",
           );
         }
       } else if (err.request) {
-        alertToast("서버로부터 응답이 없습니다!", "error");
+        alertToast("서버로부터 응답이 없습니다!", "error", "top");
       } else {
-        alertToast("요청 중 문제가 발생했습니다!", "error");
+        alertToast("요청 중 문제가 발생했습니다!", "error", "top");
       }
     },
   });
