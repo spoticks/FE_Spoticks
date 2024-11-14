@@ -4,12 +4,14 @@ import BasicUserInfo from "@/pages/MyPage/components/BasicUserInfo";
 import PasswordResetting from "@/pages/MyPage/components/PasswordResetting";
 
 export default function MyPage() {
-  const { memberName } = useMemberInfo();
+  const { memberName, userName } = useMemberInfo();
   return (
     <>
       <div className="mb-10">
         <AuthFirstHeading content="회원정보" />
-        <span className="text-text-tertiary">어서오세요 {memberName} 님</span>
+        <span className="text-text-tertiary">
+          어서오세요 {memberName}({userName}) 님
+        </span>
       </div>
       <div className="grid grid-cols-2">
         <BasicUserInfo />
