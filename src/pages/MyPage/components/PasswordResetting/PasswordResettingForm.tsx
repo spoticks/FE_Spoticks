@@ -2,7 +2,9 @@ import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import { PasswordSettingFormType } from "@/common/types/formTypes";
-import validationRules from "@/common/validationRules";
+import { passwordSettingSchema } from "@/common/validationSchema";
+import usePasswordResettingMutation from "@/pages/MyPage/api/usePasswordResettingMutation";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -11,41 +13,33 @@ export default function PasswordResettingForm() {
     register,
     formState: { errors, isValid },
     handleSubmit,
-    getValues,
   } = useForm<PasswordSettingFormType>({
-    mode: "onTouched",
+    resolver: zodResolver(passwordSettingSchema),
+    mode: "all",
   });
-
-  const onSubmit: SubmitHandler<PasswordSettingFormType> = (data) => {
-    const { passwordConfirmation, ...formData } = data;
-    // 비밀번호 변경 양식 제출 로직
-    console.log(passwordConfirmation, formData);
-  };
+  const onSubmit = usePasswordResettingMutation();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormInputField
         isLabelRequired
         label="현재 비밀번호"
-        register={register("originalPassword", validationRules.password)}
-        error={errors.originalPassword}
-        inputType="password"
-      />
-      <FormInputField
-        isLabelRequired
-        label="새 비밀번호"
-        register={register("password", validationRules.password)}
+        register={register("password")}
         error={errors.password}
         inputType="password"
       />
       <FormInputField
         isLabelRequired
+        label="새 비밀번호"
+        register={register("newPassword")}
+        error={errors.newPassword}
+        inputType="password"
+      />
+      <FormInputField
+        isLabelRequired
         label="비밀번호 확인"
-        register={register("passwordConfirmation", {
-          ...validationRules.passwordConfirmation,
-          validate: (value) => validationRules.passwordConfirmation.validate(value, getValues),
-        })}
-        error={errors.passwordConfirmation}
+        register={register("newPasswordConfirmation")}
+        error={errors.newPasswordConfirmation}
         inputType="password"
       />
       <BasicButton content="비밀번호 변경" disabled={!isValid} style={RED_BUTTON_STYLE_AUTH} />
