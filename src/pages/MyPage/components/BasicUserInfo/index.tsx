@@ -1,7 +1,7 @@
 import BasicUserInfoForm from "@/pages/MyPage/components/BasicUserInfo/BasicUserInfoForm";
 import LinkButton from "@/common/components/atoms/button/LinkButton";
 
-export default function BasicUserInfo({ memberId }: { memberId: number }) {
+export default function BasicUserInfo() {
   return (
     <section>
       <div className="flex w-64 flex-col">
@@ -14,7 +14,7 @@ export default function BasicUserInfo({ memberId }: { memberId: number }) {
             style="text-borders hover:text-Accent"
           />
         </div>
-        <BasicUserInfoForm memberId={memberId} />
+        <BasicUserInfoForm />
       </div>
     </section>
   );
