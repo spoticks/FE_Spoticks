@@ -1,20 +1,25 @@
 import { AuthFormType } from "@/common/types/formTypes";
 import alertToast from "@/common/utils/alertToast";
 import axiosInstance from "@/common/utils/axiosInstance";
-import { signUpFormSchema } from "@/common/validationSchema";
+import { phoneNumberSchema, signUpFormSchema } from "@/common/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export default function useDuplicationCheck() {
+export default function useDuplicationCheck(isPhoneNumber?: boolean) {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
     getValues,
     setError,
-  } = useForm<AuthFormType>({ resolver: zodResolver(signUpFormSchema), mode: "all" });
+    reset,
+    watch,
+  } = useForm<AuthFormType>({
+    resolver: zodResolver(isPhoneNumber ? phoneNumberSchema : signUpFormSchema),
+    mode: "all",
+  });
   const [isSuitable, setIsSuitable] = useState({
     userName: false,
     phoneNumber: false,
@@ -72,5 +77,5 @@ export default function useDuplicationCheck() {
     }
   }
 
-  return { isSuitable, checkDuplication, register, handleSubmit, errors, isValid };
+  return { isSuitable, checkDuplication, register, handleSubmit, errors, isValid, reset, watch };
 }
