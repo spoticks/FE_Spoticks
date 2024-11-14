@@ -2,23 +2,25 @@ import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import Loading from "@/common/components/atoms/Loading";
 import FormInputField from "@/common/components/molecules/FormInputField";
-import { BasicInformation } from "@/common/types/formTypes";
+import { BasicInformationType } from "@/common/types/formTypes";
 import validationRules from "@/common/validationRules";
 import ErrorPage from "@/pages/ErrorPage";
 import useGetMemberInfo from "@/pages/MyPage/api/useGetMemberInfo";
+import useUpdatePhoneNumberMutation from "@/pages/MyPage/api/useUpdatePhoneNumberMutation";
 import formatPhoneNumber from "@/pages/MyPage/utils/formatPhoneNumber";
 import { useEffect } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export default function BasicUserInfoForm({ memberId }: { memberId: number }) {
   const { isLoading, data, isError } = useGetMemberInfo(memberId);
+
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
     reset,
     watch,
-  } = useForm<BasicInformation>({
+  } = useForm<BasicInformationType>({
     mode: "onTouched",
     defaultValues: {
       // 초기값 설정.
@@ -32,7 +34,7 @@ export default function BasicUserInfoForm({ memberId }: { memberId: number }) {
       });
     }
   }, [data, reset]);
-
+  const onSubmit = useUpdatePhoneNumberMutation();
   if (isLoading) {
     return <Loading />;
   }
@@ -41,10 +43,6 @@ export default function BasicUserInfoForm({ memberId }: { memberId: number }) {
   }
   const { phoneNumber } = watch();
 
-  const onSubmit: SubmitHandler<BasicInformation> = (data) => {
-    // 유저 정보 변경 로직
-    console.log(data);
-  };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormInputField
