@@ -2,35 +2,20 @@ import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import Loading from "@/common/components/atoms/Loading";
 import FormInputField from "@/common/components/molecules/FormInputField";
-import { BasicInformationType } from "@/common/types/formTypes";
-import validationRules from "@/common/validationRules";
 import ErrorPage from "@/pages/ErrorPage";
 import useGetMemberInfo from "@/pages/MyPage/api/useGetMemberInfo";
 import useUpdatePhoneNumberMutation from "@/pages/MyPage/api/useUpdatePhoneNumberMutation";
-import formatPhoneNumber from "@/pages/MyPage/utils/formatPhoneNumber";
+import useDuplicationCheck from "@/pages/SignUp/utils/useDuplicationCheck";
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
 
-export default function BasicUserInfoForm({ memberId }: { memberId: number }) {
-  const { isLoading, data, isError } = useGetMemberInfo(memberId);
-
-  const {
-    register,
-    formState: { errors, isValid },
-    handleSubmit,
-    reset,
-    watch,
-  } = useForm<BasicInformationType>({
-    mode: "onTouched",
-    defaultValues: {
-      // 초기값 설정.
-      phoneNumber: "",
-    },
-  });
+export default function BasicUserInfoForm() {
+  const { isLoading, data, isError } = useGetMemberInfo();
+  const { isSuitable, checkDuplication, register, handleSubmit, errors, isValid, reset, watch } =
+    useDuplicationCheck(true);
   useEffect(() => {
     if (data) {
       reset({
-        phoneNumber: formatPhoneNumber(data.phoneNumber),
+        phoneNumber: data.phoneNumber,
       });
     }
   }, [data, reset]);
@@ -42,19 +27,22 @@ export default function BasicUserInfoForm({ memberId }: { memberId: number }) {
     return <ErrorPage />;
   }
   const { phoneNumber } = watch();
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormInputField
-        isLabelRequired
-        label="연락처"
-        register={register("phoneNumber", validationRules.phoneNumber)}
+        label="- 제외 휴대전화 번호"
+        register={register("phoneNumber")}
         error={errors.phoneNumber}
         inputType="text"
+        onBlur={() => {
+          checkDuplication("phoneNumber");
+        }}
+        isAlertMessage={isSuitable.phoneNumber && !errors.phoneNumber}
+        message="사용할 수 있는 전화번호 입니다!"
       />
       <BasicButton
         content="변경사항 저장"
-        disabled={!isValid || phoneNumber === formatPhoneNumber(data.phoneNumber)}
+        disabled={!isValid || phoneNumber === data.phoneNumber || !isSuitable.phoneNumber}
         style={RED_BUTTON_STYLE_AUTH}
       />
     </form>
