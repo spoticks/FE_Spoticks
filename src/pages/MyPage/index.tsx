@@ -4,7 +4,7 @@ import BasicUserInfo from "@/pages/MyPage/components/BasicUserInfo";
 import PasswordResetting from "@/pages/MyPage/components/PasswordResetting";
 
 export default function MyPage() {
-  const { memberName } = useMemberInfo();
+  const { memberName, memberId } = useMemberInfo();
   return (
     <>
       <div className="mb-10">
@@ -12,7 +12,7 @@ export default function MyPage() {
         <span className="text-text-tertiary">어서오세요 {memberName} 님</span>
       </div>
       <div className="grid grid-cols-2">
-        <BasicUserInfo />
+        <BasicUserInfo memberId={memberId} />
         <PasswordResetting />
       </div>
     </>
