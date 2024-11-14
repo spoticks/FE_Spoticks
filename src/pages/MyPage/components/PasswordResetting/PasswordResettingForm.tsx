@@ -5,19 +5,19 @@ import { PasswordSettingFormType } from "@/common/types/formTypes";
 import { passwordSettingSchema } from "@/common/validationSchema";
 import usePasswordResettingMutation from "@/pages/MyPage/api/usePasswordResettingMutation";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export default function PasswordResettingForm() {
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
+    reset,
   } = useForm<PasswordSettingFormType>({
     resolver: zodResolver(passwordSettingSchema),
     mode: "all",
   });
-  const onSubmit = usePasswordResettingMutation();
+  const onSubmit = usePasswordResettingMutation(reset);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

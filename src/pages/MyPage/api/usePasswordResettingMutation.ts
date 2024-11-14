@@ -1,15 +1,18 @@
-import { PasswordResettingType } from "@/common/types/formTypes";
+import { PasswordResettingType, PasswordSettingFormType } from "@/common/types/formTypes";
 import alertToast from "@/common/utils/alertToast";
 import axiosInstance from "@/common/utils/axiosInstance";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { SubmitHandler } from "react-hook-form";
+import { SubmitHandler, UseFormReset } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
-export default function usePasswordResettingMutation() {
+export default function usePasswordResettingMutation(reset: UseFormReset<PasswordSettingFormType>) {
+  const navigation = useNavigate();
   const passwordResettingMutation = useMutation({
     mutationFn: async ({ password, newPassword }: PasswordResettingType) =>
       await axiosInstance.patch(`/members/password`, { password, newPassword }),
     onSuccess: () => {
+      reset();
       alertToast("비밀번호를 성공적으로 변경했습니다!", "success", "top");
     },
     onError: (err: AxiosError) => {
