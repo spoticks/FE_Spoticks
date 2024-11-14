@@ -1,17 +1,21 @@
 import { BasicInformationType } from "@/common/types/formTypes";
 import alertToast from "@/common/utils/alertToast";
 import axiosInstance from "@/common/utils/axiosInstance";
-import useMemberInfo from "@/hooks/useMemberInfo";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { SubmitHandler } from "react-hook-form";
 
 export default function useUpdatePhoneNumberMutation() {
-  const { memberId } = useMemberInfo();
+  const queryClient = useQueryClient();
+
   const updatePhoneNumberMutation = useMutation({
     mutationFn: async ({ phoneNumber }: BasicInformationType) =>
-      await axiosInstance.patch(`/members/${memberId}`, { phoneNumber }),
-    onSuccess: () => {
+      await axiosInstance.patch(`/members/me`, { phoneNumber }),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(
+        { queryKey: ["memberInfo"], exact: true },
+        { throwOnError: true },
+      );
       alertToast("전화번호를 성공적으로 변경했습니다!", "success", "top");
     },
     onError: (err: AxiosError) => {
