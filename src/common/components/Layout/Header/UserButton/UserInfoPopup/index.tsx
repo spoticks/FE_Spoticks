@@ -11,7 +11,7 @@ export default function UserInfoPopup({
   setIsPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>;
   popoverRef: React.RefObject<HTMLDivElement>;
 }) {
-  const memberInfo = useMemberInfo();
+  const { authority, memberName } = useMemberInfo();
   const { logout } = useAuthStore();
 
   function handleLogout() {
@@ -21,9 +21,7 @@ export default function UserInfoPopup({
   }
 
   const menuItems =
-    memberInfo?.authority === "ROLE_MEMBER"
-      ? getPopupMenuItems("user")
-      : getPopupMenuItems("admin");
+    authority === "ROLE_MEMBER" ? getPopupMenuItems("user") : getPopupMenuItems("admin");
   return (
     <div
       ref={popoverRef}
@@ -33,7 +31,7 @@ export default function UserInfoPopup({
         className="flex justify-center gap-1 p-2 text-[14px] font-semibold"
         onClick={(e) => e.stopPropagation()}
       >
-        <p className="truncate">{memberInfo?.memberName}</p>
+        <p className="truncate">{memberName}</p>
         <span className="font-normal"> 님</span>
       </div>
       <PopupMenuList items={menuItems} handleLogout={handleLogout} />

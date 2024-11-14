@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 interface AuthorityType {
   authority: string;
 }
+
 export interface DecodedTokenType {
   sub: string; // 사용자 ID
   memberName: string; // 회원이름
@@ -12,6 +13,13 @@ export interface DecodedTokenType {
   authorities: AuthorityType[]; // 사용자 권한
   memberId: number; // 회원 고유 ID
 }
+
+const DEFAULT_MEMBER_INFO = {
+  memberId: 0,
+  memberName: "",
+  authority: "",
+};
+
 export default function useMemberInfo() {
   const { accessToken } = useAuthStore((state) => state);
   if (typeof accessToken === "string") {
@@ -22,6 +30,6 @@ export default function useMemberInfo() {
     } = jwtDecode<DecodedTokenType>(accessToken);
     return { memberId, memberName, authority };
   } else {
-    return null;
+    return DEFAULT_MEMBER_INFO;
   }
 }
