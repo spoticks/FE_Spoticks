@@ -9,9 +9,14 @@ export default function MyPage() {
     <>
       <div className="mb-10">
         <AuthFirstHeading content="회원정보" />
-        <span className="text-text-tertiary">
-          어서오세요 {memberName}({userName}) 님
-        </span>
+        <p className="text-text-tertiary">
+          어서오세요
+          <strong>
+            {" "}
+            {memberName}({userName}){" "}
+          </strong>
+          님
+        </p>
       </div>
       <div className="grid grid-cols-2">
         <BasicUserInfo />
