@@ -18,6 +18,7 @@ const DEFAULT_MEMBER_INFO = {
   memberId: 0,
   memberName: "",
   authority: "",
+  userName: "",
 };
 
 export default function useMemberInfo() {
@@ -27,8 +28,9 @@ export default function useMemberInfo() {
       memberId,
       memberName,
       authorities: [{ authority }],
+      sub: userName,
     } = jwtDecode<DecodedTokenType>(accessToken);
-    return { memberId, memberName, authority };
+    return { memberId, memberName, authority, userName };
   } else {
     return DEFAULT_MEMBER_INFO;
   }
