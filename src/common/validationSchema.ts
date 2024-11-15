@@ -40,14 +40,19 @@ const signUpFormSchema = fullSchema.refine((data) => data.password === data.pass
   path: ["passwordConfirmation"],
 });
 
-const passwordSettingSchema = fullSchema
-  .pick({
-    password: true,
-    passwordConfirmation: true,
+const passwordSettingSchema = z
+  .object({
+    password: fullSchema.shape.password,
+    newPassword: fullSchema.shape.password,
+    newPasswordConfirmation: z.string(),
   })
-  .refine((data) => data.password === data.passwordConfirmation, {
-    message: "비밀번호가 일치하지 않습니다.",
-    path: ["passwordConfirmation"],
+  .refine((data) => data.newPassword === data.newPasswordConfirmation, {
+    message: "새 비밀번호와 일치하지 않습니다.",
+    path: ["newPasswordConfirmation"],
+  })
+  .refine((data) => data.newPassword !== data.password, {
+    message: "이전 비밀번호와 동일한 비밀번호 입니다.",
+    path: ["newPassword"],
   });
 
 const loginFormSchema = fullSchema.pick({

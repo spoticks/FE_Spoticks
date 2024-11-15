@@ -3,9 +3,9 @@ import Logo from "@/assets/logo.svg?react";
 import useMemberInfo from "@/hooks/useMemberInfo";
 
 export default function AppLogo() {
-  const memberInfo = useMemberInfo();
+  const { authority } = useMemberInfo();
 
-  const linkTo = memberInfo?.authority === "ROLE_ADMIN" ? "/admin" : "/";
+  const linkTo = authority === "ROLE_ADMIN" ? "/admin" : "/";
 
   return (
     <Link to={linkTo}>
