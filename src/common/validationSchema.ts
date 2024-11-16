@@ -40,6 +40,8 @@ const signUpFormSchema = fullSchema.refine((data) => data.password === data.pass
   path: ["passwordConfirmation"],
 });
 
+const passwordSchema = z.object({ password: fullSchema.shape.password, reason: z.string() });
+
 const passwordSettingSchema = z
   .object({
     password: fullSchema.shape.password,
@@ -64,4 +66,10 @@ const phoneNumberSchema = fullSchema.pick({
   phoneNumber: true,
 });
 
-export { signUpFormSchema, passwordSettingSchema, loginFormSchema, phoneNumberSchema };
+export {
+  signUpFormSchema,
+  passwordSettingSchema,
+  loginFormSchema,
+  phoneNumberSchema,
+  passwordSchema,
+};
