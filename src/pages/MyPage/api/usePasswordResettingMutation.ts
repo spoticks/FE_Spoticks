@@ -4,10 +4,8 @@ import axiosInstance from "@/common/utils/axiosInstance";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { SubmitHandler, UseFormReset } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 
 export default function usePasswordResettingMutation(reset: UseFormReset<PasswordSettingFormType>) {
-  const navigation = useNavigate();
   const passwordResettingMutation = useMutation({
     mutationFn: async ({ password, newPassword }: PasswordResettingType) =>
       await axiosInstance.patch(`/members/password`, { password, newPassword }),
