@@ -28,7 +28,7 @@ export default function ReasonSelect({ control }: { control: Control<AccountDele
               onClick={(e) => {
                 handleClickOptions(e);
                 if (isOpen) {
-                  field.onChange("");
+                  field.onChange(undefined);
                 }
               }}
               isOpen={isOpen}
