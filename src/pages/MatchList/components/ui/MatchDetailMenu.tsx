@@ -10,9 +10,17 @@ interface DetailProps {
   selectedTeam: string;
   filterData: ContentProps[];
   sport: string;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  totalEl: number;
 }
 
-export default function MatchDetailMenu({ selectedTeam, filterData, sport }: DetailProps) {
+export default function MatchDetailMenu({
+  selectedTeam,
+  filterData,
+  sport,
+  setCurrentPage,
+  totalEl,
+}: DetailProps) {
   //예매내역, 홈구장안내, 예매설명 메뉴 선택
   const [selectedMenu, setSelectedMenu] = useState("예매 일정");
   const handleMenuClick = (menu: string) => {
@@ -22,13 +30,25 @@ export default function MatchDetailMenu({ selectedTeam, filterData, sport }: Det
   const MenuList = () => {
     switch (selectedMenu) {
       case "예매 일정":
-        return <ReservationList filterData={filterData} />;
+        return (
+          <ReservationList
+            filterData={filterData}
+            setCurrentPage={setCurrentPage}
+            totalEl={totalEl}
+          />
+        );
       case "홈구장 안내":
         return <HomeInfo />;
       case "예매정보":
         return <ReserveInfo />;
       default:
-        return <ReservationList filterData={filterData} />;
+        return (
+          <ReservationList
+            filterData={filterData}
+            setCurrentPage={setCurrentPage}
+            totalEl={totalEl}
+          />
+        );
     }
   };
 
