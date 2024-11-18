@@ -87,7 +87,7 @@ export interface MatchDataProps {
 }
 
 export interface MyTeamType {
-  teamId: string;
+  id: string;
   teamName: string;
 }
 
