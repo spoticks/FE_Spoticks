@@ -1,4 +1,4 @@
-import CryingIcons from "@/assets/heroicons_ticket-solid.svg?react";
+import CryingIcons from "@/assets/cryingface.svg?react";
 import AuthFirstHeading from "@/common/components/atoms/AuthFirstHeading";
 import AccountDeletionForm from "@/pages/AccountDeletion/components/AccountDeletionForm";
 export default function AccountDeletion() {
