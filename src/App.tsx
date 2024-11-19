@@ -18,6 +18,14 @@ const queryClient = new QueryClient({
       }
     },
   }),
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+    mutations: {
+      retry: false,
+    },
+  },
 });
 
 function App() {
