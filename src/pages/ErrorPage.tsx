@@ -36,8 +36,9 @@ export default function ErrorPage({ error, resetErrorBoundary }: FallbackProps) 
     errorMessage.title = title;
     errorMessage.message = message;
   } else if (error?.request) {
-    errorMessage.title = "네트워크 오류가 발생했습니다.";
-    errorMessage.message = "새로 고침을 하거나 인터넷 연결을 확인하고 다시 시도해주세요.";
+    errorMessage.title = "서버에 연결할 수 없습니다.";
+    errorMessage.message =
+      "새로 고침을 하거나 인터넷 연결을 확인하시고, 잠시 후 다시 시도해주세요.";
   } else {
     errorMessage.title = "알 수 없는 오류가 발생했습니다.";
     errorMessage.message = "새로 고침을 하거나 잠시 후 다시 시도해주세요.";
