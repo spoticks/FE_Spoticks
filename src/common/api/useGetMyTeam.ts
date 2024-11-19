@@ -7,11 +7,7 @@ async function fetchMyTeam() {
   return data;
 }
 export default function useGetMyTeam() {
-  const {
-    data = [],
-    isLoading,
-    isError,
-  } = useQuery<MyTeamType[]>({
+  const { data, isLoading, isError } = useQuery<MyTeamType[]>({
     queryKey: ["myTeam"],
     queryFn: fetchMyTeam,
   });
