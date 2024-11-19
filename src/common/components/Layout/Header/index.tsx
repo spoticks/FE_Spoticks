@@ -8,7 +8,7 @@ export default function Header() {
   const { authority } = useMemberInfo();
 
   return (
-    <header className="sticky top-0 flex h-[80px] w-full justify-center border bg-foreground">
+    <header className="sticky top-0 z-50 flex h-[80px] w-full justify-center border bg-foreground">
       <div className="flex w-content-width items-center justify-between">
         <AppLogo />
         {authority !== "ROLE_ADMIN" && <HeaderNav />}
