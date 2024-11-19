@@ -13,7 +13,7 @@ export default function Layout() {
     <div className="flex min-h-screen flex-col items-center">
       <Header />
       <div className="flex w-content-width flex-1 flex-col items-center pt-[80px]">
-        <main className="w-full">
+        <main className="flex w-full flex-1 flex-col">
           <ErrorBoundary
             FallbackComponent={ErrorPage}
             onReset={reset}
