@@ -9,11 +9,10 @@ import Admin from "@/pages/admin/index";
 import NotFound from "./pages/NotFound";
 import Registration from "@/pages/admin/components/Registration";
 import { menu } from "./common/constants";
-import AuthRoute from "./common/components/AuthRoute";
+import AuthRoute from "./common/components/AuthLayout";
 import AccountDeletion from "@/pages/AccountDeletion";
 import MyTeam from "./pages/MyTeam";
 import MyTicket from "@/pages/MyTicket";
-import MyTicketRouteLayout from "@/pages/MyTicket/components/MyTicketRouteLayout";
 import MyPage from "@/pages/MyPage";
 import HomeInfo from "./pages/MatchList/components/HomeInfo";
 import ReserveInfo from "./pages/MatchList/components/ReserveInfo";
@@ -44,12 +43,10 @@ export default function Router() {
             <Route path="user-info" element={<MyPage />} />
             <Route path="account-deletion" element={<AccountDeletion />} />
             <Route path="my-team" element={<MyTeam />} />
-            <Route path="my-tickets" element={<MyTicketRouteLayout />}>
-              <Route path="my-reservations" element={<MyTicket />} />
-              <Route path="my-reservations/:id" element={<MyTicket />} />
-              <Route path="cancellation-history" element={<MyTicket />} />
-              <Route path="cancellation-history/:id" element={<MyTicket />} />
-            </Route>
+            <Route path="my-tickets/my-reservations" element={<MyTicket />} />
+            <Route path="my-tickets/my-reservations/:id" element={<MyTicket />} />
+            <Route path="my-tickets/cancellation-history" element={<MyTicket />} />
+            <Route path="my-tickets/cancellation-history/:id" element={<MyTicket />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/registration" element={<Registration />} />

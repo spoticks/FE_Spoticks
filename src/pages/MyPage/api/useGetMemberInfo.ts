@@ -1,11 +1,12 @@
 import axiosInstance from "@/common/utils/axiosInstance";
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 
 export default function useGetMemberInfo() {
-  const { isLoading, data, isError } = useQuery({
+  const { data } = useSuspenseQuery<{ phoneNumber: string }, AxiosError>({
     queryKey: ["memberInfo"],
     queryFn: () => axiosInstance.get(`/members/me`).then((res) => res.data),
   });
 
-  return { isLoading, data, isError };
+  return { data };
 }
