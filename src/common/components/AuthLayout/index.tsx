@@ -10,7 +10,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { Navigate, Outlet } from "react-router-dom";
 
 const myTicketMenu = ["예매완료", "취소내역"];
-export default function AuthRoute() {
+export default function AuthLayout() {
   const { accessToken } = useAuthStore((state) => ({
     accessToken: state.accessToken,
   }));
