@@ -1,21 +1,8 @@
-import Loading from "@/common/components/atoms/Loading";
 import InformationCard from "@/pages/MyTicket/components/InformationCard";
-import ErrorPage from "@/pages/ErrorPage";
 import useMyTicketHistory from "@/pages/MyTicket/api/useMyTicketHistory";
 
 export default function MyTicket() {
-  const { data, isLoading, isError } = useMyTicketHistory();
-
-  if (isLoading) {
-    return (
-      <div className="w-full gap-[40px]">
-        <Loading />
-      </div>
-    );
-  }
-  if (isError) {
-    return <ErrorPage />;
-  }
+  const { data } = useMyTicketHistory();
 
   return (
     <div className="grid grid-cols-3 flex-wrap gap-4">
