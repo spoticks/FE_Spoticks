@@ -1,6 +1,6 @@
 import { InformationCardProp } from "@/common/types/type";
+import axiosInstance from "@/common/utils/axiosInstance";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 export default function useMyTicketHistory() {
@@ -13,8 +13,7 @@ export default function useMyTicketHistory() {
   } = useQuery<InformationCardProp[]>({
     queryKey: ["myReservations", param],
     queryFn: async () => {
-      // 추후에 reservationStatus를 status로 바꿀 것.
-      const res = await axios(`http://localhost:3000/reservations`);
+      const res = await axiosInstance.get(`reservation?status=${param}&page=1`);
       return res.data;
     },
   });
