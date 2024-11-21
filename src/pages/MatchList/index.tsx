@@ -18,8 +18,7 @@ export default function MatchList({ sport }: MatchListProps) {
   const [filterData, setFilterData] = useState<ContentProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalEl, setTotatlEl] = useState(0);
-  console.log("filterData :", filterData);
-  console.log("currentPage :", currentPage);
+
   const { data: matchData = { content: [], pageInfo: {} as PageInfoProps } } = useMatchApi({
     sport,
     selectedTeam: selectedTeam || "전체 일정",
@@ -30,7 +29,7 @@ export default function MatchList({ sport }: MatchListProps) {
     setSelectedTeam("");
     navigate(`/match-list/${sport}`);
   }, [sport]);
-  console.log("data :", matchData);
+
   useEffect(() => {
     if (selectedTeam) {
       setTotatlEl(matchData.pageInfo.totalElements);

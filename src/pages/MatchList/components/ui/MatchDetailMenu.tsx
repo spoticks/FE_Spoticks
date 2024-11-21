@@ -66,10 +66,16 @@ export default function MatchDetailMenu({
     <div className="w-full">
       <div className="header flex w-full flex-row items-center">
         <div className="mr-[100px] flex flex-col">
-          <h1 className="text-[40px] font-semibold">{selectedTeam}</h1>
-          <h3 className="mb-2 text-[20px] text-text-primary opacity-50">
-            경기목록을 확인하고 예매해보세요!
-          </h3>
+          <div className="flex flex-row gap-10">
+            <div>
+              <h1 className="text-[40px] font-semibold">{selectedTeam}</h1>
+              <h3 className="mb-2 text-[20px] text-text-primary opacity-50">
+                경기목록을 확인하고 예매해보세요!
+              </h3>
+            </div>
+            {/* 좋아요 */}
+            <MyTeamButton sport={sport} selectedTeam={selectedTeam} />
+          </div>
           <div className="flex flex-row">
             {["예매 일정", "홈구장 안내", "예매정보"].map((menu) => (
               <div key={menu} onClick={() => handleMenuClick(menu)} className="mr-2 cursor-pointer">
@@ -82,8 +88,6 @@ export default function MatchDetailMenu({
             ))}
           </div>
         </div>
-        {/* 좋아요 */}
-        {/* <MyTeamButton selectedTeam={selectedTeam} /> */}
       </div>
       <div />
       <div className="pt-4">{MenuList()}</div>
