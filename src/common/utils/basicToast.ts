@@ -3,11 +3,14 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
+const main = document.getElementById("swal-relative");
+
 const basicToast = MySwal.mixin({
   toast: true,
   position: "top-end",
   showConfirmButton: false,
   timer: 3000,
+  target: main,
   timerProgressBar: true,
   didOpen: (toast) => {
     toast.onmouseenter = Swal.stopTimer;
@@ -16,7 +19,7 @@ const basicToast = MySwal.mixin({
   },
   width: "auto",
   customClass: {
-    container: "pt-[80px]",
+    container: "absolute p-0",
     popup: "rounded-[10px] text-xs",
   },
 });
