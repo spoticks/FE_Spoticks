@@ -12,6 +12,8 @@ interface DetailProps {
   sport: string;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   totalEl: number;
+  currentPage: number;
+  pageSize: number;
 }
 
 export default function MatchDetailMenu({
@@ -20,6 +22,8 @@ export default function MatchDetailMenu({
   sport,
   setCurrentPage,
   totalEl,
+  currentPage,
+  pageSize,
 }: DetailProps) {
   //예매내역, 홈구장안내, 예매설명 메뉴 선택
   const [selectedMenu, setSelectedMenu] = useState("예매 일정");
@@ -35,6 +39,9 @@ export default function MatchDetailMenu({
             filterData={filterData}
             setCurrentPage={setCurrentPage}
             totalEl={totalEl}
+            selectedTeam={selectedTeam}
+            currentPage={currentPage}
+            pageSize={pageSize}
           />
         );
       case "홈구장 안내":
@@ -47,6 +54,9 @@ export default function MatchDetailMenu({
             filterData={filterData}
             setCurrentPage={setCurrentPage}
             totalEl={totalEl}
+            selectedTeam={selectedTeam}
+            currentPage={currentPage}
+            pageSize={pageSize}
           />
         );
     }
@@ -66,7 +76,7 @@ export default function MatchDetailMenu({
                 <MenuButton
                   menu={menu}
                   sport={sport}
-                  reserveLen={menu === "예매 일정" ? filterData.length : undefined}
+                  reserveLen={menu === "예매 일정" ? totalEl : undefined}
                 />
               </div>
             ))}

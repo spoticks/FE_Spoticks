@@ -4,12 +4,20 @@ import TabClose from "@/assets/TabClose.svg?react";
 import { teams, leagueName } from "@/common/constants";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ContentProps } from "@/common/types/type";
 
 interface TabProps {
   sport: string;
   setSelectedTeam: React.Dispatch<React.SetStateAction<string>>;
+  setFilterData: React.Dispatch<React.SetStateAction<ContentProps[]>>;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
-export default function MatchListTab({ sport, setSelectedTeam }: TabProps) {
+export default function MatchListTab({
+  sport,
+  setSelectedTeam,
+  setFilterData,
+  setCurrentPage,
+}: TabProps) {
   const navigate = useNavigate();
 
   const TabStyle = "flex flex-row items-center bg-background py-2 pl-1";
@@ -26,6 +34,8 @@ export default function MatchListTab({ sport, setSelectedTeam }: TabProps) {
   //Tab에서 team 선택했을 때
   const handleTeamClick = (team: string) => {
     setSelectedTeam(team);
+    setFilterData([]);
+    setCurrentPage(1);
     navigate(`/match-list/${sport}/reserveSche`);
   };
 
