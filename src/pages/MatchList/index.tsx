@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import Main from "@/pages/MatchList/components/Main";
 import MatchListTab from "@/pages/MatchList/components/ui/Tab";
-import Error from "@/pages/ErrorPage";
-import Loading from "@/common/components/atoms/Loading";
 import MatchDetailMenu from "@/pages/MatchList/components/ui/MatchDetailMenu";
 import { ContentProps, PageInfoProps } from "@/common/types/type";
 import { useMatchApi } from "./api/api";
@@ -20,25 +18,22 @@ export default function MatchList({ sport }: MatchListProps) {
   const [filterData, setFilterData] = useState<ContentProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalEl, setTotatlEl] = useState(0);
-  console.log("filterData :", filterData);
-  console.log("currentPage :", currentPage);
-  const {
-    data: matchData = { content: [], pageInfo: {} as PageInfoProps },
-    isLoading,
-    error,
-  } = useMatchApi({ sport, selectedTeam: selectedTeam || "전체 일정", page: currentPage });
+
+  const { data: matchData = { content: [], pageInfo: {} as PageInfoProps } } = useMatchApi({
+    sport,
+    selectedTeam: selectedTeam || "전체 일정",
+    page: currentPage,
+  });
 
   useEffect(() => {
     setSelectedTeam("");
     navigate(`/match-list/${sport}`);
   }, [sport]);
-  console.log("data :", matchData);
+
   useEffect(() => {
     if (selectedTeam) {
+      setTotatlEl(matchData.pageInfo.totalElements);
       if (selectedTeam === "전체 일정") {
-        setFilterData([]);
-        setCurrentPage(1);
-        setTotatlEl(matchData.pageInfo.totalElements);
         setFilterData(matchData.content);
         navigate(`/match-list/${sport}/allSche`);
       } else {
@@ -53,22 +48,26 @@ export default function MatchList({ sport }: MatchListProps) {
     }
   }, [matchData, navigate, selectedTeam, sport]);
 
-  if (isLoading) return <Loading />;
-  if (error) return <Error />;
-
   return (
     <div className="flex w-content-width flex-row pt-10">
       {(matchData.content.length > 0 || (selectedTeam && filterData.length === 0)) && (
-        <MatchListTab sport={sport} setSelectedTeam={setSelectedTeam} />
+        <MatchListTab
+          sport={sport}
+          setSelectedTeam={setSelectedTeam}
+          setFilterData={setFilterData}
+          setCurrentPage={setCurrentPage}
+        />
       )}
       <div className="flex w-full pl-[30px]">
         {selectedTeam === "전체 일정" || selectedTeam ? (
           <MatchDetailMenu
             selectedTeam={selectedTeam}
-            filterData={filterData}
-            sport={sport}
             setCurrentPage={setCurrentPage}
+            sport={sport}
+            filterData={filterData}
             totalEl={totalEl}
+            currentPage={currentPage}
+            pageSize={matchData.pageInfo.size}
           />
         ) : (
           <Main sceduleLen={matchData.content.length} sport={sport} />

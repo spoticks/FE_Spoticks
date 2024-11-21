@@ -1,76 +1,46 @@
-import axios from "axios";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import Loading from "@/common/components/atoms/Loading";
-import Error from "@/pages/ErrorPage";
-import Heart from "@/assets/Heart.svg?react";
-import { teams } from "@/common/constants";
+import useGetMyTeam from "@/common/api/useGetMyTeam";
+import useMyTeamDeletion from "@/common/api/useMyTeamDeletion";
+import useMyTeamPost from "../../api/useMyTeamPost";
+import { getTeamId } from "@/common/utils/getTeamId";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 interface MyTeamProps {
+  sport: string;
   selectedTeam: string;
 }
 
-export default function MyTeamButton({ selectedTeam }: MyTeamProps) {
-  const queryClient = useQueryClient();
+export default function MyTeamButton({ sport, selectedTeam }: MyTeamProps) {
+  const { data } = useGetMyTeam();
+  const addition = useMyTeamPost();
+  const deletion = useMyTeamDeletion();
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["myTeamData", selectedTeam],
-    queryFn: async () => {
-      const sport = Object.keys(teams).find((sport) => teams[sport].includes(selectedTeam));
-      if (sport) {
-        // const teamIndex = teams[sport].indexOf(selectedTeam);
-        const { data } = await axios.get(`http://spoticks.shop:8080/myteam?memberId=1`);
-        return data;
-      }
-      return null;
-    },
-    enabled: selectedTeam !== "전체 일정",
-  });
-  console.log("data :", data);
+  const teamId = getTeamId(sport, selectedTeam);
 
-  const isMyTeam = data && data.includes(selectedTeam);
+  const isMyTeam = data?.some((team) => team.teamName === selectedTeam);
 
-  // 마이팀 추가/삭제 처리 함수
-  // const handleMyTeam = async () => {
-  //   const sport = Object.keys(teams).find((sport) => teams[sport].includes(selectedTeam));
-
-  //   if (sport && data) {
-  //     const teamIndex = teams[sport].indexOf(selectedTeam) + 1;
-  //     const url = `http://spoticks.shop:8080/myteam/${teamIdx}?memberId=${teamIdx}`;
-  //     console.log(teamIndex);
-  //     try {
-  //       if (isMyTeam) {
-  //         await axios.delete(url, {
-  //           data: { teamIndex },
-  //         });
-  //       } else {
-  //         await axios.post(url, {
-  //           teamIndex,
-  //         });
-  //       }
-
-  //       queryClient.invalidateQueries({ queryKey: ["myTeamData", selectedTeam] });
-  //     } catch (error) {
-  //       console.error("Error adding/removing team:", error);
-  //     }
-  //   }
-  // };
-
-  if (isLoading) return <Loading />;
-  if (error) return <Error />;
+  const handleMyTeam = (teamId: string) => {
+    if (isMyTeam) {
+      deletion.mutate(teamId);
+    } else {
+      addition.mutate(teamId);
+    }
+  };
 
   return (
-    <>
+    <div className="flex items-center">
       {selectedTeam !== "전체 일정" && (
         <div
-          // onClick={handleMyTeam}
+          onClick={() => handleMyTeam(String(teamId))}
           className="flex size-10 cursor-pointer flex-col items-center justify-center rounded-[10px] border-[1px] border-borders bg-foreground"
         >
-          <Heart
-            className={`${isMyTeam ? "fill-#dd4255 stroke-#dd4255" : "stroke-#767676 fill-none"}`}
-          />
+          {isMyTeam ? (
+            <AiFillHeart color="#dd4255" size={24} />
+          ) : (
+            <AiOutlineHeart color="#767676" size={24} />
+          )}
           <div className={`text-[15px] ${isMyTeam ? "text-Accent" : "text-borders"}`}>마이팀</div>
         </div>
       )}
-    </>
+    </div>
   );
 }
