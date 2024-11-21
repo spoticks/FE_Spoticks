@@ -1,16 +1,17 @@
 import InformationCard from "@/pages/MyTicket/components/InformationCard";
 import useMyTicketHistory from "@/pages/MyTicket/api/useMyTicketHistory";
+import NoTicketHistory from "@/pages/MyTicket/components/NoTicketHistory";
 
 export default function MyTicket() {
   const { data } = useMyTicketHistory();
 
   return (
-    <section className="grid grid-cols-3 flex-wrap gap-4">
+    <section className={`${data?.length ? "grid grid-cols-8 gap-4" : "flex flex-1"}`}>
       {/** InformationCard 혹은 정보 없음을 표시할 것. */}
       {data.length ? (
         data.map((el) => <InformationCard content={el} key={el.gameId} />)
       ) : (
-        <span>조회 내역이 없습니다!</span>
+        <NoTicketHistory />
       )}
     </section>
   );
