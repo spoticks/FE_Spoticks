@@ -1,38 +1,31 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { InformationCardProp } from "@/common/types/type";
+import axiosInstance from "@/common/utils/axiosInstance";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
-interface Seat {
+export interface SeatType {
   seatPosition: string;
-  seatRow: string;
-  seatNumber: string;
+  seatRow: number;
+  seatNum: number;
 }
 
 interface GameReservation {
-  homeTeamName: string;
-  awayTeamName: string;
-  gameStartTime: string;
-  stadiumName: string;
-  reservationStatus: string;
-  totalPrice: string;
-  createDate: string;
+  createdAt: string;
   memberName: string;
-  seat: Seat[];
-  gameId: number;
-  id: string;
-  sportName: string;
-  timeOffSale: string;
-  timeOnSale: string;
+  reservationStatus: "CANCELED" | "COMPLETED";
+  seats: SeatType[];
+  totalPrice: number;
+  game: InformationCardProp;
 }
 
 const fetchReservationDetails = async (reservationId: number) => {
-  const { data } = await axios.get(`http://localhost:3000/reservation/${reservationId}`);
+  console.log(reservationId);
+  const { data } = await axiosInstance.get(`/reservation/${reservationId}`);
   return data;
 };
 
-export default function useReservationDetails(reservationId: number, isOpen: boolean) {
-  return useQuery<GameReservation>({
+export default function useReservationDetails(reservationId: number) {
+  return useSuspenseQuery<GameReservation>({
     queryKey: ["reservationDetail", reservationId],
     queryFn: () => fetchReservationDetails(reservationId),
-    enabled: isOpen,
   });
 }
