@@ -12,10 +12,7 @@ export default function Layout() {
   return (
     <div className="flex min-h-screen flex-col items-center">
       <Header />
-      <div
-        id="swal-relative"
-        className="relative flex w-content-width flex-1 flex-col items-center pt-[80px]"
-      >
+      <div className="relative mb-20 flex w-content-width flex-1 flex-col items-center pt-[80px]">
         <main className="flex w-full flex-1 flex-col">
           <ErrorBoundary
             FallbackComponent={ErrorPage}
