@@ -9,11 +9,17 @@ export default function useMyTicketHistory() {
 
   return useInfiniteQuery<{ content: GameHistoryType; pageInfo: PageInfoProps }>({
     queryKey: ["myReservations", param],
-    queryFn: async () => {
-      const res = await axiosInstance.get(`reservation?status=${param}&page=1`);
+    queryFn: async ({ pageParam }) => {
+      const res = await axiosInstance.get(`reservation?status=${param}&page=${pageParam}`);
       return res.data;
     },
     initialPageParam: 1,
-    getNextPageParam: (lastPage) => lastPage.pageInfo.page + 1,
+    maxPages: 3,
+    getNextPageParam: (lastPage) => {
+      console.log(lastPage.pageInfo.page);
+      return lastPage.pageInfo.totalPages > lastPage.pageInfo.page
+        ? lastPage.pageInfo.page + 1
+        : null;
+    },
   });
 }
