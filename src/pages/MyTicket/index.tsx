@@ -6,17 +6,15 @@ import { useInView } from "react-intersection-observer";
 import Loading from "@/common/components/atoms/Loading";
 
 export default function MyTicket() {
-  const { data, fetchNextPage, status, isFetchingNextPage, hasNextPage } = useMyTicketHistory();
-  console.log(data);
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } = useMyTicketHistory();
   const { ref, inView } = useInView({
     threshold: 1,
   });
   useEffect(() => {
-    if (inView) {
+    if (inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [inView, fetchNextPage]);
-  console.log(hasNextPage);
+  }, [inView, fetchNextPage, hasNextPage]);
   return (
     <>
       <section className={`${data ? "grid grid-cols-3 gap-4" : "flex flex-1"}`}>
