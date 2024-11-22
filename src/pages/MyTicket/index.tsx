@@ -1,14 +1,22 @@
 import InformationCard from "@/pages/MyTicket/components/InformationCard";
 import useMyTicketHistory from "@/pages/MyTicket/api/useMyTicketHistory";
 import NoTicketHistory from "@/pages/MyTicket/components/NoTicketHistory";
+import React from "react";
 
 export default function MyTicket() {
-  const { data } = useMyTicketHistory();
+  const { data, fetchNextPage } = useMyTicketHistory();
+  console.log("data.pages[0].content = ", data?.pages[0].content);
+
   return (
-    <section className={`${data?.length ? "grid grid-cols-3 gap-4" : "flex flex-1"}`}>
-      {/** InformationCard 혹은 정보 없음을 표시할 것. */}
-      {data.length ? (
-        data.map((el) => <InformationCard content={el} key={el.reservationId} />)
+    <section className={`${data ? "grid grid-cols-3 gap-4" : "flex flex-1"}`}>
+      {data ? (
+        data.pages.map((page, pageIndex) => (
+          <React.Fragment key={pageIndex}>
+            {page.content.map((item) => (
+              <InformationCard content={item} key={item.reservationId} />
+            ))}
+          </React.Fragment>
+        ))
       ) : (
         <NoTicketHistory />
       )}
