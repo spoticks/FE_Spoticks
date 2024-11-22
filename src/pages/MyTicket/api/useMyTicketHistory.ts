@@ -14,7 +14,6 @@ export default function useMyTicketHistory() {
       return res.data;
     },
     initialPageParam: 1,
-    maxPages: 3,
     getNextPageParam: (lastPage) => {
       return lastPage.pageInfo.totalPages > lastPage.pageInfo.page
         ? lastPage.pageInfo.page + 1
