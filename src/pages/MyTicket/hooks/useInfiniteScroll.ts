@@ -22,20 +22,25 @@ interface UseInfiniteScrollProps {
     >
   >;
   hasNextPage: boolean;
+  isFetchingNextPage: boolean;
 }
 
-export default function useInfiniteScroll({ onLoadMore, hasNextPage }: UseInfiniteScrollProps) {
+export default function useInfiniteScroll({
+  onLoadMore,
+  hasNextPage,
+  isFetchingNextPage,
+}: UseInfiniteScrollProps) {
   const { ref, inView } = useInView({
     threshold: 1,
   });
 
   useEffect(() => {
-    if (inView && hasNextPage) {
+    if (inView && hasNextPage && !isFetchingNextPage) {
       onLoadMore();
     } else if (!hasNextPage) {
       alertToast("마지막 자료입니다!", "info", "bottom");
     }
-  }, [inView, onLoadMore, hasNextPage]);
+  }, [inView, onLoadMore, hasNextPage, isFetchingNextPage]);
 
   return ref;
 }

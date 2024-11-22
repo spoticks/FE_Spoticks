@@ -10,6 +10,7 @@ export default function MyTicket() {
   const ref = useInfiniteScroll({
     onLoadMore: fetchNextPage,
     hasNextPage,
+    isFetchingNextPage,
   });
 
   return (
@@ -28,7 +29,7 @@ export default function MyTicket() {
         )}
       </section>
       {isFetchingNextPage && <Loading />}
-      <div className="h-80" ref={ref} />
+      <div className="h-40" ref={ref} />
     </>
   );
 }
