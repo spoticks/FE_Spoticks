@@ -1,37 +1,39 @@
-import { MatchDataProps } from "@/common/types/type";
+import { InformationCardProp } from "@/common/types/type";
 import Barcode from "@/assets/Barcode.svg?react";
 import extractDateAndTime from "@/common/utils/extractDateAndTime";
+import { SeatType } from "@/pages/MyTicket/api/useReservationDetails";
 
 interface DetailedTicketProps {
-  data: MatchDataProps;
+  game: InformationCardProp;
   isReservationComplete?: boolean;
-  mySeats?: string[];
-  totalPay?: string;
+  mySeats?: SeatType[];
+  totalPay?: number;
 }
 
 export default function DetailedTicket({
-  data,
+  game,
   isReservationComplete,
   mySeats,
   totalPay,
 }: DetailedTicketProps) {
-  const { date, hours, minutes } = extractDateAndTime(data.gameStartTime);
+  const { date, hours, minutes } = extractDateAndTime(game.gameStartTime);
   return (
     <div
       className={`mb-6 flex w-full flex-col items-start rounded-[10px] ${isReservationComplete === true || isReservationComplete === undefined ? "bg-Accent" : "bg-borders"} px-5 py-6 drop-shadow-first`}
     >
-      <h2 className="mb-4 w-full border-b-2 border-b-text-secondary pb-2 text-[20px] font-bold">
-        {data.homeTeamName} vs {data.awayTeamName}
-      </h2>
+      <p className="w-full text-[20px] font-bold">{game.homeTeamName}</p>
+      <p className="w-full text-[20px] font-bold">vs</p>
+      <p className="w-full text-[20px] font-bold">{game.awayTeamName}</p>
+      <hr className="border-1 my-1 w-full border-text-secondary" />
       <div className="mb-2 flex flex-col">
-        <div className="text-[14px] text-text-secondary">{data.stadiumName}</div>
+        <div className="text-[14px] text-text-secondary">{game.stadiumName}</div>
         <div className="text-[14px]">
           {date} {hours}:{minutes}
         </div>
       </div>
-      {totalPay && mySeats ? (
-        <div className="flex w-full justify-end font-bold">
-          총 {mySeats.length} 매 {totalPay}원
+      {!isReservationComplete ? (
+        <div className="w-full font-bold">
+          총 {mySeats?.length} 매 {totalPay}원
         </div>
       ) : (
         <Barcode className="h-[30px]" />
