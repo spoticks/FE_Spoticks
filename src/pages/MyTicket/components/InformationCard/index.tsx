@@ -8,21 +8,24 @@ import { MdLocationOn } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 export default function InformationCard({
-  content: { homeTeamName, awayTeamName, gameStartTime, stadiumName, reservationStatus, id },
+  content: {
+    reservationId,
+    game: { homeTeamName, awayTeamName, gameStartTime, stadiumName },
+  },
 }: {
-  content: InformationCardProp;
+  content: { reservationId: number; game: InformationCardProp };
 }) {
-  const { isModalOpen, handleModalOpen, handleModalClose } = useHistoryModal(id, true);
+  const { isModalOpen, handleModalOpen, handleModalClose } = useHistoryModal(reservationId, true);
 
   const { date, hours, minutes } = extractDateAndTime(gameStartTime);
   const navigate = useNavigate();
 
   function handleInfoModalOpen() {
-    navigate(`${id}`);
+    navigate(`${reservationId}`);
     handleModalOpen();
   }
   function handleInfoModalClose() {
-    // /:id 에서 / 로 이동
+    // /:reservationId 에서 / 로 이동
     navigate(-1);
     handleModalClose();
   }
@@ -31,9 +34,9 @@ export default function InformationCard({
     <DefaultCard>
       <div className="p-[20px]">
         <div className="mb-2 border-b border-borders pb-2">
-          <span className="font-bold">
+          <p className="truncate font-bold">
             {homeTeamName} vs {awayTeamName}
-          </span>
+          </p>
           <div className="mt-3 flex items-center gap-3">
             <BsCalendar2EventFill className="size-4" />
             <div className="flex flex-col text-xs">
@@ -48,13 +51,15 @@ export default function InformationCard({
             <span className="text-xs">{stadiumName}</span>
           </div>
         </div>
-        {reservationStatus !== undefined && (
-          <button className="text-xs text-Accent" onClick={handleInfoModalOpen}>
-            상세정보
-          </button>
-        )}
+        <button className="text-xs text-Accent" onClick={handleInfoModalOpen}>
+          상세정보
+        </button>
       </div>
-      <InformationModal isOpen={isModalOpen} onClose={handleInfoModalClose} reservationId={id} />
+      <InformationModal
+        isOpen={isModalOpen}
+        onClose={handleInfoModalClose}
+        reservationId={reservationId}
+      />
     </DefaultCard>
   );
 }
