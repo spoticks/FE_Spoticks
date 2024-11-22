@@ -42,8 +42,11 @@ export interface InformationCardProp {
   gameStartTime: string;
   stadiumName: string;
   reservationStatus?: boolean;
-  id: number;
+  latitude: number;
+  longitude: number;
 }
+
+export type GameHistoryType = { reservationId: number; game: InformationCardProp }[];
 
 export interface Seat {
   id: number;
