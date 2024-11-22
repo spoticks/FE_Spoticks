@@ -1,20 +1,17 @@
 import InformationCard from "@/pages/MyTicket/components/InformationCard";
 import useMyTicketHistory from "@/pages/MyTicket/api/useMyTicketHistory";
 import NoTicketHistory from "@/pages/MyTicket/components/NoTicketHistory";
-import React, { useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+import React from "react";
 import Loading from "@/common/components/atoms/Loading";
+import useInfiniteScroll from "@/pages/MyTicket/hooks/useInfiniteScroll";
 
 export default function MyTicket() {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } = useMyTicketHistory();
-  const { ref, inView } = useInView({
-    threshold: 1,
+  const ref = useInfiniteScroll({
+    onLoadMore: fetchNextPage,
+    hasNextPage,
   });
-  useEffect(() => {
-    if (inView && hasNextPage) {
-      fetchNextPage();
-    }
-  }, [inView, fetchNextPage, hasNextPage]);
+
   return (
     <>
       <section className={`${data ? "grid grid-cols-3 gap-4" : "flex flex-1"}`}>
