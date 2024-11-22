@@ -1,21 +1,21 @@
+import alertToast from "@/common/utils/alertToast";
+import axiosInstance from "@/common/utils/axiosInstance";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import axios from "axios";
 
 export default function useTicketCancellationMutation(onClose: () => void, reservationId: number) {
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: (reservationId: number) => {
-      const request1 = axios.delete(`http://localhost:3000/reservation/${reservationId}`);
-      const request2 = axios.delete(`http://localhost:3000/reservations/${reservationId}`);
-      return Promise.all([request1, request2]);
+    mutationFn: async (reservationId: number) => {
+      await axiosInstance.delete(`reservation/${reservationId}`);
     },
     onSuccess: () => {
-      console.log("성공함!");
+      alertToast("예약을 취소했습니다!", "success");
       queryClient.invalidateQueries({ queryKey: ["myReservations"] });
       onClose();
     },
     onError: (error) => {
-      console.log(error, "때문에 실패함");
+      console.log(error);
+      alertToast("취소에 실패했습니다!", "error");
     },
   });
   function onCancelConfirmClick() {
