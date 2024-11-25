@@ -1,4 +1,5 @@
-import Button from "@/common/components/atoms/Button";
+import { BASIC_GREY_BUTTON_STYLE, BASIC_RED_BUTTON_STYLE } from "@/common/buttonStyles";
+import BasicButton from "@/common/components/atoms/button/BasicButton";
 import DetailedTicket from "@/common/components/organisms/DetailedTicket";
 import ModalInfo from "@/common/components/organisms/ModalInfo";
 import useHistoryModal from "@/hooks/useHistoryModal";
@@ -10,8 +11,9 @@ interface InformationModal {
 }
 export default function InformationDetail({ onClose, reservationId }: InformationModal) {
   const { isModalOpen, handleModalOpen, handleModalClose } = useHistoryModal();
-  const { data, isSuccess } = useReservationDetails(reservationId);
-  const isReservationComplete = data?.reservationStatus === "COMPLETED" ? true : false;
+  const { data, isSuccess, isReservationComplete, gamePassed } =
+    useReservationDetails(reservationId);
+
   return (
     <>
       {isSuccess && data && (
@@ -50,9 +52,11 @@ export default function InformationDetail({ onClose, reservationId }: Informatio
               }}
               secondInfoPart={{ heading: "매수", content: `${data.seats.length} 매` }}
             />
-            <Button
-              content={isReservationComplete ? "티켓 취소" : "닫기"}
+            <BasicButton
+              content={isReservationComplete ? (gamePassed ? "취소 불가" : "티켓 취소") : "닫기"}
               onClick={isReservationComplete ? handleModalOpen : onClose}
+              style={isReservationComplete ? BASIC_RED_BUTTON_STYLE : BASIC_GREY_BUTTON_STYLE}
+              disabled={gamePassed && isReservationComplete}
             />
           </section>
           <CancellationConfirmModal
