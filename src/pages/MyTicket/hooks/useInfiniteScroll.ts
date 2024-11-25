@@ -23,24 +23,28 @@ interface UseInfiniteScrollProps {
   >;
   hasNextPage: boolean;
   isFetchingNextPage: boolean;
+  totalElements: number;
 }
 
 export default function useInfiniteScroll({
   onLoadMore,
   hasNextPage,
   isFetchingNextPage,
+  totalElements,
 }: UseInfiniteScrollProps) {
   const { ref, inView } = useInView({
     threshold: 1,
   });
 
   useEffect(() => {
-    if (inView && hasNextPage && !isFetchingNextPage) {
-      onLoadMore();
-    } else if (!hasNextPage) {
-      alertToast("마지막 자료입니다!", "info", "bottom");
+    if (totalElements) {
+      if (inView && hasNextPage && !isFetchingNextPage) {
+        onLoadMore();
+      } else if (!hasNextPage) {
+        alertToast("마지막 자료입니다!", "info", "bottom");
+      }
     }
-  }, [inView, onLoadMore, hasNextPage, isFetchingNextPage]);
+  }, [inView, onLoadMore, hasNextPage, isFetchingNextPage, totalElements]);
 
   return ref;
 }

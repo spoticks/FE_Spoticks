@@ -7,16 +7,17 @@ import useInfiniteScroll from "@/pages/MyTicket/hooks/useInfiniteScroll";
 
 export default function MyTicket() {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } = useMyTicketHistory();
+  const totalElements = data.pages[0].pageInfo.totalElements;
   const ref = useInfiniteScroll({
     onLoadMore: fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
+    totalElements,
   });
-
   return (
     <>
-      <section className={`${data ? "grid grid-cols-3 gap-4" : "flex flex-1"}`}>
-        {data ? (
+      <section className={`${totalElements ? "grid grid-cols-3 gap-4" : "flex flex-1"}`}>
+        {totalElements ? (
           data.pages.map((page, pageIndex) => (
             <React.Fragment key={pageIndex}>
               {page.content.map((item) => (
@@ -29,7 +30,7 @@ export default function MyTicket() {
         )}
       </section>
       {isFetchingNextPage && <Loading />}
-      <div className="h-40" ref={ref} />
+      {totalElements ? <div className="h-40" ref={ref} /> : null}
     </>
   );
 }
