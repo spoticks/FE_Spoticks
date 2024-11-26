@@ -1,8 +1,9 @@
-import useMainMatch from "@/pages/Home/api/useMainMatch";
-import MainMatchInfo from "@/pages/Home/components/MainMatch/MainMatchInfo";
-import TicketOffSale from "@/pages/Home/components/MainMatch/TicketOffSale";
-import Timer from "@/pages/Home/components/MainMatch/Timer";
-import isSaleTimeOff from "@/pages/Home/utils/isSaleTimeOff";
+import Loading from "@/common/components/atoms/Loading";
+import ErrorPage from "@/pages/ErrorPage";
+import MainMatchContent from "@/pages/Home/components/MainMatch/MainMatchContent";
+import { useQueryErrorResetBoundary } from "@tanstack/react-query";
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 export interface MainMatchType {
   awayTeam: string;
@@ -15,11 +16,7 @@ export interface MainMatchType {
   timeOnSale: string;
 }
 export default function MainMatch() {
-  const {
-    data: { homeTeam, awayTeam, timeOffSale, timeOnSale, gameId },
-  } = useMainMatch();
-  const isTicketOnSale = isSaleTimeOff(timeOnSale, timeOffSale);
-
+  const { reset } = useQueryErrorResetBoundary();
   return (
     <div className="flex w-[620px] flex-col items-center gap-9">
       <div>
@@ -27,15 +24,15 @@ export default function MainMatch() {
           이번주 <strong className="text-red-500">인기 매치</strong> 입니다!
         </h1>
       </div>
-
-      {isTicketOnSale ? <Timer mainMatchStartTime={timeOffSale} /> : <TicketOffSale />}
-      <MainMatchInfo
-        homeTeam={homeTeam}
-        awayTeam={awayTeam}
-        gameId={gameId}
-        timeOffSale={timeOffSale}
-        timeOnSale={timeOnSale}
-      />
+      <Suspense fallback={<Loading />}>
+        <ErrorBoundary
+          FallbackComponent={ErrorPage}
+          onReset={reset}
+          resetKeys={[location.pathname]}
+        >
+          <MainMatchContent />
+        </ErrorBoundary>
+      </Suspense>
     </div>
   );
 }
