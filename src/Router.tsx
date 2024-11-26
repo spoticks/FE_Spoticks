@@ -3,7 +3,7 @@ import Home from "@/pages/Home";
 import Layout from "./common/components/Layout";
 import SignUp from "./pages/SignUp";
 import Login from "@/pages/Login";
-import Reservation from "./pages/Reservation";
+import Reservation from "@/pages/Reservation";
 import MatchList from "@/pages/MatchList";
 import Admin from "@/pages/admin/index";
 import NotFound from "./pages/NotFound";

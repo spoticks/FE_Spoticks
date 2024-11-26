@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
-import useAxios from "../hooks/useAxios";
-import Section from "../components/seats/Section";
-import { Seat, seatFormData, SeatsResponse } from "../common/types/type";
-import SectionOfSeats from "../components/seats/SectionOfSeats";
-import SelectedSeats from "../components/seats/SelectedSeat";
+import useAxios from "../../hooks/useAxios";
+import Section from "../../components/seats/Section";
+import { Seat, seatFormData, SeatsResponse } from "../../common/types/type";
+import SectionOfSeats from "../../components/seats/SectionOfSeats";
+import SelectedSeats from "../../components/seats/SelectedSeat";
 
-import Error from "./ErrorPage";
 import Loading from "@/common/components/atoms/Loading";
 
 interface sectionOfSeats {
@@ -89,7 +88,6 @@ export default function Reservation() {
   }, [seats, selectedSection]);
 
   if (isLoading) return <Loading />;
-  if (error) return <Error />;
 
   return (
     <div className="w-full">
