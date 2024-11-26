@@ -25,11 +25,13 @@ export interface PageInfoProps {
 }
 
 export interface MatchData {
-  gameId: number;
-  homeTeamName: string;
   awayTeamName: string;
-  sportName: string;
+  gameId: number;
   gameStartTime: string;
+  homeTeamName: string;
+  latitude: number;
+  longitude: number;
+  stadiumName: string;
 }
 
 export type SportName = {
