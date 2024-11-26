@@ -1,5 +1,6 @@
 import useTimer from "@/pages/Home/hooks/useTimer";
 import { LeftTime } from "@/pages/Home/utils/timeUtils";
+import TicketOffSale from "@/pages/Home/components/MainMatch/TicketOffSale";
 
 const timeMap: Record<keyof LeftTime, string> = {
   days: "일",
@@ -14,7 +15,7 @@ export default function Timer({ mainMatchStartTime }: { mainMatchStartTime: stri
   return (
     <div className="flex justify-center">
       {isTimeUp ? (
-        <span className="flex h-20 items-center">예매 일정이 지났습니다!</span>
+        <TicketOffSale />
       ) : (
         <>
           {Object.entries(leftTime).map(([unit, value]) => (
