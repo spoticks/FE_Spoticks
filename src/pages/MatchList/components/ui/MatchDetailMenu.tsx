@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import HomeInfo from "@/pages/MatchList/components/HomeInfo";
 import ReservationList from "@/pages/MatchList/components/ReservationList";
 import ReserveInfo from "@/pages/MatchList/components/ReserveInfo";
 import { ContentProps } from "@/common/types/type";
 import MyTeamButton from "@/pages/MatchList/components/ui/MyTeamButton";
 import MenuButton from "@/common/components/atoms/button/MenuButton";
+import Loading from "@/common/components/atoms/Loading";
 
 interface DetailProps {
   selectedTeam: string;
@@ -74,7 +75,9 @@ export default function MatchDetailMenu({
               </h3>
             </div>
             {/* 좋아요 */}
-            <MyTeamButton sport={sport} selectedTeam={selectedTeam} />
+            <Suspense fallback={<Loading />}>
+              <MyTeamButton sport={sport} selectedTeam={selectedTeam} />
+            </Suspense>
           </div>
           <div className="flex flex-row">
             {["예매 일정", "홈구장 안내", "예매정보"].map((menu) => (
