@@ -1,5 +1,6 @@
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import LinkButton from "@/common/components/atoms/button/LinkButton";
+import MatchDate from "@/common/components/molecules/MatchDate";
 import { MainMatchType } from "@/pages/Home/components/MainMatch";
 import MainMatchTeam from "@/pages/Home/components/MainMatch/MainMatchInfo/MainMatchTeam";
 import isSaleTimeOff from "@/pages/Home/utils/isSaleTimeOff";
@@ -10,11 +11,15 @@ export default function MainMatchInfo({
   gameId,
   timeOffSale,
   timeOnSale,
-}: Pick<MainMatchType, "homeTeam" | "awayTeam" | "gameId" | "timeOffSale" | "timeOnSale">) {
+  gameStartTime,
+}: Pick<
+  MainMatchType,
+  "homeTeam" | "awayTeam" | "gameId" | "timeOffSale" | "timeOnSale" | "gameStartTime"
+>) {
   const isTicketOnSale = isSaleTimeOff(timeOnSale, timeOffSale);
-
   return (
     <div className="flex w-full flex-col items-center justify-center rounded border border-borders bg-foreground p-4">
+      <MatchDate gameStartTime={gameStartTime} />
       <MainMatchTeam homeTeam={homeTeam} awayTeam={awayTeam} />
       {isTicketOnSale ? (
         <LinkButton
