@@ -8,7 +8,7 @@ export default function MainMatchTeam({
   awayTeam: string;
 }) {
   return (
-    <div className="mb-6 flex w-full items-center justify-between">
+    <div className="mb-6 mt-4 flex w-full items-center justify-between">
       <TeamLogo teamName={homeTeam} size="mainMatch" />
       <div className="mx-2 flex flex-1 flex-col justify-center gap-2">
         <p className="text-left text-sm font-bold">(HOME){homeTeam}</p>
