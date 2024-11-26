@@ -7,7 +7,7 @@ import MatchDateInfo from "@/pages/Home/components/WeeklyMatches/MatchCard/Match
 import WeeklyMatchTeam from "@/pages/Home/components/WeeklyMatches/MatchCard/WeeklyMatchTeam";
 
 export default function MatchCard({ data }: { data: MatchData }) {
-  const { homeTeamName, awayTeamName, gameStartTime, gameId } = data;
+  const { homeTeamName, awayTeamName, gameStartTime, gameId, latitude, longitude } = data;
 
   /* 서버 재배포 후
   const isTicketOnSale = isSaleTimeOff(timeOnSale, timeOffSale);
@@ -17,7 +17,12 @@ export default function MatchCard({ data }: { data: MatchData }) {
   return (
     <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-borders bg-foreground p-4">
       {/* 경기 카드*/}
-      <MatchDateInfo gameStartTime={gameStartTime} />
+      <MatchDateInfo
+        gameStartTime={gameStartTime}
+        latitude={latitude}
+        longitude={longitude}
+        gameId={gameId}
+      />
       <WeeklyMatchTeam homeTeamName={homeTeamName} awayTeamName={awayTeamName} />
       {isGameStarted ? (
         <BasicButton

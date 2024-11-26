@@ -1,20 +1,27 @@
-import formatDate from "@/pages/Home/utils/formatDate";
-import Sun from "@/assets/icons8-sun.svg?react";
+import MatchDate from "@/common/components/molecules/MatchDate";
+import useMatchWeather from "@/pages/Home/api/useMatchWeather";
 
-export default function MatchDateInfo({ gameStartTime }: { gameStartTime: string }) {
-  const hours = new Date(gameStartTime).getHours();
-  const minutes = new Date(gameStartTime).getMinutes();
+export default function MatchDateInfo({
+  gameStartTime,
+  latitude,
+  longitude,
+  gameId,
+}: {
+  gameStartTime: string;
+  latitude: number;
+  longitude: number;
+  gameId: number;
+}) {
+  const weatherIconCode = useMatchWeather(gameId, latitude, longitude);
 
   return (
-    <div className="flex items-center justify-center gap-2">
+    <div className="relative flex justify-center gap-2">
       {/* 경기 날짜 및 기상 정보 */}
-      <div className="flex w-full justify-center">
-        <p className="">{formatDate(gameStartTime)}</p>
-        <p className="ml-2 font-bold">
-          {String(hours).padStart(2, "0")}:{String(minutes).padStart(2, "0")}
-        </p>
-        <Sun className="size-6" />
-      </div>
+      <MatchDate gameStartTime={gameStartTime} />
+      <img
+        src={`https://openweathermap.org/img/wn/${weatherIconCode}@2x.png`}
+        className="absolute -right-7 top-[-0.125rem] size-6"
+      />
     </div>
   );
 }
