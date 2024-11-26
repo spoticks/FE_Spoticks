@@ -9,9 +9,7 @@ export default function Home() {
         <MainMatch />
         <Tickets />
       </section>
-      <section>
-        <WeeklyMatches />
-      </section>
+      <WeeklyMatches />
     </div>
   );
 }
