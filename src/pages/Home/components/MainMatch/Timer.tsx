@@ -9,9 +9,8 @@ const timeMap: Record<keyof LeftTime, string> = {
   seconds: "초",
 };
 
-export default function Timer({ mainMatchStartTime }: { mainMatchStartTime: string }) {
-  const { leftTime, isTimeUp } = useTimer(mainMatchStartTime);
-
+export default function Timer({ timeOffSale }: { timeOffSale: string }) {
+  const { leftTime, isTimeUp } = useTimer(timeOffSale);
   return (
     <div className="flex justify-center">
       {isTimeUp ? (
