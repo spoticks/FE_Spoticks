@@ -1,17 +1,36 @@
 import InformationCard from "@/pages/MyTicket/components/InformationCard";
 import useMyTicketHistory from "@/pages/MyTicket/api/useMyTicketHistory";
+import NoTicketHistory from "@/pages/MyTicket/components/NoTicketHistory";
+import React from "react";
+import Loading from "@/common/components/atoms/Loading";
+import useInfiniteScroll from "@/pages/MyTicket/hooks/useInfiniteScroll";
 
 export default function MyTicket() {
-  const { data } = useMyTicketHistory();
-
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } = useMyTicketHistory();
+  const totalElements = data.pages[0].pageInfo.totalElements;
+  const ref = useInfiniteScroll({
+    onLoadMore: fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    totalElements,
+  });
   return (
-    <div className="grid grid-cols-3 flex-wrap gap-4">
-      {/** InformationCard 혹은 정보 없음을 표시할 것. */}
-      {data.length ? (
-        data.map((el) => <InformationCard content={el} key={el.gameId} />)
-      ) : (
-        <span>조회 내역이 없습니다!</span>
-      )}
-    </div>
+    <>
+      <section className={`${totalElements ? "grid grid-cols-3 gap-4" : "flex flex-1"}`}>
+        {totalElements ? (
+          data.pages.map((page, pageIndex) => (
+            <React.Fragment key={pageIndex}>
+              {page.content.map((item) => (
+                <InformationCard content={item} key={item.reservationId} />
+              ))}
+            </React.Fragment>
+          ))
+        ) : (
+          <NoTicketHistory />
+        )}
+      </section>
+      {isFetchingNextPage && <Loading />}
+      {totalElements ? <div className="h-40" ref={ref} /> : null}
+    </>
   );
 }

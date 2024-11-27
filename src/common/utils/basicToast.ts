@@ -8,6 +8,7 @@ const basicToast = MySwal.mixin({
   position: "top-end",
   showConfirmButton: false,
   timer: 3000,
+  target: "main",
   timerProgressBar: true,
   didOpen: (toast) => {
     toast.onmouseenter = Swal.stopTimer;
@@ -16,7 +17,7 @@ const basicToast = MySwal.mixin({
   },
   width: "auto",
   customClass: {
-    container: "pt-[80px]",
+    container: "absolute pt-0",
     popup: "rounded-[10px] text-xs",
   },
 });
