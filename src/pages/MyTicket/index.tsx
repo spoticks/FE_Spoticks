@@ -3,7 +3,7 @@ import useMyTicketHistory from "@/pages/MyTicket/api/useMyTicketHistory";
 import NoTicketHistory from "@/pages/MyTicket/components/NoTicketHistory";
 import React from "react";
 import Loading from "@/common/components/atoms/Loading";
-import useInfiniteScroll from "@/pages/MyTicket/hooks/useInfiniteScroll";
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 
 export default function MyTicket() {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } = useMyTicketHistory();

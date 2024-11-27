@@ -36,5 +36,5 @@ export default function TeamLogo({ teamName, size = "matchCard" }: TeamLogoProps
 
   const Logo = teamLogos[teamName];
 
-  return <Logo className={sizeClasses[size]} />;
+  return Logo ? <Logo className={sizeClasses[size]} /> : <Doosan className="size-14" />;
 }

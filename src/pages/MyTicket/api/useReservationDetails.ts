@@ -1,5 +1,6 @@
 import { InformationCardProp } from "@/common/types/type";
 import axiosInstance from "@/common/utils/axiosInstance";
+import isGameDatePast from "@/common/utils/isGameDatePast";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 export interface SeatType {
@@ -26,14 +27,6 @@ function getReservationStatus(reservationStatus: string) {
   return reservationStatus === "COMPLETED" ? true : false;
 }
 
-function isGameDatePast(gameStartTime: string) {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const gameDate = new Date(gameStartTime);
-  gameDate.setHours(0, 0, 0, 0);
-  // 게임 시작일 <= 오늘
-  return gameDate <= today;
-}
 export default function useReservationDetails(reservationId: number) {
   const { data, isSuccess } = useSuspenseQuery<GameReservation>({
     queryKey: ["reservationDetail", reservationId],
