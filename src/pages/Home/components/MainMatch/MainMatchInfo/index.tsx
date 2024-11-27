@@ -3,7 +3,7 @@ import LinkButton from "@/common/components/atoms/button/LinkButton";
 import MatchDate from "@/common/components/molecules/MatchDate";
 import { MainMatchType } from "@/pages/Home/components/MainMatch";
 import MainMatchTeam from "@/pages/Home/components/MainMatch/MainMatchInfo/MainMatchTeam";
-import isSaleTimeOff from "@/pages/Home/utils/isSaleTimeOff";
+import isSaleTimeOn from "@/pages/Home/utils/isSaleTimeOn";
 
 export default function MainMatchInfo({
   homeTeam,
@@ -16,7 +16,7 @@ export default function MainMatchInfo({
   MainMatchType,
   "homeTeam" | "awayTeam" | "gameId" | "timeOffSale" | "timeOnSale" | "gameStartTime"
 >) {
-  const isTicketOnSale = isSaleTimeOff(timeOnSale, timeOffSale);
+  const isTicketOnSale = isSaleTimeOn(timeOnSale, timeOffSale);
   return (
     <div className="flex w-full flex-col items-center justify-center rounded border border-borders bg-foreground p-4">
       <MatchDate gameStartTime={gameStartTime} />

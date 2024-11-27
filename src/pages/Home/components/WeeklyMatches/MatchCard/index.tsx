@@ -10,7 +10,7 @@ export default function MatchCard({ data }: { data: MatchData }) {
   const { homeTeamName, awayTeamName, gameStartTime, gameId, latitude, longitude } = data;
 
   /* 서버 재배포 후
-  const isTicketOnSale = isSaleTimeOff(timeOnSale, timeOffSale);
+  const isTicketOnSale = isSaleTimeOn(timeOnSale, timeOffSale);
   로 바꿀 것
   */
   const isGameStarted = isGameDatePast(gameStartTime);

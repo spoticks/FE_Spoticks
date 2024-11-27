@@ -1,4 +1,4 @@
-export default function isSaleTimeOff(timeOnSale: string, timeOffSale: string) {
+export default function isSaleTimeOn(timeOnSale: string, timeOffSale: string) {
   const now = new Date();
   const onSaleDate = new Date(timeOnSale);
   const offSaleDate = new Date(timeOffSale);
