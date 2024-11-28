@@ -3,7 +3,6 @@ import { menu } from "@/common/constants";
 import { ContentProps, MatchType } from "@/common/types/type";
 import DetailModal from "@/pages/admin/components/DetailModal";
 import useAxios from "@/hooks/useAxios";
-import ErrorPage from "@/pages/ErrorPage";
 import { useState } from "react";
 import Header from "./components/atoms/Header";
 import Pagination from "./components/atoms/Pagination";
@@ -25,17 +24,16 @@ export default function Admin() {
   };
 
   // API 호출
-  const {
-    data: matches = initialMatches,
-    isError,
-    isLoading,
-  } = useAxios<MatchType>(["matches", selectedSport, String(currentPage)], {
-    config: {
-      url: "/admin/games",
-      method: "GET",
+  const { data: matches = initialMatches, isLoading } = useAxios<MatchType>(
+    ["matches", selectedSport, String(currentPage)],
+    {
+      config: {
+        url: "/admin/games",
+        method: "GET",
+      },
+      params: { ...(selectedSport !== "All" && { sport: selectedSport }), page: currentPage },
     },
-    params: { ...(selectedSport !== "All" && { sport: selectedSport }), page: currentPage },
-  });
+  );
 
   // 필터링된 경기 목록
   const filteredMatches =
@@ -63,10 +61,6 @@ export default function Admin() {
 
   if (isLoading) {
     return <Loading />;
-  }
-
-  if (isError) {
-    return <ErrorPage />;
   }
 
   return (

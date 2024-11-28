@@ -15,10 +15,10 @@ export const getTeamId = (sport: string, teamName: string): number | null => {
     case "야구":
       offset = 20;
       break;
-    case "농구":
+    case "배구":
       offset = 40;
       break;
-    case "배구":
+    case "농구":
       offset = 50;
       break;
     default:
