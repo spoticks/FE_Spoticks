@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import HomeInfo from "@/pages/MatchList/components/HomeInfo";
 import ReservationList from "@/pages/MatchList/components/ReservationList";
 import ReserveInfo from "@/pages/MatchList/components/ReserveInfo";
 import { ContentProps } from "@/common/types/type";
 import MyTeamButton from "@/pages/MatchList/components/ui/MyTeamButton";
 import MenuButton from "@/common/components/atoms/button/MenuButton";
+import Loading from "@/common/components/atoms/Loading";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorPage from "@/pages/ErrorPage";
+import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 
 interface DetailProps {
   selectedTeam: string;
@@ -25,6 +29,7 @@ export default function MatchDetailMenu({
   currentPage,
   pageSize,
 }: DetailProps) {
+  const { reset } = useQueryErrorResetBoundary();
   //예매내역, 홈구장안내, 예매설명 메뉴 선택
   const [selectedMenu, setSelectedMenu] = useState("예매 일정");
   const handleMenuClick = (menu: string) => {
@@ -74,7 +79,15 @@ export default function MatchDetailMenu({
               </h3>
             </div>
             {/* 좋아요 */}
-            <MyTeamButton sport={sport} selectedTeam={selectedTeam} />
+            <Suspense fallback={<Loading />}>
+              <ErrorBoundary
+                FallbackComponent={ErrorPage}
+                onReset={reset}
+                resetKeys={[location.pathname]}
+              >
+                <MyTeamButton sport={sport} selectedTeam={selectedTeam} />
+              </ErrorBoundary>
+            </Suspense>
           </div>
           <div className="flex flex-row">
             {["예매 일정", "홈구장 안내", "예매정보"].map((menu) => (

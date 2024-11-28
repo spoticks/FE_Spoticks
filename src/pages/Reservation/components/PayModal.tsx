@@ -2,8 +2,8 @@ import Modal from "react-modal";
 import { IoIosCloseCircle } from "react-icons/io";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
-import Error from "../pages/ErrorPage";
-import { MatchDataProps } from "../common/types/type";
+import Error from "../../ErrorPage";
+import { MatchDataProps } from "../../../common/types/type";
 import { useNavigate } from "react-router-dom";
 import Button from "@/common/components/atoms/Button";
 import Loading from "@/common/components/atoms/Loading";
@@ -14,7 +14,7 @@ import InfoPart from "@/common/components/molecules/InfoPart";
 interface PayModalProps {
   isOpen: boolean;
   onClose: () => void;
-  gameId: number;
+  gameId?: number;
   mySeats: string[];
   matchData: MatchDataProps;
   totalPay: string;
@@ -76,7 +76,7 @@ export default function PayModal({
       </div>
       <section>
         {isPending && <Loading />}
-        {error && <Error />}
+        {/* {error && <Error />} */}
         {matchData && (
           <>
             <DetailedTicket data={matchData} mySeats={mySeats} totalPay={totalPay} />

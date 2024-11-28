@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Seat } from "../../common/types/type";
+import { Seat } from "../../../../common/types/type";
 import { useLocation } from "react-router-dom";
-import PayModal from "@/components/PayModal";
+import PayModal from "@/pages/Reservation/components/PayModal";
 
 interface SelectedSeatsSummaryProps {
   selectedSeats: Seat[];
   selectedSection: string;
-  gameId: number;
+  gameId?: number;
 }
 
 export default function SelectedSeats({

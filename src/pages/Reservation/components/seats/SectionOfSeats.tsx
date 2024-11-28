@@ -1,4 +1,4 @@
-import { Seat, sectionOfSeats } from "../../common/types/type";
+import { Seat, sectionOfSeats } from "../../../../common/types/type";
 
 interface SeatsProps {
   sectionOfSeats: Seat[];
