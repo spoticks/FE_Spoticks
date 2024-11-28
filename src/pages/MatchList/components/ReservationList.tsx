@@ -8,17 +8,43 @@ interface ReservationListProps {
   filterData: ContentProps[];
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   totalEl: number;
+  selectedTeam: string;
+  currentPage: number;
+  pageSize: number;
 }
-const ReservationList = ({ filterData, setCurrentPage, totalEl }: ReservationListProps) => {
-  const [viewMatches, setViewMatches] = useState<ContentProps[]>([]);
+const ReservationList = ({
+  filterData,
+  setCurrentPage,
+  totalEl,
+  selectedTeam,
+  currentPage,
+  pageSize,
+}: ReservationListProps) => {
+  const [allMatches, setAllMatches] = useState<ContentProps[]>([]); // 누적 데이터
+  const [viewMatches, setViewMatches] = useState<ContentProps[]>([]); // 화면에 보여질 데이터
 
   useEffect(() => {
-    // setViewMatches((prevMatches) => [...prevMatches, ...filterData]);
-    setViewMatches(filterData);
+    // 초기화
+    setAllMatches([]);
+    setViewMatches([]);
+    setCurrentPage(1);
+  }, [selectedTeam]);
+
+  useEffect(() => {
+    setAllMatches((prevMatches) => {
+      const newMatches = filterData.filter(
+        (match) => !prevMatches.some((prev) => prev.gameId === match.gameId),
+      );
+      return [...prevMatches, ...newMatches];
+    });
   }, [filterData]);
 
+  useEffect(() => {
+    setViewMatches(allMatches.slice(0, currentPage * pageSize));
+  }, [allMatches, currentPage]);
+
   const addViewClick = () => {
-    if (totalEl > viewMatches.length) {
+    if (viewMatches.length < totalEl) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
   };
@@ -27,14 +53,16 @@ const ReservationList = ({ filterData, setCurrentPage, totalEl }: ReservationLis
 
   return (
     <div>
-      {filterData.length > 0 ? (
+      {allMatches.length > 0 ? (
         <table className="mx-[-10px] w-full border-separate border-spacing-x-[10px]">
           <thead>
             <tr>
               {columnName.map((column) => (
                 <th
                   key={column}
-                  className={`border px-4 py-2 text-text-primary opacity-50 ${column === "" ? "border-none bg-none" : "bg-foreground"}`}
+                  className={`border px-4 py-2 text-text-primary opacity-50 ${
+                    column === "" ? "border-none bg-none" : "bg-foreground"
+                  }`}
                 >
                   {column}
                 </th>
@@ -72,7 +100,7 @@ const ReservationList = ({ filterData, setCurrentPage, totalEl }: ReservationLis
       ) : (
         <h1>해당 팀의 경기가 없습니다!</h1>
       )}
-      {totalEl > viewMatches.length && (
+      {viewMatches.length < totalEl && (
         <div className="mt-4 flex justify-center">
           <BasicButton
             content="더보기"

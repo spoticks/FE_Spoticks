@@ -9,7 +9,6 @@ interface MatchApiParams {
 }
 
 export function useMatchApi({ sport, selectedTeam, page }: MatchApiParams) {
-  console.log(sport, selectedTeam);
   const selectedTeamId = getTeamId(sport, selectedTeam);
   const url = selectedTeam === "전체 일정" ? `/games/sports` : `/teams/${selectedTeamId}/games`;
   const params = selectedTeam === "전체 일정" ? { sport, page } : undefined;
