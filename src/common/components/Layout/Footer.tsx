@@ -23,18 +23,9 @@ export default function Footer() {
     window.open(url, "_blank");
   }
   return (
-    <footer className="flex h-[160px] w-full justify-center">
-      <div className="flex w-content-width flex-col items-center justify-center">
-        <button
-          className="flex items-center gap-1 text-[16px] font-semibold transition-opacity hover:opacity-35"
-          onClick={() => {
-            openGithubLink("https://github.com/orgs/spoticks/repositories");
-          }}
-        >
-          <GithubLogo className="size-5" />
-          Spoticks on Github
-        </button>
-        <div className="flex gap-2">
+    <footer className="flex w-full justify-center">
+      <div className="flex w-content-width flex-col items-center justify-center p-8">
+        <div className="mb-4 flex gap-2">
           {teamMembers.map((member) => (
             <button
               className="flex items-center gap-1 text-[16px] font-semibold transition-opacity hover:opacity-35"
@@ -47,6 +38,16 @@ export default function Footer() {
             </button>
           ))}
         </div>
+        <button
+          className="mb-2 flex items-center gap-1 text-[16px] font-semibold transition-opacity hover:opacity-35"
+          onClick={() => {
+            openGithubLink("https://github.com/orgs/spoticks/repositories");
+          }}
+        >
+          <GithubLogo className="size-5" />
+          Spoticks on Github
+        </button>
+
         <p className="text-[16px] font-normal">© 2024 Spoticks.</p>
         <p className="text-[14px] font-normal text-text-tertiary">
           Weather data provided by OpenWeatherMap
