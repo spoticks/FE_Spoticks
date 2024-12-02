@@ -72,7 +72,7 @@ export const teamMembers = [
   },
   {
     role: "FE",
-    name: "김경민",
+    name: "노경민",
     url: "https://github.com/devminoh",
   },
   {
