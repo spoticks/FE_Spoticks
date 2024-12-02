@@ -1,5 +1,4 @@
 export default function getErrorToastMessage(message: string) {
-  console.log(message);
   switch (message) {
     case "JWT Token expired":
       return "로그인이 만료되었습니다. 다시 로그인 해주세요!";
