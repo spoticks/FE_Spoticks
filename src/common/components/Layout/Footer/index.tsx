@@ -1,57 +1,18 @@
-import GithubLogo from "@/assets/github-mark.svg?react";
-import { PiGithubLogo } from "react-icons/pi";
+import Copyright from "@/common/components/Layout/Footer/Copyright";
+import ProjectLink from "@/common/components/Layout/Footer/GithubLink";
+import { teamMembers } from "@/common/constants";
 
-const teamMembers = [
-  {
-    role: "FE",
-    name: "도현수",
-    url: "https://github.com/dohyeons",
-  },
-  {
-    role: "FE",
-    name: "김경민",
-    url: "https://github.com/devminoh",
-  },
-  {
-    role: "BE",
-    name: "김지효",
-    url: "https://github.com/zirryo",
-  },
-];
 export default function Footer() {
-  function openGithubLink(url: string) {
-    window.open(url, "_blank");
-  }
   return (
     <footer className="flex w-full justify-center">
       <div className="flex w-content-width flex-col items-center justify-center p-8">
         <div className="mb-4 flex gap-2">
           {teamMembers.map((member) => (
-            <button
-              className="flex items-center gap-1 text-[16px] font-semibold transition-opacity hover:opacity-35"
-              onClick={() => {
-                openGithubLink(member.url);
-              }}
-            >
-              <PiGithubLogo className="size-5" />
-              {member.role} - {member.name}
-            </button>
+            <ProjectLink content={member} />
           ))}
         </div>
-        <button
-          className="mb-2 flex items-center gap-1 text-[16px] font-semibold transition-opacity hover:opacity-35"
-          onClick={() => {
-            openGithubLink("https://github.com/orgs/spoticks/repositories");
-          }}
-        >
-          <GithubLogo className="size-5" />
-          Spoticks on Github
-        </button>
-
-        <p className="text-[16px] font-normal">© 2024 Spoticks.</p>
-        <p className="text-[14px] font-normal text-text-tertiary">
-          Weather data provided by OpenWeatherMap
-        </p>
+        <ProjectLink />
+        <Copyright />
       </div>
     </footer>
   );
