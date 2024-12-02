@@ -2,10 +2,9 @@ import Router from "./Router";
 import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useState } from "react";
-import useErrorHandler from "@/common/utils/errorHandler";
+import errorHandler from "@/common/utils/errorHandler";
 
 function App() {
-  const { errorHandler } = useErrorHandler();
   const [queryClient] = useState(
     new QueryClient({
       queryCache: new QueryCache({
