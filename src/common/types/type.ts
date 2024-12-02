@@ -32,6 +32,8 @@ export interface MatchData {
   latitude: number;
   longitude: number;
   stadiumName: string;
+  timeOnSale: string;
+  timeOffSale: string;
 }
 
 export type SportName = {
