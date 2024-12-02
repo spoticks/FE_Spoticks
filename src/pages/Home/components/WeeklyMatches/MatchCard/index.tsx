@@ -1,21 +1,30 @@
 import { MatchData } from "@/common/types/type";
 import LinkButton from "@/common/components/atoms/button/LinkButton";
 import { BASIC_RED_BUTTON_STYLE } from "@/common/buttonStyles";
-import isGameDatePast from "@/common/utils/isGameDatePast";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import MatchDateInfo from "@/pages/Home/components/WeeklyMatches/MatchCard/MatchDateInfo";
 import WeeklyMatchTeam from "@/pages/Home/components/WeeklyMatches/MatchCard/WeeklyMatchTeam";
+import isSaleTimeOn from "@/pages/Home/utils/isSaleTimeOn";
+import formatDate from "@/pages/Home/utils/formatDate";
+import { MdOutlineStadium } from "react-icons/md";
 
 export default function MatchCard({ data }: { data: MatchData }) {
-  const { homeTeamName, awayTeamName, gameStartTime, gameId, latitude, longitude } = data;
+  const {
+    homeTeamName,
+    awayTeamName,
+    gameStartTime,
+    gameId,
+    latitude,
+    longitude,
+    timeOffSale,
+    timeOnSale,
+    stadiumName,
+  } = data;
 
-  /* 서버 재배포 후
   const isTicketOnSale = isSaleTimeOn(timeOnSale, timeOffSale);
-  로 바꿀 것
-  */
-  const isGameStarted = isGameDatePast(gameStartTime);
+  const { month, day, weekday, hours, minutes } = formatDate(timeOffSale);
   return (
-    <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-borders bg-foreground p-4">
+    <div className="flex flex-col items-center justify-between rounded-2xl border border-borders bg-foreground p-4">
       {/* 경기 카드*/}
       <MatchDateInfo
         gameStartTime={gameStartTime}
@@ -23,8 +32,9 @@ export default function MatchCard({ data }: { data: MatchData }) {
         longitude={longitude}
         gameId={gameId}
       />
+      <p className="mb-2 text-[16px] font-semibold text-text-tertiary">{stadiumName}</p>
       <WeeklyMatchTeam homeTeamName={homeTeamName} awayTeamName={awayTeamName} />
-      {isGameStarted ? (
+      {!isTicketOnSale ? (
         <BasicButton
           content="예매종료"
           disabled
@@ -32,7 +42,7 @@ export default function MatchCard({ data }: { data: MatchData }) {
         />
       ) : (
         <LinkButton
-          content="예매하기"
+          content={`${month}/${day}(${weekday}) ${hours}:${minutes}까지 예매 가능`}
           linkTo={`/reservation/${gameId}`}
           style={BASIC_RED_BUTTON_STYLE}
         />
