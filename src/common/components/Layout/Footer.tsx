@@ -23,7 +23,7 @@ export default function Footer() {
     window.open(url, "_blank");
   }
   return (
-    <footer className="flex h-[160px] w-full justify-center bg-slate-400">
+    <footer className="flex h-[160px] w-full justify-center">
       <div className="flex w-content-width flex-col items-center justify-center">
         <button
           className="flex items-center gap-1 text-[16px] font-semibold transition-opacity hover:opacity-35"
@@ -47,6 +47,10 @@ export default function Footer() {
             </button>
           ))}
         </div>
+        <p className="text-[16px] font-normal">© 2024 Spoticks.</p>
+        <p className="text-[14px] font-normal text-text-tertiary">
+          Weather data provided by OpenWeatherMap
+        </p>
       </div>
     </footer>
   );
