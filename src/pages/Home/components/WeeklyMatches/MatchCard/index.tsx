@@ -6,7 +6,6 @@ import MatchDateInfo from "@/pages/Home/components/WeeklyMatches/MatchCard/Match
 import WeeklyMatchTeam from "@/pages/Home/components/WeeklyMatches/MatchCard/WeeklyMatchTeam";
 import isSaleTimeOn from "@/pages/Home/utils/isSaleTimeOn";
 import formatDate from "@/pages/Home/utils/formatDate";
-import { MdOutlineStadium } from "react-icons/md";
 
 export default function MatchCard({ data }: { data: MatchData }) {
   const {
