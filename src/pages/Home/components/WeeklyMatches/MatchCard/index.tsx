@@ -26,7 +26,7 @@ export default function MatchCard({ data }: { data: MatchData }) {
       <WeeklyMatchTeam homeTeamName={homeTeamName} awayTeamName={awayTeamName} />
       {isGameStarted ? (
         <BasicButton
-          content="예매불가"
+          content="예매종료"
           disabled
           style="w-full px-3 py-2 rounded-[10px] text-[16px] text-center text-foreground disabled:cursor-not-allowed disabled:bg-disabled-button"
         />
