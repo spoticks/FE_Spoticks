@@ -1,9 +1,9 @@
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import LinkButton from "@/common/components/atoms/button/LinkButton";
 import MatchDate from "@/common/components/atoms/MatchDate";
+import extractDateData from "@/common/utils/extractDateData";
 import { MainMatchType } from "@/pages/Home/components/MainMatch";
 import MainMatchTeam from "@/pages/Home/components/MainMatch/MainMatchInfo/MainMatchTeam";
-import formatDate from "@/pages/Home/utils/formatDate";
 import isSaleTimeOn from "@/pages/Home/utils/isSaleTimeOn";
 
 export default function MainMatchInfo({
@@ -19,7 +19,7 @@ export default function MainMatchInfo({
   "homeTeam" | "awayTeam" | "gameId" | "timeOffSale" | "timeOnSale" | "gameStartTime" | "stadium"
 >) {
   const isTicketOnSale = isSaleTimeOn(timeOnSale, timeOffSale);
-  const { month, day, weekday, hours, minutes } = formatDate(timeOffSale);
+  const { month, day, weekday, hours, minutes } = extractDateData(timeOffSale);
   return (
     <div className="flex w-full flex-col items-center justify-center rounded border border-borders bg-foreground p-4">
       <MatchDate gameStartTime={gameStartTime} />

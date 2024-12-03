@@ -5,7 +5,7 @@ import BasicButton from "@/common/components/atoms/button/BasicButton";
 import MatchDateInfo from "@/pages/Home/components/WeeklyMatches/MatchCard/MatchDateInfo";
 import WeeklyMatchTeam from "@/pages/Home/components/WeeklyMatches/MatchCard/WeeklyMatchTeam";
 import isSaleTimeOn from "@/pages/Home/utils/isSaleTimeOn";
-import formatDate from "@/pages/Home/utils/formatDate";
+import extractDateData from "@/common/utils/extractDateData";
 
 export default function MatchCard({ data }: { data: MatchData }) {
   const {
@@ -21,7 +21,7 @@ export default function MatchCard({ data }: { data: MatchData }) {
   } = data;
 
   const isTicketOnSale = isSaleTimeOn(timeOnSale, timeOffSale);
-  const { month, day, weekday, hours, minutes } = formatDate(timeOffSale);
+  const { month, day, weekday, hours, minutes } = extractDateData(timeOffSale);
   return (
     <div className="flex flex-col items-center justify-between rounded-2xl border border-borders bg-foreground p-4">
       {/* 경기 카드*/}
