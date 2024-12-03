@@ -1,12 +1,12 @@
 import InformationCard from "@/pages/MyTicket/components/InformationCard";
-import useMyTicketHistory from "@/pages/MyTicket/api/useMyTicketHistory";
+import useMyTicketHistoryQuery from "@/pages/MyTicket/api/useMyTicketHistoryQuery";
 import NoTicketHistory from "@/pages/MyTicket/components/NoTicketHistory";
 import React from "react";
 import Loading from "@/common/components/atoms/Loading";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 
 export default function MyTicket() {
-  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } = useMyTicketHistory();
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } = useMyTicketHistoryQuery();
   const totalElements = data.pages[0].pageInfo.totalElements;
   const ref = useInfiniteScroll({
     onLoadMore: fetchNextPage,

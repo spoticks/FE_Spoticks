@@ -3,7 +3,7 @@ import axiosInstance from "@/common/utils/axiosInstance";
 import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
 
-export default function useMyTicketHistory() {
+export default function useMyTicketHistoryQuery() {
   const location = useLocation().pathname;
   const param = location.includes("/profile/my-tickets/my-reservations") ? "COMPLETE" : "CANCEL";
 
