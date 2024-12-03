@@ -1,11 +1,10 @@
 import DefaultCard from "@/common/components/atoms/DefaultCard";
 import { InformationCardProp } from "@/common/types/type";
-import useHistoryModal from "@/hooks/useHistoryModal";
 import InformationModal from "@/pages/MyTicket/components/modal/InformationModal";
 import extractDateData from "@/common/utils/extractDateData";
 import { BsCalendar2EventFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import useInfoModal from "@/pages/MyTicket/hooks/useInfoModal";
 
 export default function InformationCard({
   content: {
@@ -15,21 +14,8 @@ export default function InformationCard({
 }: {
   content: { reservationId: number; game: InformationCardProp };
 }) {
-  const { isModalOpen, handleModalOpen, handleModalClose } = useHistoryModal(reservationId, true);
-
   const { date, hours, minutes } = extractDateData(gameStartTime);
-  const navigate = useNavigate();
-
-  function handleInfoModalOpen() {
-    navigate(`${reservationId}`);
-    handleModalOpen();
-  }
-  function handleInfoModalClose() {
-    // /:reservationId 에서 / 로 이동
-    navigate(-1);
-    handleModalClose();
-  }
-
+  const { isModalOpen, handleInfoModalClose, handleInfoModalOpen } = useInfoModal(reservationId);
   return (
     <DefaultCard>
       <div className="p-[20px]">
