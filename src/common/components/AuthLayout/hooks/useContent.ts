@@ -1,9 +1,9 @@
-import getContent from "@/common/components/AuthLayout/utils/getContent";
+import getHeaderDescription from "@/common/components/AuthLayout/utils/getHeaderDescription";
 import { useLocation } from "react-router-dom";
 
-export default function useContent() {
+export default function useAuthHeading() {
   const location = useLocation();
-  const { heading, paragraph } = getContent(location.pathname);
+  const { heading, paragraph } = getHeaderDescription(location.pathname);
 
   return { heading, paragraph };
 }
