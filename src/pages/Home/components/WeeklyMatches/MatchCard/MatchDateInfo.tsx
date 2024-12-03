@@ -1,5 +1,5 @@
 import MatchDate from "@/common/components/atoms/MatchDate";
-import useMatchWeather from "@/pages/Home/api/useMatchWeather";
+import useMatchWeather from "@/pages/Home/hooks/useMatchWeatherIconCode";
 
 export default function MatchDateInfo({
   gameStartTime,
