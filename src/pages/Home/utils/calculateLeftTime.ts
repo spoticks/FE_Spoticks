@@ -1,11 +1,6 @@
-export interface LeftTime {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
+import { LeftTime } from "@/common/types/type";
 
-export function calculateLeftTime(targetTime: string): LeftTime {
+export default function calculateLeftTime(targetTime: string) {
   const targetDate = new Date(targetTime).getTime();
   const now = new Date().getTime();
   const difference = targetDate - now;

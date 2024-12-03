@@ -105,3 +105,10 @@ export interface MenuItemProps {
   label: string;
   isButton?: boolean;
 }
+
+export interface LeftTime {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
