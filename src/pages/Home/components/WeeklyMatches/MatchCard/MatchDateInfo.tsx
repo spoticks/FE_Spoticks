@@ -1,4 +1,4 @@
-import MatchDate from "@/common/components/molecules/MatchDate";
+import MatchDate from "@/common/components/atoms/MatchDate";
 import useMatchWeather from "@/pages/Home/api/useMatchWeather";
 
 export default function MatchDateInfo({

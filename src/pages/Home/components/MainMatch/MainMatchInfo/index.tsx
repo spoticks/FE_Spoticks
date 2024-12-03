@@ -1,6 +1,6 @@
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import LinkButton from "@/common/components/atoms/button/LinkButton";
-import MatchDate from "@/common/components/molecules/MatchDate";
+import MatchDate from "@/common/components/atoms/MatchDate";
 import { MainMatchType } from "@/pages/Home/components/MainMatch";
 import MainMatchTeam from "@/pages/Home/components/MainMatch/MainMatchInfo/MainMatchTeam";
 import formatDate from "@/pages/Home/utils/formatDate";
