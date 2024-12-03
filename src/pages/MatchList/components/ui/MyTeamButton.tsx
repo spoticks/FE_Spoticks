@@ -1,4 +1,4 @@
-import useGetMyTeam from "@/common/api/useGetMyTeam";
+import useMyTeamQuery from "@/common/api/useMyTeamQuery";
 import useMyTeamDeletion from "@/common/api/useMyTeamDeletion";
 import useMyTeamPost from "../../api/useMyTeamPost";
 import { getTeamId } from "@/common/utils/getTeamId";
@@ -10,7 +10,7 @@ interface MyTeamProps {
 }
 
 export default function MyTeamButton({ sport, selectedTeam }: MyTeamProps) {
-  const { data } = useGetMyTeam();
+  const { data } = useMyTeamQuery();
   const addition = useMyTeamPost();
   const deletion = useMyTeamDeletion();
 
