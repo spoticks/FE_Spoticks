@@ -3,7 +3,7 @@ import BasicButton from "@/common/components/atoms/button/BasicButton";
 import DetailedTicket from "@/common/components/organisms/DetailedTicket";
 import ModalInfo from "@/common/components/organisms/ModalInfo";
 import useHistoryModal from "@/hooks/useHistoryModal";
-import useReservationDetails from "@/pages/MyTicket/api/useReservationDetails";
+import useReservationDetails from "@/pages/MyTicket/hooks/useReservationDetails";
 import CancellationConfirmModal from "@/pages/MyTicket/components/modal/CancellationConfirmModal";
 interface InformationModal {
   onClose: () => void;
