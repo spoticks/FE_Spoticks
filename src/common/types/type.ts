@@ -112,3 +112,16 @@ export interface LeftTime {
   minutes: number;
   seconds: number;
 }
+export interface SeatType {
+  seatPosition: string;
+  seatRow: number;
+  seatNum: number;
+}
+export interface GameReservationType {
+  createdAt: string;
+  memberName: string;
+  reservationStatus: "CANCELED" | "COMPLETED";
+  seats: SeatType[];
+  totalPrice: number;
+  game: InformationCardProp;
+}
