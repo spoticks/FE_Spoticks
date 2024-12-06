@@ -32,6 +32,8 @@ export interface MatchData {
   latitude: number;
   longitude: number;
   stadiumName: string;
+  timeOnSale: string;
+  timeOffSale: string;
 }
 
 export type SportName = {
@@ -102,4 +104,24 @@ export interface MenuItemProps {
   icon: ReactNode;
   label: string;
   isButton?: boolean;
+}
+
+export interface LeftTime {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+export interface SeatType {
+  seatPosition: string;
+  seatRow: number;
+  seatNum: number;
+}
+export interface GameReservationType {
+  createdAt: string;
+  memberName: string;
+  reservationStatus: "CANCELED" | "COMPLETED";
+  seats: SeatType[];
+  totalPrice: number;
+  game: InformationCardProp;
 }

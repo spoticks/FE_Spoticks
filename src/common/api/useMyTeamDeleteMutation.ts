@@ -6,7 +6,7 @@ import { AxiosError } from "axios";
 async function deleteTeam(teamId: string) {
   await axiosInstance.delete(`/myteam/${teamId}`);
 }
-export default function useMyTeamDeletion() {
+export default function useMyTeamDeleteMutation() {
   const queryClient = useQueryClient();
 
   const deletion = useMutation({

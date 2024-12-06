@@ -1,5 +1,5 @@
-import useGetMyTeam from "@/common/api/useGetMyTeam";
-import useMyTeamDeletion from "@/common/api/useMyTeamDeletion";
+import useMyTeamQuery from "@/common/api/useMyTeamQuery";
+import useMyTeamDeleteMutation from "@/common/api/useMyTeamDeleteMutation";
 import useMyTeamPost from "../../api/useMyTeamPost";
 import { getTeamId } from "@/common/utils/getTeamId";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
@@ -10,9 +10,9 @@ interface MyTeamProps {
 }
 
 export default function MyTeamButton({ sport, selectedTeam }: MyTeamProps) {
-  const { data } = useGetMyTeam();
+  const { data } = useMyTeamQuery();
   const addition = useMyTeamPost();
-  const deletion = useMyTeamDeletion();
+  const deletion = useMyTeamDeleteMutation();
 
   const teamId = getTeamId(sport, selectedTeam);
 

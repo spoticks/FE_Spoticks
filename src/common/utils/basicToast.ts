@@ -17,7 +17,7 @@ const basicToast = MySwal.mixin({
   },
   width: "auto",
   customClass: {
-    container: "absolute pt-0",
+    container: "absolute pt-0 z-[-102030]",
     popup: "rounded-[10px] text-xs",
   },
 });

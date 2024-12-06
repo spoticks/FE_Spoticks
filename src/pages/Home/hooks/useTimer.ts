@@ -1,4 +1,5 @@
-import { LeftTime, calculateLeftTime } from "@/pages/Home/utils/timeUtils";
+import { LeftTime } from "@/common/types/type";
+import calculateLeftTime from "@/pages/Home/utils/calculateLeftTime";
 import { useState, useEffect } from "react";
 
 export default function useTimer(targetTime: string) {

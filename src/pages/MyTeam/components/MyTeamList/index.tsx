@@ -1,8 +1,8 @@
-import useGetMyTeam from "@/common/api/useGetMyTeam";
+import useMyTeamQuery from "@/common/api/useMyTeamQuery";
 import MyTeamCard from "@/pages/MyTeam/components/MyTeamList/MyTeamCard";
 import EmptyTeamList from "@/pages/MyTeam/components/MyTeamList/EmptyTeamList";
 export default function MyTeamList() {
-  const { data } = useGetMyTeam();
+  const { data } = useMyTeamQuery();
 
   return (
     <section className={`${data?.length ? "grid grid-cols-8 gap-[44px]" : "flex flex-1"}`}>

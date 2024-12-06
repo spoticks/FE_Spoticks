@@ -1,7 +1,7 @@
 import AuthFirstHeading from "@/common/components/atoms/AuthFirstHeading";
 import MenuButton from "@/common/components/atoms/button/MenuButton";
 import Loading from "@/common/components/atoms/Loading";
-import useContent from "@/common/components/AuthLayout/hooks/useContent";
+import useHeaderDescription from "@/common/components/AuthLayout/hooks/useHeaderDescription";
 import useAuthStore from "@/common/stores/authStore";
 import ErrorPage from "@/pages/ErrorPage";
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
@@ -14,7 +14,7 @@ export default function AuthLayout() {
   const { accessToken } = useAuthStore((state) => ({
     accessToken: state.accessToken,
   }));
-  const { heading, paragraph } = useContent();
+  const { heading, paragraph } = useHeaderDescription();
   const { reset } = useQueryErrorResetBoundary();
   // 사용자가 로그인되지 않았으면 로그인 페이지로 리다이렉트
   if (!accessToken) {

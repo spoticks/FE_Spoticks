@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="flex w-content-width flex-col items-center justify-center p-8">
         <div className="mb-4 flex gap-2">
           {teamMembers.map((member) => (
-            <ProjectLink content={member} />
+            <ProjectLink content={member} key={member.name} />
           ))}
         </div>
         <ProjectLink />
