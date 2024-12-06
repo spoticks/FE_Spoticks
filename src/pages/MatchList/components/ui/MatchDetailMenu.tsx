@@ -6,9 +6,7 @@ import { MainMatchType } from "@/common/types/matchTypes";
 import MyTeamButton from "@/pages/MatchList/components/ui/MyTeamButton";
 import MenuButton from "@/common/components/atoms/button/MenuButton";
 import Loading from "@/common/components/atoms/Loading";
-import { ErrorBoundary } from "react-error-boundary";
-import ErrorPage from "@/pages/ErrorPage";
-import { useQueryErrorResetBoundary } from "@tanstack/react-query";
+import CustomErrorBoundary from "@/common/components/atoms/CustomErrorBoundary";
 
 interface DetailProps {
   selectedTeam: string;
@@ -29,7 +27,6 @@ export default function MatchDetailMenu({
   currentPage,
   pageSize,
 }: DetailProps) {
-  const { reset } = useQueryErrorResetBoundary();
   //예매내역, 홈구장안내, 예매설명 메뉴 선택
   const [selectedMenu, setSelectedMenu] = useState("예매 일정");
   const handleMenuClick = (menu: string) => {
@@ -80,13 +77,9 @@ export default function MatchDetailMenu({
             </div>
             {/* 좋아요 */}
             <Suspense fallback={<Loading />}>
-              <ErrorBoundary
-                FallbackComponent={ErrorPage}
-                onReset={reset}
-                resetKeys={[location.pathname]}
-              >
+              <CustomErrorBoundary>
                 <MyTeamButton sport={sport} selectedTeam={selectedTeam} />
-              </ErrorBoundary>
+              </CustomErrorBoundary>
             </Suspense>
           </div>
           <div className="flex flex-row">

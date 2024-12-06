@@ -1,13 +1,10 @@
 import BasicUserInfoForm from "@/pages/MyPage/components/BasicUserInfo/BasicUserInfoForm";
 import LinkButton from "@/common/components/atoms/button/LinkButton";
 import Loading from "@/common/components/atoms/Loading";
-import ErrorPage from "@/pages/ErrorPage";
-import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import { Suspense } from "react";
-import { ErrorBoundary } from "react-error-boundary";
+import CustomErrorBoundary from "@/common/components/atoms/CustomErrorBoundary";
 
 export default function BasicUserInfo() {
-  const { reset } = useQueryErrorResetBoundary();
   return (
     <section>
       <div className="flex w-64 flex-col">
@@ -22,13 +19,9 @@ export default function BasicUserInfo() {
         </div>
         <hr className="border-1 mb-4 border-borders" />
         <Suspense fallback={<Loading />}>
-          <ErrorBoundary
-            FallbackComponent={ErrorPage}
-            onReset={reset}
-            resetKeys={[location.pathname]}
-          >
+          <CustomErrorBoundary>
             <BasicUserInfoForm />
-          </ErrorBoundary>
+          </CustomErrorBoundary>
         </Suspense>
       </div>
     </section>
