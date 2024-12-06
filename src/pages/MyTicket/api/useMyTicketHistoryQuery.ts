@@ -1,4 +1,4 @@
-import { GameHistoryType, PageInfoProps } from "@/common/types/type";
+import { GameHistoryType, PageInfoProps } from "@/common/types/matchTypes";
 import axiosInstance from "@/common/utils/axiosInstance";
 import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";

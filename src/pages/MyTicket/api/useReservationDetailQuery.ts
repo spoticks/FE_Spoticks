@@ -1,4 +1,4 @@
-import { GameReservationType } from "@/common/types/type";
+import { GameReservationType } from "@/common/types/matchTypes";
 import axiosInstance from "@/common/utils/axiosInstance";
 import { useSuspenseQuery } from "@tanstack/react-query";
 

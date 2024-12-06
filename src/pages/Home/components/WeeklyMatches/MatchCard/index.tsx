@@ -1,4 +1,4 @@
-import { MatchData } from "@/common/types/type";
+import { MatchData } from "@/common/types/matchTypes";
 import LinkButton from "@/common/components/atoms/button/LinkButton";
 import { BASIC_RED_BUTTON_STYLE } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/button/BasicButton";

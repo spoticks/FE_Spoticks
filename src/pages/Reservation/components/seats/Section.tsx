@@ -1,6 +1,5 @@
 import { Controller, Control } from "react-hook-form";
-import { seatFormData } from "../../../../common/types/type";
-
+import { seatFormData } from "@/common/types/seatTypes";
 interface sectionOfSeats {
   seatPosition: string;
   seatPrice: number;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Seat } from "../../../../common/types/type";
+import { Seat } from "@/common/types/seatTypes";
 import { useLocation } from "react-router-dom";
 import PayModal from "@/pages/Reservation/components/PayModal";
 

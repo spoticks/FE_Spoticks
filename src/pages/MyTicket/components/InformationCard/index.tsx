@@ -1,5 +1,5 @@
 import DefaultCard from "@/common/components/atoms/DefaultCard";
-import { InformationCardProp } from "@/common/types/type";
+import { InformationCardProp } from "@/common/types/matchTypes";
 import InformationModal from "@/pages/MyTicket/components/modal/InformationModal";
 import extractDateData from "@/common/utils/extractDateData";
 import { BsCalendar2EventFill } from "react-icons/bs";

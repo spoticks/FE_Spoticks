@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Tickets from "@/assets/Tickets.svg?react";
 import { useLocation } from "react-router-dom";
-import { ContentProps } from "@/common/types/type";
+import { MainMatchType } from "@/common/types/matchTypes";
 import { menu, stadiums, teams } from "@/common/constants";
 import SelectFiled from "@/pages/admin/components/atoms/SelectField";
 import FormInputField from "@/common/components/molecules/FormInputField";
@@ -9,7 +9,7 @@ import { useRegistrationForm } from "../util/useRegistrationForm";
 
 interface ModeProps {
   mode: "create" | "edit";
-  existMatch?: ContentProps;
+  existMatch?: MainMatchType;
 }
 
 export default function Registration() {

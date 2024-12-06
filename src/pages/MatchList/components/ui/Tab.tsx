@@ -4,12 +4,12 @@ import TabClose from "@/assets/TabClose.svg?react";
 import { teams, leagueName } from "@/common/constants";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ContentProps } from "@/common/types/type";
+import { MainMatchType } from "@/common/types/matchTypes";
 
 interface TabProps {
   sport: string;
   setSelectedTeam: React.Dispatch<React.SetStateAction<string>>;
-  setFilterData: React.Dispatch<React.SetStateAction<ContentProps[]>>;
+  setFilterData: React.Dispatch<React.SetStateAction<MainMatchType[]>>;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 export default function MatchListTab({
