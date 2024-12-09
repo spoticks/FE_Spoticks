@@ -1,8 +1,8 @@
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import LinkButton from "@/common/components/atoms/button/LinkButton";
 import MatchDate from "@/common/components/atoms/MatchDate";
+import { MainMatchType } from "@/common/types/matchTypes";
 import extractDateData from "@/common/utils/extractDateData";
-import { MainMatchType } from "@/pages/Home/components/MainMatch";
 import MainMatchTeam from "@/pages/Home/components/MainMatch/MainMatchInfo/MainMatchTeam";
 import isSaleTimeOn from "@/pages/Home/utils/isSaleTimeOn";
 
