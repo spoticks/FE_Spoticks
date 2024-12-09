@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { AccountDeletionFormType } from "@/common/types/formTypes";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
-import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { passwordSchema } from "@/common/validationSchema";
 import useAccountDeleteMutation from "@/pages/AccountDeletion/api/useAccountDeleteMutation";
@@ -29,7 +28,7 @@ export default function AccountDeletionForm() {
           inputType="password"
         />
         <ReasonSelect control={control} />
-        <BasicButton content="탈퇴하기" disabled={!isValid} style={RED_BUTTON_STYLE_AUTH} />
+        <BasicButton content="탈퇴하기" disabled={!isValid} style="mt-4 btn-red" />
       </form>
     </section>
   );

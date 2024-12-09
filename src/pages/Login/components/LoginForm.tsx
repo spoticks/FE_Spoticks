@@ -4,7 +4,6 @@ import { LoginFormType } from "@/common/types/formTypes";
 import { loginFormSchema } from "@/common/validationSchema";
 import { useForm } from "react-hook-form";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
-import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function LoginForm() {
@@ -29,7 +28,7 @@ export default function LoginForm() {
         error={errors.password}
         inputType="password"
       />
-      <BasicButton content="로그인 하기" disabled={!isValid} style={RED_BUTTON_STYLE_AUTH} />
+      <BasicButton content="로그인 하기" disabled={!isValid} style="mt-4 btn-red" />
     </form>
   );
 }

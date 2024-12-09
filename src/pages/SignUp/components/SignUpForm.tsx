@@ -1,4 +1,3 @@
-import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import useSignUpMutation from "@/pages/SignUp/api/useSignUpMutation";
@@ -55,7 +54,7 @@ export default function SignUpForm() {
       <BasicButton
         content="회원가입 하기"
         disabled={!isValid || !isSuitable.phoneNumber || !isSuitable.userName}
-        style={RED_BUTTON_STYLE_AUTH}
+        style="mt-4 btn-red"
       />
     </form>
   );

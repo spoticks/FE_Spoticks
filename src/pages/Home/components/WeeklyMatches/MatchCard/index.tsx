@@ -1,6 +1,5 @@
 import { MatchData } from "@/common/types/matchTypes";
 import LinkButton from "@/common/components/atoms/button/LinkButton";
-import { BASIC_RED_BUTTON_STYLE } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import MatchDateInfo from "@/pages/Home/components/WeeklyMatches/MatchCard/MatchDateInfo";
 import WeeklyMatchTeam from "@/pages/Home/components/WeeklyMatches/MatchCard/WeeklyMatchTeam";
@@ -43,7 +42,7 @@ export default function MatchCard({ data }: { data: MatchData }) {
         <LinkButton
           content={`${month}/${day}(${weekday}) ${hours}:${minutes}까지 예매 가능`}
           linkTo={`/reservation/${gameId}`}
-          style={BASIC_RED_BUTTON_STYLE}
+          style="btn-red"
         />
       )}
     </div>
