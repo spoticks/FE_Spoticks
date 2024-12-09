@@ -1,4 +1,5 @@
-import useAxios from "@/hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from "@/common/utils/axiosInstance";
 import { MatchType } from "@/common/types/type";
 import { getTeamId } from "@/common/utils/getTeamId";
 
@@ -11,13 +12,18 @@ interface MatchApiParams {
 export function useMatchApi({ sport, selectedTeam, page }: MatchApiParams) {
   const selectedTeamId = getTeamId(sport, selectedTeam);
   const url = selectedTeam === "전체 일정" ? `/games/sports` : `/teams/${selectedTeamId}/games`;
-  const params = selectedTeam === "전체 일정" ? { sport, page } : undefined;
+  const params = selectedTeam === "전체 일정" ? { sport, page } : { page };
 
-  return useAxios<MatchType>(["matches", sport, selectedTeam, String(page)], {
-    config: {
-      url,
-      method: "GET",
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["matches", sport, selectedTeam, page, url, params],
+    queryFn: async () => {
+      const response = await axiosInstance.get<MatchType>(url, { params });
+      return response.data;
     },
-    params,
+    // {
+    //   keepPreviousData: true,
+    // },
   });
+
+  return { data, error, isLoading };
 }

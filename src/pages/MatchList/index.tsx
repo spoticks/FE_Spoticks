@@ -25,10 +25,16 @@ export default function MatchList({ sport }: MatchListProps) {
     page: currentPage,
   });
 
+  // 상단탭에서 sport가 바뀌면 선택팀도 초기화됩니다.
   useEffect(() => {
     setSelectedTeam("");
-    navigate(`/match-list/${sport}`);
   }, [sport]);
+
+  // 왼쪽 탭에서 selectedTeam이 변경되면 경로가 변경됩니다.
+  useEffect(() => {
+    const path = selectedTeam ? `/${selectedTeam}` : "";
+    navigate(`/match-list/${sport}${path}`);
+  }, [selectedTeam, navigate, sport]);
 
   useEffect(() => {
     if (selectedTeam) {

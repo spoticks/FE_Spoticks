@@ -36,7 +36,6 @@ export default function MatchListTab({
     setSelectedTeam(team);
     setFilterData([]);
     setCurrentPage(1);
-    navigate(`/match-list/${sport}/reserveSche`);
   };
 
   const handleTabClick = (tab: string) => {
