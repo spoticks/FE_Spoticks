@@ -1,10 +1,10 @@
-import useWeeklyMatch from "@/pages/Home/api/useWeeklyMatch";
+import useWeeklyMatchQuery from "@/pages/Home/api/useWeeklyMatchQuery";
 import DragScrollContainer from "@/pages/Home/components/WeeklyMatches/WeeklyMatchList/DragScrollContainer";
 import MatchCard from "@/pages/Home/components/WeeklyMatches/MatchCard";
 import NoWeeklyMatch from "@/pages/Home/components/WeeklyMatches/WeeklyMatchList/NoWeeklyMatch";
 
 export default function WeeklyMatchList() {
-  const { data } = useWeeklyMatch();
+  const { data } = useWeeklyMatchQuery();
   return (
     <>
       {data.length ? (
