@@ -1,7 +1,6 @@
-import { InformationCardProp } from "@/common/types/type";
+import { InformationCardProp, SeatType } from "@/common/types/matchTypes";
 import Barcode from "@/assets/Barcode.svg?react";
 import extractDateData from "@/common/utils/extractDateData";
-import { SeatType } from "@/pages/MyTicket/hooks/useReservationDetails";
 
 interface DetailedTicketProps {
   game: InformationCardProp;

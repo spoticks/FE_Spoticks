@@ -5,7 +5,6 @@ import NoWeeklyMatch from "@/pages/Home/components/WeeklyMatches/WeeklyMatchList
 
 export default function WeeklyMatchList() {
   const { data } = useWeeklyMatch();
-
   return (
     <>
       {data.length ? (

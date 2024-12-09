@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import { Link, useNavigate } from "react-router-dom";
-import { ContentProps } from "@/common/types/type";
+import { MainMatchType } from "@/common/types/matchTypes";
 import axios from "axios";
 import alertToast from "@/common/utils/alertToast";
 import ErrorToast from "@/common/utils/errorToast";
@@ -10,7 +10,7 @@ import DetailInfo from "./atoms/DetailInfo";
 interface DetailModalProps {
   isOpen: boolean;
   onClose: () => void;
-  match: ContentProps;
+  match: MainMatchType;
 }
 
 export default function DetailModal({ isOpen, onClose, match }: DetailModalProps) {

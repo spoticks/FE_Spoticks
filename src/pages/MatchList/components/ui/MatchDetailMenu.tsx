@@ -2,7 +2,7 @@ import { Suspense, useState } from "react";
 import HomeInfo from "@/pages/MatchList/components/HomeInfo";
 import ReservationList from "@/pages/MatchList/components/ReservationList";
 import ReserveInfo from "@/pages/MatchList/components/ReserveInfo";
-import { ContentProps } from "@/common/types/type";
+import { MainMatchType } from "@/common/types/matchTypes";
 import MyTeamButton from "@/pages/MatchList/components/ui/MyTeamButton";
 import MenuButton from "@/common/components/atoms/button/MenuButton";
 import Loading from "@/common/components/atoms/Loading";
@@ -12,7 +12,7 @@ import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 
 interface DetailProps {
   selectedTeam: string;
-  filterData: ContentProps[];
+  filterData: MainMatchType[];
   sport: string;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   totalEl: number;

@@ -1,5 +1,5 @@
 import useAxios from "@/hooks/useAxios";
-import { MatchType } from "@/common/types/type";
+import { MatchType } from "@/common/types/matchTypes";
 import { getTeamId } from "@/common/utils/getTeamId";
 
 interface MatchApiParams {

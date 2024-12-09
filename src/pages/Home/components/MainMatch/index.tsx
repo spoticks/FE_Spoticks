@@ -5,16 +5,6 @@ import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
-export interface MainMatchType {
-  awayTeam: string;
-  gameId: number;
-  gameStartTime: string;
-  homeTeam: string;
-  sport: string;
-  stadium: string;
-  timeOffSale: string;
-  timeOnSale: string;
-}
 export default function MainMatch() {
   const { reset } = useQueryErrorResetBoundary();
   return (

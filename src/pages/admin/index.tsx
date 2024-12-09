@@ -1,6 +1,6 @@
 import Loading from "@/common/components/atoms/Loading";
 import { menu } from "@/common/constants";
-import { ContentProps, MatchType } from "@/common/types/type";
+import { MainMatchType, MatchType } from "@/common/types/matchTypes";
 import DetailModal from "@/pages/admin/components/DetailModal";
 import useAxios from "@/hooks/useAxios";
 import { useState } from "react";
@@ -39,16 +39,16 @@ export default function Admin() {
   const filteredMatches =
     selectedSport === "All"
       ? matches.content
-      : matches.content.filter((match: ContentProps) => match.sport === selectedSport);
+      : matches.content.filter((match: MainMatchType) => match.sport === selectedSport);
 
   // 페이지네이션 함수
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   // Modal 관련 상태
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedMatch, setSelectedMatch] = useState<ContentProps | null>(null);
+  const [selectedMatch, setSelectedMatch] = useState<MainMatchType | null>(null);
 
-  const handleModalOpen = (match: ContentProps) => {
+  const handleModalOpen = (match: MainMatchType) => {
     if (isModalOpen) return;
     setSelectedMatch(match);
     setIsModalOpen(true);
@@ -96,7 +96,7 @@ export default function Admin() {
           </thead>
           <tbody>
             {filteredMatches.length > 0 ? (
-              filteredMatches.map((match: ContentProps, index) => (
+              filteredMatches.map((match: MainMatchType, index) => (
                 <tr key={index} className="border-b border-borders">
                   <td className="p-4">{match.gameStartTime.split("T")[0]}</td>
                   <td className="p-4">{match.gameStartTime.split("T")[1].slice(0, 5)}</td>
