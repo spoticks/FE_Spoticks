@@ -48,9 +48,11 @@ export default function Router() {
             <Route path="my-tickets/cancellation-history" element={<MyTicket />} />
             <Route path="my-tickets/cancellation-history/:id" element={<MyTicket />} />
           </Route>
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/registration" element={<Registration />} />
-          <Route path="/admin/registration/:id" element={<Registration />} />
+          <Route path="admin" element={<Admin />}>
+            <Route path=":selectedSport" element={<Admin />} />
+          </Route>
+          <Route path="admin/registration" element={<Registration />} />
+          <Route path="admin/registration/:id" element={<Registration />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/reservation/:gameId" element={<Reservation />} />
         </Route>
