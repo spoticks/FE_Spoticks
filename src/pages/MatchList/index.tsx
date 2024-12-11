@@ -3,7 +3,7 @@ import Main from "@/pages/MatchList/components/Main";
 import MatchListTab from "@/pages/MatchList/components/ui/Tab";
 import MatchDetailMenu from "@/pages/MatchList/components/ui/MatchDetailMenu";
 import { ContentProps, PageInfoProps } from "@/common/types/type";
-import { useMatchApi } from "./api/api";
+import { useMatchApi } from "./api/useMatchApi";
 import { getTeamId } from "@/common/utils/getTeamId";
 import { useNavigate } from "react-router-dom";
 
@@ -67,13 +67,13 @@ export default function MatchList({ sport }: MatchListProps) {
       <div className="flex w-full pl-[30px]">
         {selectedTeam === "전체 일정" || selectedTeam ? (
           <MatchDetailMenu
+            matchData={matchData}
             selectedTeam={selectedTeam}
             setCurrentPage={setCurrentPage}
             sport={sport}
             filterData={filterData}
             totalEl={totalEl}
             currentPage={currentPage}
-            pageSize={matchData.pageInfo.size}
           />
         ) : (
           <Main sceduleLen={matchData.content.length} sport={sport} />

@@ -29,11 +29,13 @@ export default function Router() {
             .filter((sport) => sport !== "HOME")
             .map((sport) => (
               <Route key={sport} path={`/match-list/${sport}`}>
-                <Route index element={<MatchList sport={sport} />} />
-                <Route path=":selectedTeam" element={<MatchList sport={sport} />} />
-                <Route path="allSche" element={<MatchList sport={sport} />} />
-                <Route path="homeInfo" element={<HomeInfo />} />
-                <Route path="reserveInfo" element={<ReserveInfo />} />
+                <Route element={<MatchList sport={sport} />}>
+                  <Route index element={<MatchList sport={sport} />} />
+                  <Route path=":selectedTeam" element={<MatchList sport={sport} />} />
+                  <Route path="allSche" element={<MatchList sport={sport} />} />
+                  <Route path="homeInfo" element={<HomeInfo />} />
+                  <Route path="reserveInfo" element={<ReserveInfo />} />
+                </Route>
               </Route>
             ))}
           <Route path="profile" element={<AuthRoute />}>
