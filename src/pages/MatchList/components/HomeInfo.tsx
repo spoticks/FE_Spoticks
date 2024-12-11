@@ -2,7 +2,6 @@ import Loading from "@/common/components/atoms/Loading";
 import useStadiumApi from "../api/useStadiumApi";
 import RenderMap from "./ui/RenderMap";
 import { Container as MapDiv, NavermapsProvider } from "react-naver-maps";
-import MapScriptLoader from "./ui/MapScriptLoader";
 import { Suspense, useEffect, useState } from "react";
 import { useGetAddress } from "../utils/getAddress";
 import { useLocation } from "react-router-dom";
@@ -35,7 +34,6 @@ const HomeInfo = () => {
 
   return (
     <>
-      <MapScriptLoader />
       <NavermapsProvider ncpClientId={clientId}>
         <h1 className="font-semibold text-Accent">
           경기장명: <span className="font-normal text-black">{data?.stadiumName}</span>
