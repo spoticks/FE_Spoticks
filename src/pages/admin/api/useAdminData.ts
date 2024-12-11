@@ -1,10 +1,10 @@
-import { ContentProps, PageInfoProps } from "@/common/types/type";
+import { MainMatchType, PageInfoProps } from "@/common/types/matchTypes";
 import axiosInstance from "@/common/utils/axiosInstance";
 import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 
 export default function useAdminData(selectedSport: string = "All") {
   return useSuspenseInfiniteQuery<{
-    content: ContentProps[];
+    content: MainMatchType[];
     pageInfo: PageInfoProps;
   }>({
     queryKey: ["matches", selectedSport],
