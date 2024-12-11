@@ -5,7 +5,7 @@ import DetailModal from "@/pages/admin/components/DetailModal";
 import { Suspense, useState } from "react";
 import Header from "./components/ui/Header";
 import { useQueryClient, QueryClientProvider } from "@tanstack/react-query";
-import useAdminData from "./util/useAdminData";
+import useAdminData from "./api/useAdminData";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import TbodyComp from "./components/ui/TbodyComp";
 import { startTransition } from "react";
