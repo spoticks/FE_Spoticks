@@ -1,6 +1,6 @@
 import useTimer from "@/pages/Home/hooks/useTimer";
-import { LeftTime } from "@/pages/Home/utils/timeUtils";
 import TicketOffSale from "@/pages/Home/components/MainMatch/TicketOffSale";
+import { LeftTime } from "@/common/types/type";
 
 const timeMap: Record<keyof LeftTime, string> = {
   days: "일",

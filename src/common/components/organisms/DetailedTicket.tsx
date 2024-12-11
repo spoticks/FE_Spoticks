@@ -1,7 +1,6 @@
-import { InformationCardProp } from "@/common/types/type";
+import { InformationCardProp, SeatType } from "@/common/types/matchTypes";
 import Barcode from "@/assets/Barcode.svg?react";
-import extractDateAndTime from "@/common/utils/extractDateAndTime";
-import { SeatType } from "@/pages/MyTicket/api/useReservationDetails";
+import extractDateData from "@/common/utils/extractDateData";
 
 interface DetailedTicketProps {
   game: InformationCardProp;
@@ -16,7 +15,7 @@ export default function DetailedTicket({
   mySeats,
   totalPay,
 }: DetailedTicketProps) {
-  const { date, hours, minutes } = extractDateAndTime(game.gameStartTime);
+  const { date, hours, minutes } = extractDateData(game.gameStartTime);
   return (
     <div
       className={`mb-6 flex w-full flex-col items-start rounded-[10px] ${isReservationComplete === true || isReservationComplete === undefined ? "bg-Accent" : "bg-borders"} px-5 py-6 drop-shadow-first`}

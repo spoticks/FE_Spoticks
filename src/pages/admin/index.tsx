@@ -1,6 +1,6 @@
 import Loading from "@/common/components/atoms/Loading";
 import { menu } from "@/common/constants";
-import { ContentProps } from "@/common/types/type";
+import { MainMatchType, MatchType } from "@/common/types/matchTypes";
 import DetailModal from "@/pages/admin/components/DetailModal";
 import { Suspense, useState } from "react";
 import Header from "./components/ui/Header";
@@ -41,9 +41,9 @@ export default function Admin() {
 
   // Modal 관련 상태
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedMatch, setSelectedMatch] = useState<ContentProps | null>(null);
+  const [selectedMatch, setSelectedMatch] = useState<MainMatchType | null>(null);
 
-  const handleModalOpen = (match: ContentProps) => {
+  const handleModalOpen = (match: MainMatchType) => {
     if (isModalOpen) return;
     setSelectedMatch(match);
     setIsModalOpen(true);

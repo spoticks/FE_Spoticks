@@ -1,4 +1,4 @@
-export default function getContent(pathname: string) {
+export default function getHeaderDescription(pathname: string) {
   const content = {
     heading: "",
     paragraph: "",

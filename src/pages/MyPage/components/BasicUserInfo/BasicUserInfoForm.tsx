@@ -1,7 +1,7 @@
 import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import FormInputField from "@/common/components/molecules/FormInputField";
-import useGetMemberInfo from "@/pages/MyPage/api/useGetMemberInfo";
+import useGetMemberInfo from "@/pages/MyPage/api/useMemberPhoneNumberQuery";
 import useUpdatePhoneNumberMutation from "@/pages/MyPage/api/useUpdatePhoneNumberMutation";
 import useDuplicationCheck from "@/pages/SignUp/utils/useDuplicationCheck";
 import { useEffect } from "react";

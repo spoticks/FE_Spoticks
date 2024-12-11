@@ -7,7 +7,7 @@ import { AxiosError } from "axios";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-export default function useAccountDeletion() {
+export default function useAccountDeleteMutation() {
   const navigation = useNavigate();
   const logout = useAuthStore((state) => state.logout);
   const accountDeletionMutation = useMutation({

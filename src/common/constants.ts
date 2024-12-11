@@ -63,3 +63,21 @@ export const leagueName: Record<string, string> = {
 };
 
 export const localUrl = import.meta.env.VITE_LOCAL_URL;
+
+export const teamMembers = [
+  {
+    role: "FE",
+    name: "도현수",
+    url: "https://github.com/dohyeons",
+  },
+  {
+    role: "FE",
+    name: "노경민",
+    url: "https://github.com/devminoh",
+  },
+  {
+    role: "BE",
+    name: "김지효",
+    url: "https://github.com/zirryo",
+  },
+];

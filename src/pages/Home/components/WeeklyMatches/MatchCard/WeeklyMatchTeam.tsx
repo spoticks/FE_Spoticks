@@ -8,7 +8,7 @@ export default function WeeklyMatchTeam({
   awayTeamName: string;
 }) {
   return (
-    <div className="flex items-center justify-center">
+    <div className="mb-4 flex items-center justify-center">
       {/* 팀 정보 */}
       <TeamDisplay teamName={homeTeamName} />
       <p className="mx-4 font-semibold">vs</p>

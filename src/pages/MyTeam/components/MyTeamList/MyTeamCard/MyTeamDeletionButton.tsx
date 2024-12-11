@@ -1,7 +1,7 @@
 import RedHeart from "@/assets/RedHeart.svg?react";
-import useMyTeamDeletion from "@/common/api/useMyTeamDeletion";
+import useMyTeamDeleteMutation from "@/common/api/useMyTeamDeleteMutation";
 export default function MyTeamDeletionButton({ teamId }: { teamId: string }) {
-  const deletion = useMyTeamDeletion();
+  const deletion = useMyTeamDeleteMutation();
 
   return (
     <button

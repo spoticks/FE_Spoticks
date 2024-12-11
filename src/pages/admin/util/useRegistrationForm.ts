@@ -7,11 +7,11 @@ import { FormValueType } from "@/pages/admin/type";
 import { regiSchema } from "@/pages/admin/components/RegiSchema";
 import { getTeamId } from "@/common/utils/getTeamId";
 import alertToast from "@/common/utils/alertToast";
-import { ContentProps } from "@/common/types/type";
+import { MainMatchType } from "@/common/types/matchTypes";
 
 interface Props {
   mode: "create" | "edit";
-  existMatch?: ContentProps;
+  existMatch?: MainMatchType;
 }
 
 export const useRegistrationForm = ({ mode, existMatch }: Props) => {

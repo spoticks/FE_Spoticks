@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "@/common/utils/axiosInstance";
-import { MatchType } from "@/common/types/type";
 import { getTeamId } from "@/common/utils/getTeamId";
+import { MatchType } from "@/common/types/matchTypes";
 
 interface MatchApiParams {
   sport: string;

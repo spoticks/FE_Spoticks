@@ -3,7 +3,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import Error from "../../ErrorPage";
-import { MatchDataProps } from "../../../common/types/type";
+import { MatchDataProps } from "../../../common/types/matchTypes";
 import { useNavigate } from "react-router-dom";
 import Button from "@/common/components/atoms/Button";
 import Loading from "@/common/components/atoms/Loading";

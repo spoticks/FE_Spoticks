@@ -1,8 +1,7 @@
-import useAuthStore from "@/common/stores/authStore";
-import alertToast from "@/common/utils/alertToast";
 import PopupMenuList from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/PopupMenuList";
 import getPopupMenuItems from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/getPopupMenuItems";
 import useMemberInfo from "@/hooks/useMemberInfo";
+import useLogout from "@/hooks/useLogout";
 
 export default function UserInfoPopup({
   setIsPopoverOpen,
@@ -12,13 +11,7 @@ export default function UserInfoPopup({
   popoverRef: React.RefObject<HTMLDivElement>;
 }) {
   const { authority, memberName } = useMemberInfo();
-  const { logout } = useAuthStore();
-
-  function handleLogout() {
-    logout();
-    setIsPopoverOpen(false);
-    alertToast("로그아웃 되었습니다!", "info");
-  }
+  const { handleLogout } = useLogout(setIsPopoverOpen);
 
   const menuItems =
     authority === "ROLE_MEMBER" ? getPopupMenuItems("user") : getPopupMenuItems("admin");

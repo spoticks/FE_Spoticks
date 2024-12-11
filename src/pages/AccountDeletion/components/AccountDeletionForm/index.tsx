@@ -6,7 +6,7 @@ import BasicButton from "@/common/components/atoms/button/BasicButton";
 import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { passwordSchema } from "@/common/validationSchema";
-import useAccountDeletion from "@/pages/AccountDeletion/api/useAccountDeletion";
+import useAccountDeleteMutation from "@/pages/AccountDeletion/api/useAccountDeleteMutation";
 
 export default function AccountDeletionForm() {
   const {
@@ -18,7 +18,7 @@ export default function AccountDeletionForm() {
     resolver: zodResolver(passwordSchema),
     mode: "all",
   });
-  const onSubmit = useAccountDeletion();
+  const onSubmit = useAccountDeleteMutation();
   return (
     <section className="w-60">
       <form onSubmit={handleSubmit(onSubmit)}>

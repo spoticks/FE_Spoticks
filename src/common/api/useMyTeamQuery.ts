@@ -1,16 +1,14 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { MyTeamType } from "@/common/types/type";
 import axiosInstance from "@/common/utils/axiosInstance";
+import { MyTeamType } from "@/common/types/type";
 
 async function fetchMyTeam() {
   const { data } = await axiosInstance.get("/myteam");
   return data;
 }
-export default function useGetMyTeam() {
-  const { data } = useSuspenseQuery<MyTeamType[]>({
+export default function useMyTeamQuery() {
+  return useSuspenseQuery<MyTeamType[]>({
     queryKey: ["myTeam"],
     queryFn: fetchMyTeam,
   });
-
-  return { data };
 }

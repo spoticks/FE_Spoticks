@@ -1,4 +1,4 @@
-import { ContentProps, GameHistoryType, PageInfoProps } from "@/common/types/type";
+import { GameHistoryType, MainMatchType, PageInfoProps } from "@/common/types/matchTypes";
 import alertToast from "@/common/utils/alertToast";
 import {
   FetchNextPageOptions,
@@ -13,7 +13,7 @@ interface UseInfiniteScrollProps {
     InfiniteQueryObserverResult<
       InfiniteData<
         {
-          content: GameHistoryType | ContentProps[];
+          content: GameHistoryType | MainMatchType[];
           pageInfo: PageInfoProps;
         },
         unknown

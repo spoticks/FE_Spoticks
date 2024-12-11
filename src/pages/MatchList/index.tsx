@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import Main from "@/pages/MatchList/components/Main";
 import MatchListTab from "@/pages/MatchList/components/ui/Tab";
 import MatchDetailMenu from "@/pages/MatchList/components/ui/MatchDetailMenu";
-import { ContentProps, PageInfoProps } from "@/common/types/type";
-import { useMatchApi } from "./api/useMatchApi";
+import { MainMatchType, PageInfoProps } from "@/common/types/matchTypes";
+
 import { getTeamId } from "@/common/utils/getTeamId";
 import { useNavigate } from "react-router-dom";
+import { useMatchApi } from "./api/useMatchApi";
 
 interface MatchListProps {
   sport: string;
@@ -15,7 +16,7 @@ export default function MatchList({ sport }: MatchListProps) {
   const navigate = useNavigate();
   // Tab에서 선택된 team
   const [selectedTeam, setSelectedTeam] = useState("");
-  const [filterData, setFilterData] = useState<ContentProps[]>([]);
+  const [filterData, setFilterData] = useState<MainMatchType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalEl, setTotatlEl] = useState(0);
 

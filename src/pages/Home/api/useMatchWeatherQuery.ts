@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-export default function useMatchWeather(gameId: number, latitude: number, longitude: number) {
-  const { data } = useQuery({
+export default function useMatchWeatherQuery(gameId: number, latitude: number, longitude: number) {
+  return useQuery({
     queryKey: ["weathers", gameId, latitude, longitude],
     queryFn: async () => {
       return await axios
@@ -17,7 +17,4 @@ export default function useMatchWeather(gameId: number, latitude: number, longit
         .then((res) => res.data);
     },
   });
-  const weatherIconCode = data?.weather[0].icon;
-
-  return weatherIconCode;
 }

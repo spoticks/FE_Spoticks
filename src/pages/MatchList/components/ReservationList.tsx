@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ContentProps } from "@/common/types/type";
+import { MainMatchType } from "@/common/types/matchTypes";
 import { TimeButton } from "@/common/components/atoms/button/TimeButton";
 import TdComp from "./ui/TdComp";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 interface ReservationListProps {
-  filterData: ContentProps[];
+  filterData: MainMatchType[];
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   totalEl: number;
   selectedTeam: string;
@@ -20,8 +20,8 @@ const ReservationList = ({
   currentPage,
   pageSize,
 }: ReservationListProps) => {
-  const [allMatches, setAllMatches] = useState<ContentProps[]>([]); // 누적 데이터
-  const [viewMatches, setViewMatches] = useState<ContentProps[]>([]); // 화면에 보여질 데이터
+  const [allMatches, setAllMatches] = useState<MainMatchType[]>([]); // 누적 데이터
+  const [viewMatches, setViewMatches] = useState<MainMatchType[]>([]); // 화면에 보여질 데이터
 
   useEffect(() => {
     // 초기화
