@@ -28,15 +28,14 @@ export default function Router() {
           {menu
             .filter((sport) => sport !== "HOME")
             .map((sport) => (
-              <Route
-                key={sport}
-                path={`/match-list/${sport}`}
-                element={<MatchList sport={sport} />}
-              >
-                <Route path="allSche" element={<MatchList sport={sport} />} />
-                <Route path="homeInfo" element={<HomeInfo />} />
-                <Route path="reserveInfo" element={<ReserveInfo />} />
-                <Route path="reserveSche" element={<ReserveInfo />} />
+              <Route key={sport} path={`/match-list/${sport}`}>
+                <Route element={<MatchList sport={sport} />}>
+                  <Route index element={<MatchList sport={sport} />} />
+                  <Route path=":selectedTeam" element={<MatchList sport={sport} />} />
+                  <Route path="allSche" element={<MatchList sport={sport} />} />
+                  <Route path="homeInfo" element={<HomeInfo />} />
+                  <Route path="reserveInfo" element={<ReserveInfo />} />
+                </Route>
               </Route>
             ))}
           <Route path="profile" element={<AuthRoute />}>
@@ -48,9 +47,11 @@ export default function Router() {
             <Route path="my-tickets/cancellation-history" element={<MyTicket />} />
             <Route path="my-tickets/cancellation-history/:id" element={<MyTicket />} />
           </Route>
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/registration" element={<Registration />} />
-          <Route path="/admin/registration/:id" element={<Registration />} />
+          <Route path="admin" element={<Admin />}>
+            <Route path=":selectedSport" element={<Admin />} />
+          </Route>
+          <Route path="admin/registration" element={<Registration />} />
+          <Route path="admin/registration/:id" element={<Registration />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/reservation/:gameId" element={<Reservation />} />
         </Route>

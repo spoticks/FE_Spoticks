@@ -3,9 +3,10 @@ import Main from "@/pages/MatchList/components/Main";
 import MatchListTab from "@/pages/MatchList/components/ui/Tab";
 import MatchDetailMenu from "@/pages/MatchList/components/ui/MatchDetailMenu";
 import { MainMatchType, PageInfoProps } from "@/common/types/matchTypes";
-import { useMatchApi } from "./api/api";
+
 import { getTeamId } from "@/common/utils/getTeamId";
 import { useNavigate } from "react-router-dom";
+import { useMatchApi } from "./api/useMatchApi";
 
 interface MatchListProps {
   sport: string;
@@ -25,10 +26,16 @@ export default function MatchList({ sport }: MatchListProps) {
     page: currentPage,
   });
 
+  // 상단탭에서 sport가 바뀌면 선택팀도 초기화됩니다.
   useEffect(() => {
     setSelectedTeam("");
-    navigate(`/match-list/${sport}`);
   }, [sport]);
+
+  // 왼쪽 탭에서 selectedTeam이 변경되면 경로가 변경됩니다.
+  useEffect(() => {
+    const path = selectedTeam ? `/${selectedTeam}` : "";
+    navigate(`/match-list/${sport}${path}`);
+  }, [selectedTeam, navigate, sport]);
 
   useEffect(() => {
     if (selectedTeam) {
@@ -61,13 +68,13 @@ export default function MatchList({ sport }: MatchListProps) {
       <div className="flex w-full pl-[30px]">
         {selectedTeam === "전체 일정" || selectedTeam ? (
           <MatchDetailMenu
+            matchData={matchData}
             selectedTeam={selectedTeam}
             setCurrentPage={setCurrentPage}
             sport={sport}
             filterData={filterData}
             totalEl={totalEl}
             currentPage={currentPage}
-            pageSize={matchData.pageInfo.size}
           />
         ) : (
           <Main sceduleLen={matchData.content.length} sport={sport} />
