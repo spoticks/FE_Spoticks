@@ -1,11 +1,11 @@
 import Modal from "react-modal";
 import { Link, useNavigate } from "react-router-dom";
 import { MainMatchType } from "@/common/types/matchTypes";
-import axios from "axios";
 import alertToast from "@/common/utils/alertToast";
 import ErrorToast from "@/common/utils/errorToast";
 import confirmAlert from "@/common/utils/confirmAlert";
-import DetailInfo from "./atoms/DetailInfo";
+import DetailInfo from "./ui/DetailInfo";
+import axiosInstance from "@/common/utils/axiosInstance";
 
 interface DetailModalProps {
   isOpen: boolean;
@@ -36,7 +36,7 @@ export default function DetailModal({ isOpen, onClose, match }: DetailModalProps
       confirmButtonText: "삭제",
       functionDispatch: async () => {
         try {
-          await axios.delete(`http://spoticks.shop:8080/admin/games/${match.gameId}`);
+          await axiosInstance.delete(`/admin/games/${match.gameId}`);
           alertToast("경기가 삭제되었습니다.", "success");
           navigate("/admin");
           window.location.reload();

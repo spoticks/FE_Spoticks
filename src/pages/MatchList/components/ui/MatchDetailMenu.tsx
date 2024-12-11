@@ -2,32 +2,33 @@ import { Suspense, useState } from "react";
 import HomeInfo from "@/pages/MatchList/components/HomeInfo";
 import ReservationList from "@/pages/MatchList/components/ReservationList";
 import ReserveInfo from "@/pages/MatchList/components/ReserveInfo";
-import { MainMatchType } from "@/common/types/matchTypes";
 import MyTeamButton from "@/pages/MatchList/components/ui/MyTeamButton";
 import MenuButton from "@/common/components/atoms/button/MenuButton";
 import Loading from "@/common/components/atoms/Loading";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorPage from "@/pages/ErrorPage";
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
+import { getTeamId } from "@/common/utils/getTeamId";
+import { MainMatchType, MatchType } from "@/common/types/matchTypes";
 
 interface DetailProps {
+  matchData: MatchType;
   selectedTeam: string;
   filterData: MainMatchType[];
   sport: string;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   totalEl: number;
   currentPage: number;
-  pageSize: number;
 }
 
 export default function MatchDetailMenu({
+  matchData,
   selectedTeam,
   filterData,
   sport,
   setCurrentPage,
   totalEl,
   currentPage,
-  pageSize,
 }: DetailProps) {
   const { reset } = useQueryErrorResetBoundary();
   //예매내역, 홈구장안내, 예매설명 메뉴 선택
@@ -35,6 +36,8 @@ export default function MatchDetailMenu({
   const handleMenuClick = (menu: string) => {
     setSelectedMenu(menu);
   };
+
+  const teamId = getTeamId(sport, selectedTeam);
 
   const MenuList = () => {
     switch (selectedMenu) {
@@ -46,7 +49,7 @@ export default function MatchDetailMenu({
             totalEl={totalEl}
             selectedTeam={selectedTeam}
             currentPage={currentPage}
-            pageSize={pageSize}
+            pageSize={matchData.pageInfo.size}
           />
         );
       case "홈구장 안내":
@@ -61,7 +64,7 @@ export default function MatchDetailMenu({
             totalEl={totalEl}
             selectedTeam={selectedTeam}
             currentPage={currentPage}
-            pageSize={pageSize}
+            pageSize={matchData.pageInfo.size}
           />
         );
     }
