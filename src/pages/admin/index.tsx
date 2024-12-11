@@ -4,7 +4,6 @@ import { MainMatchType, MatchType } from "@/common/types/matchTypes";
 import DetailModal from "@/pages/admin/components/DetailModal";
 import { Suspense, useState } from "react";
 import Header from "./components/ui/Header";
-import { useQueryClient, QueryClientProvider } from "@tanstack/react-query";
 import useAdminData from "./api/useAdminData";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import TbodyComp from "./components/ui/TbodyComp";
@@ -12,7 +11,6 @@ import { startTransition } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Admin() {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const [selectedSport, setSelectedSport] = useState<string>("All");
@@ -64,52 +62,50 @@ export default function Admin() {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <section className="mx-0 my-10 flex w-full flex-col justify-start">
-        <Header />
-        <Suspense fallback={<Loading />}>
-          <div className={`main-content p-4 ${isModalOpen ? "inert" : ""}`}>
-            <table className="min-w-full rounded-[10px] bg-white">
-              <thead>
-                <tr className="w-full border-b border-borders text-left text-[#B5B7C0]">
-                  {tableHeaders.map((header, idx) => (
-                    <th key={idx} className="p-4">
-                      {header}
-                    </th>
-                  ))}
-                  <th className="p-4">
-                    <label htmlFor="sportFilter" className="mr-2" />
-                    <select
-                      id="sportFilter"
-                      value={selectedSport}
-                      onChange={handleSportChange}
-                      className="cursor-pointer rounded border p-2 hover:text-Accent"
-                    >
-                      <option value="All">전체</option>
-                      {sports.map((sport: string, idx: number) => (
-                        <option key={idx} value={sport}>
-                          {sport}
-                        </option>
-                      ))}
-                    </select>
+    <section className="mx-0 my-10 flex w-full flex-col justify-start">
+      <Header />
+      <Suspense fallback={<Loading />}>
+        <div className={`main-content p-4 ${isModalOpen ? "inert" : ""}`}>
+          <table className="min-w-full rounded-[10px] bg-white">
+            <thead>
+              <tr className="w-full border-b border-borders text-left text-[#B5B7C0]">
+                {tableHeaders.map((header, idx) => (
+                  <th key={idx} className="p-4">
+                    {header}
                   </th>
-                  <th className="p-4"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <TbodyComp filteredMatches={filteredMatches} onMatchSelect={handleModalOpen} />
-              </tbody>
-            </table>
-          </div>
-          {isFetchingNextPage && <Loading />}
-          {totalElements ? <div className="h-40" ref={ref} /> : null}
-        </Suspense>
+                ))}
+                <th className="p-4">
+                  <label htmlFor="sportFilter" className="mr-2" />
+                  <select
+                    id="sportFilter"
+                    value={selectedSport}
+                    onChange={handleSportChange}
+                    className="cursor-pointer rounded border p-2 hover:text-Accent"
+                  >
+                    <option value="All">전체</option>
+                    {sports.map((sport: string, idx: number) => (
+                      <option key={idx} value={sport}>
+                        {sport}
+                      </option>
+                    ))}
+                  </select>
+                </th>
+                <th className="p-4"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <TbodyComp filteredMatches={filteredMatches} onMatchSelect={handleModalOpen} />
+            </tbody>
+          </table>
+        </div>
+        {isFetchingNextPage && <Loading />}
+        {totalElements ? <div className="h-40" ref={ref} /> : null}
+      </Suspense>
 
-        {/* 상세 모달 */}
-        {selectedMatch && (
-          <DetailModal isOpen={isModalOpen} onClose={handleModalClose} match={selectedMatch} />
-        )}
-      </section>
-    </QueryClientProvider>
+      {/* 상세 모달 */}
+      {selectedMatch && (
+        <DetailModal isOpen={isModalOpen} onClose={handleModalClose} match={selectedMatch} />
+      )}
+    </section>
   );
 }
