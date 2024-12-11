@@ -1,4 +1,3 @@
-import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import useGetMemberInfo from "@/pages/MyPage/api/useMemberPhoneNumberQuery";
@@ -36,7 +35,7 @@ export default function BasicUserInfoForm() {
       <BasicButton
         content="변경사항 저장"
         disabled={!isValid || phoneNumber === data?.phoneNumber || !isSuitable.phoneNumber}
-        style={RED_BUTTON_STYLE_AUTH}
+        style="mt-4 btn-red"
       />
     </form>
   );

@@ -12,6 +12,18 @@
     border: 1px solid black;
   }
 }
+
+@layer components {
+  .btn-red {
+    @apply w-full rounded-[10px] bg-Accent px-3 py-2 text-center text-[16px] text-foreground hover:bg-button-hovered disabled:cursor-not-allowed disabled:bg-disabled-button;
+  }
+  .btn-red-text {
+    @apply text-Accent hover:text-button-hovered;
+  }
+  .btn-grey {
+    @apply w-full rounded-[10px] bg-borders px-3 py-2 text-center text-[16px] hover:bg-text-tertiary disabled:cursor-not-allowed disabled:bg-text-tertiary;
+  }
+}
 .button-hover:hover {
   @apply bg-Accent text-foreground;
 }

@@ -1,4 +1,3 @@
-import { RED_BUTTON_STYLE_AUTH } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import { PasswordSettingFormType } from "@/common/types/formTypes";
@@ -42,7 +41,7 @@ export default function PasswordResettingForm() {
         error={errors.newPasswordConfirmation}
         inputType="password"
       />
-      <BasicButton content="비밀번호 변경" disabled={!isValid} style={RED_BUTTON_STYLE_AUTH} />
+      <BasicButton content="비밀번호 변경" disabled={!isValid} style="mt-4 btn-red" />
     </form>
   );
 }

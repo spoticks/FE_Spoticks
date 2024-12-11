@@ -1,4 +1,3 @@
-import { BASIC_GREY_BUTTON_STYLE, BASIC_RED_BUTTON_STYLE } from "@/common/buttonStyles";
 import BasicButton from "@/common/components/atoms/button/BasicButton";
 import DetailedTicket from "@/common/components/organisms/DetailedTicket";
 import ModalInfo from "@/common/components/organisms/ModalInfo";
@@ -55,7 +54,11 @@ export default function InformationDetail({ onClose, reservationId }: Informatio
             <BasicButton
               content={isReservationComplete ? (gamePassed ? "취소 불가" : "티켓 취소") : "닫기"}
               onClick={isReservationComplete ? handleModalOpen : onClose}
-              style={isReservationComplete ? BASIC_RED_BUTTON_STYLE : BASIC_GREY_BUTTON_STYLE}
+              style={
+                isReservationComplete
+                  ? "btn-red"
+                  : "w-full rounded-[10px] bg-borders px-3 py-2 text-center text-[16px] hover:bg-text-tertiary disabled:cursor-not-allowed disabled:bg-text-tertiary"
+              }
               disabled={gamePassed && isReservationComplete}
             />
           </section>

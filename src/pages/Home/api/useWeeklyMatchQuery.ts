@@ -2,7 +2,7 @@ import { MatchData } from "@/common/types/matchTypes";
 import axiosInstance from "@/common/utils/axiosInstance";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
-export default function useWeeklyMatch() {
+export default function useWeeklyMatchQuery() {
   return useSuspenseQuery<MatchData[]>({
     queryKey: ["weeklyMatches"],
 
