@@ -61,3 +61,8 @@ export interface GameReservationType {
   totalPrice: number;
   game: InformationCardProp;
 }
+
+export type AdminMatchType = Omit<
+  MatchData,
+  "latitude" | "longitude" | "stadiumName" | "awayTeamName" | "homeTeamName"
+> & { sport: string; stadium: string; awayTeamName: string; homeTeamName: string };

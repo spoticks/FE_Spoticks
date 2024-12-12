@@ -1,11 +1,11 @@
-import { ContentProps } from "@/common/types/type";
+import { AdminMatchType } from "@/common/types/matchTypes";
 
 export default function TbodyComp({
   filteredMatches,
   onMatchSelect,
 }: {
-  filteredMatches: ContentProps[];
-  onMatchSelect: (match: ContentProps) => void;
+  filteredMatches: AdminMatchType[];
+  onMatchSelect: (match: AdminMatchType) => void;
 }) {
   return (
     <>
@@ -14,8 +14,8 @@ export default function TbodyComp({
           <tr key={index} className="border-b border-borders">
             <td className="p-4">{match.gameStartTime.split("T")[0]}</td>
             <td className="p-4">{match.gameStartTime.split("T")[1].slice(0, 5)}</td>
-            <td className="p-4">{match.homeTeam}</td>
-            <td className="p-4">{match.awayTeam}</td>
+            <td className="p-4">{match.homeTeamName}</td>
+            <td className="p-4">{match.awayTeamName}</td>
             <td className="p-4 pl-8">{match.sport}</td>
             <td className="p-4">
               <button
