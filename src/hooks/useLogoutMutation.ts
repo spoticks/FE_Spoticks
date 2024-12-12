@@ -3,7 +3,9 @@ import alertToast from "@/common/utils/alertToast";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export default function useLogout(setIsPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>) {
+export default function useLogoutMutation(
+  setIsPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>,
+) {
   const { logout } = useAuthStore();
   const { pathname } = useLocation();
   const navigate = useNavigate();
