@@ -3,6 +3,7 @@ import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-qu
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useState } from "react";
 import errorHandler from "@/common/utils/errorHandler";
+import AuthProvider from "@/common/components/organisms/AuthProvider";
 
 function App() {
   const [queryClient] = useState(
@@ -29,7 +30,9 @@ function App() {
   );
   return (
     <QueryClientProvider client={queryClient}>
-      <Router />
+      <AuthProvider>
+        <Router />
+      </AuthProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
