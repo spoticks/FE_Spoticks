@@ -23,8 +23,6 @@ const AdminTable = ({ selectedSport }: { selectedSport: string }) => {
     totalElements,
   });
 
-  const filteredMatches = matches.pages[0].content;
-  console.log(matches.pages);
   // Modal 상태 관리
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMatch, setSelectedMatch] = useState<AdminMatchType | null>(null);
@@ -56,7 +54,11 @@ const AdminTable = ({ selectedSport }: { selectedSport: string }) => {
             </tr>
           </thead>
           <tbody>
-            <TbodyComp filteredMatches={filteredMatches} onMatchSelect={handleModalOpen} />
+            <TbodyComp
+              matches={matches.pages}
+              onMatchSelect={handleModalOpen}
+              totalElements={totalElements}
+            />
           </tbody>
         </table>
       </div>

@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
-import useAxios from "../../hooks/useAxios";
 import Section from "./components/seats/Section";
 import { seatFormData, Seat } from "@/common/types/seatTypes";
 import SectionOfSeats from "./components/seats/SectionOfSeats";
 import SelectedSeats from "./components/seats/SelectedSeat";
 import Loading from "@/common/components/atoms/Loading";
-import { seatDataProps, positionInfoProps } from "./type";
+import { positionInfoProps } from "./type";
+import { useReservationApi } from "./api/useReservationApi";
 
 interface sectionOfSeats {
   seatPosition: string;
@@ -34,15 +34,7 @@ export default function Reservation() {
   const reservationId = gameId || "";
 
   // 전체 데이터
-  const { data, isLoading } = useAxios<seatDataProps>(
-    ["reservation", reservationId, selectedSection],
-    {
-      config: {
-        url: `/games/${reservationId}?seatPosition=${selectedSection}`,
-        method: "GET",
-      },
-    },
-  );
+  const { data, isLoading } = useReservationApi(reservationId, selectedSection);
 
   //날짜
   const matchDate = `${data?.game.gameStartTime.split("T")[0]} ${data?.game.gameStartTime

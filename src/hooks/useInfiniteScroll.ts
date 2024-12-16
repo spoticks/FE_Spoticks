@@ -33,7 +33,7 @@ export default function useInfiniteScroll({
   totalElements,
 }: UseInfiniteScrollProps) {
   const { ref, inView } = useInView({
-    threshold: 1,
+    threshold: 0.8,
   });
 
   useEffect(() => {
