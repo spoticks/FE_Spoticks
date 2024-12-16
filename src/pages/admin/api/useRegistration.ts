@@ -6,12 +6,12 @@ import { FormValueType } from "@/pages/admin/type";
 import { regiSchema } from "@/pages/admin/components/RegiSchema";
 import { getTeamId } from "@/common/utils/getTeamId";
 import alertToast from "@/common/utils/alertToast";
-import { MainMatchType } from "@/common/types/matchTypes";
+import { AdminMatchType } from "@/common/types/matchTypes";
 import axiosInstance from "@/common/utils/axiosInstance";
 
 interface Props {
   mode: "create" | "edit";
-  existMatch?: MainMatchType;
+  existMatch?: AdminMatchType;
 }
 
 export const useRegistrationForm = ({ mode, existMatch }: Props) => {
@@ -34,8 +34,8 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
       date: "",
       gameStartTime: "",
       stadiumName: "",
-      homeTeam: "",
-      awayTeam: "",
+      homeTeamName: "",
+      awayTeamName: "",
     },
   });
 
@@ -46,8 +46,8 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
   const onSubmit = async (data: FormValueType) => {
     try {
       const fullDateTime = `${data.date}T${data.gameStartTime}`;
-      const homeTeamIdx = getTeamId(data.sport, data.homeTeam);
-      const awayTeamIdx = getTeamId(data.sport, data.awayTeam);
+      const homeTeamIdx = getTeamId(data.sport, data.homeTeamName);
+      const awayTeamIdx = getTeamId(data.sport, data.awayTeamName);
       const matchData = {
         sport: data.sport,
         gameStartTime: `${fullDateTime}+09:00`, // "YYYY-MM-DDTHH:mm" 형식

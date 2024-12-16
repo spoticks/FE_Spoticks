@@ -65,4 +65,4 @@ export interface GameReservationType {
 export type AdminMatchType = Omit<
   MatchData,
   "latitude" | "longitude" | "stadiumName" | "awayTeamName" | "homeTeamName"
-> & { sport: string; stadium: string; awayTeamName: string; homeTeamName: string };
+> & { sport: string; stadiumName: string; awayTeamName: string; homeTeamName: string };
