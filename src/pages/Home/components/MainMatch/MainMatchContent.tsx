@@ -6,7 +6,15 @@ import isSaleTimeOn from "@/pages/Home/utils/isSaleTimeOn";
 
 export default function MainMatchContent() {
   const {
-    data: { homeTeam, awayTeam, timeOffSale, timeOnSale, gameId, gameStartTime, stadium },
+    data: {
+      homeTeamName,
+      awayTeamName,
+      timeOffSale,
+      timeOnSale,
+      gameId,
+      gameStartTime,
+      stadiumName,
+    },
   } = useMainMatch();
 
   const isTicketOnSale = isSaleTimeOn(timeOnSale, timeOffSale);
@@ -14,13 +22,13 @@ export default function MainMatchContent() {
     <>
       {isTicketOnSale ? <Timer timeOffSale={timeOffSale} /> : <TicketOffSale />}
       <MainMatchInfo
-        homeTeam={homeTeam}
-        awayTeam={awayTeam}
+        homeTeamName={homeTeamName}
+        awayTeamName={awayTeamName}
         gameId={gameId}
         timeOffSale={timeOffSale}
         timeOnSale={timeOnSale}
         gameStartTime={gameStartTime}
-        stadium={stadium}
+        stadiumName={stadiumName}
       />
     </>
   );
