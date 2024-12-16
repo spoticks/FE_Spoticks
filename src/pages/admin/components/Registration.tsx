@@ -23,7 +23,7 @@ export default function Registration() {
   const sportValue = watch("sport");
   const teamsInSport = sportValue ? teams[sportValue] || [] : [];
   const stadiumsInSport = sportValue ? stadiums[sportValue] || [] : [];
-  console.log(existMatch);
+
   useEffect(() => {
     if (mode === "edit" && existMatch) {
       setValue("sport", existMatch.sport);
