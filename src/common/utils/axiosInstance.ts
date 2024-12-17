@@ -22,11 +22,7 @@ axiosInstance.interceptors.response.use(
   async (err) => {
     const originalRequest = err.config;
     const errorMessage = err.response?.data.message;
-    if (
-      errorMessage === "JWT Token expired" &&
-      !originalRequest._retry &&
-      !originalRequest.url.includes("/auth/reissue")
-    ) {
+    if (errorMessage === "JWT Token expired" && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
         const userName = useAuthStore.getState().userName;
