@@ -2,7 +2,7 @@ import { useState } from "react";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import DetailModal from "@/pages/admin/components/DetailModal";
 import Loading from "@/common/components/atoms/Loading";
-import { AdminMatchType } from "@/common/types/matchTypes";
+import { MainMatchType } from "@/common/types/matchTypes";
 import TbodyComp from "./TbodyComp";
 import useAdminData from "../../api/useAdminData";
 
@@ -25,9 +25,9 @@ const RegisteredMatchList = ({ selectedSport }: { selectedSport: string }) => {
 
   // Modal 상태 관리
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedMatch, setSelectedMatch] = useState<AdminMatchType | null>(null);
+  const [selectedMatch, setSelectedMatch] = useState<MainMatchType | null>(null);
 
-  const handleModalOpen = (match: AdminMatchType) => {
+  const handleModalOpen = (match: MainMatchType) => {
     if (isModalOpen) return;
     setSelectedMatch(match);
     setIsModalOpen(true);

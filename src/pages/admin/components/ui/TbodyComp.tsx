@@ -1,8 +1,8 @@
-import { AdminMatchType, PageInfoProps } from "@/common/types/matchTypes";
+import { MainMatchType, PageInfoProps } from "@/common/types/matchTypes";
 import React from "react";
 
 interface matchesProps {
-  content: AdminMatchType[];
+  content: MainMatchType[];
   pageInfo: PageInfoProps;
 }
 
@@ -12,7 +12,7 @@ export default function TbodyComp({
   totalElements,
 }: {
   matches: matchesProps[];
-  onMatchSelect: (match: AdminMatchType) => void;
+  onMatchSelect: (match: MainMatchType) => void;
   totalElements: number;
 }) {
   return (
