@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { seatDataProps } from "../type";
 import axiosInstance from "@/common/utils/axiosInstance";
 
-export function useReservationApi(reservationId: string, selectedSection: string) {
+export function useReservationQuery(reservationId: string, selectedSection: string) {
   return useQuery<seatDataProps>({
     queryKey: ["reservation", reservationId, selectedSection],
     queryFn: async () => {

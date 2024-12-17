@@ -6,7 +6,7 @@ import { AdminMatchType } from "@/common/types/matchTypes";
 import TbodyComp from "./TbodyComp";
 import useAdminData from "../../api/useAdminData";
 
-const AdminTable = ({ selectedSport }: { selectedSport: string }) => {
+const RegisteredMatchList = ({ selectedSport }: { selectedSport: string }) => {
   const {
     data: matches,
     fetchNextPage,
@@ -72,4 +72,4 @@ const AdminTable = ({ selectedSport }: { selectedSport: string }) => {
     </>
   );
 };
-export default AdminTable;
+export default RegisteredMatchList;

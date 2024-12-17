@@ -7,7 +7,7 @@ import SectionOfSeats from "./components/seats/SectionOfSeats";
 import SelectedSeats from "./components/seats/SelectedSeat";
 import Loading from "@/common/components/atoms/Loading";
 import { positionInfoProps } from "./type";
-import { useReservationApi } from "./api/useReservationApi";
+import { useReservationQuery } from "./api/useReservationQuery";
 
 interface sectionOfSeats {
   seatPosition: string;
@@ -34,7 +34,7 @@ export default function Reservation() {
   const reservationId = gameId || "";
 
   // 전체 데이터
-  const { data, isLoading } = useReservationApi(reservationId, selectedSection);
+  const { data, isLoading } = useReservationQuery(reservationId, selectedSection);
 
   //날짜
   const matchDate = `${data?.game.gameStartTime.split("T")[0]} ${data?.game.gameStartTime

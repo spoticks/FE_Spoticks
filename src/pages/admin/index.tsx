@@ -3,7 +3,7 @@ import Loading from "@/common/components/atoms/Loading";
 import Header from "./components/ui/Header";
 import { menu } from "@/common/constants";
 import { useNavigate } from "react-router-dom";
-import AdminTable from "./components/ui/AdminTable";
+import RegisteredMatchList from "./components/ui/RegisteredMatchList";
 
 export default function Admin() {
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ export default function Admin() {
         </select>
       </div>
       <Suspense fallback={<Loading />}>
-        <AdminTable selectedSport={selectedSport} />
+        <RegisteredMatchList selectedSport={selectedSport} />
       </Suspense>
     </section>
   );
