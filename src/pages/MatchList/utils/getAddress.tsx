@@ -22,7 +22,7 @@ interface ReverseGeocodeResponse {
 }
 
 export const useGetAddress = ({ position, setAddress }: UseGetAddressProps) => {
-  const clientId = import.meta.env.VITE_MAP_CLIENT_ID;
+  // const clientId = import.meta.env.VITE_MAP_CLIENT_ID;
   const naverMaps = useNavermaps();
 
   useEffect(() => {

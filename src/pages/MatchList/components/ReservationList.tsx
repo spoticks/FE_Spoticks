@@ -28,7 +28,7 @@ const ReservationList = ({
     setAllMatches([]);
     setViewMatches([]);
     setCurrentPage(1);
-  }, [selectedTeam]);
+  }, [selectedTeam, setCurrentPage]);
 
   useEffect(() => {
     setAllMatches((prevMatches) => {
@@ -41,7 +41,7 @@ const ReservationList = ({
 
   useEffect(() => {
     setViewMatches(allMatches.slice(0, currentPage * pageSize));
-  }, [allMatches, currentPage]);
+  }, [allMatches, currentPage, pageSize]);
 
   const addViewClick = () => {
     if (viewMatches.length < totalEl) {
@@ -75,9 +75,9 @@ const ReservationList = ({
                 key={match.gameId}
                 className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"} text-[20px]`}
               >
-                <TdComp>{match.homeTeam}</TdComp>
-                <TdComp>{match.awayTeam}</TdComp>
-                <TdComp>{match.stadium}</TdComp>
+                <TdComp>{match.homeTeamName}</TdComp>
+                <TdComp>{match.awayTeamName}</TdComp>
+                <TdComp>{match.stadiumName}</TdComp>
                 <TdComp>{match.gameStartTime.split("T")[0]}</TdComp>
                 <TdComp>
                   <Link

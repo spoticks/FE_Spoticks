@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { useForm, Controller } from "react-hook-form";
+import { useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import Section from "./components/seats/Section";
 import { seatFormData, Seat } from "@/common/types/seatTypes";
 import SectionOfSeats from "./components/seats/SectionOfSeats";

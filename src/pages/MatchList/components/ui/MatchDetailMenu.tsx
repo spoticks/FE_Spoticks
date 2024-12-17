@@ -7,7 +7,7 @@ import MenuButton from "@/common/components/atoms/button/MenuButton";
 import Loading from "@/common/components/atoms/Loading";
 import CustomErrorBoundary from "@/common/components/atoms/CustomErrorBoundary";
 import { MatchType, MainMatchType } from "@/common/types/matchTypes";
-import { getTeamId } from "@/common/utils/getTeamId";
+// import { getTeamId } from "@/common/utils/getTeamId";
 
 interface DetailProps {
   matchData: MatchType;
@@ -34,7 +34,7 @@ export default function MatchDetailMenu({
     setSelectedMenu(menu);
   };
 
-  const teamId = getTeamId(sport, selectedTeam);
+  // const teamId = getTeamId(sport, selectedTeam);
 
   const MenuList = () => {
     switch (selectedMenu) {

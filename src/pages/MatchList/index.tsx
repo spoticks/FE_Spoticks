@@ -47,7 +47,7 @@ export default function MatchList({ sport }: MatchListProps) {
         const selectedTeamId = getTeamId(sport, selectedTeam);
         if (selectedTeamId) {
           const filteredMatches = matchData.content.filter(
-            (game) => game.homeTeam === selectedTeam || game.awayTeam === selectedTeam,
+            (game) => game.homeTeamName === selectedTeam || game.awayTeamName === selectedTeam,
           );
           setFilterData(filteredMatches);
         }

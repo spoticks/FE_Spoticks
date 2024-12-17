@@ -2,14 +2,13 @@ import Loading from "@/common/components/atoms/Loading";
 import useStadiumApi from "../api/useStadiumApi";
 import RenderMap from "./ui/RenderMap";
 import { Container as MapDiv, NavermapsProvider } from "react-naver-maps";
-import { Suspense, useEffect, useState } from "react";
-import { useGetAddress } from "../utils/getAddress";
+import { Suspense, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getTeamId } from "@/common/utils/getTeamId";
 
-interface HomeInfoProps {
-  teamId: number | null;
-}
+// interface HomeInfoProps {
+//   teamId: number | null;
+// }
 
 const HomeInfo = () => {
   const location = useLocation();
@@ -21,7 +20,7 @@ const HomeInfo = () => {
 
   const { data, isLoading } = useStadiumApi({ teamId });
   const clientId = import.meta.env.VITE_MAP_CLIENT_ID;
-  const [address, setAddress] = useState<string>("");
+  const [address] = useState<string>("");
 
   const defaultPosition: [number, number] = [37.5665, 126.978];
   const position: [number, number] =
