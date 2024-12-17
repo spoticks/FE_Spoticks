@@ -32,7 +32,7 @@ axiosInstance.interceptors.response.use(
         const userName = useAuthStore.getState().userName;
         const { accessToken } = useAuthStore.getState();
         const axiosRefreshInstance = axios.create({
-          baseURL: "http://spoticks.shop:8080/",
+          baseURL: "https://api.spoticks.shop/",
           timeout: 3000,
           headers: { "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` },
           withCredentials: true,
