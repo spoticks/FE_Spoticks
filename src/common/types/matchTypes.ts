@@ -14,7 +14,7 @@ interface StadiumLocation {
 }
 export interface MatchData extends BaseMatch, StadiumLocation {}
 
-export type MainMatchType = Omit<MatchData, "latitude" | "longitude"> & { sport: string };
+export type MainMatchType = BaseMatch & { sport: string };
 
 export type SportName = {
   sport: "야구" | "축구" | "배구" | "농구";
