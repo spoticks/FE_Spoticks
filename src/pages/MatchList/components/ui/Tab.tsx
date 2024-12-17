@@ -3,7 +3,7 @@ import TabOpen from "@/assets/TabOpen.svg?react";
 import TabClose from "@/assets/TabClose.svg?react";
 import { teams, leagueName } from "@/common/constants";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { MainMatchType } from "@/common/types/matchTypes";
 
 interface TabProps {
@@ -18,7 +18,7 @@ export default function MatchListTab({
   setFilterData,
   setCurrentPage,
 }: TabProps) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const TabStyle = "flex flex-row items-center bg-background py-2 pl-1";
   const TeamListIconStyle =

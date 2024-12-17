@@ -2,33 +2,32 @@ import Modal from "react-modal";
 import { IoIosCloseCircle } from "react-icons/io";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
-import Error from "../../ErrorPage";
-import { MatchDataProps } from "../../../common/types/matchTypes";
 import { useNavigate } from "react-router-dom";
 import Button from "@/common/components/atoms/Button";
 import Loading from "@/common/components/atoms/Loading";
 import alertToast from "@/common/utils/alertToast";
 import DetailedTicket from "@/common/components/organisms/DetailedTicket";
 import InfoPart from "@/common/components/molecules/InfoPart";
+import { SeatType, InformationCardProp } from "@/common/types/matchTypes";
 
 interface PayModalProps {
   isOpen: boolean;
   onClose: () => void;
   gameId?: number;
-  mySeats: string[];
-  matchData: MatchDataProps;
-  totalPay: string;
+  mySeats: SeatType[];
+  matchData: InformationCardProp;
+  totalPay: number;
 }
 
 interface PayFormInputs {
-  totalPrice: string;
-  seatIds: string[];
+  totalPrice: number;
+  seatIds: SeatType[];
 }
 
 export default function PayModal({
   isOpen,
   onClose,
-  gameId,
+  // gameId,
   mySeats,
   matchData,
   totalPay,
@@ -44,7 +43,7 @@ export default function PayModal({
     return data;
   };
 
-  const { mutate, isPending, error } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: () => fetchPayDetails({ totalPrice: totalPay, seatIds: mySeats }),
     onSuccess: (data) => {
       console.log("Reservation successful:", data);
@@ -79,7 +78,7 @@ export default function PayModal({
         {/* {error && <Error />} */}
         {matchData && (
           <>
-            <DetailedTicket data={matchData} mySeats={mySeats} totalPay={totalPay} />
+            <DetailedTicket game={matchData} mySeats={mySeats} totalPay={totalPay} />
             <div className="flex w-[380px] flex-col gap-4">
               <div className="flex justify-between">
                 <InfoPart heading="연락처" content={"010-1234-5678"} />
