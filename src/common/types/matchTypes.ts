@@ -56,7 +56,3 @@ export interface GameReservationType {
   totalPrice: number;
   game: InformationCardProp;
 }
-
-export interface AdminMatchType extends BaseMatch {
-  sport: string;
-}
