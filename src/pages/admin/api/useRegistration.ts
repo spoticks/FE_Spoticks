@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import useStore from "@/common/stores/useStore";
 import { FormValueType } from "@/pages/admin/type";
 import { regiSchema } from "@/pages/admin/components/RegiSchema";
 import { getTeamId } from "@/common/utils/getTeamId";
 import alertToast from "@/common/utils/alertToast";
-import { MainMatchType } from "@/common/types/matchTypes";
+import { AdminMatchType } from "@/common/types/matchTypes";
+import axiosInstance from "@/common/utils/axiosInstance";
 
 interface Props {
   mode: "create" | "edit";
-  existMatch?: MainMatchType;
+  existMatch?: AdminMatchType;
 }
 
 export const useRegistrationForm = ({ mode, existMatch }: Props) => {
@@ -34,8 +34,8 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
       date: "",
       gameStartTime: "",
       stadiumName: "",
-      homeTeam: "",
-      awayTeam: "",
+      homeTeamName: "",
+      awayTeamName: "",
     },
   });
 
@@ -46,28 +46,25 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
   const onSubmit = async (data: FormValueType) => {
     try {
       const fullDateTime = `${data.date}T${data.gameStartTime}`;
-      const homeTeamIdx = getTeamId(data.sport, data.homeTeam);
-      const awayTeamIdx = getTeamId(data.sport, data.awayTeam);
+      const homeTeamIdx = getTeamId(data.sport, data.homeTeamName);
+      const awayTeamIdx = getTeamId(data.sport, data.awayTeamName);
       const matchData = {
         sport: data.sport,
-        gameStartTime: fullDateTime, // "YYYY-MM-DDTHH:mm" 형식
+        gameStartTime: `${fullDateTime}+09:00`, // "YYYY-MM-DDTHH:mm" 형식
         stadiumName: data.stadiumName,
         homeTeamId: homeTeamIdx,
         awayTeamId: awayTeamIdx,
       };
 
       if (mode === "create") {
-        const res = await axios.post("http://spoticks.shop:8080/admin/games", matchData);
+        const res = await axiosInstance.post("/admin/games", matchData);
         addMatch(res.data);
       } else if (mode === "edit" && existMatch && existMatch.gameId !== undefined) {
         const updatedMatch = {
           ...existMatch,
           ...matchData,
         };
-        const res = await axios.patch(
-          `http://spoticks.shop:8080/admin/games/${existMatch.gameId}`,
-          updatedMatch,
-        );
+        const res = await axiosInstance.patch(`/admin/games/${existMatch.gameId}`, updatedMatch);
         updateMatch(res.data);
       }
       console.log(matchData);
