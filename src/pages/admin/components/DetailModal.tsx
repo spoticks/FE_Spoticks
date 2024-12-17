@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import { Link, useNavigate } from "react-router-dom";
-import { MainMatchType } from "@/common/types/matchTypes";
+import { AdminMatchType } from "@/common/types/matchTypes";
 import alertToast from "@/common/utils/alertToast";
 import ErrorToast from "@/common/utils/errorToast";
 import confirmAlert from "@/common/utils/confirmAlert";
@@ -10,7 +10,7 @@ import axiosInstance from "@/common/utils/axiosInstance";
 interface DetailModalProps {
   isOpen: boolean;
   onClose: () => void;
-  match: MainMatchType;
+  match: AdminMatchType;
 }
 
 export default function DetailModal({ isOpen, onClose, match }: DetailModalProps) {
@@ -22,10 +22,10 @@ export default function DetailModal({ isOpen, onClose, match }: DetailModalProps
   };
 
   const Detail = [
-    { 종목: match.sport, 홈팀: match.homeTeam, 티켓오픈: formatedDate(match.timeOnSale) },
+    { 종목: match.sport, 홈팀: match.homeTeamName, 티켓오픈: formatedDate(match.timeOnSale) },
     {
       경기시작: formatedDate(match.gameStartTime),
-      어웨이팀: match.awayTeam,
+      어웨이팀: match.awayTeamName,
       예매마감: formatedDate(match.timeOffSale),
     },
   ];

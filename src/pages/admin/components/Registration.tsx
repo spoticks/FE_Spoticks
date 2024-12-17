@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import Tickets from "@/assets/Tickets.svg?react";
 import { useLocation } from "react-router-dom";
-import { MainMatchType } from "@/common/types/matchTypes";
+import { AdminMatchType } from "@/common/types/matchTypes";
 import { menu, stadiums, teams } from "@/common/constants";
 import SelectFiled from "@/pages/admin/components/ui/SelectField";
 import FormInputField from "@/common/components/molecules/FormInputField";
-import { useRegistrationForm } from "../util/useRegistrationForm";
+import { useRegistrationForm } from "../api/useRegistration";
 
 interface ModeProps {
   mode: "create" | "edit";
-  existMatch?: MainMatchType;
+  existMatch?: AdminMatchType;
 }
 
 export default function Registration() {
@@ -23,15 +23,15 @@ export default function Registration() {
   const sportValue = watch("sport");
   const teamsInSport = sportValue ? teams[sportValue] || [] : [];
   const stadiumsInSport = sportValue ? stadiums[sportValue] || [] : [];
-  // console.log(existMatch);
+
   useEffect(() => {
     if (mode === "edit" && existMatch) {
       setValue("sport", existMatch.sport);
       setValue("date", existMatch.gameStartTime.split("T")[0]); // 날짜 설정
       setValue("gameStartTime", existMatch.gameStartTime.split("T")[1]); // 시간 설정
-      setValue("homeTeam", existMatch.homeTeam);
-      setValue("awayTeam", existMatch.awayTeam);
-      setValue("stadiumName", existMatch.stadium);
+      setValue("homeTeamName", existMatch.homeTeamName);
+      setValue("awayTeamName", existMatch.awayTeamName);
+      setValue("stadiumName", existMatch.stadiumName);
     }
   }, [mode, existMatch, setValue]);
 
@@ -84,21 +84,21 @@ export default function Registration() {
             {/* 홈팀 선택 */}
             <SelectFiled
               label="홈팀"
-              id="homeTeam"
+              id="homeTeamName"
               register={register}
               options={teamsInSport}
               disabled={!sportValue}
-              error={errors.homeTeam}
+              error={errors.homeTeamName}
             />
             {/* 어웨이팀 선택 */}
             <div className="border-none">
               <SelectFiled
                 label="어웨이팀"
-                id="awayTeam"
+                id="awayTeamName"
                 register={register}
-                options={teamsInSport.filter((team) => team !== watch("homeTeam"))}
+                options={teamsInSport.filter((team) => team !== watch("homeTeamName"))}
                 disabled={!sportValue}
-                error={errors.awayTeam}
+                error={errors.awayTeamName}
               />
             </div>
             <button type="submit" className="hover:Accent rounded bg-Accent px-4 py-2 text-white">

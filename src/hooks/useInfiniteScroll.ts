@@ -1,4 +1,4 @@
-import { GameHistoryType, MainMatchType, PageInfoProps } from "@/common/types/matchTypes";
+import { AdminMatchType, GameHistoryType, PageInfoProps } from "@/common/types/matchTypes";
 import alertToast from "@/common/utils/alertToast";
 import {
   FetchNextPageOptions,
@@ -13,7 +13,7 @@ interface UseInfiniteScrollProps {
     InfiniteQueryObserverResult<
       InfiniteData<
         {
-          content: GameHistoryType | MainMatchType[];
+          content: GameHistoryType | AdminMatchType[];
           pageInfo: PageInfoProps;
         },
         unknown
@@ -33,7 +33,7 @@ export default function useInfiniteScroll({
   totalElements,
 }: UseInfiniteScrollProps) {
   const { ref, inView } = useInView({
-    threshold: 1,
+    threshold: 0.8,
   });
 
   useEffect(() => {
