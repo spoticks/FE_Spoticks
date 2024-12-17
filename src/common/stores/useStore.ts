@@ -1,15 +1,15 @@
 import { create } from "zustand";
-import { Match } from "../common/types/type";
+import { MatchDataProps } from "@/common/types/matchTypes";
 
 interface storeState {
-  matches: Match[];
-  addMatch: (match: Match) => void;
-  updateMatch: (match: Match) => void;
+  matches: MatchDataProps[];
+  addMatch: (match: MatchDataProps) => void;
+  updateMatch: (match: MatchDataProps) => void;
 }
 
 const useStore = create<storeState>((set) => ({
   matches: [],
-  addMatch: (match: Match) => set((state) => ({ matches: [...state.matches, match] })),
+  addMatch: (match: MatchDataProps) => set((state) => ({ matches: [...state.matches, match] })),
   updateMatch: (updatedMatch) =>
     set((state) => ({
       matches: state.matches.map((match) => (match.id === updatedMatch.id ? updatedMatch : match)),
