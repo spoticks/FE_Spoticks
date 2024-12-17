@@ -12,7 +12,7 @@ const fullSchema = z.object({
   memberName: z
     .string()
     .min(2, { message: "이름은 두 글자 이상이어야 합니다." })
-    .max(12, { message: "최대 12글자 까지 입니다!" })
+    .max(12, { message: "이름은 최대 12글자 까지 입니다!" })
     .regex(/^[a-zA-Z가-힣]{2,12}$/, {
       message: "이름은 2~12 글자의 한글, 영문만 입력 가능합니다.",
     }),
