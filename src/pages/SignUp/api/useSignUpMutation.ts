@@ -13,7 +13,7 @@ export default function useSignUpMutation() {
     mutationFn: async ({ userName, password, memberName, phoneNumber }: AuthFormType) => {
       return await axiosInstance.post("join", { userName, password, memberName, phoneNumber });
     },
-    onSuccess: (res) => {
+    onSuccess: () => {
       navigate("/login");
       alertToast("회원가입 되었습니다! 환영합니다!", "success");
     },

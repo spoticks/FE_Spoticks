@@ -16,7 +16,7 @@ export default function useTicketCancellationMutation(onClose: () => void, reser
       navigate("/profile/my-tickets/my-reservations");
       onClose();
     },
-    onError: (error) => {
+    onError: () => {
       alertToast("취소에 실패했습니다!", "error");
     },
   });

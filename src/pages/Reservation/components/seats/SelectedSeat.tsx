@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Seat } from "@/common/types/seatTypes";
 import { useLocation } from "react-router-dom";
 import PayModal from "@/pages/Reservation/components/PayModal";
+import { SeatType } from "@/common/types/matchTypes";
 
 interface SelectedSeatsSummaryProps {
   selectedSeats: Seat[];
@@ -19,9 +20,7 @@ export default function SelectedSeats({
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   let mySeats = [];
-  const totalPay = selectedSeats
-    .reduce((total, seat) => total + Number(seat.price), 0)
-    .toLocaleString();
+  const totalPay = selectedSeats.reduce((total, seat) => total + Number(seat.price), 0);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -31,10 +30,10 @@ export default function SelectedSeats({
     setIsModalOpen(false);
   };
 
-  const seatMap: string[] = selectedSeats.map((seat: Seat) => {
+  const seatMap = selectedSeats.map((seat: Seat) => {
     return `${selectedSection} ${Math.ceil(seat.id / 10)}열 ${seat.id}번`;
   });
-  mySeats = seatMap;
+  mySeats = seatMap as unknown as SeatType[];
 
   return (
     <div className="flex flex-row items-center justify-between">
