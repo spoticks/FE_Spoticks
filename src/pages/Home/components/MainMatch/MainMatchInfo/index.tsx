@@ -7,24 +7,30 @@ import MainMatchTeam from "@/pages/Home/components/MainMatch/MainMatchInfo/MainM
 import isSaleTimeOn from "@/pages/Home/utils/isSaleTimeOn";
 
 export default function MainMatchInfo({
-  homeTeam,
-  awayTeam,
+  homeTeamName,
+  awayTeamName,
   gameId,
   timeOffSale,
   timeOnSale,
   gameStartTime,
-  stadium,
+  stadiumName,
 }: Pick<
   MainMatchType,
-  "homeTeam" | "awayTeam" | "gameId" | "timeOffSale" | "timeOnSale" | "gameStartTime" | "stadium"
+  | "homeTeamName"
+  | "awayTeamName"
+  | "gameId"
+  | "timeOffSale"
+  | "timeOnSale"
+  | "gameStartTime"
+  | "stadiumName"
 >) {
   const isTicketOnSale = isSaleTimeOn(timeOnSale, timeOffSale);
   const { month, day, weekday, hours, minutes } = extractDateData(timeOffSale);
   return (
     <div className="flex w-full flex-col items-center justify-center rounded border border-borders bg-foreground p-4">
       <MatchDate gameStartTime={gameStartTime} />
-      <p className="mb-2 text-[16px] font-semibold text-text-tertiary">{stadium}</p>
-      <MainMatchTeam homeTeam={homeTeam} awayTeam={awayTeam} />
+      <p className="mb-2 text-[16px] font-semibold text-text-tertiary">{stadiumName}</p>
+      <MainMatchTeam homeTeam={homeTeamName} awayTeam={awayTeamName} />
       {isTicketOnSale ? (
         <LinkButton
           content={`${month}/${day}(${weekday}) ${hours}:${minutes}까지 예매 가능`}

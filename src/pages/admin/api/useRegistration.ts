@@ -6,12 +6,12 @@ import { FormValueType } from "@/pages/admin/type";
 import { regiSchema } from "@/pages/admin/components/RegiSchema";
 import { getTeamId } from "@/common/utils/getTeamId";
 import alertToast from "@/common/utils/alertToast";
-import { AdminMatchType } from "@/common/types/matchTypes";
+import { MainMatchType } from "@/common/types/matchTypes";
 import axiosInstance from "@/common/utils/axiosInstance";
 
 interface Props {
   mode: "create" | "edit";
-  existMatch?: AdminMatchType;
+  existMatch?: MainMatchType;
 }
 
 export const useRegistrationForm = ({ mode, existMatch }: Props) => {

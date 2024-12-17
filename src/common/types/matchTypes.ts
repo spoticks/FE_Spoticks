@@ -14,12 +14,7 @@ interface StadiumLocation {
 }
 export interface MatchData extends BaseMatch, StadiumLocation {}
 
-// 백엔드에서 바꿔주면 이걸 사용할 것
-// export type MainMatchType = Omit<MatchData, 'latitude' | 'longitude'> & {sport : string};
-export type MainMatchType = Omit<
-  MatchData,
-  "latitude" | "longitude" | "stadiumName" | "awayTeamName" | "homeTeamName"
-> & { sport: string; stadium: string; awayTeam: string; homeTeam: string };
+export type MainMatchType = BaseMatch & { sport: string };
 
 export type SportName = {
   sport: "야구" | "축구" | "배구" | "농구";
@@ -60,8 +55,4 @@ export interface GameReservationType {
   seats: SeatType[];
   totalPrice: number;
   game: InformationCardProp;
-}
-
-export interface AdminMatchType extends BaseMatch {
-  sport: string;
 }

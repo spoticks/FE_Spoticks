@@ -8,7 +8,7 @@ export default function errorHandler(error: Error) {
     const status = error.response?.status;
     const message = error.response?.data.message;
     const toastMessage = getErrorToastMessage(message);
-    if (status === 401) {
+    if (status === 401 && message !== "JWT Token expired") {
       useAuthStore.getState().logout();
       alertToast(toastMessage, "error");
     }
