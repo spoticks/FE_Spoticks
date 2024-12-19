@@ -6,10 +6,6 @@ import { Suspense, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getTeamId } from "@/common/utils/getTeamId";
 
-// interface HomeInfoProps {
-//   teamId: number | null;
-// }
-
 const HomeInfo = () => {
   const location = useLocation();
   const sportEncoded = location.pathname.split("/")[2];
