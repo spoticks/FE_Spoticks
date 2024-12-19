@@ -23,13 +23,14 @@ const useAuthStore = create<AuthStore>()(
     (set) => ({
       ...initialState,
       login: (accessToken: string) => {
-        const decodedToken = jwtDecode(accessToken);
+        const decodedToken = jwtDecode<{ sub: string }>(accessToken);
         set({ accessToken, userName: decodedToken.sub });
       },
       logout: () => set(() => initialState),
     }),
     {
       name: "auth-storage",
+      partialize: (state) => ({ userName: state.userName }),
       storage: createJSONStorage(() => localStorage),
     },
   ),
