@@ -26,11 +26,10 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
       try {
         const userName = useAuthStore.getState().userName;
-        const { accessToken } = useAuthStore.getState();
         const axiosRefreshInstance = axios.create({
           baseURL: "https://api.spoticks.shop/",
           timeout: 3000,
-          headers: { "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` },
+          headers: { "Content-Type": "application/json" },
           withCredentials: true,
         });
         const response = await axiosRefreshInstance.post(`/auth/reissue/${userName}`);

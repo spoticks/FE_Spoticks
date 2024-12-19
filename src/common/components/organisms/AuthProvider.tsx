@@ -4,17 +4,16 @@ import axios from "axios";
 import { useEffect } from "react";
 
 export default function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { userName, accessToken } = useAuthStore((state) => state);
+  const { userName } = useAuthStore((state) => state);
   useEffect(() => {
     async function reissueAuth() {
-      if (!accessToken && userName) {
-        // 액세스 토큰이 없고 userName은 localStorage에 남아있는 상황
+      if (userName) {
         // = 로그인하고 새로고침 한 경우
         try {
           const axiosRefreshInstance = axios.create({
             baseURL: "https://api.spoticks.shop/",
             timeout: 3000,
-            headers: { "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` },
+            headers: { "Content-Type": "application/json" },
             withCredentials: true,
           });
           const response = await axiosRefreshInstance.post(`/auth/reissue/${userName}`);
@@ -28,7 +27,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     }
 
     reissueAuth();
-  }, [accessToken, userName]);
+  }, [userName]);
 
   return <>{children}</>;
 }
