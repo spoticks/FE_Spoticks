@@ -5,16 +5,15 @@ import Loading from "@/common/components/atoms/Loading";
 import useHeaderDescription from "@/common/components/AuthLayout/hooks/useHeaderDescription";
 import useAuthStore from "@/common/stores/authStore";
 import { Suspense } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 const myTicketMenu = ["예매완료", "취소내역"];
 export default function AuthLayout() {
-  const { accessToken } = useAuthStore((state) => ({
-    accessToken: state.accessToken,
-  }));
+  const { userName } = useAuthStore((state) => state);
+  const { pathname } = useLocation();
   const { heading, paragraph } = useHeaderDescription();
   // 사용자가 로그인되지 않았으면 로그인 페이지로 리다이렉트
-  if (!accessToken) {
+  if (!userName) {
     return <Navigate to="/login" />;
   } // 로그인된 경우 해당 라우트를 렌더링
   return (
@@ -31,11 +30,15 @@ export default function AuthLayout() {
         )}
       </div>
       <hr className="border-1 mb-10 border-borders" />
-      <Suspense fallback={<Loading />}>
-        <CustomErrorBoundary>
-          <Outlet />
-        </CustomErrorBoundary>
-      </Suspense>
+      {pathname.includes("my-team") ? (
+        <Outlet />
+      ) : (
+        <Suspense fallback={<Loading />}>
+          <CustomErrorBoundary>
+            <Outlet />
+          </CustomErrorBoundary>
+        </Suspense>
+      )}
     </>
   );
 }
