@@ -1,7 +1,7 @@
-import { seatDataProps } from "../type";
+import { SeatDataProps } from "@/common/types/seatTypes";
 
 interface dataProps {
-  data: seatDataProps | undefined;
+  data?: SeatDataProps;
 }
 export default function ReservationHeader({ data }: dataProps) {
   //날짜
