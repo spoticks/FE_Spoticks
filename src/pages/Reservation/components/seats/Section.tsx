@@ -23,9 +23,9 @@ export default function SectionSelector({ sectionData, control }: SectionSelecto
                 }}
                 className={`flex cursor-pointer flex-col items-center rounded-[10px] border border-borders bg-background px-7 py-2 font-bold ${isSelected ? "border-text-primary text-Accent" : "text-text-tertiary"}`}
               >
-                <h1 className="text-[24px]">{section.seatPosition}</h1>
-                <h3 className="text-[16px]">{section.seatPrice.toLocaleString()}원</h3>
-                <h3 className="text-[16px]">{section.availableSeat}/50</h3>
+                <h3 className="text-[24px]">{section.seatPosition}</h3>
+                <span className="text-[16px]">{section.seatPrice.toLocaleString()}원</span>
+                <span className="text-[16px]">{section.availableSeat}/50</span>
               </div>
             );
           }}
