@@ -27,6 +27,7 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
     watch,
     setValue,
     formState: { errors },
+    control,
   } = useForm<FormValueType>({
     resolver: zodResolver(regiSchema),
     defaultValues: existMatch || {
@@ -82,5 +83,6 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
     setValue,
     errors,
     onSubmit,
+    control,
   };
 };
