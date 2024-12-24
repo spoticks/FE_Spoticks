@@ -1,63 +1,51 @@
 import Modal from "react-modal";
 import { IoIosCloseCircle } from "react-icons/io";
-import axios from "axios";
-import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import Button from "@/common/components/atoms/Button";
 import Loading from "@/common/components/atoms/Loading";
 import alertToast from "@/common/utils/alertToast";
 import DetailedTicket from "@/common/components/organisms/DetailedTicket";
 import InfoPart from "@/common/components/molecules/InfoPart";
-import { SeatType, InformationCardProp } from "@/common/types/matchTypes";
+import { InformationCardProp } from "@/common/types/matchTypes";
+import useGetMemberInfo from "@/pages/MyPage/api/useMemberPhoneNumberQuery";
+import { usePayMutation } from "../api/usePayMutation";
 
 interface PayModalProps {
   isOpen: boolean;
   onClose: () => void;
   gameId?: number;
-  mySeats: SeatType[];
+  mySeats: string[];
   matchData: InformationCardProp;
   totalPay: number;
-}
-
-interface PayFormInputs {
-  totalPrice: number;
-  seatIds: SeatType[];
+  seatIds: number[];
 }
 
 export default function PayModal({
   isOpen,
   onClose,
-  // gameId,
+  gameId,
   mySeats,
   matchData,
   totalPay,
+  seatIds,
 }: PayModalProps) {
   const navigate = useNavigate();
+  const { data: userInfo } = useGetMemberInfo();
 
-  const fetchPayDetails = async ({ totalPrice, seatIds }: PayFormInputs) => {
-    // http://localhost:3000/games/${gameId}/reserve
-    const { data } = await axios.post(`http://localhost:3000/pay`, {
-      totalPrice,
-      seatIds,
-    });
-    return data;
+  const onSuccessCallback = () => {
+    onClose();
+    alertToast("결제 완료!", "success");
+    navigate("/");
   };
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: () => fetchPayDetails({ totalPrice: totalPay, seatIds: mySeats }),
-    onSuccess: (data) => {
-      console.log("Reservation successful:", data);
-      onClose();
-      alertToast("결제 완료!", "success");
-      navigate("/");
-    },
-    onError: (error) => {
-      console.error("Reservation failed:", error);
-    },
-  });
+  const { mutate: handlePayment, isPending } = usePayMutation(onSuccessCallback);
 
   const handlePayClick = () => {
-    mutate();
+    handlePayment({
+      gameId: gameId!,
+      seatIds: seatIds,
+      totalPrice: totalPay,
+    });
   };
 
   return (
@@ -75,14 +63,13 @@ export default function PayModal({
       </div>
       <section>
         {isPending && <Loading />}
-        {/* {error && <Error />} */}
         {matchData && (
           <>
             <DetailedTicket game={matchData} mySeats={mySeats} totalPay={totalPay} />
             <div className="flex w-[380px] flex-col gap-4">
               <div className="flex justify-between">
-                <InfoPart heading="연락처" content={"010-1234-5678"} />
-                <InfoPart heading="예매자" content={"홍길동"} isRight />
+                <InfoPart heading="연락처" content={userInfo.phoneNumber} />
+                <InfoPart heading="예매자" content={userInfo.memberName} isRight />
               </div>
               <div className="flex">
                 <InfoPart heading="좌석" content={mySeats.join(", ")} isSeat />

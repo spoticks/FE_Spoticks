@@ -1,39 +1,45 @@
 import { useState } from "react";
-import { Seat } from "@/common/types/seatTypes";
 import { useLocation } from "react-router-dom";
 import PayModal from "@/pages/Reservation/components/PayModal";
-import { SeatType } from "@/common/types/matchTypes";
+import { usePreemptSeats } from "../../api/usePreemptSeats";
+import { Seat } from "@/common/types/seatTypes";
 
 interface SelectedSeatsSummaryProps {
   selectedSeats: Seat[];
   selectedSection: string;
   gameId?: number;
+  seatPrice: number;
 }
 
 export default function SelectedSeats({
   selectedSeats,
   selectedSection,
   gameId,
+  seatPrice,
 }: SelectedSeatsSummaryProps) {
   const location = useLocation();
   const matchData = location.state?.match;
+  const seatIds = selectedSeats.map((seat) => seat.id);
+  const totalPay = selectedSeats.reduce((total) => total + seatPrice, 0);
+  const mySeats = selectedSeats.map((seat: Seat) => {
+    return `${selectedSection} ${Math.ceil(seat.id / 10)}열 ${seat.id}번`;
+  });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  let mySeats = [];
-  const totalPay = selectedSeats.reduce((total, seat) => total + Number(seat.price), 0);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
-  const seatMap = selectedSeats.map((seat: Seat) => {
-    return `${selectedSection} ${Math.ceil(seat.id / 10)}열 ${seat.id}번`;
-  });
-  mySeats = seatMap as unknown as SeatType[];
+  const onSuccessCallback = () => {
+    setIsModalOpen(true);
+  };
+
+  const { mutate: handleNextStep, isPending } = usePreemptSeats(
+    gameId!,
+    seatIds,
+    onSuccessCallback,
+  );
 
   return (
     <div className="flex flex-row items-center justify-between">
@@ -43,24 +49,28 @@ export default function SelectedSeats({
             key={seat.id}
             className="m-1 flex flex-col items-center rounded-md border border-text-tertiary bg-foreground p-1 text-xs"
           >
-            <div>
+            <h3>
               {selectedSection} {Math.ceil(seat.id / 10)}열 {seat.id}번
-            </div>
-            <div>{seat.price}원</div>
+            </h3>
+            <h3>{seatPrice}원</h3>
           </div>
         ))}
       </div>
       <div className="flex flex-row items-center">
         <div className="mr-1 flex flex-col">
-          <div className="text-[18px] font-bold">총 {selectedSeats.length} 매</div>
-          <div className="text-[20px] font-bold">{totalPay}원</div>
+          <h3 className="text-[18px] font-bold">총 {selectedSeats.length} 매</h3>
+          <h3 className="text-[20px] font-bold">{totalPay}원</h3>
         </div>
         <button
-          onClick={handleOpenModal}
-          className="cursor-pointer rounded-[10px] bg-Accent px-5 py-1 text-white"
+          onClick={() => handleNextStep()}
+          disabled={isPending}
+          className={`cursor-pointer rounded-[10px] px-5 py-1 text-white ${
+            isPending ? "bg-gray-400" : "bg-Accent"
+          }`}
         >
-          다음 단계
+          {isPending ? "확인 중..." : "다음 단계"}
         </button>
+
         {isModalOpen && (
           <PayModal
             isOpen={isModalOpen}
@@ -69,6 +79,7 @@ export default function SelectedSeats({
             mySeats={mySeats}
             matchData={matchData}
             totalPay={totalPay}
+            seatIds={seatIds}
           />
         )}
       </div>

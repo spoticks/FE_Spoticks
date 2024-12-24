@@ -4,9 +4,9 @@ export interface Seat {
   isSelected: boolean;
   price: number;
 }
-export interface seatFormData {
+export type SeatFormData = {
   section: string;
-}
+};
 
 export interface SectionProps {
   seatPosition: string;
@@ -21,8 +21,37 @@ export interface SeatsResponse {
   seat: Seat[];
 }
 
-export interface sectionOfSeats {
+export interface SectionOfSeatsProps {
   seatPosition: string;
   seatPrice: number;
   availableSeat: number;
+}
+
+export interface SeatDataProps {
+  game: GameProps;
+  positionInfo: PositionInfoProps[];
+  seat: SeatsProps[];
+}
+export interface GameProps {
+  gameId: number;
+  homeTeamName: string;
+  awayTeamName: string;
+  gameStartTime: string;
+  stadiumName: string;
+  latitude: number;
+  longitude: number;
+}
+
+export interface PositionInfoProps {
+  seatPosition: string;
+  price: number;
+}
+
+export interface SeatsProps {
+  id: number;
+  status: string;
+  seatPrice: number;
+  seatPosition: string;
+  seatRow: number;
+  seatNumer: number;
 }
