@@ -13,6 +13,7 @@ export default {
         "text-tertiary": "#8d8d8d",
         borders: "#DBDBDB",
         "focused-input-background": "rgba(219, 219, 219, 0.5)",
+        "page-button-hovered": "#B5B7C0",
         "disabled-button": "rgb(238, 161, 169)",
         valid: "#69d12d",
       },
