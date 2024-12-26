@@ -3,12 +3,12 @@ import Tickets from "@/assets/Tickets.svg?react";
 import { useLocation } from "react-router-dom";
 import { MainMatchType } from "@/common/types/matchTypes";
 import { menu, stadiums, teams } from "@/common/constants";
-import SelectFiled from "@/pages/admin/components/ui/SelectField";
+import SelectFiled from "@/pages/admin/components/Registration/SelectField";
 import FormInputField from "@/common/components/molecules/FormInputField";
-import { useRegistrationForm } from "../api/useRegistration";
+import { useRegistrationForm } from "../hooks/useRegistrationForm";
 import InputLabel from "@/common/components/atoms/InputLabel";
 import InputMessage from "@/common/components/atoms/InputMessage";
-import CustomTimePicker from "./ui/CustomTimePicker";
+import CustomTimePicker from "./Registration/CustomTimePicker";
 
 interface ModeProps {
   mode: "create" | "edit";

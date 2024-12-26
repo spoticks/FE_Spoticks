@@ -4,7 +4,7 @@ import { MainMatchType } from "@/common/types/matchTypes";
 import alertToast from "@/common/utils/alertToast";
 import ErrorToast from "@/common/utils/errorToast";
 import confirmAlert from "@/common/utils/confirmAlert";
-import DetailInfo from "./ui/DetailInfo";
+import DetailInfo from "./DetailModal/DetailInfo";
 import axiosInstance from "@/common/utils/axiosInstance";
 
 interface DetailModalProps {
