@@ -1,4 +1,3 @@
-import React from "react";
 import { TimePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -13,11 +12,7 @@ interface CustomTimePickerProps {
   control: Control<FormValueType, unknown>;
 }
 
-const CustomTimePicker: React.FC<CustomTimePickerProps> = ({
-  gameStartTime,
-  setValue,
-  control,
-}) => {
+const CustomTimePicker = ({ gameStartTime, setValue, control }: CustomTimePickerProps) => {
   const handleTimeChange = (newValue: Dayjs | null) => {
     if (newValue) {
       setValue("gameStartTime", newValue.format("HH:mm"));
