@@ -7,7 +7,7 @@ import Reservation from "@/pages/Reservation";
 import MatchList from "@/pages/MatchList";
 import Admin from "@/pages/admin/index";
 import NotFound from "./pages/NotFound";
-import Registration from "@/pages/admin/components/Registration";
+import Registration from "@/pages/admin/Registration/index";
 import { menu } from "./common/constants";
 import AuthRoute from "./common/components/AuthLayout";
 import AccountDeletion from "@/pages/AccountDeletion";
