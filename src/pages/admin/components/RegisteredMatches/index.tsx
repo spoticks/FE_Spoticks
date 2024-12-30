@@ -1,11 +1,11 @@
 import { useState } from "react";
-import DetailModal from "@/pages/admin/DetailModal";
+import DetailModal from "@/pages/Admin/components/DetailModal";
 import Loading from "@/common/components/atoms/Loading";
 import { MainMatchType } from "@/common/types/matchTypes";
-import Pagination from "./components/Pagination";
-import TableSportFilter from "./components/TableSportFilter";
-import MatchListBody from "./components/MatchListBody";
-import useAdminData from "./hooks/useAdminData";
+import Pagination from "./Pagination";
+import TableSportFilter from "./TableSportFilter";
+import MatchListBody from "./MatchListBody";
+import useAdminData from "../hooks/useAdminData";
 
 const RegisteredMatchList = ({
   selectedSport,

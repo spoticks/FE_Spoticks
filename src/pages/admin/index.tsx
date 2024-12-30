@@ -1,7 +1,7 @@
 import { Suspense, useState } from "react";
 import Loading from "@/common/components/atoms/Loading";
-import Header from "./RegisteredMatches/components/Header";
-import RegisteredMatchList from "./RegisteredMatches/index";
+import Header from "./components/RegisteredMatches/Header";
+import RegisteredMatchList from "./components/RegisteredMatches";
 
 export default function Admin() {
   const [selectedSport, setSelectedSport] = useState<string>("All");

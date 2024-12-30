@@ -4,7 +4,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { Control, Controller, UseFormSetValue } from "react-hook-form";
 import { Dayjs } from "dayjs";
-import { FormValueType } from "@/pages/admin/type";
+import { FormValueType } from "@/pages/Admin/type";
 
 interface CustomTimePickerProps {
   gameStartTime: string | undefined;

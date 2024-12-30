@@ -3,7 +3,7 @@ import Tickets from "@/assets/Tickets.svg?react";
 import { useLocation } from "react-router-dom";
 import { MainMatchType } from "@/common/types/matchTypes";
 import { menu, stadiums, teams } from "@/common/constants";
-import SelectFiled from "@/pages/admin/Registration/components/SelectField";
+import SelectFiled from "@/pages/Registration/components/SelectField";
 import FormInputField from "@/common/components/molecules/FormInputField";
 import { useRegistrationForm } from "./hooks/useRegistrationForm";
 import InputLabel from "@/common/components/atoms/InputLabel";
