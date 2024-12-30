@@ -3,9 +3,12 @@ import Tickets from "@/assets/Tickets.svg?react";
 import { useLocation } from "react-router-dom";
 import { MainMatchType } from "@/common/types/matchTypes";
 import { menu, stadiums, teams } from "@/common/constants";
-import SelectFiled from "@/pages/admin/components/ui/SelectField";
+import SelectFiled from "@/pages/Registration/components/SelectField";
 import FormInputField from "@/common/components/molecules/FormInputField";
-import { useRegistrationForm } from "../api/useRegistration";
+import { useRegistrationForm } from "./hooks/useRegistrationForm";
+import InputLabel from "@/common/components/atoms/InputLabel";
+import InputMessage from "@/common/components/atoms/InputMessage";
+import CustomTimePicker from "./components/CustomTimePicker";
 
 interface ModeProps {
   mode: "create" | "edit";
@@ -15,10 +18,11 @@ interface ModeProps {
 export default function Registration() {
   const location = useLocation();
   const { mode, existMatch }: ModeProps = location.state || { mode: "create" };
-  const { register, handleSubmit, watch, setValue, errors, onSubmit } = useRegistrationForm({
-    mode,
-    existMatch,
-  });
+  const { register, handleSubmit, watch, setValue, errors, onSubmit, control } =
+    useRegistrationForm({
+      mode,
+      existMatch,
+    });
 
   const sportValue = watch("sport");
   const teamsInSport = sportValue ? teams[sportValue] || [] : [];
@@ -34,6 +38,9 @@ export default function Registration() {
       setValue("stadiumName", existMatch.stadiumName);
     }
   }, [mode, existMatch, setValue]);
+
+  //시간
+  const gameStartTime = watch("gameStartTime");
 
   return (
     <div className="my-5 flex w-full flex-row">
@@ -63,13 +70,15 @@ export default function Registration() {
             </div>
 
             {/* 경기 시작 시간 선택 */}
-            <FormInputField
-              label="경기 시작 시간"
-              register={register("gameStartTime")}
-              error={errors.gameStartTime}
-              inputType="time"
-              isLabelRequired
-            />
+            <div>
+              <InputLabel label="경기 시작 시간" />
+              <CustomTimePicker
+                gameStartTime={gameStartTime}
+                setValue={setValue}
+                control={control}
+              />
+              <InputMessage errorMessage={errors.gameStartTime?.message} />
+            </div>
 
             {/* 장소 선택 */}
             <SelectFiled
