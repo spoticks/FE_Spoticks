@@ -33,7 +33,10 @@ export default function MatchDetailMenu({
     setSelectedMenu(menu);
   };
 
-  // const teamId = getTeamId(sport, selectedTeam);
+  const menuItems = ["예매 일정", "예매정보"];
+  if (selectedTeam !== "전체 일정") {
+    menuItems.splice(1, 0, "홈구장 안내");
+  }
 
   const MenuList = () => {
     switch (selectedMenu) {
@@ -85,7 +88,7 @@ export default function MatchDetailMenu({
             </Suspense>
           </div>
           <div className="flex flex-row">
-            {["예매 일정", "홈구장 안내", "예매정보"].map((menu) => (
+            {menuItems.map((menu) => (
               <div key={menu} onClick={() => handleMenuClick(menu)} className="mr-2 cursor-pointer">
                 <MenuButton
                   menu={menu}
