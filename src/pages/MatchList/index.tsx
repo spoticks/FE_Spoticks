@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Main from "@/pages/MatchList/components/Main";
-import MatchListTab from "@/pages/MatchList/components/ui/Tab";
-import MatchDetailMenu from "@/pages/MatchList/components/ui/MatchDetailMenu";
+import MatchListTab from "@/pages/MatchList/components/MatchListTab";
+import MatchDetailMenu from "@/pages/MatchList/components/MatchDetailMenu";
 import { MainMatchType, PageInfoProps } from "@/common/types/matchTypes";
 
 import { getTeamId } from "@/common/utils/getTeamId";

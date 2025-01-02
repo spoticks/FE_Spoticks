@@ -2,12 +2,11 @@ import { Suspense, useState } from "react";
 import HomeInfo from "@/pages/MatchList/components/HomeInfo";
 import ReservationList from "@/pages/MatchList/components/ReservationList";
 import ReserveInfo from "@/pages/MatchList/components/ReserveInfo";
-import MyTeamButton from "@/pages/MatchList/components/ui/MyTeamButton";
+import MyTeamButton from "@/pages/MatchList/components/MatchDetailMenu/MyTeamButton";
 import MenuButton from "@/common/components/atoms/button/MenuButton";
 import Loading from "@/common/components/atoms/Loading";
 import CustomErrorBoundary from "@/common/components/atoms/CustomErrorBoundary";
 import { MatchType, MainMatchType } from "@/common/types/matchTypes";
-// import { getTeamId } from "@/common/utils/getTeamId";
 
 interface DetailProps {
   matchData: MatchType;

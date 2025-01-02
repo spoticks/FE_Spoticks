@@ -1,6 +1,6 @@
 import Loading from "@/common/components/atoms/Loading";
-import useStadiumApi from "../api/useStadiumApi";
-import RenderMap from "./ui/RenderMap";
+import useStadiumApi from "../../api/useStadiumApi";
+import RenderMap from "./RenderMap";
 import { Container as MapDiv, NavermapsProvider } from "react-naver-maps";
 import { Suspense, useState } from "react";
 import { useLocation } from "react-router-dom";
