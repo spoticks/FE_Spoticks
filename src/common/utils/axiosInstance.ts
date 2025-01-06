@@ -21,8 +21,12 @@ axiosInstance.interceptors.response.use(
   (res) => res,
   async (err) => {
     const originalRequest = err.config;
-    const errorMessage = err.response?.data.message;
-    if (errorMessage === "JWT Token expired" && !originalRequest._retry) {
+    const {
+      status,
+      data: { message },
+    } = err.response;
+    // 404는 일시적인 코드.
+    if ((message === "JWT Token expired" || status === 404) && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
         const userName = useAuthStore.getState().userName;
