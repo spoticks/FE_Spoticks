@@ -2,6 +2,7 @@ import PopupMenuList from "@/common/components/Layout/Header/UserButton/UserInfo
 import getPopupMenuItems from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/getPopupMenuItems";
 import useMemberInfo from "@/hooks/useMemberInfo";
 import useLogoutMutation from "@/hooks/useLogoutMutation";
+import useAuthStore from "@/common/stores/authStore";
 
 export default function UserInfoPopup({
   setIsPopoverOpen,
@@ -10,7 +11,8 @@ export default function UserInfoPopup({
   setIsPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>;
   popoverRef: React.RefObject<HTMLDivElement>;
 }) {
-  const { authority, memberName } = useMemberInfo();
+  const authority = useMemberInfo();
+  const { memberName } = useAuthStore((state) => state);
   const { handleLogout } = useLogoutMutation(setIsPopoverOpen);
 
   const menuItems =
