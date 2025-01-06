@@ -2,13 +2,22 @@ import useAuthStore from "@/common/stores/authStore";
 import alertToast from "@/common/utils/alertToast";
 import axios from "axios";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { userName } = useAuthStore((state) => state);
+  const { userName, accessToken } = useAuthStore((state) => state);
+  const { pathname } = useLocation();
+  // 로그인이 필요없는 요청을 보내는 페이지에서만 새로고침 했을 때 재로그인 되도록 해야함.
   useEffect(() => {
     async function reissueAuth() {
-      if (userName) {
+      if (
+        userName &&
+        !accessToken &&
         // = 로그인하고 새로고침 한 경우
+        !pathname.includes("/reservation") &&
+        !pathname.includes("/admin") &&
+        !pathname.includes("/profile")
+      ) {
         try {
           const axiosRefreshInstance = axios.create({
             baseURL: "https://api.spoticks.shop/",
@@ -27,7 +36,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     }
 
     reissueAuth();
-  }, [userName]);
+  }, [userName, accessToken, pathname]);
 
   return <>{children}</>;
 }
