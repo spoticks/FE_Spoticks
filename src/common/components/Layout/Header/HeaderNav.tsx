@@ -3,8 +3,7 @@ import { menu } from "@/common/constants";
 
 export default function HeaderNav() {
   return (
-    <nav className="m-auto flex w-60 flex-row justify-between">
-      {/* <div className="text-[18px] font-medium">{el}</div> */}
+    <nav className="flex w-full max-w-60 flex-row justify-between">
       {menu.map((el) => (
         <LinkButton
           key={el}
