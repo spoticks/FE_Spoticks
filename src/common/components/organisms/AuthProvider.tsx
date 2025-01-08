@@ -38,5 +38,5 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     reissueAuth();
   }, [userName, accessToken, pathname]);
 
-  return <>{children}</>;
+  return children;
 }
