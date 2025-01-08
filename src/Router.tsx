@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "@/pages/Home";
-import Layout from "./common/components/Layout";
 import SignUp from "./pages/SignUp";
 import Login from "@/pages/Login";
 import Reservation from "@/pages/Reservation";
@@ -9,7 +8,6 @@ import Admin from "@/pages/admin/index";
 import NotFound from "./pages/NotFound";
 import Registration from "@/pages/admin/components/Registration";
 import { menu } from "./common/constants";
-import AuthRoute from "./common/components/AuthLayout";
 import AccountDeletion from "@/pages/AccountDeletion";
 import MyTeam from "./pages/MyTeam";
 import MyTicket from "@/pages/MyTicket";
@@ -17,6 +15,9 @@ import MyPage from "@/pages/MyPage";
 import HomeInfo from "./pages/MatchList/components/HomeInfo";
 import ReserveInfo from "./pages/MatchList/components/ReserveInfo";
 import AuthProvider from "@/common/components/organisms/AuthProvider";
+import PrivateRoute from "@/common/routes/PrivateRoute";
+import Layout from "@/common/layouts/Layout";
+import AuthLayout from "@/common/layouts/AuthLayout";
 
 export default function Router() {
   return (
@@ -40,22 +41,24 @@ export default function Router() {
                   </Route>
                 </Route>
               ))}
-            <Route path="profile" element={<AuthRoute />}>
-              <Route path="user-info" element={<MyPage />} />
-              <Route path="account-deletion" element={<AccountDeletion />} />
-              <Route path="my-team" element={<MyTeam />} />
-              <Route path="my-tickets/my-reservations" element={<MyTicket />} />
-              <Route path="my-tickets/my-reservations/:id" element={<MyTicket />} />
-              <Route path="my-tickets/cancellation-history" element={<MyTicket />} />
-              <Route path="my-tickets/cancellation-history/:id" element={<MyTicket />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="profile" element={<AuthLayout />}>
+                <Route path="user-info" element={<MyPage />} />
+                <Route path="account-deletion" element={<AccountDeletion />} />
+                <Route path="my-team" element={<MyTeam />} />
+                <Route path="my-tickets/my-reservations" element={<MyTicket />} />
+                <Route path="my-tickets/my-reservations/:id" element={<MyTicket />} />
+                <Route path="my-tickets/cancellation-history" element={<MyTicket />} />
+                <Route path="my-tickets/cancellation-history/:id" element={<MyTicket />} />
+              </Route>
+              <Route path="admin" element={<Admin />}>
+                <Route path=":selectedSport" element={<Admin />} />
+              </Route>
+              <Route path="admin/registration" element={<Registration />} />
+              <Route path="admin/registration/:id" element={<Registration />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="/reservation/:gameId" element={<Reservation />} />
             </Route>
-            <Route path="admin" element={<Admin />}>
-              <Route path=":selectedSport" element={<Admin />} />
-            </Route>
-            <Route path="admin/registration" element={<Registration />} />
-            <Route path="admin/registration/:id" element={<Registration />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="/reservation/:gameId" element={<Reservation />} />
           </Route>
         </Routes>
       </AuthProvider>
