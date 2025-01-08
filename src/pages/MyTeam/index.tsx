@@ -10,7 +10,7 @@ interface MyTeam {
   teamName: string;
 }
 export default function MyTeam() {
-  const { data, isLoading, isError, error } = useMyTeamQuery();
+  const { data, isLoading, isError, error } = useMyTeamQuery(true);
   const { reset } = useQueryErrorResetBoundary();
 
   if (isLoading) {
