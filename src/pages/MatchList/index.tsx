@@ -1,83 +1,76 @@
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Main from "@/pages/MatchList/components/Main";
 import MatchListTab from "@/pages/MatchList/components/MatchListTab";
 import MatchDetailMenu from "@/pages/MatchList/components/MatchDetailMenu";
-import { MainMatchType, PageInfoProps } from "@/common/types/matchTypes";
+import { useMatch } from "./api/useMatch";
+import ReservationGuide from "./components/ReservationGuide";
 
-import { getTeamId } from "@/common/utils/getTeamId";
-import { useNavigate } from "react-router-dom";
-import { useMatchApi } from "./api/useMatchApi";
-
-interface MatchListProps {
+type MatchListProps = {
   sport: string;
-}
+};
 
 export default function MatchList({ sport }: MatchListProps) {
   const navigate = useNavigate();
   // Tab에서 선택된 team
-  const [selectedTeam, setSelectedTeam] = useState("");
-  const [filterData, setFilterData] = useState<MainMatchType[]>([]);
+  const [selectedTeam, setSelectedTeam] = useState("전체 일정");
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalEl, setTotatlEl] = useState(0);
 
-  const { data: matchData = { content: [], pageInfo: {} as PageInfoProps } } = useMatchApi({
+  const { allScheduleData, teamScheduleData, isLoading } = useMatch({
     sport,
-    selectedTeam: selectedTeam || "전체 일정",
+    selectedTeam,
     page: currentPage,
   });
 
+  const matchData =
+    selectedTeam && selectedTeam !== "전체 일정" && selectedTeam !== "예매 가이드"
+      ? teamScheduleData
+      : allScheduleData;
+
   // 상단탭에서 sport가 바뀌면 선택팀도 초기화됩니다.
   useEffect(() => {
-    setSelectedTeam("");
+    setSelectedTeam("전체 일정");
+    setCurrentPage(1);
   }, [sport]);
 
   // 왼쪽 탭에서 selectedTeam이 변경되면 경로가 변경됩니다.
   useEffect(() => {
-    const path = selectedTeam ? `/${selectedTeam}` : "";
-    navigate(`/match-list/${sport}${path}`);
-  }, [selectedTeam, navigate, sport]);
-
-  useEffect(() => {
-    if (selectedTeam) {
-      setTotatlEl(matchData.pageInfo.totalElements);
+    startTransition(() => {
       if (selectedTeam === "전체 일정") {
-        setFilterData(matchData.content);
-        navigate(`/match-list/${sport}/allSche`);
+        navigate(`/match-list/${sport}/allSchedule`);
+      } else if (selectedTeam === "예매 가이드") {
+        navigate(`/match-list/${sport}/guide`);
       } else {
-        const selectedTeamId = getTeamId(sport, selectedTeam);
-        if (selectedTeamId) {
-          const filteredMatches = matchData.content.filter(
-            (game) => game.homeTeamName === selectedTeam || game.awayTeamName === selectedTeam,
-          );
-          setFilterData(filteredMatches);
-        }
+        const path = selectedTeam ? `/${selectedTeam}` : "";
+        navigate(`/match-list/${sport}${path}`);
       }
-    }
-  }, [matchData, navigate, selectedTeam, sport]);
+    });
+  }, [selectedTeam, navigate, sport]);
 
   return (
     <div className="flex w-content-width flex-row pt-10">
-      {(matchData.content.length > 0 || (selectedTeam && filterData.length === 0)) && (
+      {allScheduleData.content.length > 0 && (
         <MatchListTab
           sport={sport}
           setSelectedTeam={setSelectedTeam}
-          setFilterData={setFilterData}
           setCurrentPage={setCurrentPage}
+          isLoading={isLoading}
         />
       )}
       <div className="flex w-full pl-[30px]">
-        {selectedTeam === "전체 일정" || selectedTeam ? (
+        {selectedTeam !== "예매 가이드" && (selectedTeam === "전체 일정" || selectedTeam) ? (
           <MatchDetailMenu
             matchData={matchData}
             selectedTeam={selectedTeam}
             setCurrentPage={setCurrentPage}
             sport={sport}
-            filterData={filterData}
-            totalEl={totalEl}
             currentPage={currentPage}
+            isLoading={isLoading}
           />
+        ) : selectedTeam == "예매 가이드" ? (
+          <ReservationGuide />
         ) : (
-          <Main sceduleLen={matchData.content.length} sport={sport} />
+          <Main scheduleLen={allScheduleData.content.length} sport={sport} />
         )}
       </div>
     </div>

@@ -5,7 +5,7 @@ import { AxiosError } from "axios";
 
 // Function to register a team
 async function addTeamToMyTeam(teamId: string): Promise<void> {
-  await axiosInstance.post(`/myteam/${teamId}`);
+  await axiosInstance.post(`/my-team/${teamId}`);
 }
 
 export default function useMyTeamPost() {

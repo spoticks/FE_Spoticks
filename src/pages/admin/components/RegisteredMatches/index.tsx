@@ -2,7 +2,7 @@ import { useState } from "react";
 import DetailModal from "@/pages/Admin/components/DetailModal";
 import Loading from "@/common/components/atoms/Loading";
 import { MainMatchType } from "@/common/types/matchTypes";
-import Pagination from "./Pagination";
+import Pagination from "@/common/components/molecules/Pagination";
 import TableSportFilter from "./TableSportFilter";
 import MatchListBody from "./MatchListBody";
 import useAdminData from "../hooks/useAdminData";

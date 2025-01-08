@@ -6,26 +6,26 @@ import MyTeamButton from "@/pages/MatchList/components/MatchDetailMenu/MyTeamBut
 import MenuButton from "@/common/components/atoms/button/MenuButton";
 import Loading from "@/common/components/atoms/Loading";
 import CustomErrorBoundary from "@/common/components/atoms/CustomErrorBoundary";
-import { MatchType, MainMatchType } from "@/common/types/matchTypes";
+import { PageInfoProps, MainMatchType, MatchType } from "@/common/types/matchTypes";
 
 interface DetailProps {
-  matchData: MatchType;
+  matchData:
+    | MatchType
+    | { content: MainMatchType[]; pageInfo: PageInfoProps | Record<string, number> };
   selectedTeam: string;
-  filterData: MainMatchType[];
   sport: string;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  totalEl: number;
   currentPage: number;
+  isLoading: boolean;
 }
 
 export default function MatchDetailMenu({
   matchData,
   selectedTeam,
-  filterData,
   sport,
   setCurrentPage,
-  totalEl,
   currentPage,
+  isLoading,
 }: DetailProps) {
   //예매내역, 홈구장안내, 예매설명 메뉴 선택
   const [selectedMenu, setSelectedMenu] = useState("예매 일정");
@@ -43,12 +43,11 @@ export default function MatchDetailMenu({
       case "예매 일정":
         return (
           <ReservationList
-            filterData={filterData}
+            pageInfo={matchData.pageInfo}
+            filterData={matchData.content}
             setCurrentPage={setCurrentPage}
-            totalEl={totalEl}
-            selectedTeam={selectedTeam}
             currentPage={currentPage}
-            pageSize={matchData.pageInfo.size}
+            isLoading={isLoading}
           />
         );
       case "홈구장 안내":
@@ -58,12 +57,11 @@ export default function MatchDetailMenu({
       default:
         return (
           <ReservationList
-            filterData={filterData}
+            filterData={matchData.content}
             setCurrentPage={setCurrentPage}
-            totalEl={totalEl}
-            selectedTeam={selectedTeam}
             currentPage={currentPage}
-            pageSize={matchData.pageInfo.size}
+            pageInfo={matchData.pageInfo}
+            isLoading={isLoading}
           />
         );
     }
@@ -93,7 +91,7 @@ export default function MatchDetailMenu({
                 <MenuButton
                   menu={menu}
                   sport={sport}
-                  reserveLen={menu === "예매 일정" ? totalEl : undefined}
+                  reserveLen={menu === "예매 일정" ? matchData.pageInfo.totalElements : undefined}
                 />
               </div>
             ))}

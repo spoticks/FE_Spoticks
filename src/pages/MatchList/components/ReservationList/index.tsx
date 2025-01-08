@@ -1,78 +1,48 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MainMatchType } from "@/common/types/matchTypes";
 import { TimeButton } from "@/common/components/atoms/button/TimeButton";
-import BasicButton from "@/common/components/atoms/button/BasicButton";
 import TableCell from "./TableCell";
+import Pagination from "@/common/components/molecules/Pagination";
+import { PageInfoProps } from "@/common/types/matchTypes";
+import TableHeader from "./TableHeader";
+import Loading from "@/common/components/atoms/Loading";
 
 interface ReservationListProps {
   filterData: MainMatchType[];
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  totalEl: number;
-  selectedTeam: string;
   currentPage: number;
-  pageSize: number;
+  pageInfo: PageInfoProps | Record<string, number>;
+  isLoading: boolean;
 }
 
 const ReservationList = ({
   filterData,
   setCurrentPage,
-  totalEl,
-  selectedTeam,
   currentPage,
-  pageSize,
+  pageInfo,
+  isLoading,
 }: ReservationListProps) => {
-  const [allMatches, setAllMatches] = useState<MainMatchType[]>([]); // 누적 데이터
-  const [viewMatches, setViewMatches] = useState<MainMatchType[]>([]); // 화면에 보여질 데이터
-
-  useEffect(() => {
-    // 초기화
-    setAllMatches([]);
-    setViewMatches([]);
-    setCurrentPage(1);
-  }, [selectedTeam, setCurrentPage]);
-
-  useEffect(() => {
-    setAllMatches((prevMatches) => {
-      const newMatches = filterData.filter(
-        (match) => !prevMatches.some((prev) => prev.gameId === match.gameId),
-      );
-      return [...prevMatches, ...newMatches];
-    });
-  }, [filterData]);
-
-  useEffect(() => {
-    setViewMatches(allMatches.slice(0, currentPage * pageSize));
-  }, [allMatches, currentPage, pageSize]);
-
-  const addViewClick = () => {
-    if (viewMatches.length < totalEl) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
-  };
+  const totalPages = pageInfo.totalPages || 1;
 
   const columnName = ["Home", "Away", "장소", "날짜", ""];
 
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+  };
+
   return (
     <div>
-      {allMatches.length > 0 ? (
-        <table className="mx-[-10px] w-full border-separate border-spacing-x-[10px]">
-          <thead>
+      <table className="mx-[-10px] w-full border-separate border-spacing-x-[10px]">
+        <TableHeader columns={columnName} />
+        <tbody>
+          {isLoading ? (
             <tr>
-              {columnName.map((column) => (
-                <th
-                  key={column}
-                  className={`border px-4 py-2 text-text-primary opacity-50 ${
-                    column === "" ? "border-none bg-none" : "bg-foreground"
-                  }`}
-                >
-                  {column}
-                </th>
-              ))}
+              <td colSpan={columnName.length} className="py-4 text-center">
+                <Loading />
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {viewMatches.map((match, index) => (
+          ) : filterData.length > 0 ? (
+            filterData.map((match, index) => (
               <tr
                 key={match.gameId}
                 className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"} text-[20px]`}
@@ -96,18 +66,22 @@ const ReservationList = ({
                   </Link>
                 </TableCell>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <h1>해당 팀의 경기가 없습니다!</h1>
-      )}
-      {viewMatches.length < totalEl && (
+            ))
+          ) : (
+            <tr>
+              <td colSpan={columnName.length} className="text-center">
+                해당 팀의 경기가 없습니다!
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+      {totalPages > 1 && !isLoading && (
         <div className="mt-4 flex justify-center">
-          <BasicButton
-            content="더보기"
-            style="rounded bg-Accent px-4 py-1 text-white"
-            onClick={addViewClick}
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            setCurrentPage={handlePageChange}
           />
         </div>
       )}

@@ -16,6 +16,7 @@ import MyTicket from "@/pages/MyTicket";
 import MyPage from "@/pages/MyPage";
 import HomeInfo from "./pages/MatchList/components/HomeInfo";
 import ReserveInfo from "./pages/MatchList/components/ReserveInfo";
+import ReservationGuide from "@/pages/MatchList/components/ReservationGuide";
 
 export default function Router() {
   return (
@@ -31,8 +32,9 @@ export default function Router() {
               <Route key={sport} path={`/match-list/${sport}`}>
                 <Route element={<MatchList sport={sport} />}>
                   <Route index element={<MatchList sport={sport} />} />
+                  <Route path="guide" element={<ReservationGuide />} />
                   <Route path=":selectedTeam" element={<MatchList sport={sport} />} />
-                  <Route path="allSche" element={<MatchList sport={sport} />} />
+                  <Route path="allSchedule" element={<MatchList sport={sport} />} />
                   <Route path="homeInfo" element={<HomeInfo />} />
                   <Route path="reserveInfo" element={<ReserveInfo />} />
                 </Route>
