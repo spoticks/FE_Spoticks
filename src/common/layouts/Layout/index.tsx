@@ -7,7 +7,7 @@ import useExcludeHeaderFooter from "@/hooks/useExcludeHeaderFooter";
 export default function Layout() {
   const shouldExcludeHeaderFooter = useExcludeHeaderFooter();
   const { pathname } = useLocation();
-  console.log(pathname);
+
   return (
     <div className="flex min-h-screen flex-col items-center">
       {!shouldExcludeHeaderFooter && <Header />}
