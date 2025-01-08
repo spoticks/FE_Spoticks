@@ -15,11 +15,13 @@ export default function MatchList({ sport }: MatchListProps) {
   // Tab에서 선택된 team
   const [selectedTeam, setSelectedTeam] = useState("전체 일정");
   const [currentPage, setCurrentPage] = useState(1);
+  const [onlyHomeGames, setOnlyHomeGames] = useState(false);
 
   const { allScheduleData, teamScheduleData, isLoading } = useMatch({
     sport,
     selectedTeam,
     page: currentPage,
+    onlyHomeGames,
   });
 
   const matchData =
@@ -66,6 +68,8 @@ export default function MatchList({ sport }: MatchListProps) {
             sport={sport}
             currentPage={currentPage}
             isLoading={isLoading}
+            onlyHomeGames={onlyHomeGames}
+            setOnlyHomeGames={setOnlyHomeGames}
           />
         ) : selectedTeam == "예매 가이드" ? (
           <ReservationGuide />

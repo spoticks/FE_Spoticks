@@ -17,6 +17,8 @@ interface DetailProps {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   currentPage: number;
   isLoading: boolean;
+  onlyHomeGames: boolean;
+  setOnlyHomeGames: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function MatchDetailMenu({
@@ -26,6 +28,8 @@ export default function MatchDetailMenu({
   setCurrentPage,
   currentPage,
   isLoading,
+  onlyHomeGames,
+  setOnlyHomeGames,
 }: DetailProps) {
   //예매내역, 홈구장안내, 예매설명 메뉴 선택
   const [selectedMenu, setSelectedMenu] = useState("예매 일정");
@@ -48,6 +52,9 @@ export default function MatchDetailMenu({
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
             isLoading={isLoading}
+            selectedTeam={selectedTeam}
+            onlyHomeGames={onlyHomeGames}
+            setOnlyHomeGames={setOnlyHomeGames}
           />
         );
       case "홈구장 안내":
@@ -62,6 +69,9 @@ export default function MatchDetailMenu({
             currentPage={currentPage}
             pageInfo={matchData.pageInfo}
             isLoading={isLoading}
+            selectedTeam={selectedTeam}
+            onlyHomeGames={onlyHomeGames}
+            setOnlyHomeGames={setOnlyHomeGames}
           />
         );
     }

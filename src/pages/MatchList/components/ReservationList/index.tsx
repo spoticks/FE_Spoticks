@@ -13,6 +13,9 @@ interface ReservationListProps {
   currentPage: number;
   pageInfo: PageInfoProps | Record<string, number>;
   isLoading: boolean;
+  selectedTeam: string;
+  onlyHomeGames: boolean;
+  setOnlyHomeGames: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ReservationList = ({
@@ -21,6 +24,9 @@ const ReservationList = ({
   currentPage,
   pageInfo,
   isLoading,
+  selectedTeam,
+  onlyHomeGames,
+  setOnlyHomeGames,
 }: ReservationListProps) => {
   const totalPages = pageInfo.totalPages || 1;
 
@@ -30,8 +36,20 @@ const ReservationList = ({
     setCurrentPage(newPage);
   };
 
+  const toggleHomeGamesFilter = () => {
+    setOnlyHomeGames((prev) => !prev);
+  };
+
   return (
     <div>
+      {selectedTeam !== "전체 일정" && (
+        <div className="mb-2">
+          <label className="flex items-center space-x-2 text-xs">
+            <input type="checkbox" checked={onlyHomeGames} onChange={toggleHomeGamesFilter} />
+            <span>홈 경기만 보기</span>
+          </label>
+        </div>
+      )}
       <table className="mx-[-10px] w-full border-separate border-spacing-x-[10px]">
         <TableHeader columns={columnName} />
         <tbody>

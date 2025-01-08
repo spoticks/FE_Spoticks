@@ -7,9 +7,10 @@ interface MatchParams {
   sport: string;
   selectedTeam: string;
   page: number;
+  onlyHomeGames?: boolean;
 }
 
-export function useMatch({ sport, selectedTeam, page }: MatchParams) {
+export function useMatch({ sport, selectedTeam, page, onlyHomeGames = false }: MatchParams) {
   const selectedTeamId =
     selectedTeam !== "전체 일정" && selectedTeam !== "예매 가이드"
       ? getTeamId(sport, selectedTeam)
@@ -28,11 +29,15 @@ export function useMatch({ sport, selectedTeam, page }: MatchParams) {
         enabled: selectedTeam === "전체 일정" || selectedTeam === "예매 가이드",
       },
       {
-        queryKey: ["team-schedule", sport, selectedTeamId, page],
+        queryKey: ["team-schedule", sport, selectedTeamId, page, onlyHomeGames],
         queryFn: async () => {
           if (!selectedTeamId) return { content: [], pageInfo: {} };
+
+          const params: { page: number; onlyHomeGames?: boolean } = { page };
+          if (onlyHomeGames) params.onlyHomeGames = true;
+
           const response = await axiosInstance.get<MatchType>(`/teams/${selectedTeamId}/games`, {
-            params: { page },
+            params,
           });
           return response.data;
         },
