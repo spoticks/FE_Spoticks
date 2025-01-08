@@ -1,12 +1,13 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Vector from "@/assets/Vector.svg?react";
-import Footer from "@/common/components/Layout/Footer";
-import Header from "@/common/components/Layout/Header/index";
+import Header from "@/common/layouts/Layout/Header";
+import Footer from "@/common/layouts/Layout/Footer";
 import useExcludeHeaderFooter from "@/hooks/useExcludeHeaderFooter";
 
 export default function Layout() {
   const shouldExcludeHeaderFooter = useExcludeHeaderFooter();
-
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
     <div className="flex min-h-screen flex-col items-center">
       {!shouldExcludeHeaderFooter && <Header />}
@@ -15,7 +16,7 @@ export default function Layout() {
           <Outlet />
         </main>
         {/*배경 빨간얼룩 */}
-        {!shouldExcludeHeaderFooter && <Vector className="fixed left-0 top-[-20px] -z-50" />}
+        {pathname === "/" && <Vector className="fixed left-0 top-[-20px] -z-50" />}
       </div>
       {!shouldExcludeHeaderFooter && <Footer />}
     </div>
