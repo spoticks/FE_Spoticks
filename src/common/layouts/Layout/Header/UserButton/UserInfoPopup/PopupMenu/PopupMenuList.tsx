@@ -1,4 +1,4 @@
-import MenuItem from "@/common/components/Layout/Header/UserButton/UserInfoPopup/MenuItem";
+import MenuItem from "@/common/layouts/Layout/Header/UserButton/UserInfoPopup/MenuItem";
 import { MenuItemProps } from "@/common/types/type";
 import { FiLogOut } from "react-icons/fi";
 export default function PopupMenuList({

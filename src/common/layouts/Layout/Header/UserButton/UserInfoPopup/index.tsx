@@ -1,8 +1,8 @@
-import PopupMenuList from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/PopupMenuList";
-import getPopupMenuItems from "@/common/components/Layout/Header/UserButton/UserInfoPopup/PopupMenu/getPopupMenuItems";
 import useMemberInfo from "@/hooks/useMemberInfo";
 import useLogoutMutation from "@/hooks/useLogoutMutation";
 import useAuthStore from "@/common/stores/authStore";
+import PopupMenuList from "@/common/layouts/Layout/Header/UserButton/UserInfoPopup/PopupMenu/PopupMenuList";
+import getPopupMenuItems from "@/common/layouts/Layout/Header/UserButton/UserInfoPopup/PopupMenu/getPopupMenuItems";
 
 export default function UserInfoPopup({
   setIsPopoverOpen,
