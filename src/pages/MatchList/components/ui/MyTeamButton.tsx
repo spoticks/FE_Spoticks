@@ -3,6 +3,8 @@ import useMyTeamDeleteMutation from "@/common/api/useMyTeamDeleteMutation";
 import useMyTeamPost from "../../api/useMyTeamPost";
 import { getTeamId } from "@/common/utils/getTeamId";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import useAuthStore from "@/common/stores/authStore";
+import { useNavigate } from "react-router-dom";
 
 interface MyTeamProps {
   sport: string;
@@ -10,7 +12,9 @@ interface MyTeamProps {
 }
 
 export default function MyTeamButton({ sport, selectedTeam }: MyTeamProps) {
-  const { data } = useMyTeamQuery();
+  const { accessToken } = useAuthStore((state) => state);
+  const navigate = useNavigate();
+  const { data } = useMyTeamQuery(!!accessToken);
   const addition = useMyTeamPost();
   const deletion = useMyTeamDeleteMutation();
 
@@ -19,6 +23,10 @@ export default function MyTeamButton({ sport, selectedTeam }: MyTeamProps) {
   const isMyTeam = data?.some((team) => team.teamName === selectedTeam);
 
   const handleMyTeam = (teamId: string) => {
+    if (!accessToken) {
+      navigate("/login");
+      return;
+    }
     if (isMyTeam) {
       deletion.mutate(teamId);
     } else {
