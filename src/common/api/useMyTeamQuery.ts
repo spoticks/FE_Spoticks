@@ -6,9 +6,10 @@ async function fetchMyTeam() {
   const { data } = await axiosInstance.get("/myteam");
   return data;
 }
-export default function useMyTeamQuery() {
+export default function useMyTeamQuery(isEnabled?: boolean) {
   return useQuery<MyTeamType[]>({
     queryKey: ["myTeam"],
     queryFn: fetchMyTeam,
+    enabled: !!isEnabled,
   });
 }
