@@ -26,7 +26,7 @@ export default function Reservation() {
   const selectedSection = watch("section");
 
   const { data, isLoading } = useReservationQuery(reservationId, selectedSection);
-  console.log(data);
+
   const [sectionData, setSectionData] = useState<SectionOfSeatsProps[]>([]);
   const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
 

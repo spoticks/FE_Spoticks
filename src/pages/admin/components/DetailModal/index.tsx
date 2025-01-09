@@ -16,17 +16,17 @@ interface DetailModalProps {
 export default function DetailModal({ isOpen, onClose, match }: DetailModalProps) {
   const navigate = useNavigate();
 
-  const formatedDate = (date: string) => {
+  const formattedDate = (date: string) => {
     const newDate = new Date(date);
     return newDate.toISOString().replace("T", " ").substring(0, 16);
   };
 
   const Detail = [
-    { 종목: match.sport, 홈팀: match.homeTeamName, 티켓오픈: formatedDate(match.timeOnSale) },
+    { 종목: match.sport, 홈팀: match.homeTeamName, 티켓오픈: formattedDate(match.timeOnSale) },
     {
-      경기시작: formatedDate(match.gameStartTime),
+      경기시작: formattedDate(match.gameStartTime),
       어웨이팀: match.awayTeamName,
-      예매마감: formatedDate(match.timeOffSale),
+      예매마감: formattedDate(match.timeOffSale),
     },
   ];
 

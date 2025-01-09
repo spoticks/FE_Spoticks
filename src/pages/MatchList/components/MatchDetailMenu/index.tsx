@@ -2,31 +2,34 @@ import { Suspense, useState } from "react";
 import HomeInfo from "@/pages/MatchList/components/HomeInfo";
 import ReservationList from "@/pages/MatchList/components/ReservationList";
 import ReserveInfo from "@/pages/MatchList/components/ReserveInfo";
-import MyTeamButton from "@/pages/MatchList/components/ui/MyTeamButton";
+import MyTeamButton from "@/pages/MatchList/components/MatchDetailMenu/MyTeamButton";
 import MenuButton from "@/common/components/atoms/button/MenuButton";
 import Loading from "@/common/components/atoms/Loading";
 import CustomErrorBoundary from "@/common/components/atoms/CustomErrorBoundary";
-import { MatchType, MainMatchType } from "@/common/types/matchTypes";
-// import { getTeamId } from "@/common/utils/getTeamId";
+import { PageInfoProps, MainMatchType, MatchType } from "@/common/types/matchTypes";
 
 interface DetailProps {
-  matchData: MatchType;
+  matchData:
+    | MatchType
+    | { content: MainMatchType[]; pageInfo: PageInfoProps | Record<string, number> };
   selectedTeam: string;
-  filterData: MainMatchType[];
   sport: string;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  totalEl: number;
   currentPage: number;
+  isLoading: boolean;
+  onlyHomeGames: boolean;
+  setOnlyHomeGames: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function MatchDetailMenu({
   matchData,
   selectedTeam,
-  filterData,
   sport,
   setCurrentPage,
-  totalEl,
   currentPage,
+  isLoading,
+  onlyHomeGames,
+  setOnlyHomeGames,
 }: DetailProps) {
   //예매내역, 홈구장안내, 예매설명 메뉴 선택
   const [selectedMenu, setSelectedMenu] = useState("예매 일정");
@@ -34,19 +37,24 @@ export default function MatchDetailMenu({
     setSelectedMenu(menu);
   };
 
-  // const teamId = getTeamId(sport, selectedTeam);
+  const menuItems = ["예매 일정", "예매정보"];
+  if (selectedTeam !== "전체 일정") {
+    menuItems.splice(1, 0, "홈구장 안내");
+  }
 
   const MenuList = () => {
     switch (selectedMenu) {
       case "예매 일정":
         return (
           <ReservationList
-            filterData={filterData}
+            pageInfo={matchData.pageInfo}
+            filterData={matchData.content}
             setCurrentPage={setCurrentPage}
-            totalEl={totalEl}
-            selectedTeam={selectedTeam}
             currentPage={currentPage}
-            pageSize={matchData.pageInfo.size}
+            isLoading={isLoading}
+            selectedTeam={selectedTeam}
+            onlyHomeGames={onlyHomeGames}
+            setOnlyHomeGames={setOnlyHomeGames}
           />
         );
       case "홈구장 안내":
@@ -56,12 +64,14 @@ export default function MatchDetailMenu({
       default:
         return (
           <ReservationList
-            filterData={filterData}
+            filterData={matchData.content}
             setCurrentPage={setCurrentPage}
-            totalEl={totalEl}
-            selectedTeam={selectedTeam}
             currentPage={currentPage}
-            pageSize={matchData.pageInfo.size}
+            pageInfo={matchData.pageInfo}
+            isLoading={isLoading}
+            selectedTeam={selectedTeam}
+            onlyHomeGames={onlyHomeGames}
+            setOnlyHomeGames={setOnlyHomeGames}
           />
         );
     }
@@ -86,12 +96,12 @@ export default function MatchDetailMenu({
             </Suspense>
           </div>
           <div className="flex flex-row">
-            {["예매 일정", "홈구장 안내", "예매정보"].map((menu) => (
+            {menuItems.map((menu) => (
               <div key={menu} onClick={() => handleMenuClick(menu)} className="mr-2 cursor-pointer">
                 <MenuButton
                   menu={menu}
                   sport={sport}
-                  reserveLen={menu === "예매 일정" ? totalEl : undefined}
+                  reserveLen={menu === "예매 일정" ? matchData.pageInfo.totalElements : undefined}
                 />
               </div>
             ))}
