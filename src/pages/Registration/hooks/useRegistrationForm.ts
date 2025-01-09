@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useStore from "@/common/stores/useStore";
-import { FormValueType } from "@/pages/Admin/type";
+import { FormValueType } from "@/pages/admin/type";
 import { regiSchema } from "@/pages/Registration/validation/RegiSchema";
 import { getTeamId } from "@/common/utils/getTeamId";
 import alertToast from "@/common/utils/alertToast";
