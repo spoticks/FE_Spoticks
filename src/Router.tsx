@@ -4,7 +4,6 @@ import SignUp from "./pages/SignUp";
 import Login from "@/pages/Login";
 import Reservation from "@/pages/Reservation";
 import MatchList from "@/pages/MatchList";
-import Admin from "@/pages/Admin/index";
 import NotFound from "./pages/NotFound";
 import Registration from "@/pages/Registration/index";
 import { menu } from "./common/constants";
@@ -19,6 +18,7 @@ import AuthProvider from "@/common/components/organisms/AuthProvider";
 import PrivateRoute from "@/common/routes/PrivateRoute";
 import Layout from "@/common/layouts/Layout";
 import AuthLayout from "@/common/layouts/AuthLayout";
+import Admin from "@/pages/admin";
 
 export default function Router() {
   return (
