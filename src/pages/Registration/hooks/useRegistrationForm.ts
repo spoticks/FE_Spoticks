@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useStore from "@/common/stores/useStore";
-import { FormValueType } from "@/pages/admin/type";
-import { regiSchema } from "@/pages/admin/components/RegiSchema";
+import { FormValueType } from "@/pages/Admin/type";
+import { regiSchema } from "@/pages/Registration/validation/RegiSchema";
 import { getTeamId } from "@/common/utils/getTeamId";
 import alertToast from "@/common/utils/alertToast";
 import { MainMatchType } from "@/common/types/matchTypes";
@@ -27,6 +27,7 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
     watch,
     setValue,
     formState: { errors },
+    control,
   } = useForm<FormValueType>({
     resolver: zodResolver(regiSchema),
     defaultValues: existMatch || {
@@ -67,7 +68,6 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
         const res = await axiosInstance.patch(`/admin/games/${existMatch.gameId}`, updatedMatch);
         updateMatch(res.data);
       }
-      console.log(matchData);
       handleRegi();
       navigate("/admin");
     } catch (err) {
@@ -82,5 +82,6 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
     setValue,
     errors,
     onSubmit,
+    control,
   };
 };
