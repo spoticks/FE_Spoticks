@@ -29,7 +29,7 @@ export default function MainMatchInfo({
   return (
     <div className="flex w-full flex-col items-center justify-center rounded border border-borders bg-foreground p-4">
       <MatchDate gameStartTime={gameStartTime} />
-      <p className="mb-2 text-[16px] font-semibold text-text-tertiary">{stadiumName}</p>
+      <span className="mb-2 text-[16px] font-semibold text-text-tertiary">{stadiumName}</span>
       <MainMatchTeam homeTeam={homeTeamName} awayTeam={awayTeamName} />
       {isTicketOnSale ? (
         <LinkButton

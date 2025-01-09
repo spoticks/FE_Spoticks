@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 async function deleteTeam(teamId: string) {
-  await axiosInstance.delete(`/myteam/${teamId}`);
+  await axiosInstance.delete(`/my-team/${teamId}`);
 }
 export default function useMyTeamDeleteMutation() {
   const queryClient = useQueryClient();

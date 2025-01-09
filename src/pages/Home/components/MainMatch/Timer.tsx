@@ -1,6 +1,7 @@
 import useTimer from "@/pages/Home/hooks/useTimer";
 import TicketOffSale from "@/pages/Home/components/MainMatch/TicketOffSale";
 import { LeftTime } from "@/common/types/type";
+import React from "react";
 
 const timeMap: Record<keyof LeftTime, string> = {
   days: "일",
@@ -11,17 +12,18 @@ const timeMap: Record<keyof LeftTime, string> = {
 
 export default function Timer({ timeOffSale }: { timeOffSale: string }) {
   const { leftTime, isTimeUp } = useTimer(timeOffSale);
+
   return (
-    <div className="flex justify-center">
+    <div className="mx-auto flex w-full flex-wrap items-center justify-between">
       {isTimeUp ? (
         <TicketOffSale />
       ) : (
         <>
           {Object.entries(leftTime).map(([unit, value]) => (
-            <div key={unit} className="flex items-center">
+            <React.Fragment key={unit}>
               <TimeUnitDisplay value={value} unit={unit as keyof LeftTime} />
-              {unit !== "seconds" && <span className="flex items-center px-3">:</span>}
-            </div>
+              {unit !== "seconds" && <span>:</span>}
+            </React.Fragment>
           ))}
         </>
       )}

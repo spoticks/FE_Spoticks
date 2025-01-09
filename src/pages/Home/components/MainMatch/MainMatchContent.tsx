@@ -16,10 +16,9 @@ export default function MainMatchContent() {
       stadiumName,
     },
   } = useMainMatch();
-
   const isTicketOnSale = isSaleTimeOn(timeOnSale, timeOffSale);
   return (
-    <>
+    <div className="flex w-full flex-col gap-4">
       {isTicketOnSale ? <Timer timeOffSale={timeOffSale} /> : <TicketOffSale />}
       <MainMatchInfo
         homeTeamName={homeTeamName}
@@ -30,6 +29,6 @@ export default function MainMatchContent() {
         gameStartTime={gameStartTime}
         stadiumName={stadiumName}
       />
-    </>
+    </div>
   );
 }

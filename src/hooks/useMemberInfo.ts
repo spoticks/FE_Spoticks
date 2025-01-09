@@ -14,24 +14,14 @@ export interface DecodedTokenType {
   memberId: number; // 회원 고유 ID
 }
 
-const DEFAULT_MEMBER_INFO = {
-  memberId: 0,
-  memberName: "",
-  authority: "",
-  userName: "",
-};
-
 export default function useMemberInfo() {
   const { accessToken } = useAuthStore((state) => state);
+  let authority = "";
   if (typeof accessToken === "string") {
     const {
-      memberId,
-      memberName,
-      authorities: [{ authority }],
-      sub: userName,
+      authorities: [{ authority: memberAuthority }],
     } = jwtDecode<DecodedTokenType>(accessToken);
-    return { memberId, memberName, authority, userName };
-  } else {
-    return DEFAULT_MEMBER_INFO;
+    authority = memberAuthority;
   }
+  return authority;
 }
