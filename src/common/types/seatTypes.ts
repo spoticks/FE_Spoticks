@@ -1,5 +1,6 @@
 export interface Seat {
   id: number;
+  seatNumber: number;
   isReserved: boolean;
   isSelected: boolean;
   price: number;
@@ -53,5 +54,5 @@ export interface SeatsProps {
   seatPrice: number;
   seatPosition: string;
   seatRow: number;
-  seatNumer: number;
+  seatNumber: number;
 }
