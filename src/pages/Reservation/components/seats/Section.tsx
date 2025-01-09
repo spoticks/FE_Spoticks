@@ -1,14 +1,9 @@
 import { Controller, Control } from "react-hook-form";
-import { seatFormData } from "@/common/types/seatTypes";
-interface sectionOfSeats {
-  seatPosition: string;
-  seatPrice: number;
-  availableSeat: number;
-}
+import { SeatFormData, SectionOfSeatsProps } from "@/common/types/seatTypes";
 
 interface SectionSelectorProps {
-  sectionData: sectionOfSeats[];
-  control: Control<seatFormData>;
+  sectionData: SectionOfSeatsProps[];
+  control: Control<SeatFormData>;
 }
 
 export default function SectionSelector({ sectionData, control }: SectionSelectorProps) {
@@ -26,11 +21,11 @@ export default function SectionSelector({ sectionData, control }: SectionSelecto
                 onClick={() => {
                   field.onChange(section.seatPosition);
                 }}
-                className={`flex cursor-pointer flex-col items-center rounded-[10px] border border-borders bg-background px-7 py-2 font-bold ${isSelected ? "border-text-primary text-text-primary" : "text-text-tertiary"}`}
+                className={`flex cursor-pointer flex-col items-center rounded-[10px] border border-borders bg-background px-7 py-2 font-bold ${isSelected ? "border-text-primary text-Accent" : "text-text-tertiary"}`}
               >
-                <div className="text-[24px]">{section.seatPosition}</div>
-                <div className="text-[16px]">{section.seatPrice.toLocaleString()}원</div>
-                <div className="text-[16px]">{section.availableSeat}/50</div>
+                <h3 className="text-[24px]">{section.seatPosition}</h3>
+                <span className="text-[16px]">{section.seatPrice.toLocaleString()}원</span>
+                <span className="text-[16px]">{section.availableSeat}/50</span>
               </div>
             );
           }}

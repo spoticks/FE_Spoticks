@@ -3,12 +3,13 @@ import Baseball from "@/assets/baseball.svg?react";
 import Basketball from "@/assets/basketball.svg?react";
 import Volleyball from "@/assets/volleyball.svg?react";
 import { leagueName } from "@/common/constants";
+
 interface ReservationListProps {
-  sceduleLen: number;
+  scheduleLen: number;
   sport: string;
 }
 
-const Main = ({ sceduleLen, sport }: ReservationListProps) => {
+const Main = ({ scheduleLen, sport }: ReservationListProps) => {
   const sportImg: Record<string, React.FunctionComponent<React.SVGAttributes<SVGElement>>> = {
     축구: Soccer,
     야구: Baseball,
@@ -20,7 +21,7 @@ const Main = ({ sceduleLen, sport }: ReservationListProps) => {
 
   return (
     <div className="flex w-full justify-center">
-      {sceduleLen === 0 ? (
+      {scheduleLen === 0 ? (
         <div className="flex flex-col items-center justify-center">
           <SportImg className="size-30" />
           <h1>현재 {sport}는 시즌오프입니다.</h1>
