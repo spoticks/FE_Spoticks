@@ -18,7 +18,7 @@ export default function MatchListTab({
   setCurrentPage,
   isLoading,
 }: TabProps) {
-  const TabStyle = "flex flex-row items-center bg-background py-2 pl-1";
+  const TabStyle = "flex flex-row items-center bg-background py-2 pl-1 bg-foreground";
   const TeamListIconStyle =
     "size-3 transform transition-all duration-300 ease-in-out absolute transform-origin-center top-[-10px]";
 
