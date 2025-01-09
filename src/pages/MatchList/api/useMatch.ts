@@ -58,7 +58,15 @@ export function useMatch({ sport, selectedTeam, page, onlyHomeGames = false }: M
   const isAllScheduleLoading = queries[0]?.isLoading || false;
   const isTeamScheduleLoading = queries[1]?.isLoading || false;
 
-  const isLoading = isAllScheduleLoading || isTeamScheduleLoading;
+  const isAllScheduleError = queries[0]?.isError || false;
+  const isTeamScheduleError = queries[1]?.isError || false;
 
-  return { allScheduleData, teamScheduleData, isLoading };
+  const allScheduleError = queries[0]?.error;
+  const teamScheduleError = queries[1]?.error;
+
+  const isLoading = isAllScheduleLoading || isTeamScheduleLoading;
+  const isError = isAllScheduleError || isTeamScheduleError;
+  const error = allScheduleError || teamScheduleError;
+
+  return { allScheduleData, teamScheduleData, isLoading, isError, error };
 }

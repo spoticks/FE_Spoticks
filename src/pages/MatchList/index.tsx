@@ -5,6 +5,8 @@ import MatchListTab from "@/pages/MatchList/components/MatchListTab";
 import MatchDetailMenu from "@/pages/MatchList/components/MatchDetailMenu";
 import { useMatch } from "./api/useMatch";
 import ReservationGuide from "./components/ReservationGuide";
+import { useQueryErrorResetBoundary } from "@tanstack/react-query";
+import ErrorPage from "../ErrorPage";
 
 type MatchListProps = {
   sport: string;
@@ -12,12 +14,13 @@ type MatchListProps = {
 
 export default function MatchList({ sport }: MatchListProps) {
   const navigate = useNavigate();
+  const { reset } = useQueryErrorResetBoundary();
   // Tab에서 선택된 team
   const [selectedTeam, setSelectedTeam] = useState("전체 일정");
   const [currentPage, setCurrentPage] = useState(1);
   const [onlyHomeGames, setOnlyHomeGames] = useState(false);
 
-  const { allScheduleData, teamScheduleData, isLoading } = useMatch({
+  const { allScheduleData, teamScheduleData, isLoading, isError, error } = useMatch({
     sport,
     selectedTeam,
     page: currentPage,
@@ -48,6 +51,10 @@ export default function MatchList({ sport }: MatchListProps) {
       }
     });
   }, [selectedTeam, navigate, sport]);
+
+  if (isError) {
+    return <ErrorPage error={error} resetErrorBoundary={reset} />;
+  }
 
   return (
     <div className="flex w-content-width flex-row pt-10">
