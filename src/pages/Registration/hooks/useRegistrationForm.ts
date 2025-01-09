@@ -68,7 +68,6 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
         const res = await axiosInstance.patch(`/admin/games/${existMatch.gameId}`, updatedMatch);
         updateMatch(res.data);
       }
-      console.log(matchData);
       handleRegi();
       navigate("/admin");
     } catch (err) {
