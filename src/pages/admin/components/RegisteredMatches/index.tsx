@@ -4,8 +4,8 @@ import { MainMatchType } from "@/common/types/matchTypes";
 import Pagination from "@/common/components/molecules/Pagination";
 import TableSportFilter from "./TableSportFilter";
 import MatchListBody from "./MatchListBody";
-import useAdminData from "../hooks/useAdminData";
 import DetailModal from "@/pages/admin/components/DetailModal";
+import useAdminData from "@/pages/admin/components/hooks/useAdminData";
 
 const RegisteredMatchList = ({
   selectedSport,
