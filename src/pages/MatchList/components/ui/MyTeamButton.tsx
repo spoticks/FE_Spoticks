@@ -5,6 +5,7 @@ import { getTeamId } from "@/common/utils/getTeamId";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import useAuthStore from "@/common/stores/authStore";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 interface MyTeamProps {
   sport: string;
@@ -24,7 +25,37 @@ export default function MyTeamButton({ sport, selectedTeam }: MyTeamProps) {
 
   const handleMyTeam = (teamId: string) => {
     if (!accessToken) {
-      navigate("/login");
+      Swal.fire({
+        title: "<h2 style='font-size: 20px; color:#222222'>로그인이 필요한 서비스입니다</h2>",
+        html: "<div style='font-size: 14px; color:#8d8d8d'>로그인 하시겠어요?</div>",
+        icon: "info",
+        iconColor: "#DD4255",
+        showCancelButton: true,
+        confirmButtonText: "네",
+        cancelButtonText: "아니오",
+        width: 394,
+        customClass: {
+          icon: "text-[10px]",
+        },
+        reverseButtons: true,
+        willOpen: () => {
+          const swal2Modals = document.getElementsByClassName("swal2-modal")[0];
+          const confirmButton = document.getElementsByClassName("swal2-confirm")[0];
+          const cancelButton = document.getElementsByClassName("swal2-cancel")[0];
+          const buttonContainer = document.getElementsByClassName("swal2-actions")[0];
+          swal2Modals.className += " rounded-[24px]";
+          buttonContainer.className += " w-full justify-around";
+          confirmButton.className =
+            "swal2-confirm text-[14px] text-Accent font-semibold hover:bg-none bg-transparent hover:text-button-hovered";
+          cancelButton.className +=
+            "swal2-cancel text-[14px] font-semibold bg-transparent text-text-primary";
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+
       return;
     }
     if (isMyTeam) {
