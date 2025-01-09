@@ -19,6 +19,7 @@ import PrivateRoute from "@/common/routes/PrivateRoute";
 import Layout from "@/common/layouts/Layout";
 import AuthLayout from "@/common/layouts/AuthLayout";
 import Admin from "@/pages/admin";
+import AccountLayout from "@/common/layouts/AccountLayout";
 
 export default function Router() {
   return (
@@ -27,8 +28,10 @@ export default function Router() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
+            <Route element={<AccountLayout />}>
+              <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/login" element={<Login />} />
+            </Route>
             {menu
               .filter((sport) => sport !== "HOME")
               .map((sport) => (
