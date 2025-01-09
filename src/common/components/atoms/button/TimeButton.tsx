@@ -20,14 +20,19 @@ export const TimeButton = ({
   const isActive = useActiveTime({ timeOnSale, timeOffSale });
   const { year, month, day, hours, minutes } = extractDateData(timeOnSale);
 
-  const [buttonLabel, setButtonLabel] = useState(label);
+  const [buttonLabel, setButtonLabel] = useState<JSX.Element | string>(label);
 
   useEffect(() => {
     const now = new Date();
     const onSaleDate = new Date(timeOnSale);
 
     if (now < onSaleDate) {
-      setButtonLabel(`${year}.${month}.${day} ${hours}:${minutes} 오픈`);
+      setButtonLabel(
+        <div>
+          <div>{`${year}.${month}.${day}`}</div>
+          <div>{`${hours}:${minutes} 오픈`}</div>
+        </div>,
+      );
     } else if (isActive) {
       setButtonLabel(label);
     }
