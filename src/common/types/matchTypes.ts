@@ -52,7 +52,7 @@ export interface GameReservationType {
   createdAt: string;
   memberName: string;
   reservationStatus: "CANCELED" | "COMPLETED";
-  seats: string[];
+  seats: SeatType[];
   totalPrice: number;
   game: InformationCardProp;
 }

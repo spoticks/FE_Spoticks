@@ -1,11 +1,11 @@
-import { InformationCardProp } from "@/common/types/matchTypes";
+import { InformationCardProp, SeatType } from "@/common/types/matchTypes";
 import Barcode from "@/assets/Barcode.svg?react";
 import extractDateData from "@/common/utils/extractDateData";
 
 interface DetailedTicketProps {
   game: InformationCardProp;
   isReservationComplete?: boolean;
-  mySeats?: string[];
+  mySeats?: SeatType[] | string[];
   totalPay?: number;
 }
 
