@@ -26,6 +26,7 @@ export default function Input({ label, type = "text", register, onBlur }: InputC
         className="w-full appearance-none rounded-[15px] px-3 py-2 text-[16px] transition-colors duration-300 focus:bg-focused-input-background focus:outline-none"
         placeholder={label}
         id={label}
+        autoComplete="off"
         onBlur={(e) => {
           register?.onBlur(e);
           if (onBlur) {

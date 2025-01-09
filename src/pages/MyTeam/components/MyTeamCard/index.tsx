@@ -1,6 +1,6 @@
 import TeamLogo from "@/common/components/atoms/TeamLogo";
 import { MyTeamType } from "@/common/types/type";
-import MyTeamDeletionButton from "@/pages/MyTeam/components/MyTeamList/MyTeamCard/MyTeamDeletionButton";
+import MyTeamDeletionButton from "@/pages/MyTeam/components/MyTeamCard/MyTeamDeletionButton";
 
 export default function MyTeamCard({ teamName, id }: MyTeamType) {
   return (

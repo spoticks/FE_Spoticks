@@ -1,6 +1,6 @@
 import { LuUserCircle } from "react-icons/lu";
 import usePopover from "@/hooks/usePopover";
-import UserInfoPopup from "@/common/components/Layout/Header/UserButton/UserInfoPopup";
+import UserInfoPopup from "@/common/layouts/Layout/Header/UserButton/UserInfoPopup";
 
 export default function UserButton() {
   const { handleClickProfile, popoverRef, isPopoverOpen, setIsPopoverOpen } = usePopover();
