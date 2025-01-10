@@ -54,6 +54,7 @@ export default function PayModal({
       onRequestClose={onClose}
       className="fixed left-1/2 top-1/2 flex min-h-[771px] w-[560px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-[30px] border border-borders bg-foreground p-[40px]"
       overlayClassName="fixed inset-0 bg-black bg-opacity-30"
+      style={{ overlay: { zIndex: 1000 } }}
     >
       <div className="mb-5 flex w-full justify-between border-b border-b-borders pb-1">
         <h1 className="font-semibold">선택 정보</h1>
