@@ -13,9 +13,9 @@ export default function AuthLayout() {
   // 로그인된 경우 해당 라우트를 렌더링
   return (
     <div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center justify-center">
         <AuthFirstHeading content={heading} />
-        <p className="mb-5 font-medium text-text-tertiary">{paragraph}</p>
+        <span className="mb-5 font-medium text-text-tertiary">{paragraph}</span>
         {location.pathname.includes("/my-tickets") && (
           <div className="mb-4 flex gap-4">
             {myTicketMenu.map((menu) => (
