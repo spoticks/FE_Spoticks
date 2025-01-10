@@ -26,6 +26,15 @@ export default function MainMatchInfo({
 >) {
   const isTicketOnSale = isSaleTimeOn(timeOnSale, timeOffSale);
   const { month, day, weekday, hours, minutes } = extractDateData(timeOffSale);
+  const match = {
+    awayTeamName,
+    gameId,
+    gameStartTime,
+    homeTeamName,
+    stadiumName,
+    timeOffSale,
+    timeOnSale,
+  };
   return (
     <div className="flex w-full flex-col items-center justify-center rounded border border-borders bg-foreground p-4">
       <MatchDate gameStartTime={gameStartTime} />
@@ -35,6 +44,7 @@ export default function MainMatchInfo({
         <LinkButton
           content={`${month}/${day}(${weekday}) ${hours}:${minutes}까지 예매 가능`}
           linkTo={`/reservation/${gameId}`}
+          state={{ match: match }}
           style="w-full px-3 py-1 rounded-[10px] bg-Accent text-[16px] text-center text-foreground hover:bg-button-hovered disabled:cursor-not-allowed disabled:bg-disabled-button"
         />
       ) : (
