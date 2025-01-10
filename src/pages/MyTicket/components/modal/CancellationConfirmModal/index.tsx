@@ -17,6 +17,7 @@ export default function CancellationConfirmModal({
       isOpen={isOpen}
       onRequestClose={onClose}
       className="fixed left-1/2 top-1/2 w-[394px] -translate-x-1/2 -translate-y-1/2 rounded-[20px] bg-foreground p-[40px] pb-[48px] shadow-second"
+      style={{ overlay: { zIndex: 1000 } }}
     >
       <section className="flex flex-col items-center">
         <h1 className="mb-4 text-[20px] font-semibold">티켓을 취소하시겠습니까?</h1>
