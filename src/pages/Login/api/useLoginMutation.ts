@@ -1,7 +1,7 @@
 import useAuthStore from "@/common/stores/authStore";
 import axiosInstance from "@/common/utils/axiosInstance";
 import alertToast from "@/common/utils/alertToast";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ interface LoginFormType {
 
 export default function useLoginMutation() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const loginMutation = useMutation({
     // 로그인 로직인데 주소 및 기타 로직은 api 나오면 수정할 것
     mutationFn: async ({ userName, password }: { userName: string; password: string }) => {
@@ -22,6 +23,7 @@ export default function useLoginMutation() {
       const { token } = res.data;
       useAuthStore.getState().login(token);
       navigate("/");
+      queryClient.clear();
       alertToast("로그인에 성공했어요!", "success");
     },
     onError: (err: AxiosError) => {

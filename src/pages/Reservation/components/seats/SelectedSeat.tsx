@@ -22,7 +22,7 @@ export default function SelectedSeats({
   const seatIds = selectedSeats.map((seat) => seat.id);
   const totalPay = selectedSeats.reduce((total) => total + seatPrice, 0);
   const mySeats = selectedSeats.map((seat: Seat) => {
-    return `${selectedSection} ${Math.ceil(seat.id / 10)}열 ${seat.id}번`;
+    return `${selectedSection} ${Math.ceil(seat.seatNumber / 10)}열 ${seat.seatNumber}번`;
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,7 +50,7 @@ export default function SelectedSeats({
             className="m-1 flex flex-col items-center rounded-md border border-text-tertiary bg-foreground p-1 text-xs"
           >
             <h3>
-              {selectedSection} {Math.ceil(seat.id / 10)}열 {seat.id}번
+              {selectedSection} {Math.ceil(seat.seatNumber / 10)}열 {seat.seatNumber}번
             </h3>
             <h3>{seatPrice}원</h3>
           </div>

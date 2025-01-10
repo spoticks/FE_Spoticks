@@ -31,6 +31,7 @@ export default function SectionOfSeats({
           }
           acc[seat.seatPosition].push({
             id: seat.id,
+            seatNumber: seat.seatNumber,
             isReserved: seat.status === "RESERVED",
             isSelected: false,
             price: seat.seatPrice,
@@ -94,7 +95,7 @@ export default function SectionOfSeats({
                 : "bg-text-primary opacity-50"
           }`}
         >
-          {seat.id}
+          {seat.seatNumber}
         </div>
       ))}
     </div>

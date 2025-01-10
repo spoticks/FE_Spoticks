@@ -21,6 +21,15 @@ export default function MatchCard({ data }: { data: MatchData }) {
 
   const isTicketOnSale = isSaleTimeOn(timeOnSale, timeOffSale);
   const { month, day, weekday, hours, minutes } = extractDateData(timeOffSale);
+  const match = {
+    awayTeamName,
+    gameId,
+    gameStartTime,
+    homeTeamName,
+    stadiumName,
+    timeOffSale,
+    timeOnSale,
+  };
   return (
     <div className="flex flex-col items-center justify-between rounded-2xl border border-borders bg-foreground p-4">
       {/* 경기 카드*/}
@@ -42,6 +51,7 @@ export default function MatchCard({ data }: { data: MatchData }) {
         <LinkButton
           content={`${month}/${day}(${weekday}) ${hours}:${minutes}까지 예매 가능`}
           linkTo={`/reservation/${gameId}`}
+          state={{ match: match }}
           style="btn-red"
         />
       )}

@@ -4,8 +4,8 @@ import { MainMatchType } from "@/common/types/matchTypes";
 import alertToast from "@/common/utils/alertToast";
 import ErrorToast from "@/common/utils/errorToast";
 import confirmAlert from "@/common/utils/confirmAlert";
-import DetailInfo from "./DetailInfo";
 import axiosInstance from "@/common/utils/axiosInstance";
+import DetailInfo from "@/pages/admin/components/DetailModal/DetailInfo";
 
 interface DetailModalProps {
   isOpen: boolean;
