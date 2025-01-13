@@ -58,6 +58,7 @@ export const useRegistrationForm = ({ mode, existMatch }: Props) => {
       };
 
       if (mode === "create") {
+        console.log(matchData);
         const res = await axiosInstance.post("/admin/games", matchData);
         addMatch(res.data);
       } else if (mode === "edit" && existMatch && existMatch.gameId !== undefined) {
