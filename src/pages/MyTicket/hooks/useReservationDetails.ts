@@ -8,6 +8,6 @@ function getReservationStatus(reservationStatus: string) {
 export default function useReservationDetails(reservationId: number) {
   const { data, isSuccess } = useReservationDetailQuery(reservationId);
   const isReservationComplete = getReservationStatus(data.reservationStatus);
-  const gamePassed = isGameDatePast(data.game.gameStartTime);
-  return { data, isSuccess, isReservationComplete, gamePassed };
+  const isGamePassed = isGameDatePast(data.game.gameStartTime);
+  return { data, isSuccess, isReservationComplete, isGamePassed };
 }

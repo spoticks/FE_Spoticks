@@ -10,7 +10,7 @@ interface InformationModal {
 }
 export default function InformationDetail({ onClose, reservationId }: InformationModal) {
   const { isModalOpen, handleModalOpen, handleModalClose } = useHistoryModal();
-  const { data, isSuccess, isReservationComplete, gamePassed } =
+  const { data, isSuccess, isReservationComplete, isGamePassed } =
     useReservationDetails(reservationId);
 
   return (
@@ -52,14 +52,14 @@ export default function InformationDetail({ onClose, reservationId }: Informatio
               secondInfoPart={{ heading: "매수", content: `${data.seats.length} 매` }}
             />
             <BasicButton
-              content={isReservationComplete ? (gamePassed ? "취소 불가" : "티켓 취소") : "닫기"}
+              content={isReservationComplete ? (isGamePassed ? "취소 불가" : "티켓 취소") : "닫기"}
               onClick={isReservationComplete ? handleModalOpen : onClose}
               style={
                 isReservationComplete
                   ? "btn-red"
                   : "w-full rounded-[10px] bg-borders px-3 py-2 text-center text-[16px] hover:bg-text-tertiary disabled:cursor-not-allowed disabled:bg-text-tertiary"
               }
-              disabled={gamePassed && isReservationComplete}
+              disabled={isGamePassed && isReservationComplete}
             />
           </section>
           <CancellationConfirmModal
