@@ -15,7 +15,7 @@ export default function AuthLayout() {
     <div>
       <div className="flex flex-col items-center justify-center">
         <AuthFirstHeading content={heading} />
-        <span className="mb-5 font-medium text-text-tertiary">{paragraph}</span>
+        <span className="mb-5 text-[20px] text-text-primary opacity-50">{paragraph}</span>
         {location.pathname.includes("/my-tickets") && (
           <div className="mb-4 flex gap-4">
             {myTicketMenu.map((menu) => (

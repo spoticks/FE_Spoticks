@@ -1,3 +1,3 @@
 export default function AuthFirstHeading({ content }: { content: string }) {
-  return <h1 className="text-2xl font-bold">{content}</h1>;
+  return <h1 className="text-[40px] font-semibold">{content}</h1>;
 }
