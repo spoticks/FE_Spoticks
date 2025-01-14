@@ -7,7 +7,7 @@ const RenderMap = ({ position }: NaverMapProps) => {
   const navermaps = useNavermaps();
 
   return (
-    <NaverMap defaultCenter={new navermaps.LatLng(position[0], position[1])} defaultZoom={15}>
+    <NaverMap defaultCenter={new navermaps.LatLng(position[0], position[1])}>
       <Marker defaultPosition={new navermaps.LatLng(position[0], position[1])} />
     </NaverMap>
   );

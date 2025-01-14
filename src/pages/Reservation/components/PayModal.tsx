@@ -2,7 +2,6 @@ import Modal from "react-modal";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import Button from "@/common/components/atoms/Button";
-import Loading from "@/common/components/atoms/Loading";
 import alertToast from "@/common/utils/alertToast";
 import DetailedTicket from "@/common/components/organisms/DetailedTicket";
 import InfoPart from "@/common/components/molecules/InfoPart";
@@ -38,7 +37,7 @@ export default function PayModal({
     navigate("/");
   };
 
-  const { mutate: handlePayment, isPending } = usePayMutation(onSuccessCallback);
+  const { mutate: handlePayment } = usePayMutation(onSuccessCallback);
 
   const handlePayClick = () => {
     handlePayment({
@@ -63,7 +62,6 @@ export default function PayModal({
         </button>
       </div>
       <section>
-        {isPending && <Loading />}
         {matchData && (
           <>
             <DetailedTicket game={matchData} mySeats={mySeats} totalPay={totalPay} />
