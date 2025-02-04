@@ -4,6 +4,7 @@ import TabClose from "@/assets/TabClose.svg?react";
 import { teams, leagueName } from "@/common/constants";
 import { useEffect, useState } from "react";
 import Loading from "@/common/components/atoms/Loading";
+import TeamList from "./TeamList";
 
 interface TabProps {
   sport: string;
@@ -18,7 +19,7 @@ export default function MatchListTab({
   setCurrentPage,
   isLoading,
 }: TabProps) {
-  const TabStyle = "flex flex-row items-center bg-background py-2 pl-1 bg-foreground";
+  const TabStyle = "flex flex-row items-center bg-background py-2 pl-1 bg-foreground text-sm";
   const TeamListIconStyle =
     "size-3 transform transition-all duration-300 ease-in-out absolute transform-origin-center top-[-10px]";
 
@@ -62,7 +63,7 @@ export default function MatchListTab({
       <div className="flex flex-col">
         <div className={TabStyle}>
           <LeftTapIcon className="size-3" />
-          <h3 className="mx-1">
+          <h3 className="mx-1 text-sm">
             {currentYear} {leagueName[sport]}리그
           </h3>
           <div onClick={TapClick} className="relative cursor-pointer border-none">
@@ -74,21 +75,11 @@ export default function MatchListTab({
           isLoading ? (
             <Loading />
           ) : (
-            <div className="transition-transform">
-              {teams[sport].map((name: string) => {
-                return (
-                  <div
-                    key={name}
-                    onClick={() => handleTeamClick(name)}
-                    className={`flex cursor-pointer justify-center bg-focused-input-background py-1 ${
-                      activeTeam === name ? "font-bold text-Accent" : ""
-                    }`}
-                  >
-                    {name}
-                  </div>
-                );
-              })}
-            </div>
+            <TeamList
+              teams={teams[sport]}
+              activeTeam={activeTeam}
+              handleTeamClick={handleTeamClick}
+            />
           )
         ) : (
           <></>

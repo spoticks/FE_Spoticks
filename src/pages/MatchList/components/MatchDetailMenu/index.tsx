@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import HomeInfo from "@/pages/MatchList/components/HomeInfo";
 import ReservationList from "@/pages/MatchList/components/ReservationList";
 import ReserveInfo from "@/pages/MatchList/components/ReserveInfo";
@@ -33,6 +33,11 @@ export default function MatchDetailMenu({
 }: DetailProps) {
   //예매내역, 홈구장안내, 예매설명 메뉴 선택
   const [selectedMenu, setSelectedMenu] = useState("예매 일정");
+
+  useEffect(() => {
+    setSelectedMenu("예매 일정");
+  }, [selectedTeam]);
+
   const handleMenuClick = (menu: string) => {
     setSelectedMenu(menu);
   };

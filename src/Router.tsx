@@ -11,14 +11,12 @@ import AccountDeletion from "@/pages/AccountDeletion";
 import MyTeam from "./pages/MyTeam";
 import MyTicket from "@/pages/MyTicket";
 import MyPage from "@/pages/MyPage";
-import HomeInfo from "./pages/MatchList/components/HomeInfo";
-import ReserveInfo from "./pages/MatchList/components/ReserveInfo";
 import ReservationGuide from "@/pages/MatchList/components/ReservationGuide";
 import AuthProvider from "@/common/components/organisms/AuthProvider";
 import PrivateRoute from "@/common/routes/PrivateRoute";
 import Layout from "@/common/layouts/Layout";
 import AuthLayout from "@/common/layouts/AuthLayout";
-import Admin from "@/pages/admin";
+import Admin from "@/pages/Admin";
 import AccountLayout from "@/common/layouts/AccountLayout";
 
 export default function Router() {
@@ -39,10 +37,8 @@ export default function Router() {
                   <Route element={<MatchList sport={sport} />}>
                     <Route index element={<MatchList sport={sport} />} />
                     <Route path="guide" element={<ReservationGuide />} />
-                    <Route path=":selectedTeam" element={<MatchList sport={sport} />} />
                     <Route path="allSchedule" element={<MatchList sport={sport} />} />
-                    <Route path="homeInfo" element={<HomeInfo />} />
-                    <Route path="reserveInfo" element={<ReserveInfo />} />
+                    <Route path=":selectedTeam" element={<MatchList sport={sport} />} />
                   </Route>
                 </Route>
               ))}
