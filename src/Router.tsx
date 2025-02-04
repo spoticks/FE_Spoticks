@@ -16,8 +16,8 @@ import AuthProvider from "@/common/components/organisms/AuthProvider";
 import PrivateRoute from "@/common/routes/PrivateRoute";
 import Layout from "@/common/layouts/Layout";
 import AuthLayout from "@/common/layouts/AuthLayout";
-import Admin from "@/pages/Admin";
 import AccountLayout from "@/common/layouts/AccountLayout";
+import Admin from "@/pages/admin";
 
 export default function Router() {
   return (
