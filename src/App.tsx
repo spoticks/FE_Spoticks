@@ -16,7 +16,6 @@ function App() {
       defaultOptions: {
         queries: {
           retry: false,
-          // throwOnError: true,
         },
         mutations: {
           retry: false,
