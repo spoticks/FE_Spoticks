@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 export default function useSignUpMutation() {
   const navigate = useNavigate();
   const signUpMutation = useMutation({
-    // 로그인 로직인데 주소 및 기타 로직은 api 나오면 수정할 것
     mutationFn: async ({ userName, password, memberName, phoneNumber }: AuthFormType) => {
       return await axiosInstance.post("join", { userName, password, memberName, phoneNumber });
     },

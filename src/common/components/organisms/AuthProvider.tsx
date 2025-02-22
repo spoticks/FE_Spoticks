@@ -11,21 +11,22 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   useEffect(() => {
     async function reissueAuth() {
       if (
+        // = 로그인하고 새로고침 한 경우
         userName &&
         !accessToken &&
-        // = 로그인하고 새로고침 한 경우
+        // 요청에 굳이 토큰이 필요 없는 페이지들
         !pathname.includes("/reservation") &&
         !pathname.includes("/admin") &&
         !pathname.includes("/profile")
       ) {
         try {
-          const axiosRefreshInstance = axios.create({
-            baseURL: "https://api.spoticks.shop/",
-            timeout: 3000,
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true,
-          });
-          const response = await axiosRefreshInstance.post(`/auth/reissue/${userName}`);
+          const response = await axios.post(
+            `https://api.spoticks.shop/auth/reissue/${userName}`,
+            {},
+            {
+              withCredentials: true,
+            },
+          );
           const { token } = response.data;
           useAuthStore.getState().login(token);
         } catch (err) {
