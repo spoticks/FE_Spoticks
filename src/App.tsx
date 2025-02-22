@@ -18,9 +18,6 @@ function App() {
         },
         mutations: {
           retry: false,
-          onError: (error) => {
-            errorHandler(error);
-          },
         },
       },
     }),
