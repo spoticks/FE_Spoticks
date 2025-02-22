@@ -5,7 +5,7 @@ export default function AccountLayout() {
   const { accessToken } = useAuthStore((state) => state);
   const navigate = useNavigate();
   if (accessToken) {
-    navigate(-1);
+    navigate("/");
   }
   return <Outlet />;
 }
