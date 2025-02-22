@@ -11,9 +11,10 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   useEffect(() => {
     async function reissueAuth() {
       if (
+        // = 로그인하고 새로고침 한 경우
         userName &&
         !accessToken &&
-        // = 로그인하고 새로고침 한 경우
+        // 요청에 굳이 토큰이 필요 없는 페이지들
         !pathname.includes("/reservation") &&
         !pathname.includes("/admin") &&
         !pathname.includes("/profile")
