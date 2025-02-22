@@ -28,8 +28,11 @@ axiosInstance.interceptors.response.use(
     const {
       data: { message },
     } = err.response;
-    // 토큰이 만료되었을 경우
-    if (message === "JWT Token expired" && !originalRequest._retry) {
+    // 토큰이 만료되었을 경우 or 프로필, 관리자, 예약 등의 페이지(요청에 토큰이 필요한 페이지)에서의 요청
+    if (
+      (message === "JWT Token expired" || message === "JWT Token is empty") &&
+      !originalRequest._retry
+    ) {
       originalRequest._retry = true;
       try {
         const userName = useAuthStore.getState().userName;
