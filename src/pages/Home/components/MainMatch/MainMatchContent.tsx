@@ -19,16 +19,22 @@ export default function MainMatchContent() {
   const isTicketOnSale = isSaleTimeOn(timeOnSale, timeOffSale);
   return (
     <div className="flex w-full flex-col gap-4">
-      {isTicketOnSale ? <Timer timeOffSale={timeOffSale} /> : <TicketOffSale />}
-      <MainMatchInfo
-        homeTeamName={homeTeamName}
-        awayTeamName={awayTeamName}
-        gameId={gameId}
-        timeOffSale={timeOffSale}
-        timeOnSale={timeOnSale}
-        gameStartTime={gameStartTime}
-        stadiumName={stadiumName}
-      />
+      {homeTeamName ? (
+        <>
+          {isTicketOnSale ? <Timer timeOffSale={timeOffSale} /> : <TicketOffSale />}
+          <MainMatchInfo
+            homeTeamName={homeTeamName}
+            awayTeamName={awayTeamName}
+            gameId={gameId}
+            timeOffSale={timeOffSale}
+            timeOnSale={timeOnSale}
+            gameStartTime={gameStartTime}
+            stadiumName={stadiumName}
+          />
+        </>
+      ) : (
+        <p>이번주엔 경기가 없습니다!</p>
+      )}
     </div>
   );
 }
