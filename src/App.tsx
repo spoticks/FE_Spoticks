@@ -9,7 +9,6 @@ function App() {
     new QueryClient({
       queryCache: new QueryCache({
         onError: (error) => {
-          // 리프레시 토큰이 제작된다면 로직 바꿀 것.
           errorHandler(error);
         },
       }),
@@ -19,9 +18,6 @@ function App() {
         },
         mutations: {
           retry: false,
-          onError: (error) => {
-            errorHandler(error);
-          },
         },
       },
     }),

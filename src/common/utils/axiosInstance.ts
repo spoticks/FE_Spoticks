@@ -20,23 +20,29 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use(
   (res) => res,
   async (err) => {
+    // 네트워크 에러로 응답 자체가 오지 않을 때
+    if (!err.response?.data) {
+      return Promise.reject(err);
+    }
     const originalRequest = err.config;
     const {
-      status,
       data: { message },
     } = err.response;
-    // 404는 일시적인 코드.
-    if ((message === "JWT Token expired" || status === 404) && !originalRequest._retry) {
+    // 토큰이 만료되었을 경우 or 프로필, 관리자, 예약 등의 페이지(요청에 토큰이 필요한 페이지)에서의 요청
+    if (
+      (message === "JWT Token expired" || message === "JWT Token is empty") &&
+      !originalRequest._retry
+    ) {
       originalRequest._retry = true;
       try {
         const userName = useAuthStore.getState().userName;
-        const axiosRefreshInstance = axios.create({
-          baseURL: "https://api.spoticks.shop/",
-          timeout: 3000,
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        });
-        const response = await axiosRefreshInstance.post(`/auth/reissue/${userName}`);
+        const response = await axios.post(
+          `https://api.spoticks.shop/auth/reissue/${userName}`,
+          {},
+          {
+            withCredentials: true,
+          },
+        );
         const { token } = response.data;
         useAuthStore.getState().login(token);
         originalRequest.headers.Authorization = `Bearer ${token}`;
